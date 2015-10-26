@@ -1,0 +1,15 @@
+# Copyright (c) 2015 Chris Palmer <pennstate5013@gmail.com>
+# Use of this source code is governed by the GPLv3 license that can be
+# found in the LICENSE file.
+[package]
+name = "feed-reader"
+version = "0.1.0"
+authors = ["Chris Palmer(PhnxRbrn) <pennstate5013@gmail.com>"]
+description = "Parse rss feeds from url"
+repository = "https://github.com/red-oxide/red-oxide"
+readme = "README.md"
+license = "GPLv3"
+
+[dependencies]
+syndication = "*"
+url = "*"
