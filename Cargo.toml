@@ -13,3 +13,4 @@ license = "GPLv3"
 [dependencies]
 syndication = "*"
 url = "*"
+curl = "*"
