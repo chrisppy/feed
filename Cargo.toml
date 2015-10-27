@@ -11,6 +11,6 @@ readme = "README.md"
 license = "GPLv3"
 
 [dependencies]
-syndication = "*"
+rss = "*"
 url = "*"
 curl = "*"

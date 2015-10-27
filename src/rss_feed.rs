@@ -2,17 +2,16 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-extern crate syndication;
+extern crate rss;
 extern crate url;
 extern crate curl;
 
 use curl::http;
 use url::{Url, ParseError};
-use syndication::Feed;
+use rss::*;
 
 pub struct Channel_Feed {
     url: String,
-    feed: String,
     title: String,
     items: Vec<Item>,
     language: Option<String>,
@@ -35,71 +34,61 @@ pub struct Channel_Feed {
 pub impl Channel_Feed {
     fn new(url: &str, feed: &str) -> Channel_Feed {
 
-        match feed.parse::<Feed>().unwrap() {
-            Feed::RSS(feed) => {
-                Channel_Feed {
-                    url: url.to_string(),
-                    feed: resp.get_body(),
-                    title: feed.title,
-                    items: items[],
-                    language: feed.language,
-                    copyright: feed.copyright,
-                    managing_editor: feed.managing_editor,
-                    web_master: feed.web_master,
-                    last_build_date: feed.last_build_date,
-                    categories: feed.categories[],
-                    generator: feed.generator,
-                    docs: feed.language,
-                    ttl: feed.ttl,
-                    image: feed.image,
-                    rating: feed.rating,
-                    text_input: feed.text_input,
-                    skip_hours: feed.skip_hours,
-                    skip_days: feed.skip_days,
-                };
-                println!("RSS title: {:?}", self.title);
-            },
-            _ => {}
-        };
+        let feed_rss = feed.parse::<Rss>().unwrap();
+        
+        println!("RSS title: {:?}", feed.title);
+
+        Channel_Feed {
+            url: url.to_string(),
+            title: feed.title,
+            items: feed.items,
+            language: feed.language,
+            copyright: feed.copyright,
+            managing_editor: feed.managing_editor,
+            web_master: feed.web_master,
+            pub_date: feed.pub_date,
+            last_build_date: feed.last_build_date,
+            categories: feed.categories,
+            generator: feed.generator,
+            docs: feed.language,
+            ttl: feed.ttl,
+            image: feed.image,
+            rating: feed.rating,
+            text_input: feed.text_input,
+            skip_hours: feed.skip_hours,
+            skip_days: feed.skip_days,
+        }
     }
 
     fn get_url(&self) -> String {
         self.url
     }
 
-    fn get_feed(&self) -> String {
-        self.feed
-    }
-
     fn get_title(&self) -> String {
         self.title
     }
 
-    fn get_item_title(&self, element: i32) -> Option<String> {
+    fn get_item_title(&self, element: usize) -> Option<String> {
         self.items[element].title
     }
 
-    fn get_item_link(&self, element: i32) -> Option<String> {
+    fn get_item_link(&self, element: usize) -> Option<String> {
         self.items[element].link
     }
 
-    fn get_item_description(&self, element: i32) -> Option<String> {
+    fn get_item_description(&self, element: usize) -> Option<String> {
         self.items[element].description
     }
 
-    fn get_item_author(&self, element: i32) -> Option<String> {
+    fn get_item_author(&self, element: usize) -> Option<String> {
         self.items[element].author
     }
 
-    fn get_item_categories(&self, element: i32) -> Vec<Category> {
-        self.items[element].categories[]
-    }
-
-    fn get_item_comments(&self, element: i32) -> Option<String> {
+    fn get_item_comments(&self, element: usize) -> Option<String> {
         self.items[element].comments
     }
 
-    fn get_item_pub_date(&self, element: i32) -> Option<String> {
+    fn get_item_pub_date(&self, element: usize) -> Option<String> {
         self.items[element].pub_date
     }
 
@@ -123,10 +112,6 @@ pub impl Channel_Feed {
         self.last_build_date
     }
 
-    fn get_categories(&self) -> Vec<Category> {
-        self.categories[]
-    }
-
     fn get_generator(&self) -> Option<String> {
         self.generator
     }
@@ -145,10 +130,6 @@ pub impl Channel_Feed {
 
     fn get_rating(&self) -> Option<String> {
         self.rating
-    }
-
-    fn get_text_input(&self) -> Option<TextInput> {
-        self.text_input
     }
 
     fn get_skip_hours(&self) -> Option<String> {
