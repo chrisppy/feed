@@ -19,8 +19,6 @@ use std::str;
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// ```
 pub fn new(url: &str) -> String {
@@ -42,8 +40,6 @@ pub fn new(url: &str) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_title = feedreader::get_channel_title(&feed);
 /// ```
@@ -63,8 +59,6 @@ pub fn get_channel_title(feed: String) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_language = feedreader::get_channel_language(&feed);
@@ -86,8 +80,6 @@ pub fn get_channel_language(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_copyright = feedreader::get_channel_copyright(&feed);
 /// ```
@@ -107,8 +99,6 @@ pub fn get_channel_copyright(feed: String) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_managing_editor = feedreader::get_channel_managing_editor(&feed);
@@ -130,8 +120,6 @@ pub fn get_channel_managing_editor(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_web_master = feedreader::get_channel_web_master(&feed);
 /// ```
@@ -151,8 +139,6 @@ pub fn get_channel_web_master(feed: String) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_last_build_date = feedreader::get_channel_last_build_date(&feed);
@@ -174,8 +160,6 @@ pub fn get_channel_last_build_date(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_categories = feedreader::get_channel_categories(&feed);
 /// ```
@@ -195,8 +179,6 @@ pub fn get_channel_categories(feed: String) -> Vec<Category> {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_generator = feedreader::get_channel_generator(&feed);
@@ -218,8 +200,6 @@ pub fn get_channel_generator(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_docs = feedreader::get_channel_docs(&feed);
 /// ```
@@ -239,8 +219,6 @@ pub fn get_channel_docs(feed: String) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_ttl = feedreader::get_channel_ttl(&feed);
@@ -262,8 +240,6 @@ pub fn get_channel_ttl(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_image = feedreader::get_channel_image(&feed);
 /// ```
@@ -283,8 +259,6 @@ pub fn get_channel_image(feed: String) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_ratingr = feedreader::get_channel_rating(&feed);
@@ -306,8 +280,6 @@ pub fn get_channel_rating(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_skip_hours = feedreader::get_channel_skip_hours(&feed);
 /// ```
@@ -328,8 +300,6 @@ pub fn get_channel_skip_hours(feed: String) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_skip_days = feedreader::get_channel_skip_days(&feed);
 /// ```
@@ -349,8 +319,6 @@ pub fn get_channel_skip_days(feed: String) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
@@ -374,8 +342,6 @@ pub fn get_item_title(feed: String, element: usize) -> String {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_link = feedreader::get_item_link(&feed, item_element);
@@ -397,8 +363,6 @@ pub fn get_item_link(feed: String, element: usize) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
@@ -423,8 +387,6 @@ pub fn get_item_description(feed: String, element: usize) -> String
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_author = feedreader::get_item_title(&feed, item_element);
@@ -446,8 +408,6 @@ pub fn get_item_author(feed: String, element: usize) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
@@ -471,8 +431,6 @@ pub fn get_item_categories(feed: String, element: usize) -> Vec<Category> {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::*;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_comments = feedreader::get_item_comments(&feed, item_element);
@@ -494,8 +452,6 @@ pub fn get_item_comments(feed: String, element: usize) -> String {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::*;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
