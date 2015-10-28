@@ -78,10 +78,10 @@ pub fn get_channel_language(feed: String) -> Option<String> {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_copyright = feedreader::get_channel_copyright(feed);
 /// ```
-pub fn get_channel_copyright(feed: String) -> String {
+pub fn get_channel_copyright(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let copyright = rss_feed.copyright.unwrap();
+            let copyright = rss_feed.copyright;
             return copyright;
         }
     }
@@ -97,10 +97,10 @@ pub fn get_channel_copyright(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_managing_editor = feedreader::get_channel_managing_editor(feed);
 /// ```
-pub fn get_channel_managing_editor(feed: String) -> String {
+pub fn get_channel_managing_editor(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let managing_editor = rss_feed.managing_editor.unwrap();
+            let managing_editor = rss_feed.managing_editor;
             return managing_editor;
         }
     }
@@ -116,10 +116,10 @@ pub fn get_channel_managing_editor(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_web_master = feedreader::get_channel_web_master(feed);
 /// ```
-pub fn get_channel_web_master(feed: String) -> String {
+pub fn get_channel_web_master(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let web_master = rss_feed.web_master.unwrap();
+            let web_master = rss_feed.web_master;
             return web_master;
         }
     }
@@ -135,10 +135,10 @@ pub fn get_channel_web_master(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_last_build_date = feedreader::get_channel_last_build_date(feed);
 /// ```
-pub fn get_channel_last_build_date(feed: String) -> String {
+pub fn get_channel_last_build_date(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let last_build_date = rss_feed.last_build_date.unwrap();
+            let last_build_date = rss_feed.last_build_date;
             return last_build_date;
         }
     }
@@ -173,10 +173,10 @@ pub fn get_channel_categories(feed: String) -> Vec<Category> {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_generator = feedreader::get_channel_generator(feed);
 /// ```
-pub fn get_channel_generator(feed: String) -> String {
+pub fn get_channel_generator(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let generator = rss_feed.generator.unwrap();
+            let generator = rss_feed.generator;
             return generator;
         }
     }
@@ -192,10 +192,10 @@ pub fn get_channel_generator(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_docs = feedreader::get_channel_docs(feed);
 /// ```
-pub fn get_channel_docs(feed: String) -> String {
+pub fn get_channel_docs(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let docs = rss_feed.docs.unwrap();
+            let docs = rss_feed.docs;
             return docs;
         }
     }
@@ -211,10 +211,10 @@ pub fn get_channel_docs(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_ttl = feedreader::get_channel_ttl(feed);
 /// ```
-pub fn get_channel_ttl(feed: String) -> String {
+pub fn get_channel_ttl(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let ttl = rss_feed.ttl.unwrap();
+            let ttl = rss_feed.ttl;
             return ttl;
         }
     }
@@ -230,10 +230,10 @@ pub fn get_channel_ttl(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_image = feedreader::get_channel_image(feed);
 /// ```
-pub fn get_channel_image(feed: String) -> String {
+pub fn get_channel_image(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let image = rss_feed.image.unwrap();
+            let image = rss_feed.image;
             return image;
         }
     }
@@ -249,10 +249,10 @@ pub fn get_channel_image(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_ratingr = feedreader::get_channel_rating(feed);
 /// ```
-pub fn get_channel_rating(feed: String) -> String {
+pub fn get_channel_rating(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let rating = rss_feed.rating.unwrap();
+            let rating = rss_feed.rating;
             return rating;
         }
     }
@@ -268,10 +268,10 @@ pub fn get_channel_rating(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_skip_hours = feedreader::get_channel_skip_hours(feed);
 /// ```
-pub fn get_channel_skip_hours(feed: String) -> String {
+pub fn get_channel_skip_hours(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let skip_hours = rss_feed.skip_hours.unwrap();
+            let skip_hours = rss_feed.skip_hours;
             return skip_hours;
         }
     }
@@ -287,10 +287,10 @@ pub fn get_channel_skip_hours(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_skip_days = feedreader::get_channel_skip_days(feed);
 /// ```
-pub fn get_channel_skip_days(feed: String) -> String {
+pub fn get_channel_skip_days(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let skip_days = rss_feed.skip_hours.unwrap();
+            let skip_days = rss_feed.skip_hours;
             return skip_days;
         }
     }
@@ -307,11 +307,11 @@ pub fn get_channel_skip_days(feed: String) -> String {
 /// let item_element: usize = 1;
 /// let item_title = feedreader::get_item_title(feed, item_element);
 /// ```
-pub fn get_item_title(feed: String, element: usize) -> String {
+pub fn get_item_title(feed: String, element: usize) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
-            let title = item.title.unwrap();
+            let title = item.title;
             return title;
         }
     }
@@ -328,11 +328,11 @@ pub fn get_item_title(feed: String, element: usize) -> String {
 /// let item_element: usize = 1;
 /// let item_link = feedreader::get_item_link(feed, item_element);
 /// ```
-pub fn get_item_link(feed: String, element: usize) -> String {
+pub fn get_item_link(feed: String, element: usize) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
-            let link = item.link.unwrap();
+            let link = item.link;
             return link;
         }
     }
@@ -349,12 +349,12 @@ pub fn get_item_link(feed: String, element: usize) -> String {
 /// let item_element: usize = 1;
 /// let item_description = feedreader::get_item_description(feed, item_element);
 /// ```
-pub fn get_item_description(feed: String, element: usize) -> String
+pub fn get_item_description(feed: String, element: usize) -> Option<String>
 {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
-            let description = item.description.unwrap();
+            let description = item.description;
             return description;
         }
     }
@@ -371,11 +371,11 @@ pub fn get_item_description(feed: String, element: usize) -> String
 /// let item_element: usize = 1;
 /// let item_author = feedreader::get_item_title(feed, item_element);
 /// ```
-pub fn get_item_author(feed: String, element: usize) -> String {
+pub fn get_item_author(feed: String, element: usize) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
-            let author = item.author.unwrap();
+            let author = item.author;
             return author;
         }
     }
@@ -413,11 +413,11 @@ pub fn get_item_categories(feed: String, element: usize) -> Vec<Category> {
 /// let item_element: usize = 1;
 /// let item_comments = feedreader::get_item_comments(feed, item_element);
 /// ```
-pub fn get_item_comments(feed: String, element: usize) -> String {
+pub fn get_item_comments(feed: String, element: usize) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
-            let comments = item.comments.unwrap();
+            let comments = item.comments;
             return comments;
         }
     }
@@ -434,11 +434,11 @@ pub fn get_item_comments(feed: String, element: usize) -> String {
 /// let item_element: usize = 1;
 /// let item_pub_date = feedreader::get_item_pub_date(feed, item_element);
 /// ```
-pub fn get_item_pub_date(feed: String, element: usize) -> String {
+pub fn get_item_pub_date(feed: String, element: usize) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
-            let pub_date = item.pub_date.unwrap();
+            let pub_date = item.pub_date;
             return pub_date;
         }
     }
