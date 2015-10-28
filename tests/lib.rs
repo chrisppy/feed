@@ -2,12 +2,12 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-extern crate feed-reader;
+extern crate feedreader;
 
-use feed-reader::Channel_Feed;
+use feedreader::*;
 
 #[test]
-fn test_channel_title() {
-    let channel = feed-reader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
-    assert!(channel.get_title(), "The Linux Action Show! OGG".to_string());
+fn get_channel_title() {
+    let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+    assert_eq!(feedreader::get_channel_title(feed), "The Linux Action Show! OGG".to_string());
 }
