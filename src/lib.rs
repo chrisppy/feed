@@ -26,9 +26,6 @@ pub fn new(url: &str) -> String {
 
     let resp = http::handle().get(&feed_url).exec().unwrap();
     let body = resp.get_body();
-
-    println!("body={:?}", body);
-
     let feed = str::from_utf8(body).unwrap().to_string();
     feed
 }
@@ -47,7 +44,6 @@ pub fn get_channel_title(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let title = rss_feed.title;
-            println!("Channel Title: {:?}", title);
             return title;
         }
     }
@@ -67,7 +63,6 @@ pub fn get_channel_language(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let language = rss_feed.language.unwrap();
-            println!("Channel Language: {:?}", language);
             return language;
         }
     }
@@ -87,7 +82,6 @@ pub fn get_channel_copyright(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let copyright = rss_feed.copyright.unwrap();
-            println!("Channel Copyright: {:?}", copyright);
             return copyright;
         }
     }
@@ -107,7 +101,6 @@ pub fn get_channel_managing_editor(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let managing_editor = rss_feed.managing_editor.unwrap();
-            println!("Channel Managing Editor: {:?}", managing_editor);
             return managing_editor;
         }
     }
@@ -127,7 +120,6 @@ pub fn get_channel_web_master(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let web_master = rss_feed.web_master.unwrap();
-            println!("Channel Web Master: {:?}", web_master);
             return web_master;
         }
     }
@@ -147,7 +139,6 @@ pub fn get_channel_last_build_date(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let last_build_date = rss_feed.last_build_date.unwrap();
-            println!("Channel Last Build Date: {:?}", last_build_date);
             return last_build_date;
         }
     }
@@ -167,7 +158,6 @@ pub fn get_channel_categories(feed: String) -> Vec<Category> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let categories = rss_feed.categories;
-            println!("Channel Categories: {:?}", categories);
             return categories;
         }
     }
@@ -187,7 +177,6 @@ pub fn get_channel_generator(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let generator = rss_feed.generator.unwrap();
-            println!("Channel Generator: {:?}", generator);
             return generator;
         }
     }
@@ -207,7 +196,6 @@ pub fn get_channel_docs(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let docs = rss_feed.docs.unwrap();
-            println!("Channel Docs: {:?}", docs);
             return docs;
         }
     }
@@ -227,7 +215,6 @@ pub fn get_channel_ttl(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let ttl = rss_feed.ttl.unwrap();
-            println!("Channel ttl: {:?}", ttl);
             return ttl;
         }
     }
@@ -247,7 +234,6 @@ pub fn get_channel_image(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let image = rss_feed.image.unwrap();
-            println!("Channel Image: {:?}", image);
             return image;
         }
     }
@@ -267,7 +253,6 @@ pub fn get_channel_rating(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let rating = rss_feed.rating.unwrap();
-            println!("Channel Rating: {:?}", rating);
             return rating;
         }
     }
@@ -287,7 +272,6 @@ pub fn get_channel_skip_hours(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let skip_hours = rss_feed.skip_hours.unwrap();
-            println!("Channel Skip Hours: {:?}", skip_hours);
             return skip_hours;
         }
     }
@@ -307,7 +291,6 @@ pub fn get_channel_skip_days(feed: String) -> String {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
             let skip_days = rss_feed.skip_hours.unwrap();
-            println!("Channel Skip Days: {:?}", skip_days);
             return skip_days;
         }
     }
@@ -329,7 +312,6 @@ pub fn get_item_title(feed: String, element: usize) -> String {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let title = item.title.unwrap();
-            println!("Item Title: {:?}", title);
             return title;
         }
     }
@@ -351,7 +333,6 @@ pub fn get_item_link(feed: String, element: usize) -> String {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let link = item.link.unwrap();
-            println!("Item Link: {:?}", link);
             return link;
         }
     }
@@ -374,7 +355,6 @@ pub fn get_item_description(feed: String, element: usize) -> String
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let description = item.description.unwrap();
-            println!("Item Description: {:?}", description);
             return description;
         }
     }
@@ -396,7 +376,6 @@ pub fn get_item_author(feed: String, element: usize) -> String {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let author = item.author.unwrap();
-            println!("Item Author: {:?}", author);
             return author;
         }
     }
@@ -418,7 +397,6 @@ pub fn get_item_categories(feed: String, element: usize) -> Vec<Category> {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let categories = item.categories;
-            println!("Item Categories: {:?}", categories);
             return categories;
         }
     }
@@ -440,7 +418,6 @@ pub fn get_item_comments(feed: String, element: usize) -> String {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let comments = item.comments.unwrap();
-            println!("Item Comments: {:?}", comments);
             return comments;
         }
     }
@@ -462,7 +439,6 @@ pub fn get_item_pub_date(feed: String, element: usize) -> String {
         Rss(rss_feed) => {
             let item = rss_feed.items[element].clone();
             let pub_date = item.pub_date.unwrap();
-            println!("Item Pub Date: {:?}", pub_date);
             return pub_date;
         }
     }
