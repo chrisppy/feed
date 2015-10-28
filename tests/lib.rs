@@ -1,10 +1,7 @@
 // Copyright (c) 2015 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
-
 extern crate feedreader;
-
-use feedreader::*;
 
 #[test]
 fn get_channel_title() {
