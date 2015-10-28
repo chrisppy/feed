@@ -62,7 +62,7 @@ pub fn get_channel_title(feed: String) -> String {
 pub fn get_channel_language(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let language: Option<String> = Some(rss_feed.language);
+            let language = rss_feed.language;
             return language;
         }
     }
