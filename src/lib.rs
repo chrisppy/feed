@@ -24,7 +24,7 @@ use std::str;
 pub fn new(url: &str) -> String {
     let feed_url = Url::parse(url).unwrap();
 
-    let resp = http::handle().get(feed_url).exec().unwrap();
+    let resp = http::handle().get(&feed_url).exec().unwrap();
     let body = resp.get_body();
 
     println!("body={:?}", body);
