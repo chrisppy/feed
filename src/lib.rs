@@ -59,10 +59,10 @@ pub fn get_channel_title(feed: String) -> String {
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let channel_language = feedreader::get_channel_language(feed);
 /// ```
-pub fn get_channel_language(feed: String) -> String {
+pub fn get_channel_language(feed: String) -> Option<String> {
     match feed.parse::<Rss>().unwrap() {
         Rss(rss_feed) => {
-            let language = rss_feed.language.unwrap();
+            let language: Option<String> = Some(rss_feed.language);
             return language;
         }
     }
