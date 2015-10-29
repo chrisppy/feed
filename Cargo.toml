@@ -13,6 +13,6 @@ documentation = "http://red-oxide.github.io/feedreader"
 description = "Parse RSS feeds from url"
 
 [dependencies]
-rss = "*"
-url = "*"
-curl = "*"
+rss = "0.2.1"
+url = "0.2.37"
+curl = "0.2.12"
