@@ -2,9 +2,9 @@
 Library for passing RSS feeds from an URL and retrieving the elements
 
 ## Dashboard
-| Linux CI | Coveralls | Cargo | Issues | License | Documentation |
-| :---------: | :---------: | :-----: | :-----: | :-------: | :---------------: |
-| [![Build Status](https://travis-ci.org/red-oxide/feedreader.svg?branch=master)](https://travis-ci.org/red-oxide/feedreader) | [![Coverage Status](https://coveralls.io/repos/red-oxide/feedreader/badge.svg?branch=master&service=github)](https://coveralls.io/github/red-oxide/feedreader?branch=master) | [![Crates.io](https://img.shields.io/crates/v/feedreader.svg)]() | [![Github Issues](https://img.shields.io/github/issues-raw/red-oxide/feedreader.svg)](https://github.com/red-oxide/feedreader/issues) | [![Github License](https://img.shields.io/github/license/red-oxide/feedreader.svg)](https://github.com/red-oxide/feedreader/blob/master/LICENSE) | [Documentation](http://red-oxide.github.io/feedreader "Documentation") |
+| Linux CI | Coveralls | Cargo | License | Documentation |
+| :---------: | :---------: | :-----: | :-------: | :---------------: |
+| [![Build Status](https://travis-ci.org/red-oxide/feedreader.svg?branch=master)](https://travis-ci.org/red-oxide/feedreader) | [![Coverage Status](https://coveralls.io/repos/red-oxide/feedreader/badge.svg?branch=master&service=github)](https://coveralls.io/github/red-oxide/feedreader?branch=master) | [![Crates.io](https://img.shields.io/crates/v/feedreader.svg)](https://crates.io/crates/feedreader) | [![License](https://img.shields.io/crates/l/feedreader.svg)](https://github.com/red-oxide/feedreader/blob/master/LICENSE) | [Documentation](http://red-oxide.github.io/feedreader "Documentation") |
 
 ## Bugs and feature requests
 
