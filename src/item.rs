@@ -13,8 +13,6 @@ use rss::{Rss, Category};
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::item;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_title = feedreader::item::get_title(feed, item_element);
@@ -36,8 +34,6 @@ pub fn get_title(feed: String, element: usize) -> Option<String> {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::item;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_link = feedreader::item::get_link(feed, item_element);
@@ -58,8 +54,6 @@ pub fn get_link(feed: String, element: usize) -> Option<String> {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::item;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
@@ -83,8 +77,6 @@ pub fn get_description(feed: String, element: usize) -> Option<String>
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::item;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_author = feedreader::item::get_title(feed, item_element);
@@ -105,8 +97,6 @@ pub fn get_author(feed: String, element: usize) -> Option<String> {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::item;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
@@ -129,8 +119,6 @@ pub fn get_categories(feed: String, element: usize) -> Vec<Category> {
 /// ```
 /// extern crate feedreader;
 ///
-/// use feedreader::item;
-///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;
 /// let item_comments = feedreader::item::get_comments(feed, item_element);
@@ -151,8 +139,6 @@ pub fn get_comments(feed: String, element: usize) -> Option<String> {
 ///
 /// ```
 /// extern crate feedreader;
-///
-/// use feedreader::item;
 ///
 /// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
 /// let item_element: usize = 1;

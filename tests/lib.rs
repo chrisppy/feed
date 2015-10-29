@@ -6,8 +6,6 @@ mod test {
 
     extern crate feedreader;
 
-    use feedreader::{item, channel};
-
     #[test]
     fn get_channel_title() {
         let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
@@ -106,12 +104,16 @@ mod test {
 
     #[test]
     fn get_item_title() {
-        //assert!(false);
+        let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+        let title = feedreader::item::get_title(feed, 0).unwrap()
+        assert_eq!(title.is_empty(), false);
     }
 
     #[test]
     fn get_item_link() {
-        //assert!(false);
+        let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+        let link = feedreader::item::get_link(feed, 0).unwrap()
+        assert_eq!(link.is_empty(), false);
     }
 
     #[test]
