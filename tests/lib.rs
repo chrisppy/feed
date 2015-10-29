@@ -105,25 +105,29 @@ mod test {
     #[test]
     fn get_item_title() {
         let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
-        let title = feedreader::item::get_title(feed, 0).unwrap()
+        let title = feedreader::item::get_title(feed, 0).unwrap();
         assert_eq!(title.is_empty(), false);
     }
 
     #[test]
     fn get_item_link() {
         let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
-        let link = feedreader::item::get_link(feed, 0).unwrap()
+        let link = feedreader::item::get_link(feed, 0).unwrap();
         assert_eq!(link.is_empty(), false);
     }
 
     #[test]
     fn get_item_description() {
-        //assert!(false);
+        let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+        let description = feedreader::item::get_description(feed, 0).unwrap();
+        assert_eq!(description.is_empty(), false);
     }
 
     #[test]
     fn get_item_author() {
-        //assert!(false);
+        let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+        let author = feedreader::item::get_author(feed, 0).unwrap();
+        assert_eq!(author.is_empty(), false);
     }
 
     #[test]
