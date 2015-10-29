@@ -49,7 +49,45 @@ pub fn get_channel_title(feed: String) -> String {
     }
 }
 
-/// Retrieve a String containing channel language
+/// Retrieve a String containing channel link
+///
+/// # Example
+///
+/// ```
+/// extern crate feedreader;
+///
+/// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+/// let channel_link = feedreader::get_channel_link(feed);
+/// ```
+pub fn get_channel_link(feed: String) -> String {
+    match feed.parse::<Rss>().unwrap() {
+        Rss(rss_feed) => {
+            let link = rss_feed.link;
+            return link;
+        }
+    }
+}
+
+/// Retrieve a String containing channel description
+///
+/// # Example
+///
+/// ```
+/// extern crate feedreader;
+///
+/// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+/// let channel_description = feedreader::get_channel_description(feed);
+/// ```
+pub fn get_channel_description(feed: String) -> String {
+    match feed.parse::<Rss>().unwrap() {
+        Rss(rss_feed) => {
+            let description = rss_feed.description;
+            return description;
+        }
+    }
+}
+
+/// Retrieve an Option<String> containing channel language
 ///
 /// # Example
 ///
@@ -68,7 +106,26 @@ pub fn get_channel_language(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel copyright
+/// Retrieve an Option<String> containing channel pub date
+///
+/// # Example
+///
+/// ```
+/// extern crate feedreader;
+///
+/// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+/// let channel_link = feedreader::get_channel_pub_date(feed);
+/// ```
+pub fn get_channel_pub_date(feed: String) -> Option<String> {
+    match feed.parse::<Rss>().unwrap() {
+        Rss(rss_feed) => {
+            let pub_date = rss_feed.pub_date;
+            return pub_date;
+        }
+    }
+}
+
+/// Retrieve an Option<String> containing channel copyright
 ///
 /// # Example
 ///
@@ -87,7 +144,7 @@ pub fn get_channel_copyright(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel managing editor
+/// Retrieve an Option<String> containing channel managing editor
 ///
 /// # Example
 ///
@@ -106,7 +163,7 @@ pub fn get_channel_managing_editor(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel web master
+/// Retrieve an Option<String> containing channel web master
 ///
 /// # Example
 ///
@@ -125,7 +182,7 @@ pub fn get_channel_web_master(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel last build date
+/// Retrieve an Option<String> containing channel last build date
 ///
 /// # Example
 ///
@@ -163,7 +220,7 @@ pub fn get_channel_categories(feed: String) -> Vec<Category> {
     }
 }
 
-/// Retrieve a String containing channel generator
+/// Retrieve an Option<String> containing channel generator
 ///
 /// # Example
 ///
@@ -182,7 +239,7 @@ pub fn get_channel_generator(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel docs
+/// Retrieve an Option<String> containing channel docs
 ///
 /// # Example
 ///
@@ -201,7 +258,7 @@ pub fn get_channel_docs(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel ttl
+/// Retrieve an Option<String> containing channel ttl
 ///
 /// # Example
 ///
@@ -220,7 +277,7 @@ pub fn get_channel_ttl(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel image
+/// Retrieve an Option<String> containing channel image
 ///
 /// # Example
 ///
@@ -239,7 +296,7 @@ pub fn get_channel_image(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel rating
+/// Retrieve an Option<String> containing channel rating
 ///
 /// # Example
 ///
@@ -258,7 +315,7 @@ pub fn get_channel_rating(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel skip hours
+/// Retrieve an Option<String> containing channel skip hours
 ///
 /// # Example
 ///
@@ -277,7 +334,7 @@ pub fn get_channel_skip_hours(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing channel skip_days
+/// Retrieve an Option<String> containing channel skip_days
 ///
 /// # Example
 ///
@@ -296,7 +353,7 @@ pub fn get_channel_skip_days(feed: String) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing item title
+/// Retrieve an Option<String> containing item title
 ///
 /// # Example
 ///
@@ -317,7 +374,7 @@ pub fn get_item_title(feed: String, element: usize) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing item link
+/// Retrieve an Option<String> containing item link
 ///
 /// # Example
 ///
@@ -338,7 +395,7 @@ pub fn get_item_link(feed: String, element: usize) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing item description
+/// Retrieve an Option<String> containing item description
 ///
 /// # Example
 ///
@@ -360,7 +417,7 @@ pub fn get_item_description(feed: String, element: usize) -> Option<String>
     }
 }
 
-/// Retrieve a String containing item author
+/// Retrieve an Option<String> containing item author
 ///
 /// # Example
 ///
@@ -402,7 +459,7 @@ pub fn get_item_categories(feed: String, element: usize) -> Vec<Category> {
     }
 }
 
-/// Retrieve a String containing item comments
+/// Retrieve an Option<String> containing item comments
 ///
 /// # Example
 ///
@@ -423,7 +480,7 @@ pub fn get_item_comments(feed: String, element: usize) -> Option<String> {
     }
 }
 
-/// Retrieve a String containing item pub date
+/// Retrieve an Option<String> containing item pub date
 ///
 /// # Example
 ///
