@@ -44,14 +44,14 @@ mod test {
 
     #[test]
     fn get_channel_pub_date() {
-        //let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
-        //assert_eq!(feedreader::channel::get_pub_date(feed).unwrap(), "Sun, 25 Oct 2015 08:30:31 -0700".to_string());
+        let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+        assert_eq!(feedreader::channel::get_pub_date(feed).unwrap(), "Sun, 25 Oct 2015 08:30:31 -0700".to_string());
     }
 
     #[test]
     fn get_channel_last_build_date() {
-        //let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
-        //assert_eq!(feedreader::channel::get_last_build_date(feed).unwrap(), "Sun, 25 Oct 2015 08:30:31 -0700".to_string());
+        let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
+        assert_eq!(feedreader::channel::get_last_build_date(feed).unwrap(), "Sun, 25 Oct 2015 08:30:31 -0700".to_string());
     }
 
     #[test]
