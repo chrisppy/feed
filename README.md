@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/travis/red-oxide/feedreader.svg?style=flat-square)](https://travis-ci.org/red-oxide/feedreader)
 [![Coverage Status](https://img.shields.io/coveralls/red-oxide/feedreader.svg?style=flat-square)](https://coveralls.io/github/red-oxide/feedreader?branch=master)
 [![Crates.io](https://img.shields.io/crates/v/feedreader.svg?style=flat-square)](https://crates.io/crates/feedreader)
-[![API Documentation](https://img.shields.io/badge/lib-rustdoc-b7410e.svg?style=flat-square)](http://red-oxide.github.io/feedreader)
+[![API Documentation](https://img.shields.io/badge/doc-rustdoc-b7410e.svg?style=flat-square)](http://red-oxide.github.io/feedreader)
 [![License](https://img.shields.io/crates/l/feedreader.svg?style=flat-square)](https://github.com/red-oxide/feedreader/blob/master/LICENSE)
 
 Library for passing RSS feeds from an URL and retrieving the elements
