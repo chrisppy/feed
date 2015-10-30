@@ -11,7 +11,7 @@ Library for passing RSS feeds from an URL and retrieving the elements
 ## Use
 
 To include gtk as a cargo dependency you have to add it to your Cargo.toml:
-```
+```Toml
 [dependencies]
 feedreader="0.1.0"
 ```
