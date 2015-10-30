@@ -8,6 +8,14 @@
 
 Library for passing RSS feeds from an URL and retrieving the elements
 
+## Use
+
+To include gtk as a cargo dependency you have to add it to your Cargo.toml:
+```
+[dependencies]
+feedreader="0.1.0"
+```
+
 ## Bugs and feature requests
 
 Please submit bugs and feature requests [here](http://github.com/red-oxide/feedreader/issues). Pull requests are always welcome.
