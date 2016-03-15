@@ -265,3 +265,23 @@ impl FeedReader {
         self.channel.clone()
     }
 }
+
+
+pub struct FeedWriter {
+    pub xml: String,
+}
+
+
+impl FeedWriter {
+    pub fn new(channel: Channel) -> FeedWriter {
+        FeedWriter {
+            xml: String::new(),
+        }
+    }
+
+
+    pub fn xml(&self) -> String {
+        panic!("Not yet Implemented!");
+        self.xml.clone()
+    }
+}

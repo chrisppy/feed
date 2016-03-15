@@ -1,7 +1,7 @@
 // Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
-mod feedreader;
+mod feedio;
 mod rss;
 
 extern crate chrono;
@@ -13,7 +13,7 @@ use rss::Channel;
 use curl::http;
 use std::str;
 use url::Url;
-use feedreader::FeedReader;
+use feedio::{FeedReader, FeedWriter};
 
 #[derive(Clone)]
 pub struct Feed {
@@ -27,8 +27,9 @@ impl Feed {
     }
 
 
-    pub fn to_xml(&self) {
-        panic!("Not Yet Implemented");
+    pub fn to_xml(&self) -> String {
+        let feed_writer = FeedWriter::new(self.channel.clone());
+        feed_writer.xml
     }
 }
 
@@ -45,7 +46,8 @@ impl FeedBuilder {
 
 
     pub fn channel_from_url(&mut self, url: &str) -> &mut FeedBuilder {
-        let feed_url = Url::parse(url).unwrap();
+        let url_with_ext = url.to_string() + ".xml";
+        let feed_url = Url::parse(&url_with_ext).unwrap();
         let response = http::handle().get(feed_url.serialize()).exec().unwrap();
         let body = response.get_body();
         let feed = str::from_utf8(body).unwrap().to_string();
