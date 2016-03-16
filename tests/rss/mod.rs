@@ -144,7 +144,7 @@ fn pub_date_some() {
     let local = channel.pub_date();
     assert!(local.is_some());
     let local_result = local.unwrap();
-    assert_eq!(pub_date.to_string(), local_result.format("%a, %e %b %Y %T %z").to_string());
+    assert_eq!(pub_date.to_string(), local_result.to_rfc2822());
 }
 
 
@@ -166,7 +166,7 @@ fn last_build_date_some() {
     let local = channel.last_build_date();
     assert!(local.is_some());
     let local_result = local.unwrap();
-    assert_eq!(last_build_date.to_string(), local_result.format("%a, %e %b %Y %T %z").to_string());
+    assert_eq!(last_build_date.to_string(), local_result.to_rfc2822());
 }
 
 

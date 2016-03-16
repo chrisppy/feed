@@ -213,12 +213,13 @@ fn guid_none() {
 fn pub_date_some() {
     let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     let item = ItemBuilder::new()
+        .title(Some("Making Music with Linux | LAS 408".to_string()))
         .pub_date(Some(pub_date.to_string()))
         .finalize();
     let local = item.pub_date();
     assert!(local.is_some());
     let local_result = local.unwrap();
-    assert_eq!(pub_date.to_string(), local_result.format("%a, %e %b %Y %T %z").to_string());
+    assert_eq!(pub_date.to_string(), local_result.to_rfc2822());
 }
 
 

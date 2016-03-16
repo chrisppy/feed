@@ -19,7 +19,7 @@ pub struct Item {
     comments:    Option<String>,
     enclosure:   Option<Enclosure>,
     guid:        Option<Guid>,
-    pub_date:    Option<DateTime<Local>>,
+    pub_date:    Option<DateTime<FixedOffset>>,
     source:      Option<Source>,
 }
 
@@ -65,7 +65,7 @@ impl Item {
     }
 
 
-    pub fn pub_date(&self) -> Option<DateTime<Local>> {
+    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>> {
         self.pub_date.clone()
     }
 
@@ -85,7 +85,7 @@ pub struct ItemBuilder {
     comments:    Option<String>,
     enclosure:   Option<Enclosure>,
     guid:        Option<Guid>,
-    pub_date:    Option<DateTime<Local>>,
+    pub_date:    Option<DateTime<FixedOffset>>,
     source:      Option<Source>,
 }
 
@@ -156,17 +156,7 @@ impl ItemBuilder {
 
 
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
-        if pub_date.is_some() {
-            let pub_date_string = pub_date.unwrap();
-            match Local.datetime_from_str(&pub_date_string, util::date_format()){
-                Ok(date)    => {
-                    self.pub_date = Some(date);
-                },
-                Err(err) => {
-                    println!("Error: {}", err);
-                },
-            };
-        }
+        self.pub_date = util::option_string_to_option_date(pub_date);
         self
     }
 

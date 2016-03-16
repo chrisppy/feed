@@ -2,6 +2,7 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+use chrono::*;
 use quick_xml::attributes::Attributes;
 use std::{i64, str};
 use std::str::FromStr;
@@ -77,6 +78,17 @@ pub fn attribute_to_option_bool(attributes: Attributes, index: usize) -> Option<
 }
 
 
-pub fn date_format() -> &'static str {
-    "%a, %e %b %Y %T %z"
+pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateTime<FixedOffset>> {
+    if date_option.is_none() {
+        return None;
+    }
+    let date_string = date_option.unwrap();
+    let parsed_datetime = DateTime::parse_from_rfc2822(&date_string);
+    let datetime = match parsed_datetime {
+        Ok(date) => date,
+        Err(err) => {
+            panic!("Error: {}", err);
+        },
+    };
+    Some(datetime)
 }

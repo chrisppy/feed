@@ -27,8 +27,8 @@ pub struct Channel {
     copyright:       Option<String>,
     managing_editor: Option<String>,
     web_master:      Option<String>,
-    pub_date:        Option<DateTime<Local>>,
-    last_build_date: Option<DateTime<Local>>,
+    pub_date:        Option<DateTime<FixedOffset>>,
+    last_build_date: Option<DateTime<FixedOffset>>,
     categories:      Option<Vec<Category>>,
     generator:       Option<String>,
     docs:            Option<String>,
@@ -79,12 +79,12 @@ impl Channel {
     }
 
 
-    pub fn pub_date(&self) -> Option<DateTime<Local>> {
+    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>> {
         self.pub_date
     }
 
 
-    pub fn last_build_date(&self) -> Option<DateTime<Local>> {
+    pub fn last_build_date(&self) -> Option<DateTime<FixedOffset>> {
         self.last_build_date.clone()
     }
 
@@ -153,8 +153,8 @@ pub struct ChannelBuilder {
     copyright:       Option<String>,
     managing_editor: Option<String>,
     web_master:      Option<String>,
-    pub_date:        Option<DateTime<Local>>,
-    last_build_date: Option<DateTime<Local>>,
+    pub_date:        Option<DateTime<FixedOffset>>,
+    last_build_date: Option<DateTime<FixedOffset>>,
     categories:      Option<Vec<Category>>,
     generator:       Option<String>,
     docs:            Option<String>,
@@ -239,33 +239,13 @@ impl ChannelBuilder {
 
 
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ChannelBuilder {
-        if pub_date.is_some() {
-            let pub_date_string = pub_date.unwrap();
-            match Local.datetime_from_str(&pub_date_string, util::date_format()){
-                Ok(date)    => {
-                    self.pub_date = Some(date);
-                },
-                Err(err) => {
-                    println!("Error: {}", err);
-                },
-            };
-        }
+        self.pub_date = util::option_string_to_option_date(pub_date);
         self
     }
 
 
     pub fn last_build_date(&mut self, last_build_date: Option<String>) -> &mut ChannelBuilder {
-        if last_build_date.is_some() {
-            let last_build_date_string = last_build_date.unwrap();
-            match Local.datetime_from_str(&last_build_date_string, util::date_format()){
-                Ok(date)    => {
-                    self.last_build_date = Some(date);
-                },
-                Err(err) => {
-                    println!("Error: {}", err);
-                },
-            };
-        }
+        self.last_build_date = util::option_string_to_option_date(last_build_date);
         self
     }
 
