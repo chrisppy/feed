@@ -18,9 +18,6 @@ impl Category {
     pub fn domain(&self) -> Option<String> {
         self.domain.clone()
     }
-
-
-
 }
 
 

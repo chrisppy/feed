@@ -178,6 +178,9 @@ impl ItemBuilder {
 
 
     pub fn finalize(&self) -> Item {
+        if self.title.is_none() && self.description.is_none() {
+            panic!("Either Title of Description must have a value!");
+        }
         Item {
             title:       self.title.clone(),
             link:        self.link.clone(),
