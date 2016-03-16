@@ -71,7 +71,7 @@ impl TextInputBuilder {
 
 
     pub fn link(&mut self, link: &str) -> &mut TextInputBuilder {
-        self.link.to_string();
+        self.link = link.to_string();
         self
     }
 

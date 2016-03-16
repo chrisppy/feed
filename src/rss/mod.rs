@@ -16,6 +16,7 @@ use rss::cloud::Cloud;
 use rss::image::Image;
 use rss::item::Item;
 use rss::text_input::TextInput;
+use util;
 
 #[derive(Clone, Default)]
 pub struct Channel {
@@ -237,14 +238,34 @@ impl ChannelBuilder {
     }
 
 
-    pub fn pub_date(&mut self, pub_date: Option<DateTime<Local>>) -> &mut ChannelBuilder {
-        self.pub_date = pub_date;
+    pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ChannelBuilder {
+        if pub_date.is_some() {
+            let pub_date_string = pub_date.unwrap();
+            match Local.datetime_from_str(&pub_date_string, util::date_format()){
+                Ok(date)    => {
+                    self.pub_date = Some(date);
+                },
+                Err(err) => {
+                    println!("Error: {}", err);
+                },
+            };
+        }
         self
     }
 
 
-    pub fn last_build_date(&mut self, last_build_date: Option<DateTime<Local>>) -> &mut ChannelBuilder {
-        self.last_build_date = last_build_date;
+    pub fn last_build_date(&mut self, last_build_date: Option<String>) -> &mut ChannelBuilder {
+        if last_build_date.is_some() {
+            let last_build_date_string = last_build_date.unwrap();
+            match Local.datetime_from_str(&last_build_date_string, util::date_format()){
+                Ok(date)    => {
+                    self.last_build_date = Some(date);
+                },
+                Err(err) => {
+                    println!("Error: {}", err);
+                },
+            };
+        }
         self
     }
 

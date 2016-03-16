@@ -1,7 +1,6 @@
 // Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
-mod util;
 
 use quick_xml::{XmlReader, Event};
 use rss::{Channel, ChannelBuilder};
@@ -13,6 +12,7 @@ use rss::image::ImageBuilder;
 use rss::item::{Item, ItemBuilder};
 use rss::source::SourceBuilder;
 use rss::text_input::TextInputBuilder;
+use util;
 
 pub struct FeedReader {
     channel: Channel,
@@ -41,7 +41,6 @@ impl FeedReader {
             match r {
                 Ok(Event::Start(ref e)) => {
                     match e.name() {
-                        //TODO: change element based on the element it is on to determine for example url
                         b"image"          => {
                             element = "image";
                         },
@@ -152,7 +151,7 @@ impl FeedReader {
                             channel_builder.language(language);
                         },
                         b"lastBuildDate"   => {
-                            let last_build_date = util::content_to_option_date(e.content());
+                            let last_build_date = util::content_to_option_string(e.content());
                             channel_builder.last_build_date(last_build_date);
                         },
                         b"link"           => {
@@ -174,7 +173,7 @@ impl FeedReader {
                             text_input_builder.name(name);
                         }
                         b"pubDate"        => {
-                            let pub_date = util::content_to_option_date(e.content());
+                            let pub_date = util::content_to_option_string(e.content());
                             match element {
                                 "channel" => {channel_builder.pub_date(pub_date);},
                                 "item"    => {item_builder.pub_date(pub_date);},
@@ -268,7 +267,7 @@ impl FeedReader {
 
 
 pub struct FeedWriter {
-    pub xml: String,
+    xml: String,
 }
 
 
@@ -281,7 +280,7 @@ impl FeedWriter {
 
 
     pub fn xml(&self) -> String {
-        panic!("Not yet Implemented!");
+        //panic!("Not yet Implemented!");
         self.xml.clone()
     }
 }

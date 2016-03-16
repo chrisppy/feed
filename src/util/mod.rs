@@ -2,7 +2,6 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-use chrono::*;
 use quick_xml::attributes::Attributes;
 use std::{i64, str};
 use std::str::FromStr;
@@ -45,13 +44,6 @@ pub fn content_to_option_i64(content: &[u8]) -> Option<i64> {
 }
 
 
-pub fn content_to_option_date(content: &[u8]) -> Option<DateTime<Local>> {
-    let content_str = content_to_str(content);
-    let content_local_time = content_str.parse::<DateTime<Local>>().unwrap();
-    Some(content_local_time)
-}
-
-
 pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
     let attr_str = content_to_str(attr[index]);
@@ -79,14 +71,12 @@ pub fn attribute_to_option_string(attributes: Attributes, index: usize) -> Optio
 }
 
 
-pub fn attribute_to_option_i64(attributes: Attributes, index: usize) -> Option<i64> {
-    let attr_i64 = attribute_to_i64(attributes, index);
-    Some(attr_i64)
-}
-
-
 pub fn attribute_to_option_bool(attributes: Attributes, index: usize) -> Option<bool> {
     let attr_bool = attribute_to_bool(attributes, index);
     Some(attr_bool)
+}
 
+
+pub fn date_format() -> &'static str {
+    "%a, %e %b %Y %T %z"
 }

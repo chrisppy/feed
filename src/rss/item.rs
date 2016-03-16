@@ -7,6 +7,7 @@ use rss::category::Category;
 use rss::enclosure::Enclosure;
 use rss::guid::Guid;
 use rss::source::Source;
+use util;
 
 #[derive(Clone)]
 pub struct Item {
@@ -154,8 +155,18 @@ impl ItemBuilder {
     }
 
 
-    pub fn pub_date(&mut self, pub_date: Option<DateTime<Local>>) -> &mut ItemBuilder {
-        self.pub_date = pub_date;
+    pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
+        if pub_date.is_some() {
+            let pub_date_string = pub_date.unwrap();
+            match Local.datetime_from_str(&pub_date_string, util::date_format()){
+                Ok(date)    => {
+                    self.pub_date = Some(date);
+                },
+                Err(err) => {
+                    println!("Error: {}", err);
+                },
+            };
+        }
         self
     }
 

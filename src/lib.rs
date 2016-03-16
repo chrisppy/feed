@@ -1,8 +1,9 @@
 // Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
-mod feedio;
-mod rss;
+pub mod feedio;
+pub mod rss;
+mod util;
 
 extern crate chrono;
 extern crate curl;
@@ -29,7 +30,7 @@ impl Feed {
 
     pub fn to_xml(&self) -> String {
         let feed_writer = FeedWriter::new(self.channel.clone());
-        feed_writer.xml
+        feed_writer.xml()
     }
 }
 
