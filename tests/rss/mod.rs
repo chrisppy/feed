@@ -4,6 +4,7 @@
 
 use feed::rss::ChannelBuilder;
 use feed::rss::category::CategoryBuilder;
+use feed::rss::cloud::CloudBuilder;
 
 #[test]
 fn channel_title() {
@@ -190,4 +191,38 @@ fn channel_docs_some() {
 fn channel_docs_none() {
     let channel = ChannelBuilder::new().docs(None).finalize();
     assert!(channel.docs().is_none());
+}
+
+
+#[test]
+fn channel_cloud_some() {
+    let cloud = CloudBuilder::new().domain("rpc.sys.com").port(80).path("/RPC2").register_procedure("pingMe").protocol("soap").finalize();
+    let channel = ChannelBuilder::new().cloud(Some(cloud)).finalize();
+    let cloud_option = channel.cloud();
+    assert!(cloud_option.is_some());
+}
+
+
+#[test]
+fn channel_cloud_none() {
+    let channel = ChannelBuilder::new().cloud(None).finalize();
+    assert!(channel.cloud().is_none());
+}
+
+
+#[test]
+fn channel_ttl_some() {
+    let ttl_num = 60;
+    let channel = ChannelBuilder::new().ttl(Some(ttl_num)).finalize();
+    let ttl_option = channel.ttl();
+    assert!(ttl_option.is_some());
+    let ttl = ttl_option.unwrap();
+    assert_eq!(ttl_num, ttl);
+}
+
+
+#[test]
+fn channel_ttl_none() {
+    let channel = ChannelBuilder::new().ttl(None).finalize();
+    assert!(channel.ttl().is_none());
 }
