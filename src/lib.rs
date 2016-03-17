@@ -107,9 +107,9 @@ impl FeedBuilder {
     /// use feed::rss::{Channel, ChannelBuilder};
     ///
     /// let channel = ChannelBuilder::new().finalize();
-    /// let feed_builder = FeedBuilder::new().channel(channel);
+    /// let feed_builder = FeedBuilder::new().from_channel(channel);
     /// ```
-    pub fn channel(&mut self, channel: Channel) -> &mut FeedBuilder {
+    pub fn from_channel(&mut self, channel: Channel) -> &mut FeedBuilder {
         self.channel = channel;
         self
     }
@@ -123,9 +123,9 @@ impl FeedBuilder {
     /// use feed::FeedBuilder;
     ///
     /// let feed = "<rss><channel><title>The Linux Action Show! OGG</title></channel></rss>";
-    /// let feed_builder = FeedBuilder::new().channel_from_str(&feed);
+    /// let feed_builder = FeedBuilder::new().from_str(&feed);
     /// ```
-    pub fn channel_from_str(&mut self, feed: &str) -> &mut FeedBuilder {
+    pub fn from_str(&mut self, feed: &str) -> &mut FeedBuilder {
         let feed_reader = FeedReader::new(Some(feed.to_string()));
         self.channel = feed_reader.channel();
         self
@@ -141,9 +141,9 @@ impl FeedBuilder {
     /// use url::Url;
     ///
     /// let url = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
-    /// let feed_builder = FeedBuilder::new().channel_from_str(&url);
+    /// let feed_builder = FeedBuilder::new().from_str(&url);
     /// ```
-    pub fn channel_from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
+    pub fn from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
         if feed_url.serialize().as_str().ends_with(".xml") {
             panic!("Error: Url must end with .xml");
         }
