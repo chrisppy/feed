@@ -91,7 +91,6 @@ fn from_str() {
         </channel>
     </rss>"#;
     let feed = FeedBuilder::new().from_str(&feed_str).finalize();
-    unimplemented!()
 }
 
 
@@ -99,5 +98,4 @@ fn from_str() {
 fn from_url() {
     let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").unwrap();
     let feed = FeedBuilder::new().from_url(url).finalize();
-    unimplemented!()
 }
