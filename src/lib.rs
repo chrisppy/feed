@@ -130,7 +130,8 @@ impl FeedBuilder {
     /// ```
     pub fn channel_from_str(&mut self, feed: &str) -> &mut FeedBuilder {
         let feed_reader = FeedReader::new(Some(feed.to_string()));
-        channel(feed_reader.channel())
+        self.channel = feed_reader.channel();
+        self
     }
     
     
@@ -158,7 +159,9 @@ impl FeedBuilder {
             Ok(resp) => resp,
             Err(err) => panic!("from_utf8 Error: {}", err),
         };
-        channel_from_str(feed_str.to_string())
+        let feed_reader = FeedReader::new(Some(feed_str.to_string()));
+        self.channel = feed_reader.channel();
+        self
     }
 
 
