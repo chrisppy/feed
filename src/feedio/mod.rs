@@ -99,6 +99,10 @@ impl FeedReader {
                             let copyright = util::content_to_option_string(e.content());
                             channel_builder.copyright(copyright);
                         },
+                        b"day"       => {
+                            let skip_day = util::content_to_str(e.content());
+                            channel_skip_days.push(skip_day.to_string());
+                        },
                         b"description"    => {
                             let description = util::content_to_str(e.content());
                             match element {
@@ -146,6 +150,10 @@ impl FeedReader {
                             let height = util::content_to_option_i64(e.content());
                             image_builder.height(height);
                         },
+                        b"hour"      => {
+                            let skip_hour = util::content_to_i64(e.content());
+                            channel_skip_hours.push(skip_hour);
+                        },
                         b"language"       => {
                             let language = util::content_to_option_string(e.content());
                             channel_builder.language(language);
@@ -183,14 +191,6 @@ impl FeedReader {
                         b"rating"         => {
                             let rating = util::content_to_option_string(e.content());
                             channel_builder.rating(rating);
-                        },
-                        b"skipDays"       => {
-                            let skip_day = util::content_to_str(e.content());
-                            channel_skip_days.push(skip_day.to_string());
-                        },
-                        b"skipHours"      => {
-                            let skip_hour = util::content_to_i64(e.content());
-                            channel_skip_hours.push(skip_hour);
                         },
                         b"source"         => {
                             let mut source_builder = SourceBuilder::new();

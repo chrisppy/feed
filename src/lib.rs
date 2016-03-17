@@ -7,14 +7,18 @@ mod util;
 
 extern crate chrono;
 extern crate curl;
+extern crate log;
 extern crate quick_xml;
 extern crate url;
 
-use rss::Channel;
 use curl::http;
+use feedio::{FeedReader, FeedWriter};
+use rss::Channel;
+use std::fs;
+use std::fs::File;
+use std::io::prelude::*;
 use std::str;
 use url::Url;
-use feedio::{FeedReader, FeedWriter};
 
 #[derive(Clone)]
 pub struct Feed {
@@ -23,7 +27,7 @@ pub struct Feed {
 
 
 impl Feed {
-    pub fn get_channel(self) -> Channel {
+    pub fn channel(self) -> Channel {
         self.channel
     }
 
@@ -52,6 +56,26 @@ impl FeedBuilder {
         let response = http::handle().get(feed_url.serialize()).exec().unwrap();
         let body = response.get_body();
         let feed = str::from_utf8(body).unwrap().to_string();
+        let feed_reader = FeedReader::new(Some(feed.to_string()));
+        self.channel = feed_reader.channel();
+        self
+    }
+
+
+    pub fn channel_from_xml(&mut self, path_str: &str) -> &mut FeedBuilder {
+        let path = match fs::canonicalize(path_str) {
+            Ok(result) => result,
+            Err(err)   => {panic!("Error: {}", err);},
+        };
+        let mut file = match File::open(path) {
+            Ok(f)    => f,
+            Err(err) => {panic!("Error: {}", err);},
+        };
+        let mut feed = String::new();
+        match file.read_to_string(&mut feed) {
+            Ok(result)    => (print!("Result: {}", result)),
+            Err(err) => {panic!("Error: {}", err);},
+        };
         let feed_reader = FeedReader::new(Some(feed.to_string()));
         self.channel = feed_reader.channel();
         self
