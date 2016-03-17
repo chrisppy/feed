@@ -132,7 +132,7 @@ impl FeedBuilder {
     /// ```
     pub fn channel_from_str(&mut self, feed: &str) -> &mut FeedBuilder {
         let feed_reader = FeedReader::new(Some(feed.to_string()));
-        channel(feed_reader.channel()
+        channel(feed_reader.channel())
     }
     
     
