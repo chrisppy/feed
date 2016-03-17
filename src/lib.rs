@@ -32,9 +32,6 @@ extern crate url;
 use curl::http;
 use feedio::{FeedReader, FeedWriter};
 use rss::Channel;
-use std::fs;
-use std::fs::File;
-use std::io::prelude::*;
 use std::str;
 use url::Url;
 
