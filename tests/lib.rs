@@ -4,12 +4,14 @@
 mod rss;
 
 extern crate feed;
+extern crate url;
 
 use feed::{Feed, FeedBuilder};
+use url::Url;
 
 #[test]
 fn from_str() {
-    let feed = r#"<?xml version="1.0" encoding="UTF-8"?>
+    let feed_str = r#"<?xml version="1.0" encoding="UTF-8"?>
     <?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?>
     <?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
     <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
@@ -88,11 +90,14 @@ fn from_str() {
             </item>
         </channel>
     </rss>"#;
+    let feed = FeedBuilder::new().from_str(&feed_str).finalize();
     unimplemented!()
 }
 
 
 #[test]
 fn from_url() {
+    let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").unwrap();
+    let feed = FeedBuilder::new().from_url(url).finalize();
     unimplemented!()
 }
