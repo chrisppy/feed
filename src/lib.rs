@@ -144,7 +144,7 @@ impl FeedBuilder {
     /// let feed_builder = FeedBuilder::new().from_str(&url);
     /// ```
     pub fn from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
-        if feed_url.serialize().as_str().ends_with(".xml") {
+        if !feed_url.serialize().as_str().ends_with(".xml") {
             panic!("Error: Url must end with .xml");
         }
         let response = match http::handle().get(feed_url.serialize()).exec() {
