@@ -19,8 +19,6 @@
 /// extern crate feed;
 /// ```
 
-#![deny(missing_docs)]
-
 pub mod feedio;
 pub mod rss;
 mod util;
