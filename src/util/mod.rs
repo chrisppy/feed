@@ -4,6 +4,7 @@
 
 use chrono::*;
 use quick_xml::attributes::Attributes;
+use quick_xml::Element;
 use std::{i64, str};
 use std::str::FromStr;
 
@@ -13,55 +14,49 @@ pub fn str_to_option_string(s: &str) -> Option<String> {
 }
 
 
-pub fn content_to_str(content: &[u8]) -> &str {
-    let content_str = str::from_utf8(content).unwrap();
-    content_str
-}
-
-
-pub fn content_to_i64(content: &[u8]) -> i64 {
-    let content_str = content_to_str(content);
-    let content_i64 = i64::from_str(content_str).unwrap();
-    content_i64
-}
-
-pub fn content_to_bool(content: &[u8]) -> bool {
-    let content_str = content_to_str(content);
-    let content_bool = bool::from_str(content_str).unwrap();
-    content_bool
-}
-
-
-pub fn content_to_option_string(content: &[u8]) -> Option<String> {
-    let content_str = content_to_str(content);
-    str_to_option_string(content_str)
-}
-
-
-pub fn content_to_option_i64(content: &[u8]) -> Option<i64> {
-    let content_str = content_to_str(content);
-    let content_i64 = i64::from_str_radix(content_str, 10).unwrap();
-    Some(content_i64)
-}
-
-
 pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
+
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    let attr_str = content_to_str(attr[index]);
+    let attr_result = str::from_utf8(attr[index]);
+    let attr_str = match attr_result {
+        Ok(result) => result,
+        Err(err)   => panic!("from utf8 error: {}", err),
+    };
+    println!("str attributes values: {:?}", attr_str);
     attr_str
 }
 
 
 pub fn attribute_to_i64(attributes: Attributes, index: usize) -> i64 {
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    let attr_i64 = content_to_i64(attr[index]);
+    let attr_result = str::from_utf8(attr[index]);
+    let attr_str = match attr_result {
+        Ok(result) => result,
+        Err(err)   => panic!("from utf8 error: {}", err),
+    };
+    let i64_result = i64::from_str(attr_str);
+    let attr_i64 = match i64_result {
+        Ok(result) => result,
+        Err(err)   => panic!("from str error: {}", err),
+    };
+    println!("i64 attributes values: {:?}", attr_i64);
     attr_i64
 }
 
 
 pub fn attribute_to_bool(attributes: Attributes, index: usize) -> bool {
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    let attr_bool = content_to_bool(attr[index]);
+    let attr_result = str::from_utf8(attr[index]);
+    let attr_str = match attr_result {
+        Ok(result) => result,
+        Err(err)   => panic!("from utf8 error: {}", err),
+    };
+    let bool_result = bool::from_str(attr_str);
+    let attr_bool = match bool_result {
+        Ok(result) => result,
+        Err(err)   => panic!("from str error: {}", err),
+    };
+    println!("i64 attributes values: {:?}", attr_bool);
     attr_bool
 }
 
@@ -78,16 +73,49 @@ pub fn attribute_to_option_bool(attributes: Attributes, index: usize) -> Option<
 }
 
 
+pub fn element_to_string(e: Element) -> String {
+    let result = e.into_string();
+    let e_string = match result {
+        Ok(res)  => res,
+        Err(err) => panic!("Element into_string Error: {}", err),
+    };
+    e_string
+}
+
+
+pub fn element_to_option_string(e: Element) -> Option<String> {
+    let e_string = element_to_string(e);
+    Some(e_string)
+}
+
+
+pub fn element_to_i64(e: Element) -> i64 {
+    let e_string = element_to_string(e);
+    let e_result = i64::from_str(&e_string);
+    let e_i64 = match e_result {
+        Ok(result) => result,
+        Err(err)   => panic!("str to i64 error: {}", err),
+    };
+    e_i64
+}
+
+
+pub fn element_to_option_i64(e: Element) -> Option<i64> {
+    let e_i64 = element_to_i64(e);
+    Some(e_i64)
+}
+
+
 pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateTime<FixedOffset>> {
-    if date_option.is_none() {
-        return None;
-    }
-    let date_string = date_option.unwrap();
+    let date_string = match date_option {
+        Some(value) => value,
+        None        => {return None;},
+    };
     let parsed_datetime = DateTime::parse_from_rfc2822(&date_string);
     let datetime = match parsed_datetime {
         Ok(date) => date,
         Err(err) => {
-            panic!("Error: {}", err);
+            panic!("DateTime Parse Error: {}", err);
         },
     };
     Some(datetime)

@@ -12,6 +12,6 @@ license = "GPL-3.0"
 [dependencies]
 url = "0.5.5"
 curl = "0.2.16"
-quick-xml = "0.1.4"
+quick-xml = "0.1.5"
 chrono = "0.2.19"
 log = "0.3.5"

@@ -5,7 +5,7 @@
 /// # Crate feed
 ///
 /// ## feed 1.0.0
-/// This Library is for parsing through a rss field and creating a `Feed` 
+/// This Library is for parsing through a rss field and creating a `Feed`
 /// struct containing all elements of a `Channel` based on the rss spec.
 ///
 /// ### Usage
@@ -52,7 +52,7 @@ impl Feed {
     /// use feed::rss::Channel;
     ///
     /// let feed = FeedBuilder::new().finalize();
-    /// let channel = feed.channel;
+    /// let channel = feed.channel();
     /// ```
     pub fn channel(self) -> Channel {
         self.channel
@@ -68,7 +68,6 @@ impl Feed {
     /// use feed::rss::Channel;
     ///
     /// let feed = FeedBuilder::new().finalize();
-    /// unimplemented!()
     /// ```
     pub fn to_xml(&self) -> String {
         let feed_writer = FeedWriter::new(self.channel.clone());
@@ -91,13 +90,13 @@ impl FeedBuilder {
     /// ```
     /// use feed::FeedBuilder;
     ///
-    /// let feed_builder = FeedBuilder::new();
+    /// let feed = FeedBuilder::new().finalize();
     /// ```
     pub fn new() -> FeedBuilder {
         FeedBuilder::default()
     }
 
-    
+
     /// Construct a new `FeedBuilder` from a `Channel`.
     ///
     /// # Examples
@@ -107,7 +106,7 @@ impl FeedBuilder {
     /// use feed::rss::{Channel, ChannelBuilder};
     ///
     /// let channel = ChannelBuilder::new().finalize();
-    /// let feed_builder = FeedBuilder::new().from_channel(channel);
+    /// let feed = FeedBuilder::new().from_channel(channel).finalize();
     /// ```
     pub fn from_channel(&mut self, channel: Channel) -> &mut FeedBuilder {
         self.channel = channel;
@@ -123,25 +122,26 @@ impl FeedBuilder {
     /// use feed::FeedBuilder;
     ///
     /// let feed = "<rss><channel><title>The Linux Action Show! OGG</title></channel></rss>";
-    /// let feed_builder = FeedBuilder::new().from_str(&feed);
+    /// let feed = FeedBuilder::new().from_str(&feed).finalize();
     /// ```
     pub fn from_str(&mut self, feed: &str) -> &mut FeedBuilder {
         let feed_reader = FeedReader::new(Some(feed.to_string()));
         self.channel = feed_reader.channel();
         self
     }
-    
-    
+
+
     /// Construct a new `FeedBuilder` from a `Url`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::FeedBuilder;
-    /// use url::Url;
+    /// # extern crate feed;
+    /// # extern crate url;
     ///
-    /// let url = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
-    /// let feed_builder = FeedBuilder::new().from_str(&url);
+    /// let url_str = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
+    /// let parsed = url::Url::parse(url_str).unwrap();
+    /// let feed = feed::FeedBuilder::new().from_url(parsed).finalize();
     /// ```
     pub fn from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
         if !feed_url.serialize().as_str().ends_with(".xml") {
@@ -169,7 +169,7 @@ impl FeedBuilder {
     /// ```
     /// use feed::FeedBuilder;
     ///
-    /// let feed = FeedBuilder::new().finalize);
+    /// let feed = FeedBuilder::new().finalize();
     /// ```
     pub fn finalize(&self) -> Feed {
         Feed {

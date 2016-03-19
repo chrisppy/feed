@@ -90,12 +90,18 @@ fn from_str() {
             </item>
         </channel>
     </rss>"#;
-    let feed = FeedBuilder::new().from_str(&feed_str).finalize();
+
+    //let feed = FeedBuilder::new().from_str(&feed_str).finalize();
 }
 
 
 #[test]
 fn from_url() {
-    let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").unwrap();
+    let url = match Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml") {
+        Ok(result) => result,
+        Err(err)   => panic!("Url parse Error: {}", err),
+    };
     let feed = FeedBuilder::new().from_url(url).finalize();
+    let channel = feed.channel();
+    assert_eq!("The Linux Action Show! OGG".to_string(), channel.title());
 }
