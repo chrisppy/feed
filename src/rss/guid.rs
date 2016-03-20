@@ -71,6 +71,7 @@ impl Guid {
 
 
 /// This `GuidBuilder` struct creates the `Guid`.
+#[derive(Default)]
 pub struct GuidBuilder {
     is_permalink: bool,
     guid: String,
@@ -88,10 +89,7 @@ impl GuidBuilder {
     /// let guid_builder = GuidBuilder::new();
     /// ```
     pub fn new() -> GuidBuilder {
-        GuidBuilder {
-            is_permalink: true,
-            guid: String::new(),
-        }
+        GuidBuilder::default()
     }
 
 
@@ -108,6 +106,8 @@ impl GuidBuilder {
     pub fn is_permalink(&mut self, is_permalink: Option<bool>) -> &mut GuidBuilder {
         if is_permalink.is_some() {
             self.is_permalink = is_permalink.unwrap();
+        } else {
+            self.is_permalink = true;
         }
         self
     }

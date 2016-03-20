@@ -71,6 +71,7 @@ impl Enclosure {
 
 
 /// This `EnclosureBuilder` struct creates the `Enclosure`.
+#[derive(Default)]
 pub struct EnclosureBuilder {
     url: String,
     length: i64,
@@ -89,11 +90,7 @@ impl EnclosureBuilder {
     /// let enclosure_builder = EnclosureBuilder::new();
     /// ```
     pub fn new() -> EnclosureBuilder {
-        EnclosureBuilder {
-            url: String::new(),
-            length: 0,
-            enclosure_type: String::new(),
-        }
+        EnclosureBuilder::default()
     }
 
 

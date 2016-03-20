@@ -182,6 +182,7 @@ impl Image {
 
 
 /// This `ImageBuilder` struct creates the `Image`.
+#[derive(Default)]
 pub struct ImageBuilder {
     url: String,
     title: String,
@@ -203,14 +204,7 @@ impl ImageBuilder {
     /// let image_builder = ImageBuilder::new();
     /// ```
     pub fn new() -> ImageBuilder {
-        ImageBuilder {
-            url: String::new(),
-            title: String::new(),
-            link: String::new(),
-            width: 88,
-            height: 31,
-            description: None,
-        }
+        ImageBuilder::default()
     }
 
 
@@ -280,6 +274,8 @@ impl ImageBuilder {
                 size = max_width;
             }
             self.width = size;
+        } else {
+            self.width = 88;
         }
         self
     }
@@ -303,6 +299,8 @@ impl ImageBuilder {
                 size = max_height;
             }
             self.height = size;
+        } else {
+            self.height = 31;
         }
         self
     }

@@ -406,6 +406,7 @@ impl FeedReader {
 /// Not Yet Implemented!
 ///
 /// To be added in 1.1.0
+#[derive(Default)]
 pub struct FeedWriter {
     xml: String,
 }
@@ -418,7 +419,7 @@ impl FeedWriter {
     ///
     /// To be added in 1.1.0
     pub fn new(channel: Channel) -> FeedWriter {
-        FeedWriter { xml: String::new() }
+        FeedWriter::default()
     }
 
 
