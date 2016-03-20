@@ -26,7 +26,7 @@ impl Enclosure {
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url)
     ///     .finalize();
-    /// assert_eq!(url.to_string(), enclosure.url())
+    /// assert_eq!(url.to_owned(), enclosure.url())
     /// ```
     pub fn url(&self) -> String {
         self.url.clone()
@@ -62,7 +62,7 @@ impl Enclosure {
     /// let enclosure = EnclosureBuilder::new()
     ///     .enclosure_type(enclosure_type)
     ///     .finalize();
-    /// assert_eq!(enclosure_type.to_string(), enclosure.enclosure_type())
+    /// assert_eq!(enclosure_type.to_owned(), enclosure.enclosure_type())
     /// ```
     pub fn enclosure_type(&self) -> String {
         self.enclosure_type.clone()
@@ -105,7 +105,7 @@ impl EnclosureBuilder {
     /// enclosure_builder.url("http://www.podtrac.com/pts/redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg");
     /// ```
     pub fn url(&mut self, url: &str) -> &mut EnclosureBuilder {
-        self.url = url.to_string();
+        self.url = url.to_owned();
         self
     }
 
@@ -137,7 +137,7 @@ impl EnclosureBuilder {
     /// enclosure_builder.enclosure_type("audio/ogg");
     /// ```
     pub fn enclosure_type(&mut self, enclosure_type: &str) -> &mut EnclosureBuilder {
-        self.enclosure_type = enclosure_type.to_string();
+        self.enclosure_type = enclosure_type.to_owned();
         self
     }
 

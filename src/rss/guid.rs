@@ -62,7 +62,7 @@ impl Guid {
     /// let guid_obj = GuidBuilder::new()
     ///     .guid(guid)
     ///     .finalize();
-    /// assert_eq!(guid.to_string(), guid_obj.guid());
+    /// assert_eq!(guid.to_owned(), guid_obj.guid());
     /// ```
     pub fn guid(&self) -> String {
         self.guid.clone()
@@ -124,7 +124,7 @@ impl GuidBuilder {
     /// guid_builder.guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
     /// ```
     pub fn guid(&mut self, guid: &str) -> &mut GuidBuilder {
-        self.guid = guid.to_string();
+        self.guid = guid.to_owned();
         self
     }
 

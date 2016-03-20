@@ -25,7 +25,7 @@ impl Source {
     /// let source = SourceBuilder::new()
     ///     .url(url)
     ///     .finalize();
-    /// assert_eq!(url.to_string(), source.url());
+    /// assert_eq!(url.to_owned(), source.url());
     /// ```
     pub fn url(&self) -> String {
         self.url.clone()
@@ -43,7 +43,7 @@ impl Source {
     /// let source_obj = SourceBuilder::new()
     ///     .source(source)
     ///     .finalize();
-    /// assert_eq!(source.to_string(), source_obj.source());
+    /// assert_eq!(source.to_owned(), source_obj.source());
     /// ```
     pub fn source(&self) -> String {
         self.source.clone()
@@ -85,7 +85,7 @@ impl SourceBuilder {
     /// source_builder.url("http://www.example.com/source");
     /// ```
     pub fn url(&mut self, url: &str) -> &mut SourceBuilder {
-        self.url = url.to_string();
+        self.url = url.to_owned();
         self
     }
 
@@ -101,7 +101,7 @@ impl SourceBuilder {
     /// source_builder.source("Test");
     /// ```
     pub fn source(&mut self, source: &str) -> &mut SourceBuilder {
-        self.source = source.to_string();
+        self.source = source.to_owned();
         self
     }
 

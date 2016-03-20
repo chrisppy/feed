@@ -28,7 +28,7 @@ impl Cloud {
     /// let cloud = CloudBuilder::new()
     ///     .domain(domain)
     ///     .finalize();
-    /// assert_eq!(domain.to_string(), cloud.domain());
+    /// assert_eq!(domain.to_owned(), cloud.domain());
     /// ```
     pub fn domain(&self) -> String {
         self.domain.clone()
@@ -64,7 +64,7 @@ impl Cloud {
     /// let cloud = CloudBuilder::new()
     ///     .path(path)
     ///     .finalize();
-    /// assert_eq!(path.to_string(), cloud.path());
+    /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
     pub fn path(&self) -> String {
         self.path.clone()
@@ -82,7 +82,7 @@ impl Cloud {
     /// let cloud = CloudBuilder::new()
     ///     .register_procedure(register_procedure)
     ///     .finalize();
-    /// assert_eq!(register_procedure.to_string(), cloud.register_procedure());
+    /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
     pub fn register_procedure(&self) -> String {
         self.register_procedure.clone()
@@ -100,7 +100,7 @@ impl Cloud {
     /// let cloud = CloudBuilder::new()
     ///     .protocol(protocol)
     ///     .finalize();
-    /// assert_eq!(protocol.to_string(), cloud.protocol());
+    /// assert_eq!(protocol.to_owned(), cloud.protocol());
     /// ```
     pub fn protocol(&self) -> String {
         self.protocol.clone()
@@ -145,7 +145,7 @@ impl CloudBuilder {
     /// cloud_builder.domain("rpc.sys.com");
     /// ```
     pub fn domain(&mut self, domain: &str) -> &mut CloudBuilder {
-        self.domain = domain.to_string();
+        self.domain = domain.to_owned();
         self
     }
 
@@ -177,7 +177,7 @@ impl CloudBuilder {
     /// cloud_builder.path("/RPC2");
     /// ```
     pub fn path(&mut self, path: &str) -> &mut CloudBuilder {
-        self.path = path.to_string();
+        self.path = path.to_owned();
         self
     }
 
@@ -193,7 +193,7 @@ impl CloudBuilder {
     /// cloud_builder.register_procedure("pingMe");
     /// ```
     pub fn register_procedure(&mut self, register_procedure: &str) -> &mut CloudBuilder {
-        self.register_procedure = register_procedure.to_string();
+        self.register_procedure = register_procedure.to_owned();
         self
     }
 
@@ -209,7 +209,7 @@ impl CloudBuilder {
     /// cloud_builder.protocol("soap");
     /// ```
     pub fn protocol(&mut self, protocol: &str) -> &mut CloudBuilder {
-        self.protocol = protocol.to_string();
+        self.protocol = protocol.to_owned();
         self
     }
 
