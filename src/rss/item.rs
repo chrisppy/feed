@@ -9,7 +9,7 @@ use rss::guid::Guid;
 use rss::source::Source;
 use util;
 
-/// This `Item` struct contains all the items that exist for the guid field under 'Channel'.
+/// This `Item` struct contains all the items that exist for the item field under 'Channel'.
 #[derive(Clone)]
 pub struct Item {
     title:       Option<String>,
