@@ -47,7 +47,7 @@ impl Guid {
     /// assert_eq!(permalink, guid.permalink());
     /// ```
     pub fn permalink(&self) -> bool {
-        self.permalink.clone()
+        self.permalink
     }
 
 
@@ -143,7 +143,7 @@ impl GuidBuilder {
     /// ```
     pub fn finalize(&self) -> Guid {
         Guid {
-            permalink: self.permalink.clone(),
+            permalink: self.permalink,
             guid: self.guid.clone(),
         }
     }
