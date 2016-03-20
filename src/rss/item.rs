@@ -159,6 +159,7 @@ impl Item {
     ///
     /// ```
     /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::category::CategoryBuilder;
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
@@ -231,6 +232,7 @@ impl Item {
     ///
     /// ```
     /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::enclosure::EnclosureBuilder;
     ///
     /// let enclosure = EnclosureBuilder::new()
     ///     .url("http://www.podtrac.com/pts/redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg")
@@ -264,6 +266,7 @@ impl Item {
     ///
     /// ```
     /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::guid::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
@@ -328,6 +331,7 @@ impl Item {
     ///
     /// ```
     /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::source::SourceBuilder;
     ///
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
