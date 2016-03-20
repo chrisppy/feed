@@ -136,8 +136,8 @@ impl FeedReader {
 
                             guid_builder = GuidBuilder::new();
 
-                            let is_permalink = util::attribute_to_option_bool(e.attributes(), 0);
-                            guid_builder.is_permalink(is_permalink);
+                            let permalink = util::attribute_to_option_bool(e.attributes(), 0);
+                            guid_builder.permalink(permalink);
                         }
                         b"height" => {
                             name = "height";
@@ -418,7 +418,7 @@ impl FeedWriter {
     /// Not Yet Implemented!
     ///
     /// To be added in 1.1.0
-    pub fn new(channel: Channel) -> FeedWriter {
+    pub fn new() -> FeedWriter {
         FeedWriter::default()
     }
 
@@ -429,6 +429,6 @@ impl FeedWriter {
     ///
     /// To be added in 1.1.0
     pub fn xml(&self) -> String {
-        unimplemented!()
+        self.xml.clone()
     }
 }

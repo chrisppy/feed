@@ -8,13 +8,13 @@
 /// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
 #[derive(Clone)]
 pub struct Guid {
-    is_permalink: bool,
+    permalink: bool,
     guid: String,
 }
 
 
 impl Guid {
-    /// Get the is_permalink that exists under `Guid`.
+    /// Get the permalink that exists under `Guid`.
     ///
     /// # Examples
     ///
@@ -22,32 +22,32 @@ impl Guid {
     /// use feed::rss::guid::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
-    ///     .is_permalink(None)
+    ///     .permalink(None)
     ///     .finalize();
-    /// assert!(guid.is_permalink());
+    /// assert!(guid.permalink());
     /// ```
     ///
     /// ```
     /// use feed::rss::guid::GuidBuilder;
     ///
-    /// let is_permalink = true;
+    /// let permalink = true;
     /// let guid = GuidBuilder::new()
-    ///     .is_permalink(Some(is_permalink))
+    ///     .permalink(Some(permalink))
     ///     .finalize();
-    /// assert_eq!(is_permalink, guid.is_permalink());
+    /// assert_eq!(permalink, guid.permalink());
     /// ```
     ///
     /// ```
     /// use feed::rss::guid::GuidBuilder;
     ///
-    /// let is_permalink = false;
+    /// let permalink = false;
     /// let guid = GuidBuilder::new()
-    ///     .is_permalink(Some(is_permalink))
+    ///     .permalink(Some(permalink))
     ///     .finalize();
-    /// assert_eq!(is_permalink, guid.is_permalink());
+    /// assert_eq!(permalink, guid.permalink());
     /// ```
-    pub fn is_permalink(&self) -> bool {
-        self.is_permalink.clone()
+    pub fn permalink(&self) -> bool {
+        self.permalink.clone()
     }
 
 
@@ -73,7 +73,7 @@ impl Guid {
 /// This `GuidBuilder` struct creates the `Guid`.
 #[derive(Default)]
 pub struct GuidBuilder {
-    is_permalink: bool,
+    permalink: bool,
     guid: String,
 }
 
@@ -93,7 +93,7 @@ impl GuidBuilder {
     }
 
 
-    /// Set the optional is_permalink that exists under `Guid`.
+    /// Set the optional permalink that exists under `Guid`.
     ///
     /// # Examples
     ///
@@ -101,13 +101,13 @@ impl GuidBuilder {
     /// use feed::rss::guid::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.is_permalink(Some(false));
+    /// guid_builder.permalink(Some(false));
     /// ```
-    pub fn is_permalink(&mut self, is_permalink: Option<bool>) -> &mut GuidBuilder {
-        if is_permalink.is_some() {
-            self.is_permalink = is_permalink.unwrap();
+    pub fn permalink(&mut self, permalink: Option<bool>) -> &mut GuidBuilder {
+        if permalink.is_some() {
+            self.permalink = permalink.unwrap();
         } else {
-            self.is_permalink = true;
+            self.permalink = true;
         }
         self
     }
@@ -138,12 +138,12 @@ impl GuidBuilder {
     ///
     /// let guid = GuidBuilder::new()
     ///         .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///         .is_permalink(Some(true))
+    ///         .permalink(Some(true))
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Guid {
         Guid {
-            is_permalink: self.is_permalink.clone(),
+            permalink: self.permalink.clone(),
             guid: self.guid.clone(),
         }
     }
