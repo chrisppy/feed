@@ -1,5 +1,5 @@
 // Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the GPLv3 license that can be
+// Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
 //! The fields under source can be retrieved by using the methods under `Source`

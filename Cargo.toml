@@ -6,7 +6,7 @@ repository = "https://github.com/red-oxide/feedreader"
 documentation = "http://red-oxide.github.io/feedreader"
 description = "Parse RSS feeds from url"
 readme = "README.md"
-license = "GPL-3.0"
+license = "LGPL-3.0"
 
 
 [dependencies]
