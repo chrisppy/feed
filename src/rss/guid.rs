@@ -2,6 +2,11 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The fields under guid can be retrieved by using the methods under `Guid`
+ * and the fields can be set for guid by using the methods under `GuidBuilder`.
+ */
+
 /// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
 #[derive(Clone)]
 pub struct Guid {

@@ -2,6 +2,10 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The feed can be parsed using `FeedReader` and can be written to xml using `FeedWriter`.
+ */
+
 use quick_xml::{XmlReader, Event};
 use rss::{Channel, ChannelBuilder};
 use rss::category::{Category, CategoryBuilder};
@@ -28,7 +32,7 @@ impl FeedReader {
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let channel = FeedReader::new(Some("String".to_string()));
+    /// let feed_reader = FeedReader::new(Some("String".to_string()));
     /// ```
     pub fn new(feed: Option<String>) -> FeedReader {
         let feed_string = match feed {
@@ -353,7 +357,16 @@ impl FeedReader {
         }
     }
 
-
+    /// Get the `Channel` after parsing.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::feedio::FeedReader;
+    ///
+    /// let feed_reader = FeedReader::new(Some("String".to_string()));
+    /// let channel = feed_reader.channel();
+    /// ```
     pub fn channel(self) -> Channel {
         self.channel.clone()
     }

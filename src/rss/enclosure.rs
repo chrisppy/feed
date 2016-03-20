@@ -2,6 +2,11 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The fields under enclosure can be retrieved by using the methods under `Enclosure`
+ * and the fields can be set for enclosure by using the methods under `EnclosureBuilder`.
+ */
+
 /// This `Enclosure` struct contains all the items that exist for the enclosure field under 'Item'.
 #[derive(Clone)]
 pub struct Enclosure {

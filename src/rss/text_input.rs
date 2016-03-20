@@ -2,6 +2,11 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The fields under text input can be retrieved by using the methods under `TextInput`
+ * and the fields can be set for text input by using the methods under `TextInputBuilder`.
+ */
+
 /// This `TextInput` struct contains all the items that exist for the text input field under 'Channel'.
 #[derive(Clone)]
 pub struct TextInput {

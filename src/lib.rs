@@ -2,22 +2,28 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/// # Crate feed
-///
-/// ## feed 1.0.0
-/// This Library is for parsing through a rss field and creating a `Feed`
-/// struct containing all elements of a `Channel` based on the rss spec.
-///
-/// ### Usage
-/// Put this in your Cargo.toml:
-/// ```Toml
-/// [dependencies]
-/// feedreader="1.0.0"
-/// ```
-/// And put this in your crate root:
-/// ```
-/// extern crate feed;
-/// ```
+//! # feed 1.0.0
+//!
+//! This Library is for parsing through a rss field and creating a `Feed`
+//! struct containing all elements of a `Channel` based on the rss spec.
+//!
+//! ## Usage
+//! Put this in your Cargo.toml:
+//!
+//! ```Toml
+//! [dependencies]
+//! feedreader="1.0.0"
+//! ```
+//!
+//! And put this in your crate root:
+// !
+//! ```
+//! extern crate feed;
+//! ```
+
+#![doc(html_root_url = "https://red-oxide.github.io/feed/")]
+
+#![deny(missing_docs)]
 
 pub mod feedio;
 pub mod rss;

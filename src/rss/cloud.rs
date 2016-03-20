@@ -2,6 +2,11 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The fields under cloud can be retrieved by using the methods under `Cloud`
+ * and the fields can be set for cloud by using the methods under `CloudBuilder`.
+ */
+
 /// This `Cloud` struct contains all the items that exist for the cloud field under 'Channel'.
 #[derive(Clone)]
 pub struct Cloud {

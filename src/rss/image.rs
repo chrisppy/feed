@@ -2,6 +2,11 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The fields under image can be retrieved by using the methods under `Image`
+ * and the fields can be set for image by using the methods under `ImageBuilder`.
+ */
+
 /// This `Image` struct contains all the items that exist for the image field under 'Channel'.
 #[derive(Clone)]
 pub struct Image {

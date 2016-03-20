@@ -2,6 +2,11 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
+/*!
+ * The fields under item can be retrieved by using the methods under `Item`
+ * and the fields can be set for item by using the methods under `ItemBuilder`.
+ */
+
 use chrono::*;
 use rss::category::Category;
 use rss::enclosure::Enclosure;
