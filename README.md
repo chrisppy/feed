@@ -1,29 +1,25 @@
-# feedreader
+# feed
 
-[![Build Status](https://img.shields.io/travis/red-oxide/feedreader.svg?style=flat-square)](https://travis-ci.org/red-oxide/feedreader)
-[![Coverage Status](https://img.shields.io/coveralls/red-oxide/feedreader.svg?style=flat-square)](https://coveralls.io/github/red-oxide/feedreader?branch=master)
-[![Crates.io](https://img.shields.io/crates/v/feedreader.svg?style=flat-square)](https://crates.io/crates/feedreader)
-[![API Documentation](https://img.shields.io/badge/doc-rustdoc-b7410e.svg?style=flat-square)](http://red-oxide.github.io/feedreader)
-[![License](https://img.shields.io/crates/l/feedreader.svg?style=flat-square)](https://github.com/red-oxide/feedreader/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)[![Coverage Status](https://img.shields.io/coveralls/red-oxide/feed.svg?style=flat-square)](https://coveralls.io/github/red-oxide/feed?branch=master)[![Crates.io](https://img.shields.io/crates/v/feed.svg?style=flat-square)](https://crates.io/crates/feed)[![API Documentation](https://img.shields.io/badge/doc-rustdoc-b7410e.svg?style=flat-square)](http://red-oxide.github.io/feed)[![License](https://img.shields.io/crates/l/feed.svg?style=flat-square)](https://github.com/red-oxide/feed/blob/master/LICENSE)
 
-Library for passing RSS feeds from an URL and retrieving the elements
+Library for passing feeds from an URL and retrieving the elements
 
 ## Use
 
-To include gtk as a cargo dependency you have to add it to your Cargo.toml:
+To include feed as a cargo dependency you have to add it to your Cargo.toml:
 ```Toml
 [dependencies]
-feedreader="0.1.0"
+feed = "1.0.0"
 ```
 
 ## Bugs and feature requests
 
-Please submit bugs and feature requests [here](http://github.com/red-oxide/feedreader/issues). Pull requests are always welcome.
+Please submit bugs and feature requests [here](http://github.com/red-oxide/feed/issues). Pull requests are always welcome.
 
 ## Copyright and License
 (C) Copyright 2015 by Chris Palmer and contributors
 
-See CONTRIBUTORS.md for a full list of contributors.
+See [here](https://github.com/red-oxide/feed/graphs/contributors) for a full list of contributors.
 
 This application is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

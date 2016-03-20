@@ -1,33 +1,175 @@
-// Copyright (c) 2015 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-extern crate rss;
-extern crate url;
+/// # Crate feed
+///
+/// ## feed 1.0.0
+/// This Library is for parsing through a rss field and creating a `Feed`
+/// struct containing all elements of a `Channel` based on the rss spec.
+///
+/// ### Usage
+/// Put this in your Cargo.toml:
+/// ```Toml
+/// [dependencies]
+/// feedreader="1.0.0"
+/// ```
+/// And put this in your crate root:
+/// ```
+/// extern crate feed;
+/// ```
+
+pub mod feedio;
+pub mod rss;
+mod util;
+
+extern crate chrono;
 extern crate curl;
+extern crate log;
+extern crate quick_xml;
+extern crate url;
 
 use curl::http;
+use feedio::{FeedReader, FeedWriter};
+use rss::Channel;
+use std::str;
 use url::Url;
 
-use std::str;
+/// This `Feed` struct contains all the items that exist for the feeds.
+#[derive(Clone)]
+pub struct Feed {
+    channel: Channel,
+}
 
-pub mod channel;
-pub mod item;
 
-/// Retrieve a String containing the rss feed from an URL
-///
-/// # Example
-///
-/// ```
-/// extern crate feedreader;
-///
-/// let feed = feedreader::new("http://feeds2.feedburner.com/TheLinuxActionShowOGG");
-/// ```
-pub fn new(url: &str) -> String {
-    let feed_url = Url::parse(url).unwrap();
+impl Feed {
+    /// Get the `Channel` that exists under `Feed`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::{Feed, FeedBuilder};
+    /// use feed::rss::Channel;
+    ///
+    /// let feed = FeedBuilder::new().finalize();
+    /// let channel = feed.channel();
+    /// ```
+    pub fn channel(self) -> Channel {
+        self.channel
+    }
 
-    let resp = http::handle().get(&feed_url).exec().unwrap();
-    let body = resp.get_body();
-    let feed = str::from_utf8(body).unwrap().to_string();
-    feed
+
+    /// Convert the `Feed` to XML.
+    ///
+    /// Not Yet Implemented!
+    ///
+    /// To be added in 1.1.0
+    pub fn to_xml(&self) -> String {
+        let feed_writer = FeedWriter::new(self.channel.clone());
+        feed_writer.xml()
+    }
+}
+
+/// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
+#[derive(Default)]
+pub struct FeedBuilder {
+    channel: Channel,
+}
+
+
+impl FeedBuilder {
+    /// Construct a new `FeedBuilder` and return default values.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::FeedBuilder;
+    ///
+    /// let feed = FeedBuilder::new().finalize();
+    /// ```
+    pub fn new() -> FeedBuilder {
+        FeedBuilder::default()
+    }
+
+
+    /// Construct a new `FeedBuilder` from a `Channel`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::FeedBuilder;
+    /// use feed::rss::{Channel, ChannelBuilder};
+    ///
+    /// let channel = ChannelBuilder::new().finalize();
+    /// let feed = FeedBuilder::new().from_channel(channel).finalize();
+    /// ```
+    pub fn from_channel(&mut self, channel: Channel) -> &mut FeedBuilder {
+        self.channel = channel;
+        self
+    }
+
+
+    /// Construct a new `FeedBuilder` from a `Url`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// extern crate feed;
+    /// extern crate url;
+    ///
+    /// use feed::FeedBuilder;
+    /// use url:: Url;
+    /// fn main() {
+    ///     let url = match Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml") {
+    ///         Ok(result) => result,
+    ///         Err(err)   => panic!("Url parse Error: {}", err),
+    ///     };
+    ///     let feed = FeedBuilder::new().from_url(url).finalize();
+    ///     let channel = feed.channel();
+    ///     assert_eq!("The Linux Action Show! OGG".to_string(), channel.title());
+    ///     assert_eq!("http://www.jupiterbroadcasting.com".to_string(), channel.link());
+    ///     assert_eq!("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!".to_string(), channel.description());
+    ///     assert_eq!(Some("Feeder 2.5.12(2294); Mac OS X Version 10.9.5 (Build 13F34) http://reinventedsoftware.com/feeder/".to_string()), channel.generator());
+    ///     assert_eq!(Some("http://blogs.law.harvard.edu/tech/rss".to_string()), channel.docs());
+    ///     assert_eq!(Some("en".to_string()), channel.language());
+    ///     assert!(channel.copyright().is_none());
+    ///     assert!(channel.managing_editor().is_none());
+    ///     assert!(channel.web_master().is_none());
+    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_string(), channel.pub_date().unwrap().to_rfc2822());
+    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_string(), channel.last_build_date().unwrap().to_rfc2822());
+    /// }
+    /// ```
+    pub fn from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
+        if !feed_url.serialize().as_str().ends_with(".xml") {
+            panic!("Error: Url must end with .xml");
+        }
+        let response = match http::handle().get(feed_url.serialize()).exec() {
+            Ok(resp) => resp,
+            Err(err) => panic!("Response Error: {}", err),
+        };
+        let body = response.get_body();
+        let feed_str = match str::from_utf8(body) {
+            Ok(resp) => resp,
+            Err(err) => panic!("from_utf8 Error: {}", err),
+        };
+        let feed_reader = FeedReader::new(Some(feed_str.to_string()));
+        self.channel = feed_reader.channel();
+        self
+    }
+
+
+    /// Construct the `Feed` from the `FeedBuilder`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::FeedBuilder;
+    ///
+    /// let feed = FeedBuilder::new().finalize();
+    /// ```
+    pub fn finalize(&self) -> Feed {
+        Feed {
+            channel: self.channel.clone(),
+        }
+    }
 }
