@@ -71,8 +71,7 @@ impl Feed {
     ///
     /// To be added in 1.1.0
     pub fn to_xml(&self) -> String {
-        let feed_writer = FeedWriter::new(self.channel.clone());
-        feed_writer.xml()
+        FeedWriter::new().xml()
     }
 }
 
@@ -107,9 +106,9 @@ impl FeedBuilder {
     /// use feed::rss::{Channel, ChannelBuilder};
     ///
     /// let channel = ChannelBuilder::new().finalize();
-    /// let feed = FeedBuilder::new().from_channel(channel).finalize();
+    /// let feed = FeedBuilder::new().channel(channel).finalize();
     /// ```
-    pub fn from_channel(&mut self, channel: Channel) -> &mut FeedBuilder {
+    pub fn channel(&mut self, channel: Channel) -> &mut FeedBuilder {
         self.channel = channel;
         self
     }
@@ -130,7 +129,7 @@ impl FeedBuilder {
     ///         Ok(result) => result,
     ///         Err(err)   => panic!("Url parse Error: {}", err),
     ///     };
-    ///     let feed = FeedBuilder::new().from_url(url).finalize();
+    ///     let feed = FeedBuilder::new().read_from_url(url).finalize();
     ///     let channel = feed.channel();
     ///     assert_eq!("The Linux Action Show! OGG".to_owned(), channel.title());
     ///     assert_eq!("http://www.jupiterbroadcasting.com".to_owned(), channel.link());
@@ -145,7 +144,7 @@ impl FeedBuilder {
     ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_owned(), channel.last_build_date().unwrap().to_rfc2822());
     /// }
     /// ```
-    pub fn from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
+    pub fn read_from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
         if !feed_url.serialize().as_str().ends_with(".xml") {
             panic!("Error: Url must end with .xml");
         }
@@ -158,8 +157,7 @@ impl FeedBuilder {
             Ok(resp) => resp,
             Err(err) => panic!("from_utf8 Error: {}", err),
         };
-        let feed_reader = FeedReader::new(Some(feed_str.to_owned()));
-        self.channel = feed_reader.channel();
+        self.channel = FeedReader::new(Some(feed_str.to_owned())).channel();
         self
     }
 

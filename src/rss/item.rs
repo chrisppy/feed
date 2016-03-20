@@ -273,7 +273,7 @@ impl Item {
     ///
     /// let guid = GuidBuilder::new()
     ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///     .is_permalink(None)
+    ///     .permalink(None)
     ///     .finalize();
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
