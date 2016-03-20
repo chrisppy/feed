@@ -1089,7 +1089,7 @@ impl ChannelBuilder {
             generator:       self.generator.clone(),
             docs:            self.docs.clone(),
             cloud:           self.cloud.clone(),
-            ttl:             self.ttl.clone(),
+            ttl:             self.ttl,
             image:           self.image.clone(),
             rating:          self.rating.clone(),
             text_input:      self.text_input.clone(),
