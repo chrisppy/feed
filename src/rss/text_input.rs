@@ -2,18 +2,16 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under text input can be retrieved by using the methods under `TextInput`
- * and the fields can be set for text input by using the methods under `TextInputBuilder`.
- */
+//! The fields under text input can be retrieved by using the methods under `TextInput`
+//! and the fields can be set for text input by using the methods under `TextInputBuilder`.
 
 /// This `TextInput` struct contains all the items that exist for the text input field under 'Channel'.
 #[derive(Clone)]
 pub struct TextInput {
-    title:       String,
+    title: String,
     description: String,
-    name:        String,
-    link:        String,
+    name: String,
+    link: String,
 }
 
 
@@ -93,10 +91,10 @@ impl TextInput {
 
 /// This `TextInputBuilder` struct creates the `TextInput`.
 pub struct TextInputBuilder {
-    title:       String,
+    title: String,
     description: String,
-    name:        String,
-    link:        String,
+    name: String,
+    link: String,
 }
 
 
@@ -112,10 +110,10 @@ impl TextInputBuilder {
     /// ```
     pub fn new() -> TextInputBuilder {
         TextInputBuilder {
-            title:       String::new(),
+            title: String::new(),
             description: String::new(),
-            name:        String::new(),
-            link:        String::new(),
+            name: String::new(),
+            link: String::new(),
         }
     }
 
@@ -200,10 +198,10 @@ impl TextInputBuilder {
     /// ```
     pub fn finalize(&self) -> TextInput {
         TextInput {
-            title:       self.title.clone(),
+            title: self.title.clone(),
             description: self.description.clone(),
-            name:        self.name.clone(),
-            link:        self.link.clone(),
+            name: self.name.clone(),
+            link: self.link.clone(),
         }
     }
 }

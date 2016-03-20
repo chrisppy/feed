@@ -2,16 +2,14 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under category can be retrieved by using the methods under `Category`
- * and the fields can be set for category by using the methods under `CategoryBuilder`.
- */
+//! The fields under category can be retrieved by using the methods under `Category`
+//! and the fields can be set for category by using the methods under `CategoryBuilder`.
 
 /// This `Category` struct contains all the items that exist for the category field under 'Channel' and `Item`.
 #[derive(Clone)]
 pub struct Category {
     category: String,
-    domain:   Option<String>,
+    domain: Option<String>,
 }
 
 
@@ -69,7 +67,7 @@ impl Category {
 /// This `CategoryBuilder` struct creates the `Category`.
 pub struct CategoryBuilder {
     category: String,
-    domain:   Option<String>,
+    domain: Option<String>,
 }
 
 
@@ -86,7 +84,7 @@ impl CategoryBuilder {
     pub fn new() -> CategoryBuilder {
         CategoryBuilder {
             category: String::new(),
-            domain:   None,
+            domain: None,
         }
     }
 
@@ -138,7 +136,7 @@ impl CategoryBuilder {
     pub fn finalize(&self) -> Category {
         Category {
             category: self.category.clone(),
-            domain:   self.domain.clone(),
+            domain: self.domain.clone(),
         }
     }
 }

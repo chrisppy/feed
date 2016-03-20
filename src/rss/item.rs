@@ -2,10 +2,8 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under item can be retrieved by using the methods under `Item`
- * and the fields can be set for item by using the methods under `ItemBuilder`.
- */
+//! The fields under item can be retrieved by using the methods under `Item`
+//! and the fields can be set for item by using the methods under `ItemBuilder`.
 
 use chrono::*;
 use rss::category::Category;
@@ -17,16 +15,16 @@ use util;
 /// This `Item` struct contains all the items that exist for the item field under 'Channel'.
 #[derive(Clone)]
 pub struct Item {
-    title:       Option<String>,
-    link:        Option<String>,
+    title: Option<String>,
+    link: Option<String>,
     description: Option<String>,
-    author:      Option<String>,
-    categories:  Option<Vec<Category>>,
-    comments:    Option<String>,
-    enclosure:   Option<Enclosure>,
-    guid:        Option<Guid>,
-    pub_date:    Option<DateTime<FixedOffset>>,
-    source:      Option<Source>,
+    author: Option<String>,
+    categories: Option<Vec<Category>>,
+    comments: Option<String>,
+    enclosure: Option<Enclosure>,
+    guid: Option<Guid>,
+    pub_date: Option<DateTime<FixedOffset>>,
+    source: Option<Source>,
 }
 
 
@@ -366,16 +364,16 @@ impl Item {
 
 /// This `ItemBuilder` struct creates the `Item`.
 pub struct ItemBuilder {
-    title:       Option<String>,
-    link:        Option<String>,
+    title: Option<String>,
+    link: Option<String>,
     description: Option<String>,
-    author:      Option<String>,
-    categories:  Option<Vec<Category>>,
-    comments:    Option<String>,
-    enclosure:   Option<Enclosure>,
-    guid:        Option<Guid>,
-    pub_date:    Option<DateTime<FixedOffset>>,
-    source:      Option<Source>,
+    author: Option<String>,
+    categories: Option<Vec<Category>>,
+    comments: Option<String>,
+    enclosure: Option<Enclosure>,
+    guid: Option<Guid>,
+    pub_date: Option<DateTime<FixedOffset>>,
+    source: Option<Source>,
 }
 
 
@@ -391,16 +389,16 @@ impl ItemBuilder {
     /// ```
     pub fn new() -> ItemBuilder {
         ItemBuilder {
-            title:       None,
-            link:        None,
+            title: None,
+            link: None,
             description: None,
-            author:      None,
-            categories:  None,
-            comments:    None,
-            enclosure:   None,
-            guid:        None,
-            pub_date:    None,
-            source:      None,
+            author: None,
+            categories: None,
+            comments: None,
+            enclosure: None,
+            guid: None,
+            pub_date: None,
+            source: None,
         }
     }
 
@@ -603,16 +601,16 @@ impl ItemBuilder {
             panic!("Either Title or Description must have a value!");
         }
         Item {
-            title:       self.title.clone(),
-            link:        self.link.clone(),
+            title: self.title.clone(),
+            link: self.link.clone(),
             description: self.description.clone(),
-            author:      self.author.clone(),
-            categories:  self.categories.clone(),
-            comments:    self.comments.clone(),
-            enclosure:   self.enclosure.clone(),
-            guid:        self.guid.clone(),
-            pub_date:    self.pub_date.clone(),
-            source:      self.source.clone(),
+            author: self.author.clone(),
+            categories: self.categories.clone(),
+            comments: self.comments.clone(),
+            enclosure: self.enclosure.clone(),
+            guid: self.guid.clone(),
+            pub_date: self.pub_date.clone(),
+            source: self.source.clone(),
         }
     }
 }

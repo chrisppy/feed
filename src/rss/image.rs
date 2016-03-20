@@ -2,19 +2,17 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under image can be retrieved by using the methods under `Image`
- * and the fields can be set for image by using the methods under `ImageBuilder`.
- */
+//! The fields under image can be retrieved by using the methods under `Image`
+//! and the fields can be set for image by using the methods under `ImageBuilder`.
 
 /// This `Image` struct contains all the items that exist for the image field under 'Channel'.
 #[derive(Clone)]
 pub struct Image {
-    url:         String,
-    title:       String,
-    link:        String,
-    width:       i64,
-    height:      i64,
+    url: String,
+    title: String,
+    link: String,
+    width: i64,
+    height: i64,
     description: Option<String>,
 }
 
@@ -185,12 +183,12 @@ impl Image {
 
 /// This `ImageBuilder` struct creates the `Image`.
 pub struct ImageBuilder {
-    url:         String,
-    title:       String,
-    link:        String,
-    width:       i64,
-    height:      i64,
-    description: Option<String>
+    url: String,
+    title: String,
+    link: String,
+    width: i64,
+    height: i64,
+    description: Option<String>,
 }
 
 
@@ -206,11 +204,11 @@ impl ImageBuilder {
     /// ```
     pub fn new() -> ImageBuilder {
         ImageBuilder {
-            url:         String::new(),
-            title:       String::new(),
-            link:        String::new(),
-            width:       88,
-            height:      31,
+            url: String::new(),
+            title: String::new(),
+            link: String::new(),
+            width: 88,
+            height: 31,
             description: None,
         }
     }
@@ -344,11 +342,11 @@ impl ImageBuilder {
     /// ```
     pub fn finalize(&self) -> Image {
         Image {
-            url:         self.url.clone(),
-            title:       self.title.clone(),
-            link:        self.link.clone(),
-            width:       self.width.clone(),
-            height:      self.height.clone(),
+            url: self.url.clone(),
+            title: self.title.clone(),
+            link: self.link.clone(),
+            width: self.width.clone(),
+            height: self.height.clone(),
             description: self.description.clone(),
         }
     }
