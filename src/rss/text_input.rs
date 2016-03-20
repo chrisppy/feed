@@ -90,6 +90,7 @@ impl TextInput {
 
 
 /// This `TextInputBuilder` struct creates the `TextInput`.
+#[derive(Default)]
 pub struct TextInputBuilder {
     title: String,
     description: String,
@@ -109,12 +110,7 @@ impl TextInputBuilder {
     /// let text_input_builder = TextInputBuilder::new();
     /// ```
     pub fn new() -> TextInputBuilder {
-        TextInputBuilder {
-            title: String::new(),
-            description: String::new(),
-            name: String::new(),
-            link: String::new(),
-        }
+        TextInputBuilder::default()
     }
 
 

@@ -52,6 +52,7 @@ impl Source {
 
 
 /// This `SourceBuilder` struct creates the `Source`.
+#[derive(Default)]
 pub struct SourceBuilder {
     url: String,
     source: String,
@@ -69,10 +70,7 @@ impl SourceBuilder {
     /// let source_builder = SourceBuilder::new();
     /// ```
     pub fn new() -> SourceBuilder {
-        SourceBuilder {
-            url: String::new(),
-            source: String::new(),
-        }
+        SourceBuilder::default()
     }
 
 

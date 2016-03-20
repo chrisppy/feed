@@ -363,6 +363,7 @@ impl Item {
 
 
 /// This `ItemBuilder` struct creates the `Item`.
+#[derive(Default)]
 pub struct ItemBuilder {
     title: Option<String>,
     link: Option<String>,
@@ -388,18 +389,7 @@ impl ItemBuilder {
     /// let item_builder = ItemBuilder::new();
     /// ```
     pub fn new() -> ItemBuilder {
-        ItemBuilder {
-            title: None,
-            link: None,
-            description: None,
-            author: None,
-            categories: None,
-            comments: None,
-            enclosure: None,
-            guid: None,
-            pub_date: None,
-            source: None,
-        }
+        ItemBuilder::default()
     }
 
 

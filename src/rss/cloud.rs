@@ -109,6 +109,7 @@ impl Cloud {
 
 
 /// This `CloudBuilder` struct creates the `Cloud`.
+#[derive(Default)]
 pub struct CloudBuilder {
     domain: String,
     port: i64,
@@ -129,13 +130,7 @@ impl CloudBuilder {
     /// let cloud_builder = CloudBuilder::new();
     /// ```
     pub fn new() -> CloudBuilder {
-        CloudBuilder {
-            domain: String::new(),
-            port: 0,
-            path: String::new(),
-            register_procedure: String::new(),
-            protocol: String::new(),
-        }
+        CloudBuilder::default()
     }
 
 

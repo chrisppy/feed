@@ -664,6 +664,7 @@ impl Channel {
 
 
 /// This `ChannelBuilder` struct creates the `Channel`.
+#[derive(Default)]
 pub struct ChannelBuilder {
     title:           String,
     link:            String,
@@ -699,28 +700,7 @@ impl ChannelBuilder {
     /// let channel_builder = ChannelBuilder::new();
     /// ```
     pub fn new() -> ChannelBuilder {
-        ChannelBuilder {
-            title:           String::new(),
-            link:            String::new(),
-            description:     String::new(),
-            language:        None,
-            copyright:       None,
-            managing_editor: None,
-            web_master:      None,
-            pub_date:        None,
-            last_build_date: None,
-            categories:      None,
-            generator:       None,
-            docs:            None,
-            cloud:           None,
-            ttl:             None,
-            image:           None,
-            rating:          None,
-            text_input:      None,
-            skip_hours:      None,
-            skip_days:       None,
-            items:           None,
-        }
+        ChannelBuilder::default()
     }
 
 

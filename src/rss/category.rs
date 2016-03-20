@@ -65,6 +65,7 @@ impl Category {
 
 
 /// This `CategoryBuilder` struct creates the `Category`.
+#[derive(Default)]
 pub struct CategoryBuilder {
     category: String,
     domain: Option<String>,
@@ -82,10 +83,7 @@ impl CategoryBuilder {
     /// let category_builder = CategoryBuilder::new();
     /// ```
     pub fn new() -> CategoryBuilder {
-        CategoryBuilder {
-            category: String::new(),
-            domain: None,
-        }
+        CategoryBuilder::default()
     }
 
 
