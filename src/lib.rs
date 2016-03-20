@@ -61,14 +61,9 @@ impl Feed {
 
     /// Convert the `Feed` to XML.
     ///
-    /// # Examples
+    /// Not Yet Implemented!
     ///
-    /// ```
-    /// use feed::{Feed, FeedBuilder};
-    /// use feed::rss::Channel;
-    ///
-    /// let feed = FeedBuilder::new().finalize();
-    /// ```
+    /// To be added in 1.1.0
     pub fn to_xml(&self) -> String {
         let feed_writer = FeedWriter::new(self.channel.clone());
         feed_writer.xml()
@@ -110,23 +105,6 @@ impl FeedBuilder {
     /// ```
     pub fn from_channel(&mut self, channel: Channel) -> &mut FeedBuilder {
         self.channel = channel;
-        self
-    }
-
-
-    /// Construct a new `FeedBuilder` from a `&str`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::FeedBuilder;
-    ///
-    /// let feed = "<rss><channel><title>The Linux Action Show! OGG</title></channel></rss>";
-    /// let feed = FeedBuilder::new().from_str(&feed).finalize();
-    /// ```
-    pub fn from_str(&mut self, feed: &str) -> &mut FeedBuilder {
-        let feed_reader = FeedReader::new(Some(feed.to_string()));
-        self.channel = feed_reader.channel();
         self
     }
 

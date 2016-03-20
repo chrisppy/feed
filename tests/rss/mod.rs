@@ -1,14 +1,6 @@
 // Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
-mod category;
-mod cloud;
-mod enclosure;
-mod guid;
-mod image;
-mod item;
-mod source;
-mod text_input;
 
 use feed::rss::ChannelBuilder;
 use feed::rss::category::CategoryBuilder;

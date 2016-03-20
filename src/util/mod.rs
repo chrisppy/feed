@@ -22,7 +22,6 @@ pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
         Ok(result) => result,
         Err(err)   => panic!("from utf8 error: {}", err),
     };
-    println!("str attributes values: {:?}", attr_str);
     attr_str
 }
 
@@ -39,7 +38,6 @@ pub fn attribute_to_i64(attributes: Attributes, index: usize) -> i64 {
         Ok(result) => result,
         Err(err)   => panic!("from str error: {}", err),
     };
-    println!("i64 attributes values: {:?}", attr_i64);
     attr_i64
 }
 
@@ -56,7 +54,6 @@ pub fn attribute_to_bool(attributes: Attributes, index: usize) -> bool {
         Ok(result) => result,
         Err(err)   => panic!("from str error: {}", err),
     };
-    println!("i64 attributes values: {:?}", attr_bool);
     attr_bool
 }
 

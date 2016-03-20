@@ -14,12 +14,22 @@ use rss::source::SourceBuilder;
 use rss::text_input::TextInputBuilder;
 use util;
 
+/// This `FeedReader` struct parses the xml feed to the `Channel`.
 pub struct FeedReader {
     channel: Channel,
 }
 
 
 impl FeedReader {
+    /// Construct a new `FeedReader` and return the `Channel`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::feedio::FeedReader;
+    ///
+    /// let channel = FeedReader::new(Some("String".to_string()));
+    /// ```
     pub fn new(feed: Option<String>) -> FeedReader {
         let feed_string = match feed {
             Some(value) => value,
@@ -350,12 +360,22 @@ impl FeedReader {
 }
 
 
+/// This `FeedWriter` struct creates the xml from the `Channel`.
+///
+/// Not Yet Implemented!
+///
+/// To be added in 1.1.0
 pub struct FeedWriter {
     xml: String,
 }
 
 
 impl FeedWriter {
+    /// Construct a new `FeedWriter` and return default values.
+    ///
+    /// Not Yet Implemented!
+    ///
+    /// To be added in 1.1.0
     pub fn new(channel: Channel) -> FeedWriter {
         FeedWriter {
             xml: String::new(),
@@ -363,8 +383,12 @@ impl FeedWriter {
     }
 
 
+    /// Convert the `Channel` to XML.
+    ///
+    /// Not Yet Implemented!
+    ///
+    /// To be added in 1.1.0
     pub fn xml(&self) -> String {
-        //panic!("Not yet Implemented!");
-        self.xml.clone()
+        unimplemented!()
     }
 }
