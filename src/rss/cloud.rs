@@ -49,7 +49,7 @@ impl Cloud {
     /// assert_eq!(port, cloud.port());
     /// ```
     pub fn port(&self) -> i64 {
-        self.port.clone()
+        self.port
     }
 
 
@@ -232,7 +232,7 @@ impl CloudBuilder {
     pub fn finalize(&self) -> Cloud {
         Cloud {
             domain: self.domain.clone(),
-            port: self.port.clone(),
+            port: self.port,
             path: self.path.clone(),
             register_procedure: self.register_procedure.clone(),
             protocol: self.protocol.clone(),

@@ -278,7 +278,7 @@ impl Channel {
     /// assert!(channel.last_build_date().is_none());
     /// ```
     pub fn last_build_date(&self) -> Option<DateTime<FixedOffset>> {
-        self.last_build_date.clone()
+        self.last_build_date
     }
 
 
@@ -440,7 +440,7 @@ impl Channel {
     /// assert!(channel.ttl().is_none());
     /// ```
     pub fn ttl(&self) -> Option<i64> {
-        self.ttl.clone()
+        self.ttl
     }
 
 
@@ -1083,8 +1083,8 @@ impl ChannelBuilder {
             copyright:       self.copyright.clone(),
             managing_editor: self.managing_editor.clone(),
             web_master:      self.web_master.clone(),
-            pub_date:        self.pub_date.clone(),
-            last_build_date: self.last_build_date.clone(),
+            pub_date:        self.pub_date,
+            last_build_date: self.last_build_date,
             categories:      self.categories.clone(),
             generator:       self.generator.clone(),
             docs:            self.docs.clone(),

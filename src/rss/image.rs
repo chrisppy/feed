@@ -107,7 +107,7 @@ impl Image {
     /// assert_eq!(max, image.width());
     /// ```
     pub fn width(&self) -> i64 {
-        self.width.clone()
+        self.width
     }
 
 
@@ -146,7 +146,7 @@ impl Image {
     /// assert_eq!(max, image.height());
     /// ```
     pub fn height(&self) -> i64 {
-        self.height.clone()
+        self.height
     }
 
 
@@ -343,8 +343,8 @@ impl ImageBuilder {
             url: self.url.clone(),
             title: self.title.clone(),
             link: self.link.clone(),
-            width: self.width.clone(),
-            height: self.height.clone(),
+            width: self.width,
+            height: self.height,
             description: self.description.clone(),
         }
     }

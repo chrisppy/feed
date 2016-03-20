@@ -47,7 +47,7 @@ impl Enclosure {
     /// assert_eq!(length, enclosure.length())
     /// ```
     pub fn length(&self) -> i64 {
-        self.length.clone()
+        self.length
     }
 
 
@@ -158,7 +158,7 @@ impl EnclosureBuilder {
     pub fn finalize(&self) -> Enclosure {
         Enclosure {
             url: self.url.clone(),
-            length: self.length.clone(),
+            length: self.length,
             enclosure_type: self.enclosure_type.clone(),
         }
     }

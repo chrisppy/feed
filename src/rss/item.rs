@@ -324,7 +324,7 @@ impl Item {
     /// assert!(item.pub_date().is_none());
     /// ```
     pub fn pub_date(&self) -> Option<DateTime<FixedOffset>> {
-        self.pub_date.clone()
+        self.pub_date
     }
 
 
@@ -599,7 +599,7 @@ impl ItemBuilder {
             comments: self.comments.clone(),
             enclosure: self.enclosure.clone(),
             guid: self.guid.clone(),
-            pub_date: self.pub_date.clone(),
+            pub_date: self.pub_date,
             source: self.source.clone(),
         }
     }
