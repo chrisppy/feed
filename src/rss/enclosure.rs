@@ -2,16 +2,14 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under enclosure can be retrieved by using the methods under `Enclosure`
- * and the fields can be set for enclosure by using the methods under `EnclosureBuilder`.
- */
+//! The fields under enclosure can be retrieved by using the methods under `Enclosure`
+//! and the fields can be set for enclosure by using the methods under `EnclosureBuilder`.
 
 /// This `Enclosure` struct contains all the items that exist for the enclosure field under 'Item'.
 #[derive(Clone)]
 pub struct Enclosure {
-    url:            String,
-    length:         i64,
+    url: String,
+    length: i64,
     enclosure_type: String,
 }
 
@@ -74,8 +72,8 @@ impl Enclosure {
 
 /// This `EnclosureBuilder` struct creates the `Enclosure`.
 pub struct EnclosureBuilder {
-    url:            String,
-    length:         i64,
+    url: String,
+    length: i64,
     enclosure_type: String,
 }
 
@@ -92,8 +90,8 @@ impl EnclosureBuilder {
     /// ```
     pub fn new() -> EnclosureBuilder {
         EnclosureBuilder {
-            url:            String::new(),
-            length:         0,
+            url: String::new(),
+            length: 0,
             enclosure_type: String::new(),
         }
     }
@@ -162,8 +160,8 @@ impl EnclosureBuilder {
     /// ```
     pub fn finalize(&self) -> Enclosure {
         Enclosure {
-            url:            self.url.clone(),
-            length:         self.length.clone(),
+            url: self.url.clone(),
+            length: self.length.clone(),
             enclosure_type: self.enclosure_type.clone(),
         }
     }

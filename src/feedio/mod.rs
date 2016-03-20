@@ -2,11 +2,9 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The feed can be parsed using `FeedReader` and can be written to xml using `FeedWriter`.
- */
+//! The feed can be parsed using `FeedReader` and can be written to xml using `FeedWriter`.
 
-use quick_xml::{XmlReader, Event};
+use quick_xml::{Event, XmlReader};
 use rss::{Channel, ChannelBuilder};
 use rss::category::{Category, CategoryBuilder};
 use rss::cloud::CloudBuilder;
@@ -37,7 +35,7 @@ impl FeedReader {
     pub fn new(feed: Option<String>) -> FeedReader {
         let feed_string = match feed {
             Some(value) => value,
-            None        => panic!("The feed is empty!"),
+            None => panic!("The feed is empty!"),
         };
         let mut category_builder = CategoryBuilder::new();
         let mut channel_builder = ChannelBuilder::new();
@@ -60,28 +58,28 @@ impl FeedReader {
             match r {
                 Ok(Event::Start(ref e)) => {
                     match e.name() {
-                        b"image"          => {
+                        b"image" => {
                             element = "image";
-                        },
-                        b"textInput"      => {
+                        }
+                        b"textInput" => {
                             element = "textInput";
-                        },
-                        b"item"           => {
+                        }
+                        b"item" => {
                             item_builder = ItemBuilder::new();
                             element = "item";
-                        },
-                        b"author"         => {
+                        }
+                        b"author" => {
                             name = "author";
-                        },
-                        b"category"       => {
+                        }
+                        b"category" => {
                             name = "category";
 
                             category_builder = CategoryBuilder::new();
 
                             let domain = util::attribute_to_option_string(e.attributes(), 0);
                             category_builder.domain(domain);
-                        },
-                        b"cloud"          => {
+                        }
+                        b"cloud" => {
                             let mut cloud_builder = CloudBuilder::new();
 
                             let domain = util::attribute_to_str(e.attributes(), 0);
@@ -100,23 +98,23 @@ impl FeedReader {
                             cloud_builder.protocol(protocol);
 
                             channel_builder.cloud(Some(cloud_builder.finalize()));
-                        },
-                        b"comments"       => {
+                        }
+                        b"comments" => {
                             name = "comments";
                         }
-                        b"copyright"      => {
+                        b"copyright" => {
                             name = "copyright";
-                        },
-                        b"day"       => {
+                        }
+                        b"day" => {
                             name = "day";
-                        },
-                        b"description"    => {
+                        }
+                        b"description" => {
                             name = "description";
-                        },
-                        b"docs"           => {
+                        }
+                        b"docs" => {
                             name = "docs";
-                        },
-                        b"enclosure"      => {
+                        }
+                        b"enclosure" => {
                             let mut enclosure_builder = EnclosureBuilder::new();
 
                             let url = util::attribute_to_str(e.attributes(), 0);
@@ -129,232 +127,262 @@ impl FeedReader {
                             enclosure_builder.enclosure_type(enclosure_type);
 
                             item_builder.enclosure(Some(enclosure_builder.finalize()));
-                        },
-                        b"generator"      => {
+                        }
+                        b"generator" => {
                             name = "generator";
-                        },
-                        b"guid"           => {
+                        }
+                        b"guid" => {
                             name = "guid";
 
                             guid_builder = GuidBuilder::new();
 
                             let is_permalink = util::attribute_to_option_bool(e.attributes(), 0);
                             guid_builder.is_permalink(is_permalink);
-                        },
-                        b"height"         => {
+                        }
+                        b"height" => {
                             name = "height";
-                        },
-                        b"hour"      => {
+                        }
+                        b"hour" => {
                             name = "hour";
-                        },
-                        b"language"       => {
+                        }
+                        b"language" => {
                             name = "language";
-                        },
-                        b"lastBuildDate"   => {
+                        }
+                        b"lastBuildDate" => {
                             name = "lastBuildDate";
-                        },
-                        b"link"           => {
+                        }
+                        b"link" => {
                             name = "link";
-                        },
+                        }
                         b"managingEditor" => {
                             name = "managingEditor";
-                        },
-                        b"name"           => {
+                        }
+                        b"name" => {
                             name = "name";
                         }
-                        b"pubDate"        => {
+                        b"pubDate" => {
                             name = "pubDate";
-                        },
-                        b"rating"         => {
+                        }
+                        b"rating" => {
                             name = "rating";
-                        },
-                        b"source"         => {
+                        }
+                        b"source" => {
                             name = "source";
 
                             source_builder = SourceBuilder::new();
 
                             let url = util::attribute_to_str(e.attributes(), 0);
                             source_builder.url(url);
-                        },
-                        b"title"          => {
+                        }
+                        b"title" => {
                             name = "title";
-                        },
-                        b"ttl"            => {
+                        }
+                        b"ttl" => {
                             name = "ttl";
-                        },
-                        b"url"            => {
+                        }
+                        b"url" => {
                             name = "url";
-                        },
-                        b"webMaster"      => {
+                        }
+                        b"webMaster" => {
                             name = "webMaster";
-                        },
-                        b"width"          => {
+                        }
+                        b"width" => {
                             name = "width";
-                        },
-                        _                 => (),
+                        }
+                        _ => (),
                     }
-                },
+                }
                 Ok(Event::Text(e)) => {
                     match name {
-                        "author"         => {
+                        "author" => {
                             let author = util::element_to_option_string(e);
                             item_builder.author(author);
-                        },
-                        "category"       => {
+                        }
+                        "category" => {
                             let category = util::element_to_string(e);
                             category_builder.category(&category);
-                        },
-                        "comments"       => {
+                        }
+                        "comments" => {
                             let comments = util::element_to_option_string(e);
                             item_builder.comments(comments);
-                        },
-                        "copyright"      => {
+                        }
+                        "copyright" => {
                             let copyright = util::element_to_option_string(e);
                             channel_builder.copyright(copyright);
-                        },
-                        "day"            => {
+                        }
+                        "day" => {
                             let skip_day = util::element_to_string(e);
                             channel_skip_days.push(skip_day);
-                        },
-                        "description"    => {
+                        }
+                        "description" => {
                             let description = util::element_to_string(e);
                             match element {
-                                "channel"   => {channel_builder.description(&description);},
-                                "image"     => {image_builder.description(Some(description));},
-                                "textInput" => {text_input_builder.description(&description);},
-                                "item"      => {item_builder.description(Some(description));},
-                                _           => (),
+                                "channel" => {
+                                    channel_builder.description(&description);
+                                }
+                                "image" => {
+                                    image_builder.description(Some(description));
+                                }
+                                "textInput" => {
+                                    text_input_builder.description(&description);
+                                }
+                                "item" => {
+                                    item_builder.description(Some(description));
+                                }
+                                _ => (),
                             };
-                        },
-                        "docs"           => {
+                        }
+                        "docs" => {
                             let docs = util::element_to_option_string(e);
                             channel_builder.docs(docs);
-                        },
-                        "generator"      => {
+                        }
+                        "generator" => {
                             let generator = util::element_to_option_string(e);
                             channel_builder.generator(generator);
-                        },
-                        "guid"           => {
+                        }
+                        "guid" => {
                             let guid = util::element_to_string(e);
                             guid_builder.guid(&guid);
-                        },
-                        "height"         => {
+                        }
+                        "height" => {
                             let height = util::element_to_option_i64(e);
                             image_builder.height(height);
-                        },
-                        "hour"           => {
+                        }
+                        "hour" => {
                             let skip_hour = util::element_to_i64(e);
                             channel_skip_hours.push(skip_hour);
-                        },
-                        "language"       => {
+                        }
+                        "language" => {
                             let language = util::element_to_option_string(e);
                             channel_builder.language(language);
-                        },
-                        "lastBuildDate"  => {
+                        }
+                        "lastBuildDate" => {
                             let last_build_date = util::element_to_option_string(e);
                             channel_builder.last_build_date(last_build_date);
-                        },
-                        "link"           => {
+                        }
+                        "link" => {
                             let link = util::element_to_string(e);
                             match element {
-                                "channel"   => {channel_builder.link(&link);},
-                                "image"     => {image_builder.link(&link);},
-                                "textInput" => {text_input_builder.link(&link);},
-                                "item"      => {item_builder.link(Some(link));},
-                                _           => (),
+                                "channel" => {
+                                    channel_builder.link(&link);
+                                }
+                                "image" => {
+                                    image_builder.link(&link);
+                                }
+                                "textInput" => {
+                                    text_input_builder.link(&link);
+                                }
+                                "item" => {
+                                    item_builder.link(Some(link));
+                                }
+                                _ => (),
                             };
-                        },
+                        }
                         "managingEditor" => {
                             let managing_editor = util::element_to_option_string(e);
                             channel_builder.managing_editor(managing_editor);
-                        },
-                        "name"           => {
+                        }
+                        "name" => {
                             let name = util::element_to_string(e);
                             text_input_builder.name(&name);
-                        },
-                        "pubDate"        => {
+                        }
+                        "pubDate" => {
                             let pub_date = util::element_to_option_string(e);
                             match element {
-                                "channel" => {channel_builder.pub_date(pub_date);},
-                                "item"    => {item_builder.pub_date(pub_date);},
-                                _         => (),
+                                "channel" => {
+                                    channel_builder.pub_date(pub_date);
+                                }
+                                "item" => {
+                                    item_builder.pub_date(pub_date);
+                                }
+                                _ => (),
                             };
-                        },
-                        "rating"         => {
+                        }
+                        "rating" => {
                             let rating = util::element_to_option_string(e);
                             channel_builder.rating(rating);
-                        },
-                        "source"         => {
+                        }
+                        "source" => {
                             let source = util::element_to_string(e);
                             source_builder.source(&source);
-                        },
-                        "title"          => {
+                        }
+                        "title" => {
                             let title = util::element_to_string(e);
                             match element {
-                                "channel"   => {channel_builder.title(&title);},
-                                "image"     => {image_builder.title(&title);},
-                                "textInput" => {text_input_builder.title(&title);},
-                                "item"      => {item_builder.title(Some(title));}
-                                _           => (),
+                                "channel" => {
+                                    channel_builder.title(&title);
+                                }
+                                "image" => {
+                                    image_builder.title(&title);
+                                }
+                                "textInput" => {
+                                    text_input_builder.title(&title);
+                                }
+                                "item" => {
+                                    item_builder.title(Some(title));
+                                }
+                                _ => (),
                             };
-                        },
-                        "ttl"            => {
+                        }
+                        "ttl" => {
                             let ttl = util::element_to_option_i64(e);
                             channel_builder.ttl(ttl);
-                        },
-                        "url"            => {
+                        }
+                        "url" => {
                             let url = util::element_to_string(e);
                             image_builder.url(&url);
-                        },
-                        "webMaster"      => {
+                        }
+                        "webMaster" => {
                             let web_master = util::element_to_option_string(e);
                             channel_builder.web_master(web_master);
-                        },
-                        "width"          => {
+                        }
+                        "width" => {
                             let width = util::element_to_option_i64(e);
                             image_builder.width(width);
                         }
-                        _                => (),
+                        _ => (),
                     };
-                },
+                }
                 Ok(Event::End(ref e)) => {
                     match e.name() {
-                        b"category"       => {
+                        b"category" => {
                             match element {
-                                "channel" => {channel_categories.push(category_builder.finalize());},
-                                "item"    => {item_categories.push(category_builder.finalize());},
-                                _         => (),
+                                "channel" => {
+                                    channel_categories.push(category_builder.finalize());
+                                }
+                                "item" => {
+                                    item_categories.push(category_builder.finalize());
+                                }
+                                _ => (),
                             };
-                        },
-                        b"channel"        => {
+                        }
+                        b"channel" => {
                             channel_builder.categories(Some(channel_categories.clone()));
                             channel_builder.image(Some(image_builder.finalize()));
                             channel_builder.items(Some(items.clone()));
                             channel_builder.skip_days(Some(channel_skip_days.clone()));
                             channel_builder.skip_hours(Some(channel_skip_hours.clone()));
                             channel_builder.text_input(Some(text_input_builder.finalize()));
-                        },
-                        b"item"           => {
+                        }
+                        b"item" => {
                             item_builder.categories(Some(item_categories.clone()));
                             items.push(item_builder.finalize());
-                        },
-                        b"guid"           => {
+                        }
+                        b"guid" => {
                             item_builder.guid(Some(guid_builder.finalize()));
-                        },
-                        b"source"         => {
+                        }
+                        b"source" => {
                             item_builder.source(Some(source_builder.finalize()));
-                        },
-                        _                 => (),
+                        }
+                        _ => (),
                     };
-                },
+                }
                 Err((e, pos)) => panic!("{:?} at position {}", e, pos),
-                _                       => (),
+                _ => (),
             }
         }
 
-        FeedReader {
-            channel: channel_builder.finalize(),
-        }
+        FeedReader { channel: channel_builder.finalize() }
     }
 
     /// Get the `Channel` after parsing.
@@ -390,9 +418,7 @@ impl FeedWriter {
     ///
     /// To be added in 1.1.0
     pub fn new(channel: Channel) -> FeedWriter {
-        FeedWriter {
-            xml: String::new(),
-        }
+        FeedWriter { xml: String::new() }
     }
 
 

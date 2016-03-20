@@ -2,10 +2,8 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under channel can be retrieved by using the methods under `Channel`
- * and the fields can be set for channel by using the methods under `ChannelBuilder`.
- */
+//! The fields under channel can be retrieved by using the methods under `Channel`
+//! and the fields can be set for channel by using the methods under `ChannelBuilder`.
 
 pub mod category;
 pub mod cloud;

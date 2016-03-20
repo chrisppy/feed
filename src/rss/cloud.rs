@@ -2,19 +2,17 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under cloud can be retrieved by using the methods under `Cloud`
- * and the fields can be set for cloud by using the methods under `CloudBuilder`.
- */
+//! The fields under cloud can be retrieved by using the methods under `Cloud`
+//! and the fields can be set for cloud by using the methods under `CloudBuilder`.
 
 /// This `Cloud` struct contains all the items that exist for the cloud field under 'Channel'.
 #[derive(Clone)]
 pub struct Cloud {
-    domain:             String,
-    port:               i64,
-    path:               String,
+    domain: String,
+    port: i64,
+    path: String,
     register_procedure: String,
-    protocol:           String,
+    protocol: String,
 }
 
 
@@ -112,11 +110,11 @@ impl Cloud {
 
 /// This `CloudBuilder` struct creates the `Cloud`.
 pub struct CloudBuilder {
-    domain:             String,
-    port:               i64,
-    path:               String,
+    domain: String,
+    port: i64,
+    path: String,
     register_procedure: String,
-    protocol:           String,
+    protocol: String,
 }
 
 
@@ -132,11 +130,11 @@ impl CloudBuilder {
     /// ```
     pub fn new() -> CloudBuilder {
         CloudBuilder {
-            domain:             String::new(),
-            port:               0,
-            path:               String::new(),
+            domain: String::new(),
+            port: 0,
+            path: String::new(),
             register_procedure: String::new(),
-            protocol:           String::new(),
+            protocol: String::new(),
         }
     }
 
@@ -238,11 +236,11 @@ impl CloudBuilder {
     /// ```
     pub fn finalize(&self) -> Cloud {
         Cloud {
-            domain:             self.domain.clone(),
-            port:               self.port.clone(),
-            path:               self.path.clone(),
+            domain: self.domain.clone(),
+            port: self.port.clone(),
+            path: self.path.clone(),
             register_procedure: self.register_procedure.clone(),
-            protocol:           self.protocol.clone(),
+            protocol: self.protocol.clone(),
         }
     }
 }

@@ -2,15 +2,13 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under source can be retrieved by using the methods under `Source`
- * and the fields can be set for source by using the methods under `SourceBuilder`.
- */
+//! The fields under source can be retrieved by using the methods under `Source`
+//! and the fields can be set for source by using the methods under `SourceBuilder`.
 
 /// This `Source` struct contains all the items that exist for the source field under 'Item'.
 #[derive(Clone)]
 pub struct Source {
-    url:    String,
+    url: String,
     source: String,
 }
 
@@ -55,7 +53,7 @@ impl Source {
 
 /// This `SourceBuilder` struct creates the `Source`.
 pub struct SourceBuilder {
-    url:    String,
+    url: String,
     source: String,
 }
 
@@ -72,7 +70,7 @@ impl SourceBuilder {
     /// ```
     pub fn new() -> SourceBuilder {
         SourceBuilder {
-            url:    String::new(),
+            url: String::new(),
             source: String::new(),
         }
     }
@@ -124,7 +122,7 @@ impl SourceBuilder {
     /// ```
     pub fn finalize(&self) -> Source {
         Source {
-            url:    self.url.clone(),
+            url: self.url.clone(),
             source: self.source.clone(),
         }
     }

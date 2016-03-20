@@ -2,16 +2,14 @@
 // Use of this source code is governed by the GPLv3 license that can be
 // found in the LICENSE file.
 
-/*!
- * The fields under guid can be retrieved by using the methods under `Guid`
- * and the fields can be set for guid by using the methods under `GuidBuilder`.
- */
+//! The fields under guid can be retrieved by using the methods under `Guid`
+//! and the fields can be set for guid by using the methods under `GuidBuilder`.
 
 /// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
 #[derive(Clone)]
 pub struct Guid {
     is_permalink: bool,
-    guid:         String,
+    guid: String,
 }
 
 
@@ -75,7 +73,7 @@ impl Guid {
 /// This `GuidBuilder` struct creates the `Guid`.
 pub struct GuidBuilder {
     is_permalink: bool,
-    guid:         String,
+    guid: String,
 }
 
 
@@ -92,7 +90,7 @@ impl GuidBuilder {
     pub fn new() -> GuidBuilder {
         GuidBuilder {
             is_permalink: true,
-            guid:         String::new(),
+            guid: String::new(),
         }
     }
 
@@ -146,7 +144,7 @@ impl GuidBuilder {
     pub fn finalize(&self) -> Guid {
         Guid {
             is_permalink: self.is_permalink.clone(),
-            guid:         self.guid.clone(),
+            guid: self.guid.clone(),
         }
     }
 }
