@@ -27,7 +27,7 @@ impl TextInput {
     /// let text_input = TextInputBuilder::new()
     ///     .title(title)
     ///     .finalize();
-    /// assert_eq!(title.to_string(), text_input.title());
+    /// assert_eq!(title.to_owned(), text_input.title());
     /// ```
     pub fn title(&self) -> String {
         self.title.clone()
@@ -45,7 +45,7 @@ impl TextInput {
     /// let text_input = TextInputBuilder::new()
     ///     .description(description)
     ///     .finalize();
-    /// assert_eq!(description.to_string(), text_input.description());
+    /// assert_eq!(description.to_owned(), text_input.description());
     /// ```
     pub fn description(&self) -> String {
         self.description.clone()
@@ -63,7 +63,7 @@ impl TextInput {
     /// let text_input = TextInputBuilder::new()
     ///     .name(name)
     ///     .finalize();
-    /// assert_eq!(name.to_string(), text_input.name());
+    /// assert_eq!(name.to_owned(), text_input.name());
     /// ```
     pub fn name(&self) -> String {
         self.name.clone()
@@ -81,7 +81,7 @@ impl TextInput {
     /// let text_input = TextInputBuilder::new()
     ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(link.to_string(), text_input.link());
+    /// assert_eq!(link.to_owned(), text_input.link());
     /// ```
     pub fn link(&self) -> String {
         self.link.clone()
@@ -125,7 +125,7 @@ impl TextInputBuilder {
     /// text_input_builder.title("Title");
     /// ```
     pub fn title(&mut self, title: &str) -> &mut TextInputBuilder {
-        self.title = title.to_string();
+        self.title = title.to_owned();
         self
     }
 
@@ -141,7 +141,7 @@ impl TextInputBuilder {
     /// text_input_builder.description("This is a test description.");
     /// ```
     pub fn description(&mut self, description: &str) -> &mut TextInputBuilder {
-        self.description = description.to_string();
+        self.description = description.to_owned();
         self
     }
 
@@ -157,7 +157,7 @@ impl TextInputBuilder {
     /// text_input_builder.name("Comments");
     /// ```
     pub fn name(&mut self, name: &str) -> &mut TextInputBuilder {
-        self.name = name.to_string();
+        self.name = name.to_owned();
         self
     }
 
@@ -173,7 +173,7 @@ impl TextInputBuilder {
     /// text_input_builder.link("http://www.example.com/feedback");
     /// ```
     pub fn link(&mut self, link: &str) -> &mut TextInputBuilder {
-        self.link = link.to_string();
+        self.link = link.to_owned();
         self
     }
 

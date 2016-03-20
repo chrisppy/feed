@@ -29,7 +29,7 @@ impl Image {
     /// let image = ImageBuilder::new()
     ///     .url(url)
     ///     .finalize();
-    /// assert_eq!(url.to_string(), image.url());
+    /// assert_eq!(url.to_owned(), image.url());
     /// ```
     pub fn url(&self) -> String {
         self.url.clone()
@@ -47,7 +47,7 @@ impl Image {
     /// let image = ImageBuilder::new()
     ///     .title(title)
     ///     .finalize();
-    /// assert_eq!(title.to_string(), image.title());
+    /// assert_eq!(title.to_owned(), image.title());
     /// ```
     pub fn title(&self) -> String {
         self.title.clone()
@@ -65,7 +65,7 @@ impl Image {
     /// let image = ImageBuilder::new()
     ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(link.to_string(), image.link());
+    /// assert_eq!(link.to_owned(), image.link());
     /// ```
     pub fn link(&self) -> String {
         self.link.clone()
@@ -166,7 +166,7 @@ impl Image {
     /// ```
     /// use feed::rss::image::ImageBuilder;
     ///
-    /// let description_string = "This is a test".to_string();
+    /// let description_string = "This is a test".to_owned();
     /// let image = ImageBuilder::new()
     ///     .description(Some(description_string.clone()))
     ///     .finalize();
@@ -219,7 +219,7 @@ impl ImageBuilder {
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
     /// ```
     pub fn url(&mut self, url: &str) -> &mut ImageBuilder {
-        self.url = url.to_string();
+        self.url = url.to_owned();
         self
     }
 
@@ -235,7 +235,7 @@ impl ImageBuilder {
     /// image_builder.title("LAS 300 Logo");
     /// ```
     pub fn title(&mut self, title: &str) -> &mut ImageBuilder {
-        self.title = title.to_string();
+        self.title = title.to_owned();
         self
     }
 
@@ -251,7 +251,7 @@ impl ImageBuilder {
     /// image_builder.link("http://www.jupiterbroadcasting.com");
     /// ```
     pub fn link(&mut self, link: &str) -> &mut ImageBuilder {
-        self.link = link.to_string();
+        self.link = link.to_owned();
         self
     }
 
@@ -314,7 +314,7 @@ impl ImageBuilder {
     /// use feed::rss::image::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
-    /// image_builder.description(Some("This is a test".to_string()));
+    /// image_builder.description(Some("This is a test".to_owned()));
     /// ```
     pub fn description(&mut self, description: Option<String>) -> &mut ImageBuilder {
         self.description = description;
@@ -335,7 +335,7 @@ impl ImageBuilder {
     ///         .link("http://www.jupiterbroadcasting.com")
     ///         .width(Some(88))
     ///         .height(Some(88))
-    ///         .description(Some("This is a test".to_string()))
+    ///         .description(Some("This is a test".to_owned()))
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Image {

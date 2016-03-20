@@ -10,7 +10,7 @@ use std::str::FromStr;
 
 // Common code to convert &str to Option<String>.
 pub fn str_to_option_string(s: &str) -> Option<String> {
-    let string = s.to_string();
+    let string = s.to_owned();
     Some(string)
 }
 

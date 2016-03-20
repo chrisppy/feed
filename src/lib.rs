@@ -132,17 +132,17 @@ impl FeedBuilder {
     ///     };
     ///     let feed = FeedBuilder::new().from_url(url).finalize();
     ///     let channel = feed.channel();
-    ///     assert_eq!("The Linux Action Show! OGG".to_string(), channel.title());
-    ///     assert_eq!("http://www.jupiterbroadcasting.com".to_string(), channel.link());
-    ///     assert_eq!("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!".to_string(), channel.description());
-    ///     assert_eq!(Some("Feeder 2.5.12(2294); Mac OS X Version 10.9.5 (Build 13F34) http://reinventedsoftware.com/feeder/".to_string()), channel.generator());
-    ///     assert_eq!(Some("http://blogs.law.harvard.edu/tech/rss".to_string()), channel.docs());
-    ///     assert_eq!(Some("en".to_string()), channel.language());
+    ///     assert_eq!("The Linux Action Show! OGG".to_owned(), channel.title());
+    ///     assert_eq!("http://www.jupiterbroadcasting.com".to_owned(), channel.link());
+    ///     assert_eq!("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!".to_owned(), channel.description());
+    ///     assert_eq!(Some("Feeder 2.5.12(2294); Mac OS X Version 10.9.5 (Build 13F34) http://reinventedsoftware.com/feeder/".to_owned()), channel.generator());
+    ///     assert_eq!(Some("http://blogs.law.harvard.edu/tech/rss".to_owned()), channel.docs());
+    ///     assert_eq!(Some("en".to_owned()), channel.language());
     ///     assert!(channel.copyright().is_none());
     ///     assert!(channel.managing_editor().is_none());
     ///     assert!(channel.web_master().is_none());
-    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_string(), channel.pub_date().unwrap().to_rfc2822());
-    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_string(), channel.last_build_date().unwrap().to_rfc2822());
+    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_owned(), channel.pub_date().unwrap().to_rfc2822());
+    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_owned(), channel.last_build_date().unwrap().to_rfc2822());
     /// }
     /// ```
     pub fn from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
@@ -158,7 +158,7 @@ impl FeedBuilder {
             Ok(resp) => resp,
             Err(err) => panic!("from_utf8 Error: {}", err),
         };
-        let feed_reader = FeedReader::new(Some(feed_str.to_string()));
+        let feed_reader = FeedReader::new(Some(feed_str.to_owned()));
         self.channel = feed_reader.channel();
         self
     }

@@ -25,7 +25,7 @@ impl Category {
     /// let category_obj = CategoryBuilder::new()
     ///     .category(category)
     ///     .finalize();
-    /// assert_eq!(category.to_string(), category_obj.category());
+    /// assert_eq!(category.to_owned(), category_obj.category());
     /// ```
     pub fn category(&self) -> String {
         self.category.clone()
@@ -39,7 +39,7 @@ impl Category {
     /// ```
     /// use feed::rss::category::CategoryBuilder;
     ///
-    /// let domain_string = "http://jupiterbroadcasting.com".to_string();
+    /// let domain_string = "http://jupiterbroadcasting.com".to_owned();
     /// let category = CategoryBuilder::new()
     ///     .domain(Some(domain_string.clone()))
     ///     .finalize();
@@ -98,7 +98,7 @@ impl CategoryBuilder {
     /// category_builder.category("Podcast");
     /// ```
     pub fn category(&mut self, category: &str) -> &mut CategoryBuilder {
-        self.category = category.to_string();
+        self.category = category.to_owned();
         self
     }
 
@@ -111,7 +111,7 @@ impl CategoryBuilder {
     /// use feed::rss::category::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
-    /// category_builder.domain(Some("http://www.example.com".to_string()));
+    /// category_builder.domain(Some("http://www.example.com".to_owned()));
     /// ```
     pub fn domain(&mut self, domain: Option<String>) -> &mut CategoryBuilder {
         self.domain = domain;
