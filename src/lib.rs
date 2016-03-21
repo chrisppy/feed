@@ -37,6 +37,7 @@
 //!     };
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
 //!     let channel = feed.channel();
+//! }
 //! ```
 
 #![doc(html_root_url = "https://red-oxide.github.io/feed/")]
@@ -158,8 +159,6 @@ impl FeedBuilder {
     ///     assert!(channel.copyright().is_none());
     ///     assert!(channel.managing_editor().is_none());
     ///     assert!(channel.web_master().is_none());
-    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_owned(), channel.pub_date().unwrap().to_rfc2822());
-    ///     assert_eq!("Sun, 13 Mar 2016 20:02:02 -0700".to_owned(), channel.last_build_date().unwrap().to_rfc2822());
     /// }
     /// ```
     pub fn read_from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
