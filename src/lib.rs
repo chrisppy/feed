@@ -20,6 +20,24 @@
 //! ```
 //! extern crate feed;
 //! ```
+//!
+//! ## Examples
+//!
+//! ```
+//! extern crate feed;
+//! extern crate url;
+//!
+//! use feed::FeedBuilder;
+//! use url::Url;
+//!
+//! fn main() {
+//!     let url = match Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml") {
+//!         Ok(result) => result,
+//!         Err(err)   => panic!("Url parse Error: {}", err),
+//!     };
+//!     let feed = FeedBuilder::new().read_from_url(url).finalize();
+//!     let channel = feed.channel();
+//! ```
 
 #![doc(html_root_url = "https://red-oxide.github.io/feed/")]
 
@@ -123,7 +141,7 @@ impl FeedBuilder {
     /// extern crate url;
     ///
     /// use feed::FeedBuilder;
-    /// use url:: Url;
+    /// use url::Url;
     /// fn main() {
     ///     let url = match Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml") {
     ///         Ok(result) => result,
