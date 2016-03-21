@@ -16,7 +16,7 @@
 //! ```
 //!
 //! And put this in your crate root:
-// !
+//!
 //! ```
 //! extern crate feed;
 //! ```
