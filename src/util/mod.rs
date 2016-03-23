@@ -18,11 +18,7 @@ pub fn str_to_option_string(s: &str) -> Option<String> {
 pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
 
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    let attr_result = str::from_utf8(attr[index]);
-    match attr_result {
-        Ok(result) => result,
-        Err(err) => panic!("from utf8 error: {}", err),
-    }
+    str::from_utf8(attr[index]).expect("from utf8 error")
 }
 
 
@@ -30,30 +26,16 @@ pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
 pub fn attribute_to_i64(attributes: Attributes, index: usize) -> i64 {
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
     let attr_result = str::from_utf8(attr[index]);
-    let attr_str = match attr_result {
-        Ok(result) => result,
-        Err(err) => panic!("from utf8 error: {}", err),
-    };
-    let i64_result = i64::from_str(attr_str);
-    match i64_result {
-        Ok(result) => result,
-        Err(err) => panic!("from str error: {}", err),
-    }
+    let attr_str = attr_result.expect("from utf8 error");
+    i64::from_str(attr_str).expect("from str error")
 }
 
 // Common code to convert attribute to bool.
 pub fn attribute_to_bool(attributes: Attributes, index: usize) -> bool {
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
     let attr_result = str::from_utf8(attr[index]);
-    let attr_str = match attr_result {
-        Ok(result) => result,
-        Err(err) => panic!("from utf8 error: {}", err),
-    };
-    let bool_result = bool::from_str(attr_str);
-    match bool_result {
-        Ok(result) => result,
-        Err(err) => panic!("from str error: {}", err),
-    }
+    let attr_str = attr_result.expect("from utf8 error");
+    bool::from_str(attr_str).expect("from str error")
 }
 
 
@@ -71,11 +53,7 @@ pub fn attribute_to_option_bool(attributes: Attributes, index: usize) -> Option<
 
 // Common code to convert element to String.
 pub fn element_to_string(e: Element) -> String {
-    let result = e.into_string();
-    match result {
-        Ok(res) => res,
-        Err(err) => panic!("Element into_string Error: {}", err),
-    }
+    e.into_string().expect("Element into_string Error")
 }
 
 
@@ -88,11 +66,7 @@ pub fn element_to_option_string(e: Element) -> Option<String> {
 // Common code to convert attribute to i64.
 pub fn element_to_i64(e: Element) -> i64 {
     let e_string = element_to_string(e);
-    let e_result = i64::from_str(&e_string);
-    match e_result {
-        Ok(result) => result,
-        Err(err) => panic!("str to i64 error: {}", err),
-    }
+    i64::from_str(&e_string).expect("str to i64 error")
 }
 
 
@@ -110,11 +84,6 @@ pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateT
             return None;
         }
     };
-    let parsed_datetime = DateTime::parse_from_rfc2822(&date_string);
-    match parsed_datetime {
-        Ok(date) => Some(date),
-        Err(err) => {
-            panic!("DateTime Parse Error: {}", err);
-        }
-    }
+    let datetime = DateTime::parse_from_rfc2822(&date_string).expect("DateTime Parse Error");
+    Some(datetime)
 }

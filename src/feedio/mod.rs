@@ -33,10 +33,7 @@ impl FeedReader {
     /// let feed_reader = FeedReader::new(Some("String".to_owned()));
     /// ```
     pub fn new(feed: Option<String>) -> FeedReader {
-        let feed_string = match feed {
-            Some(value) => value,
-            None => panic!("The feed is empty!"),
-        };
+        let feed_string = feed.expect("The feed is empty!");
         let mut category_builder = CategoryBuilder::new();
         let mut channel_builder = ChannelBuilder::new();
         let mut guid_builder = GuidBuilder::new();

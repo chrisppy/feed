@@ -31,10 +31,7 @@
 //! use url::Url;
 //!
 //! fn main() {
-//!     let url = match Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml") {
-//!         Ok(result) => result,
-//!         Err(err)   => panic!("Url parse Error: {}", err),
-//!     };
+//!     let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").expect("Url parse Error");
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
 //!     let channel = feed.channel();
 //! }
@@ -144,10 +141,7 @@ impl FeedBuilder {
     /// use feed::FeedBuilder;
     /// use url::Url;
     /// fn main() {
-    ///     let url = match Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml") {
-    ///         Ok(result) => result,
-    ///         Err(err)   => panic!("Url parse Error: {}", err),
-    ///     };
+    ///     let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").expect("Url parse Error");
     ///     let feed = FeedBuilder::new().read_from_url(url).finalize();
     ///     let channel = feed.channel();
     ///     assert_eq!("The Linux Action Show! OGG".to_owned(), channel.title());
@@ -165,15 +159,9 @@ impl FeedBuilder {
         if !feed_url.serialize().as_str().ends_with(".xml") {
             panic!("Error: Url must end with .xml");
         }
-        let response = match http::handle().get(feed_url.serialize()).exec() {
-            Ok(resp) => resp,
-            Err(err) => panic!("Response Error: {}", err),
-        };
+        let response = http::handle().get(feed_url.serialize()).exec().expect("Response Error");
         let body = response.get_body();
-        let feed_str = match str::from_utf8(body) {
-            Ok(resp) => resp,
-            Err(err) => panic!("from_utf8 Error: {}", err),
-        };
+        let feed_str = str::from_utf8(body).expect("from_utf8 Error");
         self.channel = FeedReader::new(Some(feed_str.to_owned())).channel();
         self
     }
