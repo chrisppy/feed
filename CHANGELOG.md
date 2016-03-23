@@ -1,5 +1,8 @@
 # Changelog
 
+## feed 1.0.3
++ Minor fixes
+
 ## feed 1.0.2
 + Minor fixes
 
