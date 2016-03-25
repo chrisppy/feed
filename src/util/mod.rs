@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 use chrono::*;
+use errors;
 use quick_xml::attributes::Attributes;
 use quick_xml::Element;
 use std::{i64, str};
@@ -16,26 +17,21 @@ pub fn str_to_option_string(s: &str) -> Option<String> {
 
 // Common code to convert attribute to &str.
 pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
-
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    str::from_utf8(attr[index]).expect("from utf8 error")
+    str::from_utf8(attr[index]).expect(errors::utf8_to_str_error())
 }
 
 
 // Common code to convert attribute to i64.
 pub fn attribute_to_i64(attributes: Attributes, index: usize) -> i64 {
-    let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    let attr_result = str::from_utf8(attr[index]);
-    let attr_str = attr_result.expect("from utf8 error");
-    i64::from_str(attr_str).expect("from str error")
+    let attr_str = attribute_to_str(attributes, index);
+    i64::from_str(attr_str).expect(errors::str_to_i64_error())
 }
 
 // Common code to convert attribute to bool.
 pub fn attribute_to_bool(attributes: Attributes, index: usize) -> bool {
-    let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    let attr_result = str::from_utf8(attr[index]);
-    let attr_str = attr_result.expect("from utf8 error");
-    bool::from_str(attr_str).expect("from str error")
+    let attr_str = attribute_to_str(attributes, index);
+    bool::from_str(attr_str).expect(errors::str_to_bool_error())
 }
 
 
@@ -53,7 +49,7 @@ pub fn attribute_to_option_bool(attributes: Attributes, index: usize) -> Option<
 
 // Common code to convert element to String.
 pub fn element_to_string(e: Element) -> String {
-    e.into_string().expect("Element into_string Error")
+    e.into_string().expect(errors::element_to_string_error())
 }
 
 
@@ -66,7 +62,7 @@ pub fn element_to_option_string(e: Element) -> Option<String> {
 // Common code to convert attribute to i64.
 pub fn element_to_i64(e: Element) -> i64 {
     let e_string = element_to_string(e);
-    i64::from_str(&e_string).expect("str to i64 error")
+    i64::from_str(&e_string).expect(errors::str_to_i64_error())
 }
 
 
@@ -78,12 +74,11 @@ pub fn element_to_option_i64(e: Element) -> Option<i64> {
 
 // Common code to convert Option<String> to Option<DateTime<FixedOffset>>.
 pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateTime<FixedOffset>> {
-    let date_string = match date_option {
-        Some(value) => value,
-        None => {
-            return None;
-        }
-    };
-    let datetime = DateTime::parse_from_rfc2822(&date_string).expect("DateTime Parse Error");
+    if date_option.is_none() {
+        return None;
+    }
+    let date_string = date_option.unwrap();
+    let datetime = DateTime::parse_from_rfc2822(&date_string)
+                       .expect(errors::str_to_datetime_error());
     Some(datetime)
 }

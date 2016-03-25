@@ -15,6 +15,7 @@ use rss::item::{Item, ItemBuilder};
 use rss::source::SourceBuilder;
 use rss::text_input::TextInputBuilder;
 use util;
+use errors;
 
 /// This `FeedReader` struct parses the xml feed to the `Channel`.
 pub struct FeedReader {
@@ -33,7 +34,7 @@ impl FeedReader {
     /// let feed_reader = FeedReader::new(Some("String".to_owned()));
     /// ```
     pub fn new(feed: Option<String>) -> FeedReader {
-        let feed_string = feed.expect("The feed is empty!");
+        let feed_string = feed.expect(errors::empty_feed_error());
         let mut category_builder = CategoryBuilder::new();
         let mut channel_builder = ChannelBuilder::new();
         let mut guid_builder = GuidBuilder::new();

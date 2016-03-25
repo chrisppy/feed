@@ -11,6 +11,7 @@ use rss::enclosure::Enclosure;
 use rss::guid::Guid;
 use rss::source::Source;
 use util;
+use errors;
 
 /// This `Item` struct contains all the items that exist for the item field under 'Channel'.
 #[derive(Clone)]
@@ -588,7 +589,7 @@ impl ItemBuilder {
     /// ```
     pub fn finalize(&self) -> Item {
         if self.title.is_none() && self.description.is_none() {
-            panic!("Either Title or Description must have a value!");
+            panic!(errors::item_required_field_error());
         }
         Item {
             title: self.title.clone(),

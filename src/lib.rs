@@ -44,6 +44,7 @@
 pub mod feedio;
 pub mod rss;
 mod util;
+mod errors;
 
 extern crate chrono;
 extern crate curl;
@@ -157,11 +158,11 @@ impl FeedBuilder {
     /// ```
     pub fn read_from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
         if !feed_url.serialize().as_str().ends_with(".xml") {
-            panic!("Error: Url must end with .xml");
+            panic!(errors::missing_xml_error());
         }
-        let response = http::handle().get(feed_url.serialize()).exec().expect("Response Error");
+        let response = http::handle().get(feed_url.serialize()).exec().expect(errors::response_error());
         let body = response.get_body();
-        let feed_str = str::from_utf8(body).expect("from_utf8 Error");
+        let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
         self.channel = FeedReader::new(Some(feed_str.to_owned())).channel();
         self
     }
