@@ -2,7 +2,7 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! # feed 1.0.3
+//! # feed 1.0.4
 //!
 //! This Library is for parsing through a rss field and creating a `Feed`
 //! struct containing all elements of a `Channel` based on the rss spec.
@@ -12,7 +12,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feedreader = "1.0.3"
+//! feedreader = "1.0.4"
 //! ```
 //!
 //! And put this in your crate root:
@@ -34,6 +34,7 @@
 //!     let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").expect("Url parse Error");
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
 //!     let channel = feed.channel();
+//!     println!("Title: {}", channel.title());
 //! }
 //! ```
 
@@ -163,7 +164,8 @@ impl FeedBuilder {
         let response = http::handle().get(feed_url.serialize()).exec().expect(errors::response_error());
         let body = response.get_body();
         let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
-        self.channel = FeedReader::new(Some(feed_str.to_owned())).channel();
+        println!("{:?}", feed_str);
+        self.channel = FeedReader::new(feed_str).channel();
         self
     }
 

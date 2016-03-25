@@ -44,12 +44,6 @@ pub fn missing_xml_error() -> &'static str {
 }
 
 
-// empty feed error
-pub fn empty_feed_error() -> &'static str {
-    "Feed is empty"
-}
-
-
 // item required field error
 pub fn item_required_field_error() -> &'static str {
     "Either Title or Description must have a value"

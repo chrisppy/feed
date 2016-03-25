@@ -11,7 +11,7 @@ Library for passing feeds from an URL and retrieving the elements
 To include feed as a cargo dependency you have to add it to your Cargo.toml:
 ```Toml
 [dependencies]
-feed = "1.0.3"
+feed = "1.0.4"
 ```
 
 ## Bugs and feature requests
