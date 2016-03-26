@@ -2,6 +2,7 @@
 
 ## feed 1.0.5
 + changed println to debug
++ updated curl to 0.2.18
 
 ## feed 1.0.4
 + Minor fixes
