@@ -49,6 +49,7 @@ mod errors;
 
 extern crate chrono;
 extern crate curl;
+#[macro_use]
 extern crate log;
 extern crate quick_xml;
 extern crate url;
@@ -164,7 +165,7 @@ impl FeedBuilder {
         let response = http::handle().get(feed_url.serialize()).exec().expect(errors::response_error());
         let body = response.get_body();
         let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
-        println!("{:?}", feed_str);
+        debug!("feed xml:{}", feed_str);
         self.channel = FeedReader::new(feed_str).channel();
         self
     }
