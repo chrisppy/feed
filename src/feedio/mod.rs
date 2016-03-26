@@ -30,7 +30,7 @@ impl FeedReader {
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let feed_reader = FeedReader::new(Some("String".to_owned()));
+    /// let feed_reader = FeedReader::new("String");
     /// ```
     pub fn new(feed: &str) -> FeedReader {
         let feed_string = feed.to_owned();
@@ -389,7 +389,7 @@ impl FeedReader {
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let feed_reader = FeedReader::new(Some("String".to_owned()));
+    /// let feed_reader = FeedReader::new("String");
     /// let channel = feed_reader.channel();
     /// ```
     pub fn channel(self) -> Channel {
