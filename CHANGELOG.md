@@ -1,5 +1,8 @@
 # Changelog
 
+## feed 1.0.5
++ changed println to debug
+
 ## feed 1.0.4
 + Minor fixes
 + updated dependencies
