@@ -11,12 +11,18 @@ Library for passing feeds from an URL and retrieving the elements
 To include feed as a cargo dependency you have to add it to your Cargo.toml:
 ```Toml
 [dependencies]
-feed = "1.0.4"
+feed = "1.0.5"
 ```
 
 ## Bugs and feature requests
 
 Please submit bugs and feature requests [here](http://github.com/red-oxide/feed/issues). Pull requests are always welcome.
+
+
+## Code of conduct
+
+Anyone who interacts with feed in any space including but not limited to
+this GitHub repository is expected to follow our [code of conduct](https://github.com/red-oxide/feed/blob/master/code_of_conduct.md)
 
 ## Copyright and License
 (C) Copyright 2015 by Chris Palmer and contributors
