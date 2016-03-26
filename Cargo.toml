@@ -1,6 +1,6 @@
 [package]
 name = "feed"
-version = "1.0.3"
+version = "1.0.4"
 authors = ["Chris Palmer <pennstate5013@gmail.com"]
 repository = "https://github.com/red-oxide/feed"
 documentation = "http://red-oxide.github.io/feed"
@@ -11,7 +11,7 @@ license = "LGPL-3.0"
 
 [dependencies]
 url = "0.5.5"
-curl = "0.2.16"
-quick-xml = "0.1.5"
+curl = "0.2.17"
+quick-xml = "0.1.7"
 chrono = "0.2.19"
 log = "0.3.5"
