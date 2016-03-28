@@ -89,8 +89,8 @@ impl Feed {
     /// Not Yet Implemented!
     ///
     /// To be added in 1.1.0
-    pub fn to_xml(&self) -> String {
-        FeedWriter::new().xml()
+    pub fn to_xml(&self) -> Vec<u8> {
+        FeedWriter::new(self.channel.clone()).xml()
     }
 }
 

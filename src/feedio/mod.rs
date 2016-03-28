@@ -4,7 +4,9 @@
 
 //! The feed can be parsed using `FeedReader` and can be written to xml using `FeedWriter`.
 
-use quick_xml::{Event, XmlReader};
+use errors;
+use quick_xml::{Element, Event, XmlReader, XmlWriter};
+use quick_xml::Event::*;
 use rss::{Channel, ChannelBuilder};
 use rss::category::{Category, CategoryBuilder};
 use rss::cloud::CloudBuilder;
@@ -14,6 +16,7 @@ use rss::image::ImageBuilder;
 use rss::item::{Item, ItemBuilder};
 use rss::source::SourceBuilder;
 use rss::text_input::TextInputBuilder;
+use std::io::Cursor;
 use util;
 
 /// This `FeedReader` struct parses the xml feed to the `Channel`.
@@ -405,7 +408,7 @@ impl FeedReader {
 /// To be added in 1.1.0
 #[derive(Default)]
 pub struct FeedWriter {
-    xml: String,
+    xml: Vec<u8>,
 }
 
 
@@ -415,8 +418,56 @@ impl FeedWriter {
     /// Not Yet Implemented!
     ///
     /// To be added in 1.1.0
-    pub fn new() -> FeedWriter {
-        FeedWriter::default()
+    pub fn new(channel: Channel) -> FeedWriter {
+        let mut writer = XmlWriter::new(Cursor::new(Vec::new()));
+
+        let xml_tag_str = "?xml";
+        let mut xml_tag = Element::new(xml_tag_str);
+        xml_tag.push_attribute(b"version", "1.0");
+        xml_tag.push_attribute(b"encoding", "UTF-8");
+        writer.write(Start(xml_tag)).expect(errors::tag_start_error(xml_tag_str).as_str());
+        writer.write(End(Element::new(xml_tag_str)))
+              .expect(errors::tag_end_error(xml_tag_str).as_str());
+
+        let rss_tag_str = "rss";
+        let mut rss_tag = Element::new(rss_tag_str);
+        rss_tag.push_attribute(b"version", "2.0");
+        writer.write(Start(rss_tag)).expect(errors::tag_start_error(rss_tag_str).as_str());
+
+        let channel_tag_str = "channel";
+        let channel_tag = Element::new(channel_tag_str);
+        writer.write(Start(channel_tag)).expect(errors::tag_start_error(channel_tag_str).as_str());
+
+        let title_tag_str = "title";
+        let title_tag = Element::new(title_tag_str);
+        writer.write(Start(title_tag)).expect(errors::tag_start_error(title_tag_str).as_str());
+        writer.write(Text(Element::new(channel.title().as_str())))
+              .expect(errors::tag_text_error(title_tag_str).as_str());
+        writer.write(End(Element::new(title_tag_str)))
+              .expect(errors::tag_end_error(title_tag_str).as_str());
+
+        let link_tag_str = "link";
+        let link_tag = Element::new(link_tag_str);
+        writer.write(Start(link_tag)).expect(errors::tag_start_error(link_tag_str).as_str());
+        writer.write(Text(Element::new(channel.link().as_str())))
+              .expect(errors::tag_text_error(link_tag_str).as_str());
+        writer.write(End(Element::new(link_tag_str)))
+              .expect(errors::tag_end_error(link_tag_str).as_str());
+
+        let description_tag_str = "description";
+        let description_tag = Element::new(description_tag_str);
+        writer.write(Start(description_tag))
+              .expect(errors::tag_start_error(description_tag_str).as_str());
+        writer.write(Text(Element::new(channel.description().as_str())))
+              .expect(errors::tag_text_error(description_tag_str).as_str());
+        writer.write(End(Element::new(description_tag_str)))
+              .expect(errors::tag_end_error(description_tag_str).as_str());
+
+        writer.write(End(Element::new(channel_tag_str)))
+              .expect(errors::tag_end_error(channel_tag_str).as_str());
+        writer.write(End(Element::new(rss_tag_str)))
+              .expect(errors::tag_end_error(rss_tag_str).as_str());
+        FeedWriter { xml: writer.into_inner().into_inner() }
     }
 
 
@@ -425,7 +476,7 @@ impl FeedWriter {
     /// Not Yet Implemented!
     ///
     /// To be added in 1.1.0
-    pub fn xml(&self) -> String {
+    pub fn xml(&self) -> Vec<u8> {
         self.xml.clone()
     }
 }
