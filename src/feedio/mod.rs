@@ -402,10 +402,6 @@ impl FeedReader {
 
 
 /// This `FeedWriter` struct creates the xml from the `Channel`.
-///
-/// Not Yet Implemented!
-///
-/// To be added in 1.1.0
 #[derive(Default)]
 pub struct FeedWriter {
     xml: Vec<u8>,
@@ -415,9 +411,16 @@ pub struct FeedWriter {
 impl FeedWriter {
     /// Construct a new `FeedWriter` and return default values.
     ///
-    /// Not Yet Implemented!
+    /// # Examples
     ///
-    /// To be added in 1.1.0
+    /// ```
+    /// use feed::feedio::{FeedReader, FeedWriter};
+    ///
+    /// let feed_reader = FeedReader::new("String");
+    /// let channel = feed_reader.channel();
+    ///
+    /// let feed_writer = FeedWriter::new(channel);
+    /// ```
     pub fn new(channel: Channel) -> FeedWriter {
         let mut writer = XmlWriter::new(Cursor::new(Vec::new()));
 
@@ -957,9 +960,16 @@ impl FeedWriter {
 
     /// Convert the `Channel` to XML.
     ///
-    /// Not Yet Implemented!
+    /// # Examples
     ///
-    /// To be added in 1.1.0
+    /// ```
+    /// use feed::feedio::{FeedReader, FeedWriter};
+    ///
+    /// let feed_reader = FeedReader::new("String");
+    /// let channel = feed_reader.channel();
+    ///
+    /// let xml = FeedWriter::new(channel).xml();
+    /// ```
     pub fn xml(&self) -> Vec<u8> {
         self.xml.clone()
     }
