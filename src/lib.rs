@@ -23,6 +23,8 @@
 //!
 //! ## Examples
 //!
+//! ### Reading Feeds
+//!
 //! ```
 //! extern crate feed;
 //! extern crate url;
@@ -35,6 +37,26 @@
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
 //!     let channel = feed.channel();
 //!     println!("Title: {}", channel.title());
+//! }
+//! ```
+//!
+//! ### Writing Feeds
+//!
+//! ```
+//! extern crate feed;
+//!
+//! use feed::FeedBuilder;
+//!
+//! fn main() {
+//!
+//!     let channel = Channel::new()
+//!             .title("The Linux Action Show! OGG")
+//!             .link("http://www.jupiterbroadcasting.com")
+//!             .description("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!")
+//!             .finalize();
+//!     let feed = FeedBuilder::new().channel(channel).finalize();
+//!     let xml = feed.to_xml();
+//!     println!("Feed: {}", xml);
 //! }
 //! ```
 
