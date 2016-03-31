@@ -46,10 +46,11 @@
 //! extern crate feed;
 //!
 //! use feed::FeedBuilder;
+//! use feed::rss::ChannelBuilder;
 //!
 //! fn main() {
 //!
-//!     let channel = Channel::new()
+//!     let channel = ChannelBuilder::new()
 //!             .title("The Linux Action Show! OGG")
 //!             .link("http://www.jupiterbroadcasting.com")
 //!             .description("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!")
