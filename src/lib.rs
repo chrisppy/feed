@@ -56,7 +56,7 @@
 //!             .finalize();
 //!     let feed = FeedBuilder::new().channel(channel).finalize();
 //!     let xml = feed.to_xml();
-//!     println!("Feed: {}", xml);
+//!     println!("Feed: {:?}", xml);
 //! }
 //! ```
 
