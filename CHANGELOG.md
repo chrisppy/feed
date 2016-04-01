@@ -1,5 +1,10 @@
 # Changelog
 
+## feed 1.1.0
++ added to_xml
++ updated quick-xml to 0.1.8
++ updated chrono to 0.2.20
+
 ## feed 1.0.5
 + changed println to debug
 + updated curl to 0.2.18
