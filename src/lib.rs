@@ -2,7 +2,7 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! # feed 1.0.5
+//! # feed 1.1.0
 //!
 //! This Library is for parsing through a rss field and creating a `Feed`
 //! struct containing all elements of a `Channel` based on the rss spec.
@@ -12,7 +12,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feedreader = "1.0.5"
+//! feedreader = "1.1.0"
 //! ```
 //!
 //! And put this in your crate root:
@@ -22,6 +22,8 @@
 //! ```
 //!
 //! ## Examples
+//!
+//! ### Reading Feeds
 //!
 //! ```
 //! extern crate feed;
@@ -35,6 +37,27 @@
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
 //!     let channel = feed.channel();
 //!     println!("Title: {}", channel.title());
+//! }
+//! ```
+//!
+//! ### Writing Feeds
+//!
+//! ```
+//! extern crate feed;
+//!
+//! use feed::FeedBuilder;
+//! use feed::rss::ChannelBuilder;
+//!
+//! fn main() {
+//!
+//!     let channel = ChannelBuilder::new()
+//!             .title("The Linux Action Show! OGG")
+//!             .link("http://www.jupiterbroadcasting.com")
+//!             .description("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!")
+//!             .finalize();
+//!     let feed = FeedBuilder::new().channel(channel).finalize();
+//!     let xml = feed.to_xml();
+//!     println!("Feed: {:?}", xml);
 //! }
 //! ```
 
@@ -89,8 +112,8 @@ impl Feed {
     /// Not Yet Implemented!
     ///
     /// To be added in 1.1.0
-    pub fn to_xml(&self) -> String {
-        FeedWriter::new().xml()
+    pub fn to_xml(&self) -> Vec<u8> {
+        FeedWriter::new(self.channel.clone()).xml()
     }
 }
 
