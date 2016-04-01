@@ -511,7 +511,7 @@ impl FeedWriter {
         }
 
         if channel.managing_editor().is_some() {
-            let managing_editor_tag_str = "managing_editor";
+            let managing_editor_tag_str = "managingEditor";
             let managing_editor_tag = Element::new(managing_editor_tag_str);
             writer.write(Start(managing_editor_tag))
                   .expect(errors::tag_start_error(managing_editor_tag_str).as_str());
@@ -522,7 +522,7 @@ impl FeedWriter {
         }
 
         if channel.web_master().is_some() {
-            let web_master_tag_str = "web_master";
+            let web_master_tag_str = "webMaster";
             let web_master_tag = Element::new(web_master_tag_str);
             writer.write(Start(web_master_tag))
                   .expect(errors::tag_start_error(web_master_tag_str).as_str());
@@ -533,7 +533,7 @@ impl FeedWriter {
         }
 
         if channel.pub_date().is_some() {
-            let pub_date_tag_str = "pub_date";
+            let pub_date_tag_str = "pubDate";
             let pub_date_tag = Element::new(pub_date_tag_str);
             writer.write(Start(pub_date_tag))
                   .expect(errors::tag_start_error(pub_date_tag_str).as_str());
@@ -544,7 +544,7 @@ impl FeedWriter {
         }
 
         if channel.last_build_date().is_some() {
-            let last_build_date_tag_str = "last_build_date";
+            let last_build_date_tag_str = "lastBuildDate";
             let last_build_date_tag = Element::new(last_build_date_tag_str);
             writer.write(Start(last_build_date_tag))
                   .expect(errors::tag_start_error(last_build_date_tag_str).as_str());
@@ -918,7 +918,7 @@ impl FeedWriter {
                 }
 
                 if item.pub_date().is_some() {
-                    let item_pub_date_tag_str = "pub_date";
+                    let item_pub_date_tag_str = "pubDate";
                     let item_pub_date_tag = Element::new(item_pub_date_tag_str);
                     writer.write(Start(item_pub_date_tag))
                           .expect(errors::tag_start_error(item_pub_date_tag_str).as_str());
