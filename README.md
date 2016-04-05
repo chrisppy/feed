@@ -24,11 +24,12 @@ Please submit bugs and feature requests [here](http://github.com/red-oxide/feed/
 Anyone who interacts with feed in any space including but not limited to
 this GitHub repository is expected to follow our [code of conduct](https://github.com/red-oxide/feed/blob/master/code_of_conduct.md)
 
-## Copyright and License
+## Copyright
 (C) Copyright 2015 by Chris Palmer and contributors
 
 See [here](https://github.com/red-oxide/feed/graphs/contributors) for a full list of contributors.
 
+## License
 ![alt text](https://github.com/red-oxide/org/raw/master/LGPLv3.svg.png "LGPLv3")
 
 This application is free software: you can redistribute it and/or modify
