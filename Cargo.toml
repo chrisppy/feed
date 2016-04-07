@@ -10,8 +10,8 @@ license = "LGPL-3.0"
 
 
 [dependencies]
-url = "0.5.5"
+url = "0.5.7"
 curl = "0.2.18"
-quick-xml = "0.1.8"
+quick-xml = "0.1.9"
 chrono = "0.2.21"
 log = "0.3.5"

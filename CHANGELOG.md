@@ -1,5 +1,9 @@
 # Changelog
 
+## feed 1.1.2
++ updated quick-xml to 0.1.9
++ updated url to 0.5.7
+
 ## feed 1.1.1
 + Fixed some typos
 + updated chrono to 0.2.21
