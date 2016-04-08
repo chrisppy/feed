@@ -2,7 +2,7 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! # feed 1.1.2
+//! # feed 1.1.3
 //!
 //! This Library is for parsing through a rss field and creating a `Feed`
 //! struct containing all elements of a `Channel` based on the rss spec.
@@ -12,7 +12,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feedreader = "1.1.2"
+//! feedreader = "1.1.3"
 //! ```
 //!
 //! And put this in your crate root:
@@ -78,7 +78,7 @@ extern crate quick_xml;
 extern crate url;
 
 use curl::http;
-use feedio::{FeedReader, FeedWriter};
+use feedio::xml::{FeedReader, FeedWriter};
 use rss::Channel;
 use std::str;
 use url::Url;
@@ -109,12 +109,20 @@ impl Feed {
 
     /// Convert the `Feed` to XML.
     ///
-    /// Not Yet Implemented!
+    /// # Examples
     ///
-    /// To be added in 1.1.0
+    /// ```
+    /// use feed::{Feed, FeedBuilder};
+    /// use feed::rss::Channel;
+    ///
+    /// let feed = FeedBuilder::new().finalize();
+    /// let xml = feed.to_xml();
+    /// ```
     pub fn to_xml(&self) -> Vec<u8> {
         FeedWriter::new(self.channel.clone()).xml()
     }
+
+
 }
 
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.

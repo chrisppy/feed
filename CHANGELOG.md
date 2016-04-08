@@ -1,5 +1,8 @@
 # Changelog
 
+## feed 1.1.3
++ fixed rust doc for to_xml
+
 ## feed 1.1.2
 + updated quick-xml to 0.1.9
 + updated url to 0.5.7
