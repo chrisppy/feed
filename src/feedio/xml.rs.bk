@@ -7,8 +7,9 @@
 use errors;
 use quick_xml::{Element, Event, XmlReader, XmlWriter};
 use quick_xml::Event::*;
-use rss::{Channel, ChannelBuilder, Category, CategoryBuilder, CloudBuilder, EnclosureBuilder,
-          GuidBuilder, ImageBuilder, Item, ItemBuilder, SourceBuilder, TextInputBuilder};
+use rss::{Channel, ChannelBuilder, Category, CategoryBuilder, CloudBuilder,
+    EnclosureBuilder, GuidBuilder, ImageBuilder, Item, ItemBuilder,
+    SourceBuilder, TextInputBuilder};
 use std::io::Cursor;
 use util;
 

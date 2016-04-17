@@ -10,13 +10,13 @@ license = "LGPL-3.0"
 
 
 [dependencies]
-chrono = "0.2.21"
-curl = "0.2.18"
-log = "0.3.5"
-quick-xml = "0.1.9"
-serde = "0.7.0"
-serde_json = "0.7.0"
-url = "0.5.7"
+chrono = "0.2"
+curl = "0.2"
+log = "0.3"
+quick-xml = "0.1"
+serde = "0.7"
+serde_json = "0.7"
+url = "0.5"
 
 [features]
 default = []
