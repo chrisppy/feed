@@ -2,16 +2,11 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! The fields under category can be retrieved by using the methods under `Category`
-//! and the fields can be set for category by using the methods under `CategoryBuilder`.
+//! The fields under category can be retrieved by using the methods under
+//! `Category` and the fields can be set for category by using the methods under
+//! `CategoryBuilder`.
 
-/// This `Category` struct contains all the items that exist for the category field under 'Channel' and `Item`.
-#[derive(Clone)]
-pub struct Category {
-    category: String,
-    domain: Option<String>,
-}
-
+use rss::{Category, CategoryBuilder};
 
 impl Category {
     /// Get the category that exists under `Category`.
@@ -19,7 +14,7 @@ impl Category {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let category = "podcast";
     /// let category_obj = CategoryBuilder::new()
@@ -37,7 +32,7 @@ impl Category {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let domain_string = "http://jupiterbroadcasting.com".to_owned();
     /// let category = CategoryBuilder::new()
@@ -50,7 +45,7 @@ impl Category {
     /// ```
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
     ///     .domain(None)
@@ -64,21 +59,13 @@ impl Category {
 }
 
 
-/// This `CategoryBuilder` struct creates the `Category`.
-#[derive(Default)]
-pub struct CategoryBuilder {
-    category: String,
-    domain: Option<String>,
-}
-
-
 impl CategoryBuilder {
     /// Construct a new `CategoryBuilder` and return default values.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let category_builder = CategoryBuilder::new();
     /// ```
@@ -92,7 +79,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.category("Podcast");
@@ -108,7 +95,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.domain(Some("http://www.example.com".to_owned()));
@@ -124,7 +111,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
     ///         .category("Title")

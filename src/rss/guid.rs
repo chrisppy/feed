@@ -5,13 +5,7 @@
 //! The fields under guid can be retrieved by using the methods under `Guid`
 //! and the fields can be set for guid by using the methods under `GuidBuilder`.
 
-/// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
-#[derive(Clone)]
-pub struct Guid {
-    permalink: bool,
-    guid: String,
-}
-
+use rss::{Guid, GuidBuilder};
 
 impl Guid {
     /// Get the permalink that exists under `Guid`.
@@ -19,7 +13,7 @@ impl Guid {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///     .permalink(None)
@@ -28,7 +22,7 @@ impl Guid {
     /// ```
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
@@ -38,7 +32,7 @@ impl Guid {
     /// ```
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
@@ -56,7 +50,7 @@ impl Guid {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let guid = "9DE46946-2F90-4D5D-9047-7E9165C16E7C";
     /// let guid_obj = GuidBuilder::new()
@@ -70,21 +64,13 @@ impl Guid {
 }
 
 
-/// This `GuidBuilder` struct creates the `Guid`.
-#[derive(Default)]
-pub struct GuidBuilder {
-    permalink: bool,
-    guid: String,
-}
-
-
 impl GuidBuilder {
     /// Construct a new `GuidBuilder` and return default values.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let guid_builder = GuidBuilder::new();
     /// ```
@@ -98,7 +84,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
     /// guid_builder.permalink(Some(false));
@@ -118,7 +104,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
     /// guid_builder.guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
@@ -134,7 +120,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///         .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")

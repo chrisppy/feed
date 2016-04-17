@@ -5,17 +5,7 @@
 //! The fields under image can be retrieved by using the methods under `Image`
 //! and the fields can be set for image by using the methods under `ImageBuilder`.
 
-/// This `Image` struct contains all the items that exist for the image field under 'Channel'.
-#[derive(Clone)]
-pub struct Image {
-    url: String,
-    title: String,
-    link: String,
-    width: i64,
-    height: i64,
-    description: Option<String>,
-}
-
+use rss::{Image, ImageBuilder};
 
 impl Image {
     /// Get the url that exists under `Image`.
@@ -23,7 +13,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     /// let image = ImageBuilder::new()
@@ -41,7 +31,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let title = "LAS 300 Logo";
     /// let image = ImageBuilder::new()
@@ -59,7 +49,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let link = "http://www.jupiterbroadcasting.com";
     /// let image = ImageBuilder::new()
@@ -77,7 +67,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let default: i64 = 88;
     /// let image = ImageBuilder::new()
@@ -87,7 +77,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let width: i64 = 60;
     /// let image = ImageBuilder::new()
@@ -97,7 +87,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let width: i64 = 777;
     /// let max: i64 = 144;
@@ -116,7 +106,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let default: i64 = 31;
     /// let image = ImageBuilder::new()
@@ -126,7 +116,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let height: i64 = 60;
     /// let image = ImageBuilder::new()
@@ -136,7 +126,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let height: i64 = 777;
     /// let max: i64 = 400;
@@ -155,7 +145,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
     ///     .description(None)
@@ -164,7 +154,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let description_string = "This is a test".to_owned();
     /// let image = ImageBuilder::new()
@@ -181,25 +171,13 @@ impl Image {
 }
 
 
-/// This `ImageBuilder` struct creates the `Image`.
-#[derive(Default)]
-pub struct ImageBuilder {
-    url: String,
-    title: String,
-    link: String,
-    width: i64,
-    height: i64,
-    description: Option<String>,
-}
-
-
 impl ImageBuilder {
     /// Construct a new `ImageBuilder` and return default values.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let image_builder = ImageBuilder::new();
     /// ```
@@ -213,7 +191,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
@@ -229,7 +207,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.title("LAS 300 Logo");
@@ -245,7 +223,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.link("http://www.jupiterbroadcasting.com");
@@ -261,7 +239,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.width(Some(88));
@@ -286,7 +264,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.height(Some(88));
@@ -311,7 +289,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.description(Some("This is a test".to_owned()));
@@ -327,7 +305,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::image::ImageBuilder;
+    /// use feed::rss::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
     ///         .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")

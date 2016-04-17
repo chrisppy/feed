@@ -66,3 +66,9 @@ pub fn tag_text_error(tag: &str) -> String {
 pub fn tag_end_error(tag: &str) -> String {
     format!("Error creating end tag for {}", tag)
 }
+
+
+// json to string error
+pub fn json_to_string_error(tag: &str) -> String {
+    format!("Error converting JSON to String for {}", tag)
+}

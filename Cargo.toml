@@ -3,18 +3,20 @@ name = "feed"
 version = "1.1.4-pre"
 authors = ["Chris Palmer <pennstate5013@gmail.com>"]
 repository = "https://github.com/red-oxide/feed"
-documentation = "http://red-oxide.github.io/feed"
+documentation = "http://feed.red-oxide.org"
 description = "Parse RSS feeds from url"
 readme = "README.md"
 license = "LGPL-3.0"
 
 
 [dependencies]
-url = "0.5.7"
-curl = "0.2.18"
-quick-xml = "0.1.9"
 chrono = "0.2.21"
+curl = "0.2.18"
 log = "0.3.5"
+quick-xml = "0.1.9"
+serde = "0.7.0"
+serde_json = "0.7.0"
+url = "0.5.7"
 
 [features]
 default = []

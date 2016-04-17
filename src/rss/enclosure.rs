@@ -5,14 +5,7 @@
 //! The fields under enclosure can be retrieved by using the methods under `Enclosure`
 //! and the fields can be set for enclosure by using the methods under `EnclosureBuilder`.
 
-/// This `Enclosure` struct contains all the items that exist for the enclosure field under 'Item'.
-#[derive(Clone)]
-pub struct Enclosure {
-    url: String,
-    length: i64,
-    enclosure_type: String,
-}
-
+use rss::{Enclosure, EnclosureBuilder};
 
 impl Enclosure {
     /// Get the url that exists under `Enclosure`.
@@ -20,11 +13,12 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
-    /// let url = "http://www.podtrac.com/pts/redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
     /// let enclosure = EnclosureBuilder::new()
-    ///     .url(url)
+    ///     .url(url.as_ref())
     ///     .finalize();
     /// assert_eq!(url.to_owned(), enclosure.url())
     /// ```
@@ -38,7 +32,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
     /// let length: i64 = 70772893;
     /// let enclosure = EnclosureBuilder::new()
@@ -56,7 +50,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
     /// let enclosure_type = "audio/ogg";
     /// let enclosure = EnclosureBuilder::new()
@@ -70,22 +64,13 @@ impl Enclosure {
 }
 
 
-/// This `EnclosureBuilder` struct creates the `Enclosure`.
-#[derive(Default)]
-pub struct EnclosureBuilder {
-    url: String,
-    length: i64,
-    enclosure_type: String,
-}
-
-
 impl EnclosureBuilder {
     /// Construct a new `EnclosureBuilder` and return default values.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
     /// let enclosure_builder = EnclosureBuilder::new();
     /// ```
@@ -99,10 +84,12 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
+    /// let url = "http://www.podtrac.com/pts/".to_owned()
+    /// + "redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
     /// let mut enclosure_builder = EnclosureBuilder::new();
-    /// enclosure_builder.url("http://www.podtrac.com/pts/redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg");
+    /// enclosure_builder.url(url.as_ref());
     /// ```
     pub fn url(&mut self, url: &str) -> &mut EnclosureBuilder {
         self.url = url.to_owned();
@@ -115,7 +102,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
     /// let mut enclosure_builder = EnclosureBuilder::new();
     /// enclosure_builder.length(70772893);
@@ -131,7 +118,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
     /// let mut enclosure_builder = EnclosureBuilder::new();
     /// enclosure_builder.enclosure_type("audio/ogg");
@@ -147,10 +134,12 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::EnclosureBuilder;
     ///
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
     /// let enclosure = EnclosureBuilder::new()
-    ///         .url("http://www.podtrac.com/pts/redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg")
+    ///         .url(url.as_ref())
     ///         .length(70772893)
     ///         .enclosure_type("audio/ogg")
     ///         .finalize();

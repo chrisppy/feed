@@ -2,18 +2,11 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! The fields under text input can be retrieved by using the methods under `TextInput`
-//! and the fields can be set for text input by using the methods under `TextInputBuilder`.
+//! The fields under text input can be retrieved by using the methods under
+//! `TextInput` and the fields can be set for text input by using the methods
+//! under `TextInputBuilder`.
 
-/// This `TextInput` struct contains all the items that exist for the text input field under 'Channel'.
-#[derive(Clone)]
-pub struct TextInput {
-    title: String,
-    description: String,
-    name: String,
-    link: String,
-}
-
+use rss::{TextInput, TextInputBuilder};
 
 impl TextInput {
     /// Get the title that exists under `TextInput`.
@@ -21,7 +14,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let title = "Enter Comment";
     /// let text_input = TextInputBuilder::new()
@@ -39,7 +32,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let description = "Provided Feedback";
     /// let text_input = TextInputBuilder::new()
@@ -57,7 +50,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let name = "Comment";
     /// let text_input = TextInputBuilder::new()
@@ -75,7 +68,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let link = "www.example.com/feedback";
     /// let text_input = TextInputBuilder::new()
@@ -89,23 +82,13 @@ impl TextInput {
 }
 
 
-/// This `TextInputBuilder` struct creates the `TextInput`.
-#[derive(Default)]
-pub struct TextInputBuilder {
-    title: String,
-    description: String,
-    name: String,
-    link: String,
-}
-
-
 impl TextInputBuilder {
     /// Construct a new `TextInputBuilder` and return default values.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let text_input_builder = TextInputBuilder::new();
     /// ```
@@ -119,7 +102,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.title("Title");
@@ -135,7 +118,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.description("This is a test description.");
@@ -151,7 +134,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.name("Comments");
@@ -167,7 +150,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.link("http://www.example.com/feedback");
@@ -183,7 +166,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::text_input::TextInputBuilder;
+    /// use feed::rss::TextInputBuilder;
     ///
     /// let text_input = TextInputBuilder::new()
     ///         .title("Title")

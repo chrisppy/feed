@@ -5,13 +5,7 @@
 //! The fields under source can be retrieved by using the methods under `Source`
 //! and the fields can be set for source by using the methods under `SourceBuilder`.
 
-/// This `Source` struct contains all the items that exist for the source field under 'Item'.
-#[derive(Clone)]
-pub struct Source {
-    url: String,
-    source: String,
-}
-
+use rss::{Source, SourceBuilder};
 
 impl Source {
     /// Get the url that exists under `Source`.
@@ -19,7 +13,7 @@ impl Source {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::SourceBuilder;
     ///
     /// let url = "http://www.tomalak.org/links2.xml";
     /// let source = SourceBuilder::new()
@@ -37,7 +31,7 @@ impl Source {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::SourceBuilder;
     ///
     /// let source = "Tomalak's Realm";
     /// let source_obj = SourceBuilder::new()
@@ -51,21 +45,13 @@ impl Source {
 }
 
 
-/// This `SourceBuilder` struct creates the `Source`.
-#[derive(Default)]
-pub struct SourceBuilder {
-    url: String,
-    source: String,
-}
-
-
 impl SourceBuilder {
     /// Construct a new `SourceBuilder` and return default values.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::SourceBuilder;
     ///
     /// let source_builder = SourceBuilder::new();
     /// ```
@@ -79,7 +65,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::SourceBuilder;
     ///
     /// let mut source_builder = SourceBuilder::new();
     /// source_builder.url("http://www.example.com/source");
@@ -95,7 +81,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::SourceBuilder;
     ///
     /// let mut source_builder = SourceBuilder::new();
     /// source_builder.source("Test");
@@ -111,7 +97,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::SourceBuilder;
     ///
     /// let source = SourceBuilder::new()
     ///         .url("http://www.example.com/source")
