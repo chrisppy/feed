@@ -5,4 +5,3 @@
 //! The feed can be converted to xml.
 
 pub mod xml;
-pub mod json;
