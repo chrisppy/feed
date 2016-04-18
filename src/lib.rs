@@ -87,7 +87,7 @@ extern crate url;
 extern crate log;
 
 use curl::http;
-use feedio::{json, xml};
+use feedio::xml;
 use rss::Channel;
 use std::str;
 use url::Url;
