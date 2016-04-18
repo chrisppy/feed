@@ -130,22 +130,6 @@ impl Feed {
     pub fn to_xml(&self) -> Vec<u8> {
         xml::FeedWriter::new(self.channel.clone()).xml()
     }
-
-
-    /// Convert the `Feed` to XML.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::{Feed, FeedBuilder};
-    /// use feed::rss::Channel;
-    ///
-    /// let feed = FeedBuilder::new().finalize();
-    /// let json = feed.to_json();
-    /// ```
-    pub fn to_json(&self) -> String {
-        json::FeedWriter::new(self.channel.clone()).json()
-    }
 }
 
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
