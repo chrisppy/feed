@@ -1,5 +1,8 @@
 # Changelog
 
+## feed 1.2.1
++ fixed build error
+
 ## feed 1.2.0
 + Restructured the structs to make more sense
 
