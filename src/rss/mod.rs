@@ -5,14 +5,23 @@
 //! All the structs for rss.
 
 pub mod category;
+pub mod category_builder;
 pub mod channel;
+pub mod channel_builder;
 pub mod cloud;
+pub mod cloud_builder;
 pub mod enclosure;
+pub mod enclosure_builder;
 pub mod guid;
+pub mod guid_builder;
 pub mod image;
+pub mod image_builder;
 pub mod item;
+pub mod item_builder;
 pub mod source;
+pub mod source_builder;
 pub mod text_input;
+pub mod text_input_builder;
 
 use chrono::*;
 

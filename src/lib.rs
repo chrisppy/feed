@@ -87,7 +87,7 @@ extern crate url;
 extern crate log;
 
 use curl::http;
-use feedio::xml;
+use feedio::{FeedReader, FeedWriter};
 use rss::Channel;
 use std::str;
 use url::Url;
@@ -128,7 +128,7 @@ impl Feed {
     /// let xml = feed.to_xml();
     /// ```
     pub fn to_xml(&self) -> Vec<u8> {
-        xml::FeedWriter::new(self.channel.clone()).xml()
+        FeedWriter::new(self.channel.clone()).xml()
     }
 }
 
@@ -218,7 +218,7 @@ impl FeedBuilder {
         let body = response.get_body();
         let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
         debug!("feed xml:{}", feed_str);
-        self.channel = xml::FeedReader::new(feed_str).channel();
+        self.channel = FeedReader::new(feed_str).channel();
         self
     }
 

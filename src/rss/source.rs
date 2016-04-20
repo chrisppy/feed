@@ -2,10 +2,9 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! The fields under source can be retrieved by using the methods under `Source`
-//! and the fields can be set for source by using the methods under `SourceBuilder`.
+//! The fields under source can be retrieved by using the methods under `Source`.
 
-use rss::{Source, SourceBuilder};
+use rss::Source;
 
 impl Source {
     /// Get the url that exists under `Source`.
@@ -41,73 +40,5 @@ impl Source {
     /// ```
     pub fn source(&self) -> String {
         self.source.clone()
-    }
-}
-
-
-impl SourceBuilder {
-    /// Construct a new `SourceBuilder` and return default values.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::SourceBuilder;
-    ///
-    /// let source_builder = SourceBuilder::new();
-    /// ```
-    pub fn new() -> SourceBuilder {
-        SourceBuilder::default()
-    }
-
-
-    /// Set the url that exists under `Source`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::SourceBuilder;
-    ///
-    /// let mut source_builder = SourceBuilder::new();
-    /// source_builder.url("http://www.example.com/source");
-    /// ```
-    pub fn url(&mut self, url: &str) -> &mut SourceBuilder {
-        self.url = url.to_owned();
-        self
-    }
-
-
-    /// Set the source that exists under `Source`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::SourceBuilder;
-    ///
-    /// let mut source_builder = SourceBuilder::new();
-    /// source_builder.source("Test");
-    /// ```
-    pub fn source(&mut self, source: &str) -> &mut SourceBuilder {
-        self.source = source.to_owned();
-        self
-    }
-
-
-    /// Construct the `Source` from the `SourceBuilder`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::SourceBuilder;
-    ///
-    /// let source = SourceBuilder::new()
-    ///         .url("http://www.example.com/source")
-    ///         .source("Test")
-    ///         .finalize();
-    /// ```
-    pub fn finalize(&self) -> Source {
-        Source {
-            url: self.url.clone(),
-            source: self.source.clone(),
-        }
     }
 }
