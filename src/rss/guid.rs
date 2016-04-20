@@ -2,16 +2,9 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! The fields under guid can be retrieved by using the methods under `Guid`
-//! and the fields can be set for guid by using the methods under `GuidBuilder`.
+//! The fields under guid can be retrieved by using the methods under `Guid`.
 
-/// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
-#[derive(Clone)]
-pub struct Guid {
-    permalink: bool,
-    guid: String,
-}
-
+use rss::Guid;
 
 impl Guid {
     /// Get the permalink that exists under `Guid`.
@@ -19,7 +12,7 @@ impl Guid {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///     .permalink(None)
@@ -28,7 +21,7 @@ impl Guid {
     /// ```
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
@@ -38,7 +31,7 @@ impl Guid {
     /// ```
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
@@ -56,7 +49,7 @@ impl Guid {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::GuidBuilder;
     ///
     /// let guid = "9DE46946-2F90-4D5D-9047-7E9165C16E7C";
     /// let guid_obj = GuidBuilder::new()
@@ -66,85 +59,5 @@ impl Guid {
     /// ```
     pub fn guid(&self) -> String {
         self.guid.clone()
-    }
-}
-
-
-/// This `GuidBuilder` struct creates the `Guid`.
-#[derive(Default)]
-pub struct GuidBuilder {
-    permalink: bool,
-    guid: String,
-}
-
-
-impl GuidBuilder {
-    /// Construct a new `GuidBuilder` and return default values.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::guid::GuidBuilder;
-    ///
-    /// let guid_builder = GuidBuilder::new();
-    /// ```
-    pub fn new() -> GuidBuilder {
-        GuidBuilder::default()
-    }
-
-
-    /// Set the optional permalink that exists under `Guid`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::guid::GuidBuilder;
-    ///
-    /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.permalink(Some(false));
-    /// ```
-    pub fn permalink(&mut self, permalink: Option<bool>) -> &mut GuidBuilder {
-        if permalink.is_some() {
-            self.permalink = permalink.unwrap();
-        } else {
-            self.permalink = true;
-        }
-        self
-    }
-
-
-    /// Set the guid that exists under `Guid`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::guid::GuidBuilder;
-    ///
-    /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
-    /// ```
-    pub fn guid(&mut self, guid: &str) -> &mut GuidBuilder {
-        self.guid = guid.to_owned();
-        self
-    }
-
-
-    /// Construct the `Guid` from the `GuidBuilder`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::guid::GuidBuilder;
-    ///
-    /// let guid = GuidBuilder::new()
-    ///         .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///         .permalink(Some(true))
-    ///         .finalize();
-    /// ```
-    pub fn finalize(&self) -> Guid {
-        Guid {
-            permalink: self.permalink,
-            guid: self.guid.clone(),
-        }
     }
 }

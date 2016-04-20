@@ -2,7 +2,7 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! # feed 1.1.3
+//! # feed 1.2.0
 //!
 //! This Library is for parsing through a rss field and creating a `Feed`
 //! struct containing all elements of a `Channel` based on the rss spec.
@@ -12,7 +12,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feedreader = "1.1.3"
+//! feedreader = "1.2.0"
 //! ```
 //!
 //! And put this in your crate root:
@@ -33,7 +33,8 @@
 //! use url::Url;
 //!
 //! fn main() {
-//!     let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").expect("Url parse Error");
+//!     let url_str = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
+//!     let url = Url::parse(url_str).expect("Url parse Error");
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
 //!     let channel = feed.channel();
 //!     println!("Title: {}", channel.title());
@@ -50,10 +51,15 @@
 //!
 //! fn main() {
 //!
+//!     let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
+//!         + "Action Show! A show that covers everything geeks care about in "
+//!         + "the computer industry. Get a solid dose of Linux, gadgets, news "
+//!         + "events and much more!";
+//!
 //!     let channel = ChannelBuilder::new()
 //!             .title("The Linux Action Show! OGG")
 //!             .link("http://www.jupiterbroadcasting.com")
-//!             .description("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!")
+//!             .description(description.as_ref())
 //!             .finalize();
 //!     let feed = FeedBuilder::new().channel(channel).finalize();
 //!     let xml = feed.to_xml();
@@ -72,13 +78,16 @@ mod errors;
 
 extern crate chrono;
 extern crate curl;
-#[macro_use]
-extern crate log;
 extern crate quick_xml;
+extern crate serde;
+extern crate serde_json;
 extern crate url;
 
+#[macro_use]
+extern crate log;
+
 use curl::http;
-use feedio::xml::{FeedReader, FeedWriter};
+use feedio::{FeedReader, FeedWriter};
 use rss::Channel;
 use std::str;
 use url::Url;
@@ -121,8 +130,6 @@ impl Feed {
     pub fn to_xml(&self) -> Vec<u8> {
         FeedWriter::new(self.channel.clone()).xml()
     }
-
-
 }
 
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
@@ -175,13 +182,24 @@ impl FeedBuilder {
     /// use feed::FeedBuilder;
     /// use url::Url;
     /// fn main() {
-    ///     let url = Url::parse("http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml").expect("Url parse Error");
+    ///     let url_str = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
+    ///     let url = Url::parse(url_str).expect("Url parse Error");
     ///     let feed = FeedBuilder::new().read_from_url(url).finalize();
     ///     let channel = feed.channel();
+    ///
+    ///     let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
+    ///         + "Action Show! A show that covers everything geeks care about "
+    ///         + "in the computer industry. Get a solid dose of Linux, "
+    ///         + "gadgets, news events and much more!";
+    ///
+    ///     let generator = "Feeder 2.5.12(2294); ".to_owned()
+    ///         + "Mac OS X Version 10.9.5 (Build 13F34) "
+    ///         + "http://reinventedsoftware.com/feeder/";
+    ///
     ///     assert_eq!("The Linux Action Show! OGG".to_owned(), channel.title());
     ///     assert_eq!("http://www.jupiterbroadcasting.com".to_owned(), channel.link());
-    ///     assert_eq!("Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!".to_owned(), channel.description());
-    ///     assert_eq!(Some("Feeder 2.5.12(2294); Mac OS X Version 10.9.5 (Build 13F34) http://reinventedsoftware.com/feeder/".to_owned()), channel.generator());
+    ///     assert_eq!(description.as_ref(), channel.description());
+    ///     assert_eq!(Some(generator), channel.generator());
     ///     assert_eq!(Some("http://blogs.law.harvard.edu/tech/rss".to_owned()), channel.docs());
     ///     assert_eq!(Some("en".to_owned()), channel.language());
     ///     assert!(channel.copyright().is_none());
@@ -193,7 +211,10 @@ impl FeedBuilder {
         if !feed_url.serialize().as_str().ends_with(".xml") {
             panic!(errors::missing_xml_error());
         }
-        let response = http::handle().get(feed_url.serialize()).exec().expect(errors::response_error());
+        let response = http::handle()
+                           .get(feed_url.serialize())
+                           .exec()
+                           .expect(errors::response_error());
         let body = response.get_body();
         let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
         debug!("feed xml:{}", feed_str);
@@ -212,8 +233,6 @@ impl FeedBuilder {
     /// let feed = FeedBuilder::new().finalize();
     /// ```
     pub fn finalize(&self) -> Feed {
-        Feed {
-            channel: self.channel.clone(),
-        }
+        Feed { channel: self.channel.clone() }
     }
 }

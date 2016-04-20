@@ -1,5 +1,8 @@
 # Changelog
 
+## feed 1.2.0
++ Restructured the structs to make more sense
+
 ## feed 1.1.3
 + fixed rust doc for to_xml
 

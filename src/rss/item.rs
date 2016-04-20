@@ -2,32 +2,12 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! The fields under item can be retrieved by using the methods under `Item`
-//! and the fields can be set for item by using the methods under `ItemBuilder`.
+//! The fields under item can be retrieved by using the methods under `Item`.
 
 use chrono::*;
-use rss::category::Category;
-use rss::enclosure::Enclosure;
-use rss::guid::Guid;
-use rss::source::Source;
-use util;
-use errors;
+use rss::{Category, Enclosure, Guid, Source};
 
-/// This `Item` struct contains all the items that exist for the item field under 'Channel'.
-#[derive(Clone)]
-pub struct Item {
-    title: Option<String>,
-    link: Option<String>,
-    description: Option<String>,
-    author: Option<String>,
-    categories: Option<Vec<Category>>,
-    comments: Option<String>,
-    enclosure: Option<Enclosure>,
-    guid: Option<Guid>,
-    pub_date: Option<DateTime<FixedOffset>>,
-    source: Option<Source>,
-}
-
+use rss::Item;
 
 impl Item {
     /// Get the optional title that exists under `Item`.
@@ -35,7 +15,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let title_string = "Making Music with Linux | LAS 408".to_owned();
     /// let item = ItemBuilder::new()
@@ -48,7 +28,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(None)
@@ -66,7 +46,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let link_string = "http://www.jupiterbroadcasting.com".to_owned();
     /// let item = ItemBuilder::new()
@@ -80,7 +60,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -98,7 +78,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let description_string = "This is a test description".to_owned();
     /// let item = ItemBuilder::new()
@@ -112,7 +92,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -130,7 +110,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let author_string = "Chris Fisher".to_owned();
     /// let item = ItemBuilder::new()
@@ -144,7 +124,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -162,8 +142,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::category::CategoryBuilder;
+    /// use feed::rss::{CategoryBuilder, ItemBuilder};
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
@@ -185,7 +164,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -203,7 +182,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let comments_string = "This is a test comment.".to_owned();
     /// let item = ItemBuilder::new()
@@ -217,7 +196,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -235,23 +214,27 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::enclosure::EnclosureBuilder;
+    /// use feed::rss::{EnclosureBuilder, ItemBuilder};
+    ///
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
     ///
     /// let enclosure = EnclosureBuilder::new()
-    ///     .url("http://www.podtrac.com/pts/redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg")
+    ///     .url(url.as_ref())
     ///     .length(70772893)
     ///     .enclosure_type("audio/ogg")
     ///     .finalize();
+    ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .enclosure(Some(enclosure))
     ///     .finalize();
+    ///
     /// assert!(item.enclosure().is_some());
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -269,13 +252,13 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::guid::GuidBuilder;
+    /// use feed::rss::{GuidBuilder, ItemBuilder};
     ///
     /// let guid = GuidBuilder::new()
     ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
     ///     .permalink(None)
     ///     .finalize();
+    ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .guid(Some(guid))
@@ -284,7 +267,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -302,21 +285,24 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
+    ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .pub_date(Some(pub_date.to_owned()))
     ///     .finalize();
+    ///
     /// let local = item.pub_date();
     /// assert!(local.is_some());
+    ///
     /// let local_result = local.unwrap();
     /// assert_eq!(pub_date.to_owned(), local_result.to_rfc2822());
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -334,13 +320,13 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::source::SourceBuilder;
+    /// use feed::rss::{ItemBuilder, SourceBuilder};
     ///
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
     ///     .source("Tomalak's Realm")
     ///     .finalize();
+    ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .source(Some(source))
@@ -349,7 +335,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::item::ItemBuilder;
+    /// use feed::rss::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -359,249 +345,5 @@ impl Item {
     /// ```
     pub fn source(&self) -> Option<Source> {
         self.source.clone()
-    }
-}
-
-
-/// This `ItemBuilder` struct creates the `Item`.
-#[derive(Default)]
-pub struct ItemBuilder {
-    title: Option<String>,
-    link: Option<String>,
-    description: Option<String>,
-    author: Option<String>,
-    categories: Option<Vec<Category>>,
-    comments: Option<String>,
-    enclosure: Option<Enclosure>,
-    guid: Option<Guid>,
-    pub_date: Option<DateTime<FixedOffset>>,
-    source: Option<Source>,
-}
-
-
-impl ItemBuilder {
-    /// Construct a new `ItemBuilder` and return default values.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let item_builder = ItemBuilder::new();
-    /// ```
-    pub fn new() -> ItemBuilder {
-        ItemBuilder::default()
-    }
-
-
-    /// Set the optional title that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.title(Some("Making Music with Linux | LAS 408".to_owned()));
-    /// ```
-    pub fn title(&mut self, title: Option<String>) -> &mut ItemBuilder {
-        self.title = title;
-        self
-    }
-
-
-    /// Set the optional link that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.link(Some("http://www.jupiterbroadcasting.com".to_owned()));
-    /// ```
-    pub fn link(&mut self, link: Option<String>) -> &mut ItemBuilder {
-        self.link = link;
-        self
-    }
-
-
-    /// Set the optional description that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.description(Some("This is a test description".to_owned()));
-    /// ```
-    pub fn description(&mut self, description: Option<String>) -> &mut ItemBuilder {
-        self.description = description;
-        self
-    }
-
-
-    /// Set the optional author that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.author(Some("Chris Fisher".to_owned()));
-    /// ```
-    pub fn author(&mut self, author: Option<String>) -> &mut ItemBuilder {
-        self.author = author;
-        self
-    }
-
-
-    /// Set the optional categories that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::category::CategoryBuilder;
-    ///
-    /// let category = CategoryBuilder::new().finalize();
-    /// let categories = vec![category];
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.categories(Some(categories));
-    /// ```
-    pub fn categories(&mut self, categories: Option<Vec<Category>>) -> &mut ItemBuilder {
-        self.categories = categories;
-        self
-    }
-
-
-    /// Set the optional comments that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.comments(Some("Test Comment".to_owned()));
-    /// ```
-    pub fn comments(&mut self, comments: Option<String>) -> &mut ItemBuilder {
-        self.comments = comments;
-        self
-    }
-
-
-    /// Set the optional enclosure that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::enclosure::EnclosureBuilder;
-    ///
-    /// let enclosure = EnclosureBuilder::new().finalize();
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.enclosure(Some(enclosure));
-    /// ```
-    pub fn enclosure(&mut self, enclosure: Option<Enclosure>) -> &mut ItemBuilder {
-        self.enclosure = enclosure;
-        self
-    }
-
-
-    /// Set the optional guid that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::guid::GuidBuilder;
-    ///
-    /// let guid = GuidBuilder::new().finalize();
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.guid(Some(guid));
-    /// ```
-    pub fn guid(&mut self, guid: Option<Guid>) -> &mut ItemBuilder {
-        self.guid = guid;
-        self
-    }
-
-
-    /// Set the optional pub date that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let mut item_builder = feed::rss::item::ItemBuilder::new();
-    /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
-    /// ```
-    pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
-        self.pub_date = util::option_string_to_option_date(pub_date);
-        self
-    }
-
-
-    /// Set the optional source that exists under `Item`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    /// use feed::rss::source::SourceBuilder;
-    ///
-    /// let source = SourceBuilder::new().finalize();
-    ///
-    /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.source(Some(source));
-    /// ```
-    pub fn source(&mut self, source: Option<Source>) -> &mut ItemBuilder {
-        self.source = source;
-        self
-    }
-
-
-    /// Construct the `Item` from the `ItemBuilder`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::rss::item::ItemBuilder;
-    ///
-    /// let item = ItemBuilder::new()
-    ///         .title(Some("Making Music with Linux | LAS 408".to_owned()))
-    ///         .link(Some("http://www.jupiterbroadcasting.com".to_owned()))
-    ///         .description(None)
-    ///         .author(None)
-    ///         .categories(None)
-    ///         .comments(None)
-    ///         .enclosure(None)
-    ///         .guid(None)
-    ///         .pub_date(None)
-    ///         .source(None)
-    ///         .finalize();
-    /// ```
-    pub fn finalize(&self) -> Item {
-        if self.title.is_none() && self.description.is_none() {
-            panic!(errors::item_required_field_error());
-        }
-        Item {
-            title: self.title.clone(),
-            link: self.link.clone(),
-            description: self.description.clone(),
-            author: self.author.clone(),
-            categories: self.categories.clone(),
-            comments: self.comments.clone(),
-            enclosure: self.enclosure.clone(),
-            guid: self.guid.clone(),
-            pub_date: self.pub_date,
-            source: self.source.clone(),
-        }
     }
 }

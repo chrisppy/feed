@@ -4,4 +4,19 @@
 
 //! The feed can be converted to xml.
 
-pub mod xml;
+pub mod feed_reader;
+pub mod feed_writer;
+
+use rss::Channel;
+
+/// This `FeedReader` struct parses the xml feed to the `Channel`.
+pub struct FeedReader {
+    channel: Channel,
+}
+
+
+/// This `FeedWriter` struct creates the xml from the `Channel`.
+#[derive(Default)]
+pub struct FeedWriter {
+    xml: Vec<u8>,
+}

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
     <channel>
         <title>The Linux Action Show! OGG</title>
         <link>http://www.jupiterbroadcasting.com</link>
@@ -20,7 +22,19 @@
 
         <itunes:block>no</itunes:block>
 
-        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/TheLinuxActionShowOGG" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="thelinuxactionshowogg" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><media:thumbnail url="http://www.linuxactionshow.com/images/tux-jedi_sickness_fun.png" /><media:keywords>Linux,Unix,Ubuntu,Open,Source,OSS,News,Tech</media:keywords><media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology/Tech News</media:category><itunes:owner><itunes:email>chris@linuxactionshow.com</itunes:email></itunes:owner><itunes:category text="Technology"><itunes:category text="Tech News" /></itunes:category><item>
+        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/TheLinuxActionShowOGG" />
+        <feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="thelinuxactionshowogg" />
+        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+        <media:thumbnail url="http://www.linuxactionshow.com/images/tux-jedi_sickness_fun.png" />
+        <media:keywords>Linux,Unix,Ubuntu,Open,Source,OSS,News,Tech</media:keywords>
+        <media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology/Tech News</media:category>
+        <itunes:owner>
+            <itunes:email>chris@linuxactionshow.com</itunes:email>
+        </itunes:owner>
+        <itunes:category text="Technology">
+        <itunes:category text="Tech News" />
+        </itunes:category>
+        <item>
             <title>What Is KDE Neon? | LAS 409</title>
             <link>http://www.jupiterbroadcasting.com/97801/what-is-kde-neon-las-409/</link>
             <description><![CDATA[Jonathan Riddell joins us to discuss the KDE Neon project, the latest & greatest of KDE community software packaged on a rock-solid base. We kick the tires and give you our first impressions. Is this finally the Plasma Desktop just the way we’ve always wanted it?]]></description>
