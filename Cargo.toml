@@ -15,7 +15,7 @@ chrono = "0.2"
 curl = "0.2"
 log = "0.3"
 quick-xml = "0.2"
-url = "0.5"
+url = "1.1"
 
 [features]
 default = []

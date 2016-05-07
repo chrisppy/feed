@@ -208,11 +208,11 @@ impl FeedBuilder {
     /// }
     /// ```
     pub fn read_from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
-        if !feed_url.serialize().as_str().ends_with(".xml") {
+        if !feed_url.as_str().ends_with(".xml") {
             panic!(errors::missing_xml_error());
         }
         let response = http::handle()
-                           .get(feed_url.serialize())
+                           .get(feed_url.into_string())
                            .exec()
                            .expect(errors::response_error());
         let body = response.get_body();

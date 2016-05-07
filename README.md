@@ -2,7 +2,7 @@
 
 [![Crates.io](https://img.shields.io/crates/v/feed.svg?style=flat-square)](https://crates.io/crates/feed)[![API Documentation](https://img.shields.io/badge/doc-rust-b7410e.svg?style=flat-square)](http://red-oxide.github.io/feed)
 
-[![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)[![Clippy Linting Result](https://clippy.bashy.io/github/red-oxide/feed/master/badge.svg?style=flat-square)](https://clippy.bashy.io/github/red-oxide/feed/master/log)[![Coverage Status](https://img.shields.io/coveralls/red-oxide/feed.svg?style=flat-square)](https://coveralls.io/github/red-oxide/feed?branch=master)
+[![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)[![Clippy Linting Result](https://clippy.bashy.io/github/red-oxide/feed/master/badge.svg?style=flat-square)](https://clippy.bashy.io/github/red-oxide/feed/master/log)
 
 Library for creating rss feeds and parsing rss feeds from an URL and retrieving the elements
 
