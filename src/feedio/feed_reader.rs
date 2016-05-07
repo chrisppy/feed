@@ -38,7 +38,7 @@ impl FeedReader {
         let mut element = "channel";
         let mut name = "";
 
-        let reader = XmlReader::from_str(&feed_string).trim_text(true);
+        let reader = XmlReader::from(&*feed_string).trim_text(true);
         for r in reader {
             match r {
                 Ok(Event::Start(ref e)) => {
