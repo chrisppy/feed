@@ -2,6 +2,7 @@
 name = "feed"
 version = "1.2.2-pre"
 authors = ["Chris Palmer <pennstate5013@gmail.com>"]
+homepage = "http://red-oxide.org"
 repository = "https://github.com/red-oxide/feed"
 documentation = "http://feed.red-oxide.org"
 description = "Parse RSS feeds from url"

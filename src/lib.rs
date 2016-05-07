@@ -72,6 +72,8 @@
 #![deny(missing_docs)]
 
 pub mod feedio;
+pub mod itunes;
+pub mod media;
 pub mod rss;
 mod util;
 mod errors;
