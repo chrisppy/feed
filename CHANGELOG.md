@@ -1,5 +1,9 @@
 # Changelog
 
+## feed 1.2.2
++ updated url to 1.1
++ updated quick-xml to 0.2
+
 ## feed 1.2.1
 + fixed build error
 
