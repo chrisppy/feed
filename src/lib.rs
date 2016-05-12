@@ -2,7 +2,7 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! # feed 1.2.2
+//! # feed 1.2
 //!
 //! This Library is for parsing through a rss field and creating a `Feed`
 //! struct containing all elements of a `Channel` based on the rss spec.
@@ -12,7 +12,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feedreader = "1.2.2"
+//! feedreader = "1.2"
 //! ```
 //!
 //! And put this in your crate root:

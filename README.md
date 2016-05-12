@@ -11,7 +11,7 @@ Library for creating rss feeds and parsing rss feeds from an URL and retrieving 
 To include feed as a cargo dependency you have to add it to your Cargo.toml:
 ```Toml
 [dependencies]
-feed = "1.2.2"
+feed = "1.2"
 ```
 
 ## Bugs and feature requests
