@@ -4,6 +4,7 @@
 
 //! The fields can be set for enclosure by using the methods under `EnclosureBuilder`.
 
+use errors;
 use rss::{Enclosure, EnclosureBuilder};
 
 impl EnclosureBuilder {
@@ -50,6 +51,9 @@ impl EnclosureBuilder {
     /// enclosure_builder.length(70772893);
     /// ```
     pub fn length(&mut self, length: i64) -> &mut EnclosureBuilder {
+        if length < 0 {
+            panic!(errors::negative_error("enclosure length", length));
+        }
         self.length = length;
         self
     }

@@ -4,6 +4,7 @@
 
 //! The fields can be set for cloud by using the methods under `CloudBuilder`.
 
+use errors;
 use rss::{Cloud, CloudBuilder};
 
 impl CloudBuilder {
@@ -48,6 +49,9 @@ impl CloudBuilder {
     /// cloud_builder.port(80);
     /// ```
     pub fn port(&mut self, port: i64) -> &mut CloudBuilder {
+        if port < 0 {
+            panic!(errors::negative_error("cloud port", port));
+        }
         self.port = port;
         self
     }

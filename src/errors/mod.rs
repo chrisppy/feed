@@ -66,3 +66,9 @@ pub fn tag_text_error(tag: &str) -> String {
 pub fn tag_end_error(tag: &str) -> String {
     format!("Error creating end tag for {}", tag)
 }
+
+
+// negative integer error
+pub fn negative_error(tag: &str, num: i64) -> String {
+    format!("{} cannot be negative: {}", tag, num)
+}
