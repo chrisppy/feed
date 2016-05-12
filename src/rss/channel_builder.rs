@@ -4,6 +4,7 @@
 
 //! The fields can be set for channel by using the methods under `ChannelBuilder`.
 
+use errors;
 use rss::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
 use util;
 
@@ -263,6 +264,12 @@ impl ChannelBuilder {
     /// channel_builder.ttl(Some(60));
     /// ```
     pub fn ttl(&mut self, ttl: Option<i64>) -> &mut ChannelBuilder {
+        if ttl.is_some() {
+            let ttl_num = ttl.unwrap();
+            if ttl_num < 0 {
+                panic!(errors::negative_error("ttl", ttl_num));
+            }
+        }
         self.ttl = ttl;
         self
     }
@@ -332,7 +339,15 @@ impl ChannelBuilder {
     /// channel_builder.skip_hours(Some(hours));
     /// ```
     pub fn skip_hours(&mut self, skip_hours: Option<Vec<i64>>) -> &mut ChannelBuilder {
-        self.skip_hours = skip_hours;
+        if skip_hours.is_some() {
+            let skip_hours_vec = skip_hours.clone().unwrap();
+            for hour in skip_hours_vec {
+                if hour < 0 {
+                    panic!(errors::negative_error("skip hours", hour));
+                }
+            }
+        }
+        self.skip_hours = skip_hours.clone();
         self
     }
 

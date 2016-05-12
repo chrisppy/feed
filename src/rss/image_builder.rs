@@ -5,6 +5,7 @@
 //! The fields under image can be retrieved by using the methods under `Image`
 //! and the fields can be set for image by using the methods under `ImageBuilder`.
 
+use errors;
 use rss::{Image, ImageBuilder};
 
 impl ImageBuilder {
@@ -86,6 +87,8 @@ impl ImageBuilder {
             let mut size = width.unwrap();
             if size > max_width {
                 size = max_width;
+            } else if size < 0 {
+                panic!(errors::negative_error("image width", size));
             }
             self.width = size;
         } else {
@@ -111,6 +114,8 @@ impl ImageBuilder {
             let mut size = height.unwrap();
             if size > max_height {
                 size = max_height;
+            } else if size < 0 {
+                panic!(errors::negative_error("image height", size));
             }
             self.height = size;
         } else {
