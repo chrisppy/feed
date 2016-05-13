@@ -5,3 +5,6 @@ target-install
 
 # Gnome Builder
 .buildconfig
+
+# Rustfmt
+*.bk

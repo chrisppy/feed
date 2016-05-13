@@ -72,3 +72,15 @@ pub fn tag_end_error(tag: &str) -> String {
 pub fn negative_error(tag: &str, num: i64) -> String {
     format!("{} cannot be negative: {}", tag, num)
 }
+
+
+// invalid integer error
+pub fn invalid_int_error(tag: &str, num: i64) -> String {
+    format!("{} contains an invalid value: {}", tag, num)
+}
+
+
+// invalid string error
+pub fn invalid_str_error(tag: &str, string: &str) -> String {
+    format!("{} contains an invalid value: {}", tag, string)
+}

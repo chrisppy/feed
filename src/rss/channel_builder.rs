@@ -340,10 +340,14 @@ impl ChannelBuilder {
     /// ```
     pub fn skip_hours(&mut self, skip_hours: Option<Vec<i64>>) -> &mut ChannelBuilder {
         if skip_hours.is_some() {
-            let skip_hours_vec = skip_hours.clone().unwrap();
+            let mut skip_hours_vec = skip_hours.clone().unwrap();
+            skip_hours_vec.sort();
+            skip_hours_vec.dedup();
             for hour in skip_hours_vec {
                 if hour < 0 {
                     panic!(errors::negative_error("skip hours", hour));
+                } else if hour > 23 {
+                    panic!(errors::invalid_int_error("skip hours", hour));
                 }
             }
         }
@@ -365,7 +369,25 @@ impl ChannelBuilder {
     /// channel_builder.skip_days(Some(days));
     /// ```
     pub fn skip_days(&mut self, skip_days: Option<Vec<String>>) -> &mut ChannelBuilder {
-        self.skip_days = skip_days;
+        if skip_days.is_some() {
+            let mut skip_days_vec = skip_days.clone().unwrap();
+            skip_days_vec.sort();
+            skip_days_vec.dedup();
+            for day in skip_days_vec {
+                let day_upper = day.to_uppercase();
+                match day_upper.as_str() {
+                    "MONDAY" => (),
+                    "TUESDAY" => (),
+                    "WEDNESDAY" => (),
+                    "THURSDAY" => (),
+                    "FRIDAY" => (),
+                    "SATURDAY" => (),
+                    "SUNDAY" => (),
+                    _ => panic!(errors::invalid_str_error("skip days", day.as_str())),
+                }
+            }
+        }
+        self.skip_days = skip_days.clone();
         self
     }
 
