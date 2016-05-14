@@ -100,6 +100,12 @@ impl CloudBuilder {
     /// cloud_builder.protocol("soap");
     /// ```
     pub fn protocol(&mut self, protocol: &str) -> &mut CloudBuilder {
+        match protocol {
+            "http-post" => (),
+            "xml-rpc" => (),
+            "soap" => (),
+            _ => panic!(errors::invalid_str_error("cloud protocol", protocol)),
+        }
         self.protocol = protocol.to_owned();
         self
     }
