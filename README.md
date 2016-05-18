@@ -4,6 +4,8 @@
 
 [![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)[![Clippy Linting Result](https://clippy.bashy.io/github/red-oxide/feed/master/badge.svg?style=flat-square)](https://clippy.bashy.io/github/red-oxide/feed/master/log)
 
+[![Crates Latest Downloads](https://img.shields.io/crates/dv/feed.svg?style=flat-square)](https://crates.io/crates/feed)[![Crates All Downloads](https://img.shields.io/crates/d/feed.svg?style=flat-square)](https://crates.io/crates/feed)
+
 Library for creating rss feeds and parsing rss feeds from an URL and retrieving the elements
 
 ## Use
