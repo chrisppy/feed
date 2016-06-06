@@ -84,3 +84,15 @@ pub fn invalid_int_error(tag: &str, num: i64) -> String {
 pub fn invalid_str_error(tag: &str, string: &str) -> String {
     format!("{} contains an invalid value: {}", tag, string)
 }
+
+
+// url parse error
+pub fn url_parse_error(url: &str) -> String {
+    format!("Error parsing url: {}", url)
+}
+
+
+// date parse error
+pub fn date_parse_error(url: &str) -> String {
+    format!("Error parsing date: {}", url)
+}

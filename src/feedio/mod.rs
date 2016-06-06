@@ -4,14 +4,22 @@
 
 //! The feed can be converted to xml.
 
+pub mod channel_reader;
 pub mod feed_reader;
 pub mod feed_writer;
 
+use atom::AtomFeed;
 use rss::Channel;
 
-/// This `FeedReader` struct parses the xml feed to the `Channel`.
-pub struct FeedReader {
+/// This `ChannelReader` struct parses the xml feed to the `Channel`.
+pub struct ChannelReader {
     channel: Channel,
+}
+
+
+/// This `FeedReader` struct parses the xml feed to the `AtomFeed`.
+pub struct FeedReader {
+    feed: AtomFeed,
 }
 
 
