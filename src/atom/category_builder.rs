@@ -106,7 +106,7 @@ impl AtomCategoryBuilder {
         if self.scheme.is_some() {
             let scheme = self.scheme.clone().unwrap();
             let url = Url::parse(scheme.as_str())
-                          .expect(errors::url_parse_error(scheme.as_str()).as_str());
+                .expect(errors::url_parse_error(scheme.as_str()).as_str());
             scheme_option = Some(url);
         }
         AtomCategory {

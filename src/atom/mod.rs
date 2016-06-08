@@ -26,7 +26,7 @@ use url::Url;
 #[derive(Clone)]
 pub struct AtomFeed {
     id: Url,
-    title: String,
+    title: Text,
     updated: DateTime<FixedOffset>,
     authors: Option<Vec<Person>>,
     links: Option<Vec<Link>>,
@@ -45,7 +45,7 @@ pub struct AtomFeed {
 #[derive(Default)]
 pub struct AtomFeedBuilder {
     id: String,
-    title: String,
+    title: Text,
     updated: String,
     authors: Option<Vec<Person>>,
     links: Option<Vec<Link>>,
@@ -144,7 +144,7 @@ pub struct GeneratorBuilder {
 
 /// This `Text` struct contains the text that exist for the feed
 /// field under feed.
-#[derive(Clone)]
+#[derive(Clone, Default)]
 pub struct Text {
     text: String,
     text_type: String,
@@ -164,7 +164,7 @@ pub struct TextBuilder {
 #[derive(Clone)]
 pub struct Entry {
     id: Url,
-    title: String,
+    title: Text,
     updated: DateTime<FixedOffset>,
     authors: Option<Vec<Person>>,
     content: Option<Text>,
@@ -182,7 +182,7 @@ pub struct Entry {
 #[derive(Default)]
 pub struct EntryBuilder {
     id: String,
-    title: String,
+    title: Text,
     updated: String,
     authors: Option<Vec<Person>>,
     content: Option<Text>,

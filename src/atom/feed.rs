@@ -16,13 +16,16 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let id = "http://newrustacean.com/show_notes/e014/";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id(id)
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
     ///     assert_eq!(id.to_owned(), feed.id().into_string())
@@ -40,19 +43,20 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let title = "e014: Stringing things along";
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title(title)
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
-    ///     assert_eq!(title.to_owned(), feed.title())
+    ///     assert_eq!(title.to_owned(), feed.title().text())
     /// }
     /// ```
-    pub fn title(self) -> String {
+    pub fn title(self) -> Text {
         self.title
     }
 
@@ -64,13 +68,16 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let updated = "2014-11-28T12:00:09+00:00";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated(updated)
     ///         .finalize();
     ///     assert_eq!(updated.to_owned(), feed.updated().to_rfc3339())
@@ -88,14 +95,17 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, PersonBuilder};
+    /// use feed::atom::{AtomFeedBuilder, PersonBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let name = "Chris Krycho";
     ///     let authors = Some(vec![PersonBuilder::new().name(name).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .authors(authors)
     ///         .finalize();
@@ -114,14 +124,17 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, LinkBuilder};
+    /// use feed::atom::{AtomFeedBuilder, LinkBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let href = "http://www.example.com/";
     ///     let links = Some(vec![LinkBuilder::new().href(href).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .links(links)
     ///         .finalize();
@@ -140,14 +153,17 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, AtomCategoryBuilder};
+    /// use feed::atom::{AtomFeedBuilder, AtomCategoryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let term = "Tech";
     ///     let categories = Some(vec![AtomCategoryBuilder::new().term(term).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .categories(categories)
     ///         .finalize();
@@ -166,14 +182,17 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, PersonBuilder};
+    /// use feed::atom::{AtomFeedBuilder, PersonBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let name = "Chris Krycho";
     ///     let contributors = Some(vec![PersonBuilder::new().name(name).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .contributors(contributors)
     ///         .finalize();
@@ -192,14 +211,17 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, GeneratorBuilder};
+    /// use feed::atom::{AtomFeedBuilder, GeneratorBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let gen = "Example Toolkit";
     ///     let generator = GeneratorBuilder::new().generator(gen).finalize();
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .generator(Some(generator))
     ///         .finalize();
@@ -218,13 +240,16 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let url = "http://example.com/image.png";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .icon(Some(url.to_owned()))
     ///         .finalize();
@@ -243,13 +268,16 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let url = "http://example.com/image.png";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .logo(Some(url.to_owned()))
     ///         .finalize();
@@ -273,9 +301,12 @@ impl AtomFeed {
     /// fn main() {
     ///     let text = "© 2005 John Doe";
     ///     let rights = TextBuilder::new().text(text).finalize();
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .rights(Some(rights))
     ///         .finalize();
@@ -299,9 +330,12 @@ impl AtomFeed {
     /// fn main() {
     ///     let text = "Example";
     ///     let subtitle = TextBuilder::new().text(text).finalize();
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .subtitle(Some(subtitle))
     ///         .finalize();
@@ -320,18 +354,21 @@ impl AtomFeed {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, Entry, EntryBuilder};
+    /// use feed::atom::{AtomFeedBuilder, Entry, EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let id = "http://newrustacean.com/show_notes/e014/";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id(id)
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .entries(Some(vec![entry]))
     ///         .finalize();

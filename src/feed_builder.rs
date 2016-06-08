@@ -109,9 +109,9 @@ impl FeedBuilder {
         let feed_url = Url::parse(feed).expect(errors::url_parse_error(feed).as_str());
 
         let response = http::handle()
-                           .get(feed_url.into_string())
-                           .exec()
-                           .expect(errors::response_error());
+            .get(feed_url.into_string())
+            .exec()
+            .expect(errors::response_error());
         let body = response.get_body();
         let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
         debug!("feed xml:{}", feed_str);

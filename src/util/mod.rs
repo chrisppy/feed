@@ -5,26 +5,51 @@
 use chrono::*;
 use errors;
 use quick_xml::attributes::Attributes;
-use quick_xml::Element;
 use std::{i64, str};
 use std::str::FromStr;
 
 
-// Common code to convert attribute to &str.
-pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
-    let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    str::from_utf8(attr[index]).expect(errors::utf8_to_str_error())
+pub fn attribute_to_string(attributes: Attributes, attr_name: &str) -> Option<String> {
+    let mut name_vec: Vec<String> = Vec::new();
+    let names = attributes.clone().map(|a| a.unwrap().0).collect::<Vec<_>>();
+    for name in names.clone() {
+        name_vec.push(str::from_utf8(name).expect(errors::utf8_to_str_error()).to_owned());
+    }
+
+    let attrs = attributes.clone().map(|a| a.unwrap().1).collect::<Vec<_>>();
+    let index = match name_vec.binary_search(&attr_name.to_owned()) {
+        Ok(value) => value,
+        Err(err) => {
+            return None;
+        }
+    };
+    let attr = attrs.get(index).expect(errors::vec_get_error());
+    let attr_str = str::from_utf8(attr).expect(errors::utf8_to_str_error());
+    Some(attr_str.to_owned())
 }
 
 
 // Common code to convert attribute to i64.
-pub fn attribute_to_i64(attributes: Attributes, index: usize) -> i64 {
-    i64::from_str(attribute_to_str(attributes, index)).expect(errors::str_to_i64_error())
+pub fn attribute_to_i64(attributes: Attributes, attr_name: &str) -> Option<i64> {
+    let attr = attribute_to_string(attributes, attr_name);
+    if attr.is_none() {
+        return None;
+    }
+
+    let attr_i64 = i64::from_str(attr.unwrap().as_str()).expect(errors::str_to_i64_error());
+
+    Some(attr_i64)
 }
 
 // Common code to convert attribute to bool.
-pub fn attribute_to_bool(attributes: Attributes, index: usize) -> bool {
-    bool::from_str(attribute_to_str(attributes, index)).expect(errors::str_to_bool_error())
+pub fn attribute_to_bool(attributes: Attributes, attr_name: &str) -> Option<bool> {
+    let attr = attribute_to_string(attributes, attr_name);
+    if attr.is_none() {
+        return None;
+    }
+
+    let attr_bool = bool::from_str(attr.unwrap().as_str()).expect(errors::str_to_bool_error());
+    Some(attr_bool)
 }
 
 
@@ -35,6 +60,6 @@ pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateT
     }
     let date_string = date_option.unwrap();
     let datetime = DateTime::parse_from_rfc2822(&date_string)
-                       .expect(errors::str_to_datetime_error());
+        .expect(errors::str_to_datetime_error());
     Some(datetime)
 }

@@ -55,12 +55,14 @@ impl EntryBuilder {
     /// use feed::atom::EntryBuilder;
     ///
     /// fn main() {
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let mut entry_builder = EntryBuilder::new();
-    ///     entry_builder.title("e014: Stringing things along");
+    ///     entry_builder.title(text);
     /// }
     /// ```
-    pub fn title(&mut self, title: &str) -> &mut EntryBuilder {
-        self.title = title.to_owned();
+    pub fn title(&mut self, title: Text) -> &mut EntryBuilder {
+        self.title = title;
         self
     }
 
@@ -293,28 +295,28 @@ impl EntryBuilder {
         let mut published_option: Option<DateTime<FixedOffset>> = None;
         if self.published.is_some() {
             let date = DateTime::parse_from_rfc3339(self.published.clone().unwrap().as_str())
-                           .expect(errors::date_parse_error(self.published
-                                                                .clone()
-                                                                .unwrap()
-                                                                .as_str())
-                                       .as_str());
+                .expect(errors::date_parse_error(self.published
+                        .clone()
+                        .unwrap()
+                        .as_str())
+                    .as_str());
             published_option = Some(date);
         }
 
         let mut source_option: Option<String> = None;
         if self.source.is_some() {
             let feed = FeedBuilder::new()
-                           .read_from_url(self.source.clone().unwrap().as_str())
-                           .finalize();
+                .read_from_url(self.source.clone().unwrap().as_str())
+                .finalize();
             source_option = Some(String::from_utf8(feed.xml()).unwrap());
         }
 
         Entry {
             id: Url::parse(self.id.clone().as_str())
-                    .expect(errors::url_parse_error(self.id.clone().as_str()).as_str()),
+                .expect(errors::url_parse_error(self.id.clone().as_str()).as_str()),
             title: self.title.clone(),
             updated: DateTime::parse_from_rfc3339(self.updated.clone().as_str())
-                         .expect(errors::date_parse_error(self.updated.clone().as_str()).as_str()),
+                .expect(errors::date_parse_error(self.updated.clone().as_str()).as_str()),
             authors: self.authors.clone(),
             content: self.content.clone(),
             links: self.links.clone(),

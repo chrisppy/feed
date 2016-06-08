@@ -58,8 +58,8 @@ impl AtomFeedBuilder {
     ///     feed_builder.title("e014: Stringing things along");
     /// }
     /// ```
-    pub fn title(&mut self, title: &str) -> &mut AtomFeedBuilder {
-        self.title = title.to_owned();
+    pub fn title(&mut self, title: Text) -> &mut AtomFeedBuilder {
+        self.title = title;
         self
     }
 
@@ -317,25 +317,23 @@ impl AtomFeedBuilder {
         let mut icon_option: Option<Url> = None;
         if self.icon.is_some() {
             let url = Url::parse(self.icon.clone().unwrap().as_str())
-                          .expect(errors::url_parse_error(self.icon.clone().unwrap().as_str())
-                                      .as_str());
+                .expect(errors::url_parse_error(self.icon.clone().unwrap().as_str()).as_str());
             icon_option = Some(url);
         }
 
         let mut logo_option: Option<Url> = None;
         if self.logo.is_some() {
             let url = Url::parse(self.logo.clone().unwrap().as_str())
-                          .expect(errors::url_parse_error(self.logo.clone().unwrap().as_str())
-                                      .as_str());
+                .expect(errors::url_parse_error(self.logo.clone().unwrap().as_str()).as_str());
             logo_option = Some(url);
         }
 
         AtomFeed {
             id: Url::parse(self.id.clone().as_str())
-                    .expect(errors::url_parse_error(self.id.clone().as_str()).as_str()),
+                .expect(errors::url_parse_error(self.id.clone().as_str()).as_str()),
             title: self.title.clone(),
             updated: DateTime::parse_from_rfc3339(self.updated.clone().as_str())
-                         .expect(errors::date_parse_error(self.updated.clone().as_str()).as_str()),
+                .expect(errors::date_parse_error(self.updated.clone().as_str()).as_str()),
             authors: self.authors.clone(),
             links: self.links.clone(),
             categories: self.categories.clone(),

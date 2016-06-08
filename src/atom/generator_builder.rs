@@ -107,7 +107,7 @@ impl GeneratorBuilder {
         if self.uri.is_some() {
             let uri = self.uri.clone().unwrap();
             let url = Url::parse(uri.as_str())
-                          .expect(errors::url_parse_error(uri.as_str()).as_str());
+                .expect(errors::url_parse_error(uri.as_str()).as_str());
             uri_option = Some(url);
         }
         Generator {

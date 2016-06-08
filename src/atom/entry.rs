@@ -17,13 +17,16 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let id = "http://newrustacean.com/show_notes/e014/";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id(id)
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
     ///     assert_eq!(id.to_owned(), entry.id().into_string())
@@ -41,19 +44,22 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let title = "e014: Stringing things along";
+    ///
+    ///     let text = TextBuilder::new().text(title).finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title(title)
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
-    ///     assert_eq!(title.to_owned(), entry.title())
+    ///     assert_eq!(title.to_owned(), entry.title().text())
     /// }
     /// ```
-    pub fn title(self) -> String {
+    pub fn title(self) -> Text {
         self.title
     }
 
@@ -65,13 +71,16 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let updated = "2014-11-28T12:00:09+00:00";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated(updated)
     ///         .finalize();
     ///     assert_eq!(updated.to_owned(), entry.updated().to_rfc3339())
@@ -89,14 +98,17 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{EntryBuilder, PersonBuilder};
+    /// use feed::atom::{EntryBuilder, PersonBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let name = "Chris Krycho";
     ///     let authors = Some(vec![PersonBuilder::new().name(name).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .authors(authors)
     ///         .finalize();
@@ -118,11 +130,14 @@ impl Entry {
     /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let text = "This is an example!";
-    ///     let content = TextBuilder::new().text(text).finalize();
+    ///     let text_str = "This is an example!";
+    ///     let content = TextBuilder::new().text(text_str).finalize();
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .content(Some(content))
     ///         .finalize();
@@ -141,14 +156,17 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{EntryBuilder, LinkBuilder};
+    /// use feed::atom::{EntryBuilder, LinkBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let href = "http://www.example.com/";
     ///     let links = Some(vec![LinkBuilder::new().href(href).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .links(links)
     ///         .finalize();
@@ -170,11 +188,14 @@ impl Entry {
     /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let text = "This is an example!";
-    ///     let summary = TextBuilder::new().text(text).finalize();
+    ///     let text_str = "This is an example!";
+    ///     let summary = TextBuilder::new().text(text_str).finalize();
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .summary(Some(summary))
     ///         .finalize();
@@ -193,14 +214,17 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{EntryBuilder, AtomCategoryBuilder};
+    /// use feed::atom::{EntryBuilder, AtomCategoryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let term = "Tech";
     ///     let categories = Some(vec![AtomCategoryBuilder::new().term(term).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .categories(categories)
     ///         .finalize();
@@ -219,14 +243,17 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{EntryBuilder, PersonBuilder};
+    /// use feed::atom::{EntryBuilder, PersonBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let name = "Chris Krycho";
     ///     let contributors = Some(vec![PersonBuilder::new().name(name).finalize()]);
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .contributors(contributors)
     ///         .finalize();
@@ -245,13 +272,16 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let date = "2014-11-28T12:00:09+00:00";
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .published(Some(date.to_owned()))
     ///         .finalize();
@@ -270,7 +300,7 @@ impl Entry {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let mut entry_builder = EntryBuilder::new();
@@ -292,11 +322,14 @@ impl Entry {
     /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let text = "© 2005 John Doe";
-    ///     let rights = TextBuilder::new().text(text).finalize();
+    ///     let text_str = "© 2005 John Doe";
+    ///     let rights = TextBuilder::new().text(text_str).finalize();
+    ///
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .rights(Some(rights))
     ///         .finalize();

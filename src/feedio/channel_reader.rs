@@ -61,7 +61,8 @@ impl ChannelReader {
                         b"category" => {
                             name = "category";
 
-                            let domain = Some(util::attribute_to_str(e.attributes(), 0).to_owned());
+                            let domain = util::attribute_to_string(e.attributes(), "domain")
+                                .to_owned();
 
                             category_builder = CategoryBuilder::new();
                             category_builder.domain(domain);
@@ -69,18 +70,20 @@ impl ChannelReader {
                         b"cloud" => {
 
 
-                            let domain = util::attribute_to_str(e.attributes(), 0);
-                            let port = util::attribute_to_i64(e.attributes(), 1);
-                            let path = util::attribute_to_str(e.attributes(), 2);
-                            let register_procedure = util::attribute_to_str(e.attributes(), 3);
-                            let protocol = util::attribute_to_str(e.attributes(), 4);
+                            let domain = util::attribute_to_string(e.attributes(), "domain");
+                            let port = util::attribute_to_i64(e.attributes(), "port");
+                            let path = util::attribute_to_string(e.attributes(), "path");
+                            let register_procedure = util::attribute_to_string(e.attributes(),
+                                                                               "registerProcedure");
+                            let protocol = util::attribute_to_string(e.attributes(), "protocol");
 
                             let mut cloud_builder = CloudBuilder::new();
-                            cloud_builder.domain(domain);
-                            cloud_builder.port(port);
-                            cloud_builder.path(path);
-                            cloud_builder.register_procedure(register_procedure);
-                            cloud_builder.protocol(protocol);
+                            cloud_builder.domain(domain.expect("Cloud Domain cannot be None").as_str());
+                            cloud_builder.port(port.expect("Cloud Port cannot be None"));
+                            cloud_builder.path(path.expect("Cloud Path cannot be None").as_str());
+                            cloud_builder.register_procedure(register_procedure.expect("Cloud Regoster Procedure cannot be None").as_str());
+                            cloud_builder.protocol(protocol.expect("Cloud Protocol cannot be None")
+                                .as_str());
 
                             channel_builder.cloud(Some(cloud_builder.finalize()));
                         }
@@ -100,14 +103,14 @@ impl ChannelReader {
                             name = "docs";
                         }
                         b"enclosure" => {
-                            let url = util::attribute_to_str(e.attributes(), 0);
-                            let length = util::attribute_to_i64(e.attributes(), 1);
-                            let enclosure_type = util::attribute_to_str(e.attributes(), 2);
+                            let url = util::attribute_to_string(e.attributes(), "url");
+                            let length = util::attribute_to_i64(e.attributes(), "length");
+                            let enclosure_type = util::attribute_to_string(e.attributes(), "type");
 
                             let mut enclosure_builder = EnclosureBuilder::new();
-                            enclosure_builder.url(url);
-                            enclosure_builder.length(length);
-                            enclosure_builder.enclosure_type(enclosure_type);
+                            enclosure_builder.url(url.expect("Enclosure Url cannot be None").as_str());
+                            enclosure_builder.length(length.expect("Enclosure Length cannot be None"));
+                            enclosure_builder.enclosure_type(enclosure_type.expect("Enclosure Type cannot be None").as_str());
 
                             item_builder.enclosure(Some(enclosure_builder.finalize()));
                         }
@@ -117,10 +120,10 @@ impl ChannelReader {
                         b"guid" => {
                             name = "guid";
 
-                            let permalink = util::attribute_to_bool(e.attributes(), 0);
+                            let permalink = util::attribute_to_bool(e.attributes(), "isPermalink");
 
                             guid_builder = GuidBuilder::new();
-                            guid_builder.permalink(Some(permalink));
+                            guid_builder.permalink(permalink);
                         }
                         b"height" => {
                             name = "height";
@@ -152,10 +155,10 @@ impl ChannelReader {
                         b"source" => {
                             name = "source";
 
-                            let url = util::attribute_to_str(e.attributes(), 0);
+                            let url = util::attribute_to_string(e.attributes(), "url");
 
                             source_builder = SourceBuilder::new();
-                            source_builder.url(url);
+                            source_builder.url(url.expect("Source Url cannot be None").as_str());
                         }
                         b"title" => {
                             name = "title";
@@ -202,8 +205,8 @@ impl ChannelReader {
                                 }
                                 "textInput" => {
                                     text_input_builder.description(e.into_string()
-                                                                    .unwrap()
-                                                                    .as_str());
+                                        .unwrap()
+                                        .as_str());
                                 }
                                 "item" => {
                                     item_builder.description(Some(e.into_string().unwrap()));
@@ -222,15 +225,15 @@ impl ChannelReader {
                         }
                         "height" => {
                             image_builder.height(Some(i64::from_str(e.into_string()
-                                                                     .unwrap()
-                                                                     .as_str())
-                                                          .expect(errors::str_to_i64_error())));
+                                    .unwrap()
+                                    .as_str())
+                                .expect(errors::str_to_i64_error())));
                         }
                         "hour" => {
                             channel_skip_hours.push(i64::from_str(e.into_string()
-                                                                   .unwrap()
-                                                                   .as_str())
-                                                        .expect(errors::str_to_i64_error()));
+                                    .unwrap()
+                                    .as_str())
+                                .expect(errors::str_to_i64_error()));
                         }
                         "language" => {
                             channel_builder.language(Some(e.into_string().unwrap()));
@@ -297,9 +300,9 @@ impl ChannelReader {
                         }
                         "ttl" => {
                             channel_builder.ttl(Some(i64::from_str(e.into_string()
-                                                                    .unwrap()
-                                                                    .as_str())
-                                                         .expect(errors::str_to_i64_error())));
+                                    .unwrap()
+                                    .as_str())
+                                .expect(errors::str_to_i64_error())));
                         }
                         "url" => {
                             image_builder.url(e.into_string().unwrap().as_str());
@@ -309,9 +312,9 @@ impl ChannelReader {
                         }
                         "width" => {
                             image_builder.width(Some(i64::from_str(e.into_string()
-                                                                    .unwrap()
-                                                                    .as_str())
-                                                         .expect(errors::str_to_i64_error())));
+                                    .unwrap()
+                                    .as_str())
+                                .expect(errors::str_to_i64_error())));
                         }
                         _ => (),
                     };

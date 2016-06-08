@@ -8,6 +8,12 @@ pub fn utf8_to_str_error() -> &'static str {
 }
 
 
+// vec get error
+pub fn vec_get_error() -> &'static str {
+    "Error executing get"
+}
+
+
 // str to bool error.
 pub fn str_to_bool_error() -> &'static str {
     "Error converting str to bool"
@@ -23,12 +29,6 @@ pub fn str_to_datetime_error() -> &'static str {
 // str to i64 error.
 pub fn str_to_i64_error() -> &'static str {
     "Error converting str to i64"
-}
-
-
-// element to string error.
-pub fn element_to_string_error() -> &'static str {
-    "Error converting element to string"
 }
 
 
