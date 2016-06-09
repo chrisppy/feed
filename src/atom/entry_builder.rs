@@ -52,7 +52,7 @@ impl EntryBuilder {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
     ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
@@ -281,12 +281,14 @@ impl EntryBuilder {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::EntryBuilder;
+    /// use feed::atom::{EntryBuilder, TextBuilder};
     ///
     /// fn main() {
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///     .id("http://newrustacean.com/show_notes/e014/")
-    ///     .title("e014: Stringing things along")
+    ///     .title(text)
     ///     .updated("2014-11-28T12:00:09+00:00")
     ///     .finalize();
     /// }

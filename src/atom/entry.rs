@@ -141,7 +141,7 @@ impl Entry {
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .content(Some(content))
     ///         .finalize();
-    ///     assert_eq!(text.to_owned(), entry.content().unwrap().text())
+    ///     assert_eq!(text_str.to_owned(), entry.content().unwrap().text())
     /// }
     /// ```
     pub fn content(self) -> Option<Text> {
@@ -199,7 +199,7 @@ impl Entry {
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .summary(Some(summary))
     ///         .finalize();
-    ///     assert_eq!(text.to_owned(), entry.summary().unwrap().text())
+    ///     assert_eq!(text_str.to_owned(), entry.summary().unwrap().text())
     /// }
     /// ```
     pub fn summary(self) -> Option<Text> {
@@ -333,7 +333,7 @@ impl Entry {
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .rights(Some(rights))
     ///         .finalize();
-    ///     assert_eq!(text.to_owned(), entry.rights().unwrap().text())
+    ///     assert_eq!(text_str.to_owned(), entry.rights().unwrap().text())
     /// }
     /// ```
     pub fn rights(self) -> Option<Text> {

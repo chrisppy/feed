@@ -46,7 +46,8 @@ impl AtomFeed {
     /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///     let title = "e014: Stringing things along";
+    ///     let text = TextBuilder::new().text(title).finalize();
     ///
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
@@ -299,8 +300,8 @@ impl AtomFeed {
     /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let text = "© 2005 John Doe";
-    ///     let rights = TextBuilder::new().text(text).finalize();
+    ///     let text_str = "© 2005 John Doe";
+    ///     let rights = TextBuilder::new().text(text_str).finalize();
     ///
     ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
     ///
@@ -310,7 +311,7 @@ impl AtomFeed {
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .rights(Some(rights))
     ///         .finalize();
-    ///     assert_eq!(text.to_owned(), feed.rights().unwrap().text())
+    ///     assert_eq!(text_str.to_owned(), feed.rights().unwrap().text())
     /// }
     /// ```
     pub fn rights(self) -> Option<Text> {
@@ -328,8 +329,8 @@ impl AtomFeed {
     /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
-    ///     let text = "Example";
-    ///     let subtitle = TextBuilder::new().text(text).finalize();
+    ///     let text_str = "Example";
+    ///     let subtitle = TextBuilder::new().text(text_str).finalize();
     ///
     ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
     ///
@@ -339,7 +340,7 @@ impl AtomFeed {
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .subtitle(Some(subtitle))
     ///         .finalize();
-    ///     assert_eq!(text.to_owned(), feed.subtitle().unwrap().text())
+    ///     assert_eq!(text_str.to_owned(), feed.subtitle().unwrap().text())
     /// }
     /// ```
     pub fn subtitle(self) -> Option<Text> {
@@ -363,12 +364,12 @@ impl AtomFeed {
     ///
     ///     let entry = EntryBuilder::new()
     ///         .id(id)
-    ///         .title(text)
+    ///         .title(text.clone())
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
     ///     let feed = AtomFeedBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title(text)
+    ///         .title(text.clone())
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .entries(Some(vec![entry]))
     ///         .finalize();

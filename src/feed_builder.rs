@@ -52,11 +52,13 @@ impl FeedBuilder {
     ///
     /// ```
     /// use feed::FeedBuilder;
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
+    ///
+    /// let text = TextBuilder::new().text("e014: Stringing things along").finalize();
     ///
     /// let atom_feed = AtomFeedBuilder::new()
     ///     .id("http://newrustacean.com/show_notes/e014/")
-    ///     .title("e014: Stringing things along")
+    ///     .title(text)
     ///     .updated("2014-11-28T12:00:09+00:00")
     ///     .finalize();
     /// let feed = FeedBuilder::new().feed(atom_feed).finalize();

@@ -51,11 +51,13 @@ impl AtomFeedBuilder {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let mut feed_builder = AtomFeedBuilder::new();
-    ///     feed_builder.title("e014: Stringing things along");
+    ///     feed_builder.title(text);
     /// }
     /// ```
     pub fn title(&mut self, title: Text) -> &mut AtomFeedBuilder {
@@ -278,12 +280,14 @@ impl AtomFeedBuilder {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::{AtomFeedBuilder, EntryBuilder};
+    /// use feed::atom::{AtomFeedBuilder, EntryBuilder, TextBuilder};
     ///
     /// fn main() {
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let entry = EntryBuilder::new()
     ///         .id("http://newrustacean.com/show_notes/e014/")
-    ///         .title("e014: Stringing things along")
+    ///         .title(text)
     ///         .updated("2014-11-28T12:00:09+00:00")
     ///         .finalize();
     ///     let mut feed_builder = AtomFeedBuilder::new();
@@ -303,12 +307,14 @@ impl AtomFeedBuilder {
     /// ```
     /// extern crate feed;
     ///
-    /// use feed::atom::AtomFeedBuilder;
+    /// use feed::atom::{AtomFeedBuilder, TextBuilder};
     ///
     /// fn main() {
+    ///     let text = TextBuilder::new().text("e014: Stringing things along").finalize();
+    ///
     ///     let feed = AtomFeedBuilder::new()
     ///     .id("http://newrustacean.com/show_notes/e014/")
-    ///     .title("e014: Stringing things along")
+    ///     .title(text)
     ///     .updated("2014-11-28T12:00:09+00:00")
     ///     .finalize();
     /// }
