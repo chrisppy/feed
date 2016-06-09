@@ -75,8 +75,8 @@ pub mod feedio;
 pub mod itunes;
 pub mod media;
 pub mod rss;
-mod util;
-mod errors;
+pub mod util;
+pub mod errors;
 
 extern crate chrono;
 extern crate curl;
