@@ -92,7 +92,7 @@ use rss::Channel;
 /// This `Feed` struct contains all the items that exist for the feeds.
 #[derive(Clone)]
 pub struct Feed {
-    channel: Option<Channel>,
+    channel: Channel,
     feed: Option<AtomFeed>,
 }
 
@@ -100,6 +100,6 @@ pub struct Feed {
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
 #[derive(Default)]
 pub struct FeedBuilder {
-    channel: Option<Channel>,
+    channel: Channel,
     feed: Option<AtomFeed>,
 }

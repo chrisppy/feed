@@ -21,7 +21,7 @@ impl Feed {
     /// let feed = FeedBuilder::new().finalize();
     /// let channel = feed.channel();
     /// ```
-    pub fn channel(self) -> Option<Channel> {
+    pub fn channel(self) -> Channel {
         self.channel
     }
 
@@ -64,6 +64,6 @@ impl Feed {
     /// let xml = feed.xml();
     /// ```
     pub fn xml(&self) -> Vec<u8> {
-        FeedWriter::new(self.channel.clone()).xml()
+        FeedWriter::new(self.channel.clone(), self.feed.clone()).xml()
     }
 }

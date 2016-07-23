@@ -41,7 +41,7 @@ impl FeedBuilder {
     /// let feed = FeedBuilder::new().channel(channel).finalize();
     /// ```
     pub fn channel(&mut self, channel: Channel) -> &mut FeedBuilder {
-        self.channel = Some(channel);
+        self.channel = channel;
         self
     }
 
@@ -81,7 +81,7 @@ impl FeedBuilder {
     /// fn main() {
     ///     let url = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
     ///     let feed = FeedBuilder::new().read_from_url(url).finalize();
-    ///     let channel = feed.channel().unwrap();
+    ///     let channel = feed.channel();
     ///
     ///     let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
     ///         + "Action Show! A show that covers everything geeks care about "
@@ -117,16 +117,11 @@ impl FeedBuilder {
         let body = response.get_body();
         let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
         debug!("feed xml:{}", feed_str);
-        if feed_str.contains("</rss>") {
-            self.channel = Some(ChannelReader::new(feed_str).channel());
-            if feed_str.contains("http://www.w3.org/2005/Atom/") {
-                self.feed = Some(FeedReader::new(feed_str, true).feed());
-            } else {
-                self.feed = None;
-            }
+        self.channel = ChannelReader::new(feed_str).channel();
+        if feed_str.contains("http://www.w3.org/2005/Atom/") {
+            self.feed = Some(FeedReader::new(feed_str).feed());
         } else {
-            self.channel = None;
-            self.feed = Some(FeedReader::new(feed_str, false).feed());
+            self.feed = None;
         }
 
         self
