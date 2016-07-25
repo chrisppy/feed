@@ -9,7 +9,7 @@ use errors;
 use feedio::FeedWriter;
 use quick_xml::{Element, XmlWriter};
 use quick_xml::Event::*;
-use rss::Channel;
+use rss::{Channel, Item};
 use std::io::Cursor;
 
 impl FeedWriter {
@@ -44,7 +44,7 @@ impl FeedWriter {
         rss_tag.push_attribute(b"version", "2.0");
         writer.write(Start(rss_tag)).expect(errors::tag_start_error(rss_tag_str).as_str());
 
-        write_channel_required(writer.clone(), channel.clone(), feed.clone());
+        write_channel(writer.clone(), channel.clone(), feed.clone());
 
         writer.write(End(Element::new(rss_tag_str)))
             .expect(errors::tag_end_error(rss_tag_str).as_str());
@@ -70,14 +70,41 @@ impl FeedWriter {
 }
 
 
-fn write_channel_required(mut writer: XmlWriter<Cursor<Vec<u8>>>,
-                          channel: Channel,
-                          feed: Option<AtomFeed>) {
+fn write_channel(mut writer: XmlWriter<Cursor<Vec<u8>>>,
+                 channel: Channel,
+                 feed: Option<AtomFeed>) {
     let channel_tag_str = "channel";
     let channel_tag = Element::new(channel_tag_str);
     writer.write(Start(channel_tag))
         .expect(errors::tag_start_error(channel_tag_str).as_str());
 
+    write_title(writer.clone(), channel.clone());
+    write_link(writer.clone(), channel.clone());
+    write_description(writer.clone(), channel.clone());
+    write_generator(writer.clone(), channel.clone());
+    write_docs(writer.clone(), channel.clone());
+    write_language(writer.clone(), channel.clone());
+    write_copyright(writer.clone(), channel.clone());
+    write_managing_editor(writer.clone(), channel.clone());
+    write_web_master(writer.clone(), channel.clone());
+    write_cloud(writer.clone(), channel.clone());
+    write_ttl(writer.clone(), channel.clone());
+    write_categories(writer.clone(), channel.clone());
+    write_rating(writer.clone(), channel.clone());
+    write_pub_date(writer.clone(), channel.clone());
+    write_last_build_date(writer.clone(), channel.clone());
+    write_image(writer.clone(), channel.clone());
+    write_text_input(writer.clone(), channel.clone());
+    write_skip_hours(writer.clone(), channel.clone());
+    write_skip_days(writer.clone(), channel.clone());
+    write_items(writer.clone(), channel.clone(), feed.clone());
+
+    writer.write(End(Element::new(channel_tag_str)))
+        .expect(errors::tag_end_error(channel_tag_str).as_str());
+}
+
+
+fn write_title(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     let title_tag_str = "title";
     let title_tag = Element::new(title_tag_str);
     writer.write(Start(title_tag)).expect(errors::tag_start_error(title_tag_str).as_str());
@@ -85,7 +112,10 @@ fn write_channel_required(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         .expect(errors::tag_text_error(title_tag_str).as_str());
     writer.write(End(Element::new(title_tag_str)))
         .expect(errors::tag_end_error(title_tag_str).as_str());
+}
 
+
+fn write_link(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     let link_tag_str = "link";
     let link_tag = Element::new(link_tag_str);
     writer.write(Start(link_tag)).expect(errors::tag_start_error(link_tag_str).as_str());
@@ -93,7 +123,10 @@ fn write_channel_required(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         .expect(errors::tag_text_error(link_tag_str).as_str());
     writer.write(End(Element::new(link_tag_str)))
         .expect(errors::tag_end_error(link_tag_str).as_str());
+}
 
+
+fn write_description(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     let description_tag_str = "description";
     let description_tag = Element::new(description_tag_str);
     writer.write(Start(description_tag))
@@ -102,17 +135,10 @@ fn write_channel_required(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         .expect(errors::tag_text_error(description_tag_str).as_str());
     writer.write(End(Element::new(description_tag_str)))
         .expect(errors::tag_end_error(description_tag_str).as_str());
-
-    write_channel_optional(writer.clone(), channel.clone(), feed.clone());
-
-    writer.write(End(Element::new(channel_tag_str)))
-        .expect(errors::tag_end_error(channel_tag_str).as_str());
 }
 
 
-fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
-                          channel: Channel,
-                          feed: Option<AtomFeed>) {
+fn write_generator(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.generator().is_some() {
         let generator_tag_str = "generator";
         let generator_tag = Element::new(generator_tag_str);
@@ -123,7 +149,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(generator_tag_str)))
             .expect(errors::tag_end_error(generator_tag_str).as_str());
     }
+}
 
+
+fn write_docs(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.docs().is_some() {
         let docs_tag_str = "docs";
         let docs_tag = Element::new(docs_tag_str);
@@ -134,7 +163,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(docs_tag_str)))
             .expect(errors::tag_end_error(docs_tag_str).as_str());
     }
+}
 
+
+fn write_language(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.language().is_some() {
         let language_tag_str = "language";
         let language_tag = Element::new(language_tag_str);
@@ -145,7 +177,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(language_tag_str)))
             .expect(errors::tag_end_error(language_tag_str).as_str());
     }
+}
 
+
+fn write_copyright(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.copyright().is_some() {
         let copyright_tag_str = "copyright";
         let copyright_tag = Element::new(copyright_tag_str);
@@ -156,7 +191,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(copyright_tag_str)))
             .expect(errors::tag_end_error(copyright_tag_str).as_str());
     }
+}
 
+
+fn write_managing_editor(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.managing_editor().is_some() {
         let managing_editor_tag_str = "managingEditor";
         let managing_editor_tag = Element::new(managing_editor_tag_str);
@@ -167,7 +205,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(managing_editor_tag_str)))
             .expect(errors::tag_end_error(managing_editor_tag_str).as_str());
     }
+}
 
+
+fn write_web_master(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.web_master().is_some() {
         let web_master_tag_str = "webMaster";
         let web_master_tag = Element::new(web_master_tag_str);
@@ -178,7 +219,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(web_master_tag_str)))
             .expect(errors::tag_end_error(web_master_tag_str).as_str());
     }
+}
 
+
+fn write_cloud(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.cloud().is_some() {
         let cloud_tag_str = "cloud";
         let mut cloud_tag = Element::new(cloud_tag_str);
@@ -194,7 +238,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(cloud_tag_str)))
             .expect(errors::tag_end_error(cloud_tag_str).as_str());
     }
+}
 
+
+fn write_ttl(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.ttl().is_some() {
         let ttl_tag_str = "ttl";
         let ttl_tag = Element::new(ttl_tag_str);
@@ -205,7 +252,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(ttl_tag_str)))
             .expect(errors::tag_end_error(ttl_tag_str).as_str());
     }
+}
 
+
+fn write_categories(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.categories().is_some() {
         for category in channel.categories().unwrap() {
             let category_tag_str = "category";
@@ -221,7 +271,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
                 .expect(errors::tag_end_error(category_tag_str).as_str());
         }
     }
+}
 
+
+fn write_rating(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.rating().is_some() {
         let rating_tag_str = "rating";
         let rating_tag = Element::new(rating_tag_str);
@@ -232,16 +285,10 @@ fn write_channel_optional(mut writer: XmlWriter<Cursor<Vec<u8>>>,
         writer.write(End(Element::new(rating_tag_str)))
             .expect(errors::tag_end_error(rating_tag_str).as_str());
     }
-
-    write_dates(writer.clone(), channel.clone());
-    write_image(writer.clone(), channel.clone());
-    write_text_input(writer.clone(), channel.clone());
-    write_skips(writer.clone(), channel.clone());
-    write_items(writer.clone(), channel.clone(), feed.clone());
 }
 
 
-fn write_dates(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
+fn write_pub_date(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.pub_date().is_some() {
         let pub_date_tag_str = "pubDate";
         let pub_date_tag = Element::new(pub_date_tag_str);
@@ -252,7 +299,10 @@ fn write_dates(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
         writer.write(End(Element::new(pub_date_tag_str)))
             .expect(errors::tag_end_error(pub_date_tag_str).as_str());
     }
+}
 
+
+fn write_last_build_date(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.last_build_date().is_some() {
         let last_build_date_tag_str = "lastBuildDate";
         let last_build_date_tag = Element::new(last_build_date_tag_str);
@@ -412,7 +462,8 @@ fn write_text_input(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     }
 }
 
-fn write_skips(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
+
+fn write_skip_hours(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.skip_hours().is_some() {
         let skip_hours_tag_str = "skipHours";
         let skip_hours_tag = Element::new(skip_hours_tag_str);
@@ -431,7 +482,10 @@ fn write_skips(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
         writer.write(End(Element::new(skip_hours_tag_str)))
             .expect(errors::tag_end_error(skip_hours_tag_str).as_str());
     }
+}
 
+
+fn write_skip_days(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     if channel.skip_days().is_some() {
         let skip_days_tag_str = "skipDays";
         let skip_days_tag = Element::new(skip_days_tag_str);
@@ -452,6 +506,7 @@ fn write_skips(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
     }
 }
 
+
 fn write_items(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel, feed: Option<AtomFeed>) {
     if channel.items().is_some() {
         for item in channel.items().unwrap() {
@@ -460,161 +515,202 @@ fn write_items(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel, feed: O
             writer.write(Start(item_tag))
                 .expect(errors::tag_start_error(item_tag_str).as_str());
 
-            if item.title().is_some() {
-                let item_title_tag_str = "title";
-                let item_title_tag = Element::new(item_title_tag_str);
-                writer.write(Start(item_title_tag))
-                    .expect(errors::tag_start_error(item_title_tag_str).as_str());
-                writer.write(Text(Element::new(item.title()
-                        .unwrap()
-                        .as_str())))
-                    .expect(errors::tag_text_error(item_title_tag_str).as_str());
-                writer.write(End(Element::new(item_title_tag_str)))
-                    .expect(errors::tag_end_error(item_title_tag_str).as_str());
-            }
-
-            if item.link().is_some() {
-                let item_link_tag_str = "link";
-                let item_link_tag = Element::new(item_link_tag_str);
-                writer.write(Start(item_link_tag))
-                    .expect(errors::tag_start_error(item_link_tag_str).as_str());
-                writer.write(Text(Element::new(item.link()
-                        .unwrap()
-                        .as_str())))
-                    .expect(errors::tag_text_error(item_link_tag_str).as_str());
-                writer.write(End(Element::new(item_link_tag_str)))
-                    .expect(errors::tag_end_error(item_link_tag_str).as_str());
-            }
-
-            if item.description().is_some() {
-                let item_description_tag_str = "description";
-                let item_description_tag = Element::new(item_description_tag_str);
-                writer.write(Start(item_description_tag))
-                    .expect(errors::tag_start_error(item_description_tag_str).as_str());
-                writer.write(Text(Element::new(item.description()
-                        .unwrap()
-                        .as_str())))
-                    .expect(errors::tag_text_error(item_description_tag_str).as_str());
-                writer.write(End(Element::new(item_description_tag_str)))
-                    .expect(errors::tag_end_error(item_description_tag_str).as_str());
-            }
-
-            if item.author().is_some() {
-                let item_author_tag_str = "author";
-                let item_author_tag = Element::new(item_author_tag_str);
-                writer.write(Start(item_author_tag))
-                    .expect(errors::tag_start_error(item_author_tag_str).as_str());
-                writer.write(Text(Element::new(item.author()
-                        .unwrap()
-                        .as_str())))
-                    .expect(errors::tag_text_error(item_author_tag_str).as_str());
-                writer.write(End(Element::new(item_author_tag_str)))
-                    .expect(errors::tag_end_error(item_author_tag_str).as_str());
-            }
-
-            if item.categories().is_some() {
-                for category in item.categories().unwrap() {
-                    let item_category_tag_str = "category";
-                    let mut item_category_tag = Element::new(item_category_tag_str);
-                    if category.domain().is_some() {
-                        item_category_tag.push_attribute(b"domain",
-                                                         category.domain()
-                                                             .unwrap()
-                                                             .as_str());
-                    }
-                    writer.write(Start(item_category_tag))
-                        .expect(errors::tag_start_error(item_category_tag_str).as_str());
-                    writer.write(Text(Element::new(category.category())))
-                        .expect(errors::tag_text_error(item_category_tag_str).as_str());
-                    writer.write(End(Element::new(item_category_tag_str)))
-                        .expect(errors::tag_end_error(item_category_tag_str).as_str());
-                }
-            }
-
-            if item.comments().is_some() {
-                let item_comments_tag_str = "comments";
-                let item_comments_tag = Element::new(item_comments_tag_str);
-                writer.write(Start(item_comments_tag))
-                    .expect(errors::tag_start_error(item_comments_tag_str).as_str());
-                writer.write(Text(Element::new(item.comments()
-                        .unwrap()
-                        .as_str())))
-                    .expect(errors::tag_text_error(item_comments_tag_str).as_str());
-                writer.write(End(Element::new(item_comments_tag_str)))
-                    .expect(errors::tag_end_error(item_comments_tag_str).as_str());
-            }
-
-            if item.enclosure().is_some() {
-                let item_enclosure_tag_str = "enclosure";
-                let mut item_enclosure_tag = Element::new(item_enclosure_tag_str);
-                item_enclosure_tag.push_attribute(b"url",
-                                                  item.enclosure()
-                                                      .unwrap()
-                                                      .url()
-                                                      .as_str());
-                item_enclosure_tag.push_attribute(b"length",
-                                                  item.enclosure()
-                                                      .unwrap()
-                                                      .length()
-                                                      .to_string()
-                                                      .as_str());
-                item_enclosure_tag.push_attribute(b"type",
-                                                  item.enclosure()
-                                                      .unwrap()
-                                                      .enclosure_type()
-                                                      .as_str());
-                writer.write(Start(item_enclosure_tag))
-                    .expect(errors::tag_start_error(item_enclosure_tag_str).as_str());
-
-            }
-
-            if item.guid().is_some() {
-                let item_guid_tag_str = "guid";
-                let mut item_guid_tag = Element::new(item_guid_tag_str);
-                item_guid_tag.push_attribute(b"isPermaLink",
-                                             item.guid()
-                                                 .unwrap()
-                                                 .permalink()
-                                                 .to_string()
-                                                 .as_str());
-                writer.write(Start(item_guid_tag))
-                    .expect(errors::tag_start_error(item_guid_tag_str).as_str());
-                writer.write(Text(Element::new(item.guid().unwrap().guid().as_str())))
-                    .expect(errors::tag_text_error(item_guid_tag_str).as_str());
-                writer.write(End(Element::new(item_guid_tag_str)))
-                    .expect(errors::tag_end_error(item_guid_tag_str).as_str());
-            }
-
-            if item.pub_date().is_some() {
-                let item_pub_date_tag_str = "pubDate";
-                let item_pub_date_tag = Element::new(item_pub_date_tag_str);
-                writer.write(Start(item_pub_date_tag))
-                    .expect(errors::tag_start_error(item_pub_date_tag_str).as_str());
-                writer.write(Text(Element::new(channel.pub_date().unwrap().to_rfc2822())))
-                    .expect(errors::tag_text_error(item_pub_date_tag_str).as_str());
-                writer.write(End(Element::new(item_pub_date_tag_str)))
-                    .expect(errors::tag_end_error(item_pub_date_tag_str).as_str());
-            }
-
-            if item.source().is_some() {
-                let item_source_tag_str = "source";
-                let mut item_source_tag = Element::new(item_source_tag_str);
-                item_source_tag.push_attribute(b"url",
-                                               item.source()
-                                                   .unwrap()
-                                                   .url()
-                                                   .to_string()
-                                                   .as_str());
-                writer.write(Start(item_source_tag))
-                    .expect(errors::tag_start_error(item_source_tag_str).as_str());
-                writer.write(Text(Element::new(item.source().unwrap().source().as_str())))
-                    .expect(errors::tag_text_error(item_source_tag_str).as_str());
-                writer.write(End(Element::new(item_source_tag_str)))
-                    .expect(errors::tag_end_error(item_source_tag_str).as_str());
-            }
+            write_item_title(writer.clone(), item.clone());
+            write_item_link(writer.clone(), item.clone());
+            write_item_description(writer.clone(), item.clone());
+            write_item_author(writer.clone(), item.clone());
+            write_item_categories(writer.clone(), item.clone());
+            write_item_comments(writer.clone(), item.clone());
+            write_item_enclosure(writer.clone(), item.clone());
+            write_item_guid(writer.clone(), item.clone());
+            write_item_pub_date(writer.clone(), item.clone());
+            write_item_source(writer.clone(), item.clone());
 
             writer.write(End(Element::new(item_tag_str)))
                 .expect(errors::tag_end_error(item_tag_str).as_str());
         }
+    }
+}
+
+
+fn write_item_title(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.title().is_some() {
+        let item_title_tag_str = "title";
+        let item_title_tag = Element::new(item_title_tag_str);
+        writer.write(Start(item_title_tag))
+            .expect(errors::tag_start_error(item_title_tag_str).as_str());
+        writer.write(Text(Element::new(item.title()
+                .unwrap()
+                .as_str())))
+            .expect(errors::tag_text_error(item_title_tag_str).as_str());
+        writer.write(End(Element::new(item_title_tag_str)))
+            .expect(errors::tag_end_error(item_title_tag_str).as_str());
+    }
+}
+
+
+fn write_item_link(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.link().is_some() {
+        let item_link_tag_str = "link";
+        let item_link_tag = Element::new(item_link_tag_str);
+        writer.write(Start(item_link_tag))
+            .expect(errors::tag_start_error(item_link_tag_str).as_str());
+        writer.write(Text(Element::new(item.link()
+                .unwrap()
+                .as_str())))
+            .expect(errors::tag_text_error(item_link_tag_str).as_str());
+        writer.write(End(Element::new(item_link_tag_str)))
+            .expect(errors::tag_end_error(item_link_tag_str).as_str());
+    }
+}
+
+
+fn write_item_description(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.description().is_some() {
+        let item_description_tag_str = "description";
+        let item_description_tag = Element::new(item_description_tag_str);
+        writer.write(Start(item_description_tag))
+            .expect(errors::tag_start_error(item_description_tag_str).as_str());
+        writer.write(Text(Element::new(item.description()
+                .unwrap()
+                .as_str())))
+            .expect(errors::tag_text_error(item_description_tag_str).as_str());
+        writer.write(End(Element::new(item_description_tag_str)))
+            .expect(errors::tag_end_error(item_description_tag_str).as_str());
+    }
+}
+
+
+fn write_item_author(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.author().is_some() {
+        let item_author_tag_str = "author";
+        let item_author_tag = Element::new(item_author_tag_str);
+        writer.write(Start(item_author_tag))
+            .expect(errors::tag_start_error(item_author_tag_str).as_str());
+        writer.write(Text(Element::new(item.author()
+                .unwrap()
+                .as_str())))
+            .expect(errors::tag_text_error(item_author_tag_str).as_str());
+        writer.write(End(Element::new(item_author_tag_str)))
+            .expect(errors::tag_end_error(item_author_tag_str).as_str());
+    }
+}
+
+
+fn write_item_categories(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.categories().is_some() {
+        for category in item.categories().unwrap() {
+            let item_category_tag_str = "category";
+            let mut item_category_tag = Element::new(item_category_tag_str);
+            if category.domain().is_some() {
+                item_category_tag.push_attribute(b"domain",
+                                                 category.domain()
+                                                     .unwrap()
+                                                     .as_str());
+            }
+            writer.write(Start(item_category_tag))
+                .expect(errors::tag_start_error(item_category_tag_str).as_str());
+            writer.write(Text(Element::new(category.category())))
+                .expect(errors::tag_text_error(item_category_tag_str).as_str());
+            writer.write(End(Element::new(item_category_tag_str)))
+                .expect(errors::tag_end_error(item_category_tag_str).as_str());
+        }
+    }
+}
+
+
+fn write_item_comments(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.comments().is_some() {
+        let item_comments_tag_str = "comments";
+        let item_comments_tag = Element::new(item_comments_tag_str);
+        writer.write(Start(item_comments_tag))
+            .expect(errors::tag_start_error(item_comments_tag_str).as_str());
+        writer.write(Text(Element::new(item.comments()
+                .unwrap()
+                .as_str())))
+            .expect(errors::tag_text_error(item_comments_tag_str).as_str());
+        writer.write(End(Element::new(item_comments_tag_str)))
+            .expect(errors::tag_end_error(item_comments_tag_str).as_str());
+    }
+}
+
+
+fn write_item_enclosure(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.enclosure().is_some() {
+        let item_enclosure_tag_str = "enclosure";
+        let mut item_enclosure_tag = Element::new(item_enclosure_tag_str);
+        item_enclosure_tag.push_attribute(b"url",
+                                          item.enclosure()
+                                              .unwrap()
+                                              .url()
+                                              .as_str());
+        item_enclosure_tag.push_attribute(b"length",
+                                          item.enclosure()
+                                              .unwrap()
+                                              .length()
+                                              .to_string()
+                                              .as_str());
+        item_enclosure_tag.push_attribute(b"type",
+                                          item.enclosure()
+                                              .unwrap()
+                                              .enclosure_type()
+                                              .as_str());
+        writer.write(Start(item_enclosure_tag))
+            .expect(errors::tag_start_error(item_enclosure_tag_str).as_str());
+
+    }
+}
+
+
+fn write_item_guid(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.guid().is_some() {
+        let item_guid_tag_str = "guid";
+        let mut item_guid_tag = Element::new(item_guid_tag_str);
+        item_guid_tag.push_attribute(b"isPermaLink",
+                                     item.guid()
+                                         .unwrap()
+                                         .permalink()
+                                         .to_string()
+                                         .as_str());
+        writer.write(Start(item_guid_tag))
+            .expect(errors::tag_start_error(item_guid_tag_str).as_str());
+        writer.write(Text(Element::new(item.guid().unwrap().guid().as_str())))
+            .expect(errors::tag_text_error(item_guid_tag_str).as_str());
+        writer.write(End(Element::new(item_guid_tag_str)))
+            .expect(errors::tag_end_error(item_guid_tag_str).as_str());
+    }
+}
+
+
+fn write_item_pub_date(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.pub_date().is_some() {
+        let item_pub_date_tag_str = "pubDate";
+        let item_pub_date_tag = Element::new(item_pub_date_tag_str);
+        writer.write(Start(item_pub_date_tag))
+            .expect(errors::tag_start_error(item_pub_date_tag_str).as_str());
+        writer.write(Text(Element::new(item.pub_date().unwrap().to_rfc2822())))
+            .expect(errors::tag_text_error(item_pub_date_tag_str).as_str());
+        writer.write(End(Element::new(item_pub_date_tag_str)))
+            .expect(errors::tag_end_error(item_pub_date_tag_str).as_str());
+    }
+}
+
+
+fn write_item_source(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
+    if item.source().is_some() {
+        let item_source_tag_str = "source";
+        let mut item_source_tag = Element::new(item_source_tag_str);
+        item_source_tag.push_attribute(b"url",
+                                       item.source()
+                                           .unwrap()
+                                           .url()
+                                           .to_string()
+                                           .as_str());
+        writer.write(Start(item_source_tag))
+            .expect(errors::tag_start_error(item_source_tag_str).as_str());
+        writer.write(Text(Element::new(item.source().unwrap().source().as_str())))
+            .expect(errors::tag_text_error(item_source_tag_str).as_str());
+        writer.write(End(Element::new(item_source_tag_str)))
+            .expect(errors::tag_end_error(item_source_tag_str).as_str());
     }
 }
