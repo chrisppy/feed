@@ -97,6 +97,7 @@ fn write_channel(mut writer: XmlWriter<Cursor<Vec<u8>>>,
     write_text_input(writer.clone(), channel.clone());
     write_skip_hours(writer.clone(), channel.clone());
     write_skip_days(writer.clone(), channel.clone());
+    write_atom_feed(writer.clone(), feed.clone());
     write_items(writer.clone(), channel.clone(), feed.clone());
 
     writer.write(End(Element::new(channel_tag_str)))
@@ -712,5 +713,102 @@ fn write_item_source(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
             .expect(errors::tag_text_error(item_source_tag_str).as_str());
         writer.write(End(Element::new(item_source_tag_str)))
             .expect(errors::tag_end_error(item_source_tag_str).as_str());
+    }
+}
+
+
+fn write_atom_feed(writer: XmlWriter<Cursor<Vec<u8>>>, feed_option: Option<AtomFeed>) {
+    if feed_option.is_some() {
+        let feed = feed_option.unwrap();
+
+        write_feed_id(writer.clone(), feed.clone());
+        write_feed_title(writer.clone(), feed.clone());
+        write_feed_updated(writer.clone(), feed.clone());
+        write_feed_categories(writer.clone(), feed.clone());
+        write_feed_authors(writer.clone(), feed.clone());
+    }
+}
+
+
+fn write_feed_id(mut writer: XmlWriter<Cursor<Vec<u8>>>, feed: AtomFeed) {
+    let id_tag_str = "atom:id";
+    let id_tag = Element::new(id_tag_str);
+    writer.write(Start(id_tag)).expect(errors::tag_start_error(id_tag_str).as_str());
+    writer.write(Text(Element::new(feed.id().as_str())))
+        .expect(errors::tag_text_error(id_tag_str).as_str());
+    writer.write(End(Element::new(id_tag_str)))
+        .expect(errors::tag_end_error(id_tag_str).as_str());
+}
+
+
+fn write_feed_title(mut writer: XmlWriter<Cursor<Vec<u8>>>, feed: AtomFeed) {
+    let title_tag_str = "atom:title";
+    let mut title_tag = Element::new(title_tag_str);
+    title_tag.push_attribute(b"type",
+                             feed.clone()
+                                 .title()
+                                 .text_type()
+                                 .as_str());
+    writer.write(Start(title_tag)).expect(errors::tag_start_error(title_tag_str).as_str());
+    writer.write(Text(Element::new(feed.clone().title().text().as_str())))
+        .expect(errors::tag_text_error(title_tag_str).as_str());
+    writer.write(End(Element::new(title_tag_str)))
+        .expect(errors::tag_end_error(title_tag_str).as_str());
+}
+
+
+fn write_feed_updated(mut writer: XmlWriter<Cursor<Vec<u8>>>, feed: AtomFeed) {
+    let updated_tag_str = "atom:updated";
+    let updated_tag = Element::new(updated_tag_str);
+    writer.write(Start(updated_tag)).expect(errors::tag_start_error(updated_tag_str).as_str());
+    writer.write(Text(Element::new(feed.updated().to_rfc3339())))
+        .expect(errors::tag_text_error(updated_tag_str).as_str());
+    writer.write(End(Element::new(updated_tag_str)))
+        .expect(errors::tag_end_error(updated_tag_str).as_str());
+}
+
+
+fn write_feed_authors(mut writer: XmlWriter<Cursor<Vec<u8>>>, feed: AtomFeed) {
+    if feed.clone().authors().is_some() {
+        for author in feed.clone().authors().unwrap() {
+            let author_tag_str = "atom:author";
+            let mut author_tag = Element::new(author_tag_str);
+            writer.write(Start(author_tag))
+                .expect(errors::tag_start_error(author_tag_str).as_str());
+
+
+
+            writer.write(End(Element::new(author_tag_str)))
+                .expect(errors::tag_end_error(author_tag_str).as_str());
+        }
+    }
+}
+
+
+fn write_feed_categories(mut writer: XmlWriter<Cursor<Vec<u8>>>, feed: AtomFeed) {
+    if feed.clone().categories().is_some() {
+        for category in feed.clone().categories().unwrap() {
+            let category_tag_str = "atom:category";
+            let mut category_tag = Element::new(category_tag_str);
+            if category.scheme().is_some() {
+                category_tag.push_attribute(b"scheme",
+                                            category.scheme()
+                                                .unwrap()
+                                                .as_str());
+            }
+            if category.label().is_some() {
+                category_tag.push_attribute(b"label",
+                                            category.label()
+                                                .unwrap()
+                                                .as_str());
+            }
+            category_tag.push_attribute(b"term",
+                                        category.term()
+                                            .as_str());
+            writer.write(Start(category_tag))
+                .expect(errors::tag_start_error(category_tag_str).as_str());
+            writer.write(End(Element::new(category_tag_str)))
+                .expect(errors::tag_end_error(category_tag_str).as_str());
+        }
     }
 }
