@@ -42,7 +42,7 @@ pub struct AtomFeed {
 
 
 /// This `FeedBuilder` struct creates the `Feed`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct AtomFeedBuilder {
     id: String,
     title: Text,
@@ -71,7 +71,7 @@ pub struct Person {
 
 
 /// This `PersonBuilder` struct creates the `Person`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct PersonBuilder {
     name: String,
     uri: Option<String>,
@@ -93,7 +93,7 @@ pub struct Link {
 
 
 /// This `LinkBuilder` struct creates the `Link`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct LinkBuilder {
     href: String,
     rel: Option<String>,
@@ -115,7 +115,7 @@ pub struct AtomCategory {
 
 
 /// This `CategoryBuilder` struct creates the `Category`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct AtomCategoryBuilder {
     term: String,
     scheme: Option<String>,
@@ -134,7 +134,7 @@ pub struct Generator {
 
 
 /// This `GeneratorBuilder` struct creates the `Generator`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct GeneratorBuilder {
     generator: String,
     uri: Option<String>,
@@ -152,7 +152,7 @@ pub struct Text {
 
 
 /// This `TextBuilder` struct creates the `Text`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct TextBuilder {
     text: String,
     text_type: Option<String>,
@@ -179,7 +179,7 @@ pub struct Entry {
 
 
 /// This `EntryBuilder` struct creates the `Entry`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct EntryBuilder {
     id: String,
     title: Text,

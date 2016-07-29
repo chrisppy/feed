@@ -164,6 +164,10 @@ impl LinkBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> Link {
+        if self.href.is_empty() {
+            panic!(errors::empty_string_error("Atom Link href"));
+        }
+
         let href = self.href.clone();
         Link {
             href: Url::parse(href.as_str()).expect(errors::url_parse_error(href.as_str()).as_str()),

@@ -12,19 +12,21 @@ use atom::AtomFeed;
 use rss::Channel;
 
 /// This `ChannelReader` struct parses the xml feed to the `Channel`.
+#[derive(Clone)]
 pub struct ChannelReader {
     channel: Channel,
 }
 
 
 /// This `FeedReader` struct parses the xml feed to the `AtomFeed`.
+#[derive(Clone)]
 pub struct FeedReader {
     feed: AtomFeed,
 }
 
 
 /// This `FeedWriter` struct creates the xml from the `Channel`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct FeedWriter {
     xml: Vec<u8>,
 }

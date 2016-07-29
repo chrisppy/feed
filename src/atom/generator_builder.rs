@@ -103,6 +103,10 @@ impl GeneratorBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> Generator {
+        if self.generator.is_empty() {
+            panic!(errors::empty_string_error("Atom Generator generator"));
+        }
+
         let mut uri_option: Option<Url> = None;
         if self.uri.is_some() {
             let uri = self.uri.clone().unwrap();

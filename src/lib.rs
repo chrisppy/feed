@@ -33,7 +33,7 @@
 //! fn main() {
 //!     let url = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
 //!     let feed = FeedBuilder::new().read_from_url(url).finalize();
-//!     let channel = feed.channel().unwrap();
+//!     let channel = feed.channel();
 //!     println!("Title: {}", channel.title());
 //! }
 //! ```
@@ -98,7 +98,7 @@ pub struct Feed {
 
 
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
-#[derive(Default)]
+#[derive(Clone)]
 pub struct FeedBuilder {
     channel: Channel,
     feed: Option<AtomFeed>,

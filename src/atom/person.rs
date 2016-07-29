@@ -38,6 +38,7 @@ impl Person {
     /// fn main() {
     ///     let uri = "http://www.chriskrycho.com/".to_owned();
     ///     let person = PersonBuilder::new()
+    ///         .name("Chris Krycho")
     ///         .uri(Some(uri.clone()))
     ///         .finalize();
     ///     assert_eq!(uri.clone(), person.uri().unwrap().into_string());
@@ -57,6 +58,7 @@ impl Person {
     ///
     /// let email = "chris@chriskrycho.com";
     /// let person = PersonBuilder::new()
+    ///         .name("Chris Krycho")
     ///     .email(Some(email.to_owned()))
     ///     .finalize();
     /// assert_eq!(Some(email.to_owned()), person.email());

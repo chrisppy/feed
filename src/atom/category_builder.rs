@@ -102,6 +102,10 @@ impl AtomCategoryBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> AtomCategory {
+        if self.term.is_empty() {
+            panic!(errors::empty_string_error("Atom Category term"));
+        }
+
         let mut scheme_option: Option<Url> = None;
         if self.scheme.is_some() {
             let scheme = self.scheme.clone().unwrap();

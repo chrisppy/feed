@@ -90,10 +90,16 @@ pub fn attribute_to_string(attributes: Attributes, attr_name: &str) -> Option<St
 
     let attrs = attributes.clone().map(|a| a.unwrap().1).collect::<Vec<_>>();
 
+    println!("name_vec {:?}", name_vec);
+
+    println!("attr_name {:?}", attr_name);
+
     if name_vec.binary_search(&attr_name.to_owned()).is_ok() {
         let index = name_vec.binary_search(&attr_name.to_owned()).unwrap();
         let attr = attrs.get(index).expect(errors::vec_get_error());
         let attr_str = str::from_utf8(attr).expect(errors::utf8_to_str_error());
+
+        println!("attr {:?}", attr_str);
 
         return Some(attr_str.to_owned());
     } else {

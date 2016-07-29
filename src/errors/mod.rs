@@ -88,6 +88,12 @@ pub fn invalid_str_error(tag: &str, string: &str) -> String {
 }
 
 
+/// empty string error
+pub fn empty_string_error(item: &str) -> String {
+    format!("{} cannot be an empty string", item)
+}
+
+
 /// url parse error
 pub fn url_parse_error(url: &str) -> String {
     format!("Error parsing url: {}", url)

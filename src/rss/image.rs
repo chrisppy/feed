@@ -5,6 +5,7 @@
 //! The fields under image can be retrieved by using the methods under `Image`.
 
 use rss::Image;
+use url::Url;
 
 impl Image {
     /// Get the url that exists under `Image`.
@@ -17,10 +18,12 @@ impl Image {
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     /// let image = ImageBuilder::new()
     ///     .url(url)
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .finalize();
-    /// assert_eq!(url.to_owned(), image.url());
+    /// assert_eq!(url.to_owned(), image.url().into_string());
     /// ```
-    pub fn url(&self) -> String {
+    pub fn url(&self) -> Url {
         self.url.clone()
     }
 
@@ -35,6 +38,8 @@ impl Image {
     /// let title = "LAS 300 Logo";
     /// let image = ImageBuilder::new()
     ///     .title(title)
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .finalize();
     /// assert_eq!(title.to_owned(), image.title());
     /// ```
@@ -50,13 +55,15 @@ impl Image {
     /// ```
     /// use feed::rss::ImageBuilder;
     ///
-    /// let link = "http://www.jupiterbroadcasting.com";
+    /// let link = "http://www.jupiterbroadcasting.com/";
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
     ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(link.to_owned(), image.link());
+    /// assert_eq!(link.to_owned(), image.link().into_string());
     /// ```
-    pub fn link(&self) -> String {
+    pub fn link(&self) -> Url {
         self.link.clone()
     }
 
@@ -70,6 +77,9 @@ impl Image {
     ///
     /// let default: i64 = 88;
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .width(None)
     ///     .finalize();
     /// assert_eq!(default, image.width());
@@ -80,6 +90,9 @@ impl Image {
     ///
     /// let width: i64 = 60;
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .width(Some(width))
     ///     .finalize();
     /// assert_eq!(width, image.width());
@@ -91,6 +104,9 @@ impl Image {
     /// let width: i64 = 777;
     /// let max: i64 = 144;
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .width(Some(width))
     ///     .finalize();
     /// assert_eq!(max, image.width());
@@ -109,6 +125,9 @@ impl Image {
     ///
     /// let default: i64 = 31;
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .height(None)
     ///     .finalize();
     /// assert_eq!(default, image.height());
@@ -119,6 +138,9 @@ impl Image {
     ///
     /// let height: i64 = 60;
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .height(Some(height))
     ///     .finalize();
     /// assert_eq!(height, image.height());
@@ -130,6 +152,9 @@ impl Image {
     /// let height: i64 = 777;
     /// let max: i64 = 400;
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .height(Some(height))
     ///     .finalize();
     /// assert_eq!(max, image.height());
@@ -147,6 +172,9 @@ impl Image {
     /// use feed::rss::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .description(None)
     ///     .finalize();
     /// assert!(image.description().is_none());
@@ -157,6 +185,9 @@ impl Image {
     ///
     /// let description_string = "This is a test".to_owned();
     /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
     ///     .description(Some(description_string.clone()))
     ///     .finalize();
     /// let description_option = image.description();

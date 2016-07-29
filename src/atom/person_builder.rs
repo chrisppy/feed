@@ -95,6 +95,10 @@ impl PersonBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> Person {
+        if self.name.is_empty() {
+            panic!(errors::empty_string_error("Atom Person name"));
+        }
+
         let mut uri_option: Option<Url> = None;
         if self.uri.is_some() {
             let uri = self.uri.clone().unwrap();

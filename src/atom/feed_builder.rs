@@ -320,6 +320,13 @@ impl AtomFeedBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> AtomFeed {
+        if self.id.is_empty() {
+            panic!(errors::empty_string_error("Atom id"));
+        }
+        if self.updated.is_empty() {
+            panic!(errors::empty_string_error("Atom updated"));
+        }
+
         let mut icon_option: Option<Url> = None;
         if self.icon.is_some() {
             let url = Url::parse(self.icon.clone().unwrap().as_str())

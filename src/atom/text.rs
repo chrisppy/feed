@@ -44,6 +44,7 @@ impl Text {
     /// fn main() {
     ///     let text_type = "text";
     ///     let text = TextBuilder::new()
+    ///         .text("Test")
     ///         .text_type(Some(text_type.to_owned()))
     ///         .finalize();
     ///     assert_eq!(text_type.to_owned(), text.text_type());

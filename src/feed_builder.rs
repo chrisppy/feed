@@ -10,7 +10,7 @@ use errors;
 use Feed;
 use FeedBuilder;
 use feedio::{ChannelReader, FeedReader};
-use rss::Channel;
+use rss::{Channel, ChannelBuilder};
 use std::str;
 use url::Url;
 
@@ -22,10 +22,15 @@ impl FeedBuilder {
     /// ```
     /// use feed::FeedBuilder;
     ///
-    /// let feed = FeedBuilder::new().finalize();
+    /// let feed = FeedBuilder::new();
     /// ```
     pub fn new() -> FeedBuilder {
-        FeedBuilder::default()
+        let channel = ChannelBuilder::default().finalize();
+        let feed = None;
+        FeedBuilder {
+            channel: channel,
+            feed: feed,
+        }
     }
 
 
@@ -37,8 +42,12 @@ impl FeedBuilder {
     /// use feed::FeedBuilder;
     /// use feed::rss::{Channel, ChannelBuilder};
     ///
-    /// let channel = ChannelBuilder::new().finalize();
-    /// let feed = FeedBuilder::new().channel(channel).finalize();
+    /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
+    ///     .finalize();
+    /// let feed = FeedBuilder::new().channel(channel);
     /// ```
     pub fn channel(&mut self, channel: Channel) -> &mut FeedBuilder {
         self.channel = channel;
@@ -61,7 +70,7 @@ impl FeedBuilder {
     ///     .title(text)
     ///     .updated("2014-11-28T12:00:09+00:00")
     ///     .finalize();
-    /// let feed = FeedBuilder::new().feed(atom_feed).finalize();
+    /// let feed = FeedBuilder::new().feed(atom_feed);
     /// ```
     pub fn feed(&mut self, feed: AtomFeed) -> &mut FeedBuilder {
         self.feed = Some(feed);
@@ -93,7 +102,7 @@ impl FeedBuilder {
     ///         + "http://reinventedsoftware.com/feeder/";
     ///
     ///     assert_eq!("The Linux Action Show! OGG".to_owned(), channel.title());
-    ///     assert_eq!("http://www.jupiterbroadcasting.com".to_owned(), channel.link());
+    ///     assert_eq!("http://www.jupiterbroadcasting.com/".to_owned(), channel.link().into_string());
     ///     assert_eq!(description.as_ref(), channel.description());
     ///     assert_eq!(Some(generator), channel.generator());
     ///     assert_eq!(Some("http://blogs.law.harvard.edu/tech/rss".to_owned()), channel.docs());
@@ -134,8 +143,15 @@ impl FeedBuilder {
     ///
     /// ```
     /// use feed::FeedBuilder;
+    /// use feed::rss::ChannelBuilder;
     ///
-    /// let feed = FeedBuilder::new().finalize();
+    /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
+    ///     .finalize();
+    ///
+    /// let feed = FeedBuilder::new().channel(channel).finalize();
     /// ```
     pub fn finalize(&self) -> Feed {
         Feed {

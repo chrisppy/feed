@@ -43,6 +43,7 @@ impl AtomCategory {
     /// fn main() {
     ///     let scheme = "http://www.example.com/".to_owned();
     ///     let category = AtomCategoryBuilder::new()
+    ///         .term("rust")
     ///         .scheme(Some(scheme.clone()))
     ///         .finalize();
     ///     assert_eq!(scheme.clone(), category.scheme().unwrap().into_string());
@@ -65,6 +66,7 @@ impl AtomCategory {
     /// fn main() {
     ///     let label = "General";
     ///     let category = AtomCategoryBuilder::new()
+    ///         .term("rust")
     ///         .label(Some(label.to_owned()))
     ///         .finalize();
     ///     assert_eq!(Some(label.to_owned()), category.label());

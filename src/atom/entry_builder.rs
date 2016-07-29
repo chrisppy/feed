@@ -294,6 +294,13 @@ impl EntryBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> Entry {
+        if self.id.is_empty() {
+            panic!(errors::empty_string_error("Atom Entry id"));
+        }
+        if self.updated.is_empty() {
+            panic!(errors::empty_string_error("Atom Entry updated"));
+        }
+
         let mut published_option: Option<DateTime<FixedOffset>> = None;
         if self.published.is_some() {
             let date = DateTime::parse_from_rfc3339(self.published.clone().unwrap().as_str())

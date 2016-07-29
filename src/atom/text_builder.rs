@@ -87,6 +87,10 @@ impl TextBuilder {
     /// }
     /// ```
     pub fn finalize(&self) -> Text {
+        if self.text.is_empty() {
+            panic!(errors::empty_string_error("Atom text"));
+        }
+
         let mut text_type = self.text_type.clone();
         if text_type.is_none() {
             text_type = Some("text".to_owned());

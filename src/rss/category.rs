@@ -6,6 +6,7 @@
 //! `Category`.
 
 use rss::Category;
+use url::Url;
 
 impl Category {
     /// Get the category that exists under `Category`.
@@ -33,26 +34,28 @@ impl Category {
     /// ```
     /// use feed::rss::CategoryBuilder;
     ///
-    /// let domain_string = "http://jupiterbroadcasting.com".to_owned();
+    /// let domain_string = "http://jupiterbroadcasting.com/".to_owned();
     /// let category = CategoryBuilder::new()
+    ///     .category("Title")
     ///     .domain(Some(domain_string.clone()))
     ///     .finalize();
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_some());
     /// let domain = domain_option.unwrap();
-    /// assert_eq!(domain_string.clone(), domain);
+    /// assert_eq!(domain_string.clone(), domain.into_string());
     /// ```
     ///
     /// ```
     /// use feed::rss::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
+    ///     .category("Title")
     ///     .domain(None)
     ///     .finalize();
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_none());
     /// ```
-    pub fn domain(&self) -> Option<String> {
+    pub fn domain(&self) -> Option<Url> {
         self.domain.clone()
     }
 }

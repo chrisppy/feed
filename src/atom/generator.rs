@@ -44,6 +44,7 @@ impl Generator {
     /// fn main() {
     ///     let uri = "http://www.example.com/myblog.php".to_owned();
     ///     let generator = GeneratorBuilder::new()
+    ///         .generator("Example Toolkit")
     ///         .uri(Some(uri.clone()))
     ///         .finalize();
     ///     assert_eq!(uri.clone(), generator.uri().unwrap().into_string());
@@ -66,6 +67,7 @@ impl Generator {
     /// fn main() {
     ///     let version = "General";
     ///     let generator = GeneratorBuilder::new()
+    ///         .generator("Example Toolkit")
     ///         .version(Some(version.to_owned()))
     ///         .finalize();
     ///     assert_eq!(Some(version.to_owned()), generator.version());

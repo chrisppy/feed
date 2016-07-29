@@ -5,6 +5,7 @@
 //! The fields under enclosure can be retrieved by using the methods under `Enclosure`.
 
 use rss::Enclosure;
+use url::Url;
 
 impl Enclosure {
     /// Get the url that exists under `Enclosure`.
@@ -18,10 +19,11 @@ impl Enclosure {
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_ref())
+    ///     .enclosure_type("audio/ogg")
     ///     .finalize();
-    /// assert_eq!(url.to_owned(), enclosure.url())
+    /// assert_eq!(url.to_owned(), enclosure.url().into_string())
     /// ```
-    pub fn url(&self) -> String {
+    pub fn url(&self) -> Url {
         self.url.clone()
     }
 
@@ -35,7 +37,9 @@ impl Enclosure {
     ///
     /// let length: i64 = 70772893;
     /// let enclosure = EnclosureBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/")
     ///     .length(length)
+    ///     .enclosure_type("audio/ogg")
     ///     .finalize();
     /// assert_eq!(length, enclosure.length())
     /// ```
@@ -53,6 +57,7 @@ impl Enclosure {
     ///
     /// let enclosure_type = "audio/ogg";
     /// let enclosure = EnclosureBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/")
     ///     .enclosure_type(enclosure_type)
     ///     .finalize();
     /// assert_eq!(enclosure_type.to_owned(), enclosure.enclosure_type())

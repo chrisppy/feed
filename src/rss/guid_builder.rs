@@ -4,6 +4,7 @@
 
 //! The fields can be set for guid by using the methods under `GuidBuilder`.
 
+use errors;
 use rss::{Guid, GuidBuilder};
 
 impl GuidBuilder {
@@ -70,6 +71,9 @@ impl GuidBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Guid {
+        if self.guid.is_empty() {
+            panic!(errors::empty_string_error("Guid guid"));
+        }
         Guid {
             permalink: self.permalink,
             guid: self.guid.clone(),

@@ -4,11 +4,10 @@
 
 //! The fields can be set for item by using the methods under `ItemBuilder`.
 
-use rss::{Category, Enclosure, Guid, Source};
-use util;
 use errors;
-
-use rss::{Item, ItemBuilder};
+use rss::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
+use url::Url;
+use util;
 
 impl ItemBuilder {
     /// Construct a new `ItemBuilder` and return default values.
@@ -96,7 +95,9 @@ impl ItemBuilder {
     /// ```
     /// use feed::rss::{CategoryBuilder, ItemBuilder};
     ///
-    /// let category = CategoryBuilder::new().finalize();
+    /// let category = CategoryBuilder::new()
+    ///     .category("Title")
+    ///     .finalize();
     /// let categories = vec![category];
     ///
     /// let mut item_builder = ItemBuilder::new();
@@ -131,7 +132,10 @@ impl ItemBuilder {
     /// ```
     /// use feed::rss::{EnclosureBuilder, ItemBuilder};
     ///
-    /// let enclosure = EnclosureBuilder::new().finalize();
+    /// let enclosure = EnclosureBuilder::new()
+    ///     .url("http://www.jupiterbroadcasting.com/")
+    ///     .enclosure_type("audio/ogg")
+    ///     .finalize();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.enclosure(Some(enclosure));
@@ -149,7 +153,9 @@ impl ItemBuilder {
     /// ```
     /// use feed::rss::{GuidBuilder, ItemBuilder};
     ///
-    /// let guid = GuidBuilder::new().finalize();
+    /// let guid = GuidBuilder::new()
+    ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
+    ///     .finalize();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.guid(Some(guid));
@@ -183,7 +189,10 @@ impl ItemBuilder {
     /// ```
     /// use feed::rss::{ItemBuilder, SourceBuilder};
     ///
-    /// let source = SourceBuilder::new().finalize();
+    /// let source = SourceBuilder::new()
+    ///     .source("Tomalak's Realm")
+    ///     .url("http://www.jupiterbroadcasting.com/")
+    ///     .finalize();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.source(Some(source));
@@ -218,9 +227,18 @@ impl ItemBuilder {
         if self.title.is_none() && self.description.is_none() {
             panic!(errors::item_required_field_error());
         }
+
+        let mut link = None;
+        if self.link.clone().is_some() {
+            let link_str = self.link.clone().unwrap();
+            let url = Url::parse(link_str.as_str())
+                .expect(errors::url_parse_error(link_str.as_str()).as_str());
+            link = Some(url);
+        }
+
         Item {
             title: self.title.clone(),
-            link: self.link.clone(),
+            link: link,
             description: self.description.clone(),
             author: self.author.clone(),
             categories: self.categories.clone(),

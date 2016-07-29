@@ -15,6 +15,7 @@ impl Guid {
     /// use feed::rss::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
+    ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
     ///     .permalink(None)
     ///     .finalize();
     /// assert!(guid.permalink());
@@ -25,6 +26,7 @@ impl Guid {
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
+    ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
     ///     .permalink(Some(permalink))
     ///     .finalize();
     /// assert_eq!(permalink, guid.permalink());
@@ -35,6 +37,7 @@ impl Guid {
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
+    ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
     ///     .permalink(Some(permalink))
     ///     .finalize();
     /// assert_eq!(permalink, guid.permalink());
