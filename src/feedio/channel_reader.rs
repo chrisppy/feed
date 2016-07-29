@@ -20,7 +20,16 @@ impl ChannelReader {
     /// ```
     /// use feed::feedio::ChannelReader;
     ///
-    /// let feed_reader = ChannelReader::new("String");
+    /// let rss = r#"<?xml version="1.0" encoding="UTF-8"?>
+    ///             <rss version="2.0">
+    ///                  <channel>
+    ///                      <title>The Linux Action Show! OGG</title>
+    ///                      <link>http://www.jupiterbroadcasting.com</link>
+    ///                      <description>Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!</description>
+    ///                  </channel>
+    ///              </rss>"#;
+    ///
+    /// ChannelReader::new(rss);
     /// ```
     pub fn new(feed: &str) -> ChannelReader {
         let feed_string = feed.to_owned();
@@ -40,15 +49,20 @@ impl ChannelReader {
         let mut element = "channel";
         let mut name = "";
 
+        let mut image_tag_present = false;
+        let mut text_input_tag_present = false;
+
         let reader = XmlReader::from(&*feed_string).trim_text(true);
         for r in reader {
             match r {
                 Ok(Event::Start(ref e)) => {
                     match e.name() {
                         b"image" => {
+                            image_tag_present = true;
                             element = "image";
                         }
                         b"textInput" => {
+                            text_input_tag_present = true;
                             element = "textInput";
                         }
                         b"item" => {
@@ -333,12 +347,21 @@ impl ChannelReader {
                             };
                         }
                         b"channel" => {
+                            let mut image = None;
+                            if image_tag_present {
+                                image = Some(image_builder.finalize());
+                            }
+                            let mut text_input = None;
+                            if text_input_tag_present {
+                                text_input = Some(text_input_builder.finalize());
+                            }
+
                             channel_builder.categories(Some(channel_categories.clone()));
-                            channel_builder.image(Some(image_builder.finalize()));
+                            channel_builder.image(image);
                             channel_builder.items(Some(items.clone()));
                             channel_builder.skip_days(Some(channel_skip_days.clone()));
                             channel_builder.skip_hours(Some(channel_skip_hours.clone()));
-                            channel_builder.text_input(Some(text_input_builder.finalize()));
+                            channel_builder.text_input(text_input);
                         }
                         b"item" => {
                             item_builder.categories(Some(item_categories.clone()));
@@ -368,8 +391,17 @@ impl ChannelReader {
     /// ```
     /// use feed::feedio::ChannelReader;
     ///
-    /// let feed_reader = ChannelReader::new("String");
-    /// let channel = feed_reader.channel();
+    /// let rss = r#"<?xml version="1.0" encoding="UTF-8"?>
+    ///             <rss version="2.0">
+    ///                  <channel>
+    ///                      <title>The Linux Action Show! OGG</title>
+    ///                      <link>http://www.jupiterbroadcasting.com</link>
+    ///                      <description>Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!</description>
+    ///                  </channel>
+    ///              </rss>"#;
+    ///
+    /// let feed_reader = ChannelReader::new(rss);
+    /// feed_reader.channel();
     /// ```
     pub fn channel(self) -> Channel {
         self.channel.clone()

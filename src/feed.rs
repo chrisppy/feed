@@ -15,11 +15,16 @@ impl Feed {
     /// # Examples
     ///
     /// ```
-    /// use feed::{Feed, FeedBuilder};
-    /// use feed::rss::Channel;
+    /// use feed::FeedBuilder;
     ///
-    /// let feed = FeedBuilder::new().finalize();
-    /// let channel = feed.channel();
+    /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
+    ///     .finalize();
+    ///
+    /// let feed = FeedBuilder::new().channel(channel).finalize();
+    /// feed.channel();
     /// ```
     pub fn channel(self) -> Channel {
         self.channel

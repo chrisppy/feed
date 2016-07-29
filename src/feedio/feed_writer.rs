@@ -23,7 +23,7 @@ impl FeedWriter {
     /// let feed_reader = ChannelReader::new("String");
     /// let channel = feed_reader.channel();
     ///
-    /// let feed_writer = FeedWriter::new(channel, None);
+    /// FeedWriter::new(channel, None);
     /// ```
     pub fn new(channel: Channel, feed: Option<AtomFeed>) -> FeedWriter {
         let mut writer = XmlWriter::new(Cursor::new(Vec::new()));
@@ -62,7 +62,7 @@ impl FeedWriter {
     /// let feed_reader = ChannelReader::new("String");
     /// let channel = feed_reader.channel();
     ///
-    /// let xml = FeedWriter::new(channel, None).xml();
+    /// FeedWriter::new(channel, None).xml();
     /// ```
     pub fn xml(&self) -> Vec<u8> {
         self.xml.clone()

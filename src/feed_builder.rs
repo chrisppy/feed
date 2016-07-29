@@ -22,7 +22,7 @@ impl FeedBuilder {
     /// ```
     /// use feed::FeedBuilder;
     ///
-    /// let feed = FeedBuilder::new();
+    /// FeedBuilder::new();
     /// ```
     pub fn new() -> FeedBuilder {
         let channel = ChannelBuilder::default().finalize();
@@ -47,7 +47,7 @@ impl FeedBuilder {
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .description("Description")
     ///     .finalize();
-    /// let feed = FeedBuilder::new().channel(channel);
+    /// FeedBuilder::new().channel(channel);
     /// ```
     pub fn channel(&mut self, channel: Channel) -> &mut FeedBuilder {
         self.channel = channel;
@@ -62,6 +62,13 @@ impl FeedBuilder {
     /// ```
     /// use feed::FeedBuilder;
     /// use feed::atom::{AtomFeedBuilder, TextBuilder};
+    /// use rss::ChannelBuilder;
+    ///
+    /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
+    ///     .finalize();
     ///
     /// let text = TextBuilder::new().text("e014: Stringing things along").finalize();
     ///
@@ -70,7 +77,7 @@ impl FeedBuilder {
     ///     .title(text)
     ///     .updated("2014-11-28T12:00:09+00:00")
     ///     .finalize();
-    /// let feed = FeedBuilder::new().feed(atom_feed);
+    /// FeedBuilder::new().channel(channel).feed(Some(atom_feed));
     /// ```
     pub fn feed(&mut self, feed: AtomFeed) -> &mut FeedBuilder {
         self.feed = Some(feed);
@@ -151,7 +158,7 @@ impl FeedBuilder {
     ///     .description("Description")
     ///     .finalize();
     ///
-    /// let feed = FeedBuilder::new().channel(channel).finalize();
+    /// FeedBuilder::new().channel(channel).finalize();
     /// ```
     pub fn finalize(&self) -> Feed {
         Feed {

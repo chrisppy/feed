@@ -18,7 +18,20 @@ impl FeedReader {
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let feed_reader = FeedReader::new("String");
+    /// let rss = r#"<?xml version="1.0" encoding="UTF-8"?>
+    ///             <rss xmlns:atom="http://www.w3.org/2005/Atom"
+    ///                  version="2.0">
+    ///                  <channel>
+    ///                      <title>The Linux Action Show! OGG</title>
+    ///                      <atom:title>The Linux Action Show! OGG</atom:title>
+    ///                      <link>http://www.jupiterbroadcasting.com</link>
+    ///                      <atom:id>http://www.jupiterbroadcasting.com</atom:id>
+    ///                      <atom:updated>2003-12-13T18:30:02Z</atom:updated>
+    ///                      <description>Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!</description>
+    ///                  </channel>
+    ///              </rss>"#;
+    ///
+    /// FeedReader::new(rss);
     /// ```
     pub fn new(feed: &str) -> FeedReader {
         let feed_string = feed.to_owned();
@@ -336,8 +349,21 @@ impl FeedReader {
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let feed_reader = FeedReader::new("String");
-    /// let channel = feed_reader.feed();
+    /// let rss = r#"<?xml version="1.0" encoding="UTF-8"?>
+    ///             <rss xmlns:atom="http://www.w3.org/2005/Atom"
+    ///                  version="2.0">
+    ///                  <channel>
+    ///                      <title>The Linux Action Show! OGG</title>
+    ///                      <atom:title>The Linux Action Show! OGG</atom:title>
+    ///                      <link>http://www.jupiterbroadcasting.com</link>
+    ///                      <atom:id>http://www.jupiterbroadcasting.com</atom:id>
+    ///                      <atom:updated>2003-12-13T18:30:02Z</atom:updated>
+    ///                      <description>Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!</description>
+    ///                  </channel>
+    ///              </rss>"#;
+    ///
+    /// let feed_reader = FeedReader::new(rss);
+    /// feed_reader.feed();
     /// ```
     pub fn feed(self) -> AtomFeed {
         self.feed.clone()
