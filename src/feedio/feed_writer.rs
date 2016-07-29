@@ -534,6 +534,15 @@ fn write_items(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel, feed: O
                 write_feed_entry_id(writer.clone(), entry.clone());
                 write_feed_entry_title(writer.clone(), entry.clone());
                 write_feed_entry_updated(writer.clone(), entry.clone());
+                write_feed_entry_authors(writer.clone(), entry.clone());
+                write_feed_entry_content(writer.clone(), entry.clone());
+                write_feed_entry_links(writer.clone(), entry.clone());
+                write_feed_entry_summary(writer.clone(), entry.clone());
+                write_feed_entry_categories(writer.clone(), entry.clone());
+                write_feed_entry_contributors(writer.clone(), entry.clone());
+                write_feed_entry_published(writer.clone(), entry.clone());
+                write_feed_entry_source(writer.clone(), entry.clone());
+                write_feed_entry_rights(writer.clone(), entry.clone());
 
                 writer.write(End(Element::new(entry_tag_str)))
                     .expect(errors::tag_end_error(entry_tag_str).as_str());
@@ -1007,4 +1016,225 @@ fn write_feed_entry_updated(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry
         .expect(errors::tag_text_error(updated_tag_str).as_str());
     writer.write(End(Element::new(updated_tag_str)))
         .expect(errors::tag_end_error(updated_tag_str).as_str());
+}
+
+
+fn write_feed_entry_authors(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().authors().is_some() {
+        for author in entry.clone().authors().unwrap() {
+            let author_tag_str = "atom:author";
+            let author_tag = Element::new(author_tag_str);
+            writer.write(Start(author_tag))
+                .expect(errors::tag_start_error(author_tag_str).as_str());
+
+            let name_tag_str = "atom:name";
+            let name_tag = Element::new(name_tag_str);
+            writer.write(Start(name_tag)).expect(errors::tag_start_error(name_tag_str).as_str());
+            writer.write(Text(Element::new(author.name())))
+                .expect(errors::tag_text_error(name_tag_str).as_str());
+            writer.write(End(Element::new(name_tag_str)))
+                .expect(errors::tag_end_error(name_tag_str).as_str());
+
+            if author.email().is_some() {
+                let email_tag_str = "atom:email";
+                let email_tag = Element::new(email_tag_str);
+                writer.write(Start(email_tag))
+                    .expect(errors::tag_start_error(email_tag_str).as_str());
+                writer.write(Text(Element::new(author.email().unwrap())))
+                    .expect(errors::tag_text_error(email_tag_str).as_str());
+                writer.write(End(Element::new(email_tag_str)))
+                    .expect(errors::tag_end_error(email_tag_str).as_str());
+            }
+
+            if author.uri().is_some() {
+                let uri_tag_str = "atom:uri";
+                let uri_tag = Element::new(uri_tag_str);
+                writer.write(Start(uri_tag))
+                    .expect(errors::tag_start_error(uri_tag_str).as_str());
+                writer.write(Text(Element::new(author.uri().unwrap().as_str())))
+                    .expect(errors::tag_text_error(uri_tag_str).as_str());
+                writer.write(End(Element::new(uri_tag_str)))
+                    .expect(errors::tag_end_error(uri_tag_str).as_str());
+            }
+
+            writer.write(End(Element::new(author_tag_str)))
+                .expect(errors::tag_end_error(author_tag_str).as_str());
+        }
+    }
+}
+
+
+fn write_feed_entry_content(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().content().is_some() {
+        let content = entry.clone().content().unwrap();
+        let content_tag_str = "atom:content";
+        let mut content_tag = Element::new(content_tag_str);
+        content_tag.push_attribute(b"type", content.text_type().as_str());
+        writer.write(Start(content_tag)).expect(errors::tag_start_error(content_tag_str).as_str());
+        writer.write(Text(Element::new(content.text().as_str())))
+            .expect(errors::tag_text_error(content_tag_str).as_str());
+        writer.write(End(Element::new(content_tag_str)))
+            .expect(errors::tag_end_error(content_tag_str).as_str());
+    }
+}
+
+
+fn write_feed_entry_links(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().links().is_some() {
+        for link in entry.clone().links().unwrap() {
+            let link_tag_str = "atom:link";
+            let mut link_tag = Element::new(link_tag_str);
+
+            link_tag.push_attribute(b"href", link.href().as_str());
+
+            if link.rel().is_some() {
+                link_tag.push_attribute(b"rel", link.rel().unwrap().as_str());
+            }
+
+            if link.link_type().is_some() {
+                link_tag.push_attribute(b"link", link.link_type().unwrap().as_str());
+            }
+
+            if link.href_lang().is_some() {
+                link_tag.push_attribute(b"hreflang", link.href_lang().unwrap().as_str());
+            }
+
+            if link.title().is_some() {
+                link_tag.push_attribute(b"title", link.title().unwrap().as_str());
+            }
+
+            if link.length().is_some() {
+                link_tag.push_attribute(b"length", link.length().unwrap().to_string().as_str());
+            }
+
+            writer.write(Start(link_tag))
+                .expect(errors::tag_start_error(link_tag_str).as_str());
+            writer.write(End(Element::new(link_tag_str)))
+                .expect(errors::tag_end_error(link_tag_str).as_str());
+        }
+    }
+}
+
+
+fn write_feed_entry_summary(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().summary().is_some() {
+        let summary = entry.clone().summary().unwrap();
+        let summary_tag_str = "atom:summary";
+        let mut summary_tag = Element::new(summary_tag_str);
+        summary_tag.push_attribute(b"type", summary.text_type().as_str());
+        writer.write(Start(summary_tag)).expect(errors::tag_start_error(summary_tag_str).as_str());
+        writer.write(Text(Element::new(summary.text().as_str())))
+            .expect(errors::tag_text_error(summary_tag_str).as_str());
+        writer.write(End(Element::new(summary_tag_str)))
+            .expect(errors::tag_end_error(summary_tag_str).as_str());
+    }
+}
+
+
+fn write_feed_entry_categories(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().categories().is_some() {
+        for category in entry.clone().categories().unwrap() {
+            let category_tag_str = "atom:category";
+            let mut category_tag = Element::new(category_tag_str);
+            if category.scheme().is_some() {
+                category_tag.push_attribute(b"scheme", category.scheme().unwrap().as_str());
+            }
+            if category.label().is_some() {
+                category_tag.push_attribute(b"label", category.label().unwrap().as_str());
+            }
+            category_tag.push_attribute(b"term", category.term().as_str());
+            writer.write(Start(category_tag))
+                .expect(errors::tag_start_error(category_tag_str).as_str());
+            writer.write(End(Element::new(category_tag_str)))
+                .expect(errors::tag_end_error(category_tag_str).as_str());
+        }
+    }
+}
+
+
+fn write_feed_entry_contributors(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().contributors().is_some() {
+        for contributor in entry.clone().contributors().unwrap() {
+            let contributor_tag_str = "atom:contributor";
+            let contributor_tag = Element::new(contributor_tag_str);
+            writer.write(Start(contributor_tag))
+                .expect(errors::tag_start_error(contributor_tag_str).as_str());
+
+            let name_tag_str = "atom:name";
+            let name_tag = Element::new(name_tag_str);
+            writer.write(Start(name_tag)).expect(errors::tag_start_error(name_tag_str).as_str());
+            writer.write(Text(Element::new(contributor.name())))
+                .expect(errors::tag_text_error(name_tag_str).as_str());
+            writer.write(End(Element::new(name_tag_str)))
+                .expect(errors::tag_end_error(name_tag_str).as_str());
+
+            if contributor.email().is_some() {
+                let email_tag_str = "atom:email";
+                let email_tag = Element::new(email_tag_str);
+                writer.write(Start(email_tag))
+                    .expect(errors::tag_start_error(email_tag_str).as_str());
+                writer.write(Text(Element::new(contributor.email().unwrap())))
+                    .expect(errors::tag_text_error(email_tag_str).as_str());
+                writer.write(End(Element::new(email_tag_str)))
+                    .expect(errors::tag_end_error(email_tag_str).as_str());
+            }
+
+            if contributor.uri().is_some() {
+                let uri_tag_str = "atom:uri";
+                let uri_tag = Element::new(uri_tag_str);
+                writer.write(Start(uri_tag))
+                    .expect(errors::tag_start_error(uri_tag_str).as_str());
+                writer.write(Text(Element::new(contributor.uri().unwrap().as_str())))
+                    .expect(errors::tag_text_error(uri_tag_str).as_str());
+                writer.write(End(Element::new(uri_tag_str)))
+                    .expect(errors::tag_end_error(uri_tag_str).as_str());
+            }
+
+            writer.write(End(Element::new(contributor_tag_str)))
+                .expect(errors::tag_end_error(contributor_tag_str).as_str());
+        }
+    }
+}
+
+
+fn write_feed_entry_published(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().published().is_some() {
+        let published_tag_str = "atom:published";
+        let published_tag = Element::new(published_tag_str);
+        writer.write(Start(published_tag))
+            .expect(errors::tag_start_error(published_tag_str).as_str());
+        writer.write(Text(Element::new(entry.published().unwrap().to_rfc3339())))
+            .expect(errors::tag_text_error(published_tag_str).as_str());
+        writer.write(End(Element::new(published_tag_str)))
+            .expect(errors::tag_end_error(published_tag_str).as_str());
+    }
+}
+
+
+fn write_feed_entry_source(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().source().is_some() {
+        let source_tag_str = "atom:source";
+        let source_tag = Element::new(source_tag_str);
+        writer.write(Start(source_tag))
+            .expect(errors::tag_start_error(source_tag_str).as_str());
+        writer.write(Text(Element::new(entry.source().unwrap())))
+            .expect(errors::tag_text_error(source_tag_str).as_str());
+        writer.write(End(Element::new(source_tag_str)))
+            .expect(errors::tag_end_error(source_tag_str).as_str());
+    }
+}
+
+
+fn write_feed_entry_rights(mut writer: XmlWriter<Cursor<Vec<u8>>>, entry: Entry) {
+    if entry.clone().rights().is_some() {
+        let rights = entry.clone().rights().unwrap();
+        let rights_tag_str = "atom:rights";
+        let mut rights_tag = Element::new(rights_tag_str);
+        rights_tag.push_attribute(b"type", rights.text_type().as_str());
+        writer.write(Start(rights_tag)).expect(errors::tag_start_error(rights_tag_str).as_str());
+        writer.write(Text(Element::new(rights.text().as_str())))
+            .expect(errors::tag_text_error(rights_tag_str).as_str());
+        writer.write(End(Element::new(rights_tag_str)))
+            .expect(errors::tag_end_error(rights_tag_str).as_str());
+    }
 }
