@@ -480,6 +480,14 @@ impl ChannelBuilder {
         let link = Url::parse(link_str.as_str())
             .expect(errors::url_parse_error(link_str.as_str()).as_str());
 
+        let mut docs = None;
+        if self.docs.clone().is_some() {
+            let docs_str = self.docs.clone().unwrap();
+            let url = Url::parse(docs_str.as_str())
+                .expect(errors::url_parse_error(docs_str.as_str()).as_str());
+            docs = Some(url);
+        }
+
         Channel {
             title: self.title.clone(),
             link: link,
@@ -492,7 +500,7 @@ impl ChannelBuilder {
             last_build_date: self.last_build_date,
             categories: self.categories.clone(),
             generator: self.generator.clone(),
-            docs: self.docs.clone(),
+            docs: docs,
             cloud: self.cloud.clone(),
             ttl: self.ttl,
             image: self.image.clone(),

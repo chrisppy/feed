@@ -381,7 +381,7 @@ impl Channel {
     /// ```
     /// use feed::rss::ChannelBuilder;
     ///
-    /// let docs_string = "http://blogs.law.harvard.edu/tech/rss".to_owned();
+    /// let docs_string = "http://blogs.law.harvard.edu/tech/rss/".to_owned();
     /// let channel = ChannelBuilder::new()
     ///     .title("The Linux Action Show! OGG")
     ///     .link("http://www.jupiterbroadcasting.com/")
@@ -391,7 +391,7 @@ impl Channel {
     /// let docs_option = channel.docs();
     /// assert!(docs_option.is_some());
     /// let docs = docs_option.unwrap();
-    /// assert_eq!(docs_string.clone(), docs);
+    /// assert_eq!(docs_string.clone(), docs.into_string());
     /// ```
     ///
     /// ```
@@ -405,7 +405,7 @@ impl Channel {
     ///     .finalize();
     /// assert!(channel.docs().is_none());
     /// ```
-    pub fn docs(&self) -> Option<String> {
+    pub fn docs(&self) -> Option<Url> {
         self.docs.clone()
     }
 

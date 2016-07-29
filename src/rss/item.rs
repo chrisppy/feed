@@ -183,7 +183,7 @@ impl Item {
     /// ```
     /// use feed::rss::ItemBuilder;
     ///
-    /// let comments_string = "This is a test comment.".to_owned();
+    /// let comments_string = "http://ekzemplo.com/entry/4403/comments/".to_owned();
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .comments(Some(comments_string.clone()))
@@ -191,7 +191,7 @@ impl Item {
     /// let comments_option =  item.comments();
     /// assert!(comments_option.is_some());
     /// let comments = comments_option.unwrap();
-    /// assert_eq!(comments_string.clone(), comments);
+    /// assert_eq!(comments_string.clone(), comments.into_string());
     /// ```
     ///
     /// ```
@@ -203,7 +203,7 @@ impl Item {
     ///     .finalize();
     /// assert!(item.comments().is_none());
     /// ```
-    pub fn comments(&self) -> Option<String> {
+    pub fn comments(&self) -> Option<Url> {
         self.comments.clone()
     }
 

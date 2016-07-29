@@ -236,13 +236,21 @@ impl ItemBuilder {
             link = Some(url);
         }
 
+        let mut comments = None;
+        if self.comments.clone().is_some() {
+            let comments_str = self.comments.clone().unwrap();
+            let url = Url::parse(comments_str.as_str())
+                .expect(errors::url_parse_error(comments_str.as_str()).as_str());
+            comments = Some(url);
+        }
+
         Item {
             title: self.title.clone(),
             link: link,
             description: self.description.clone(),
             author: self.author.clone(),
             categories: self.categories.clone(),
-            comments: self.comments.clone(),
+            comments: comments,
             enclosure: self.enclosure.clone(),
             guid: self.guid.clone(),
             pub_date: self.pub_date,
