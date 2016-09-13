@@ -1,7 +1,13 @@
 # Contributing to feed
 
+The coding style used is managed by [rustfmt](https://github.com/rust-lang-nursery/rustfmt).
+
 Thank you for your interest in contributing to feed! There are many ways to
 contribute, and we appreciate all of them.
+
+Note: Please squash commits together if there are multiple for a PR.
+
+
 
 ## Pull Requests
 
