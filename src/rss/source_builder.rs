@@ -4,7 +4,9 @@
 
 //! The fields can be set for source by using the methods under `SourceBuilder`.
 
+use errors;
 use rss::{Source, SourceBuilder};
+use url::Url;
 
 impl SourceBuilder {
     /// Construct a new `SourceBuilder` and return default values.
@@ -66,8 +68,19 @@ impl SourceBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Source {
+        if self.url.is_empty() {
+            panic!(errors::empty_string_error("Source url"));
+        }
+        if self.source.is_empty() {
+            panic!(errors::empty_string_error("Source source"));
+        }
+
+        let url_str = self.url.clone();
+        let url = Url::parse(url_str.as_str())
+            .expect(errors::url_parse_error(url_str.as_str()).as_str());
+
         Source {
-            url: self.url.clone(),
+            url: url,
             source: self.source.clone(),
         }
     }

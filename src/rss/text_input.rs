@@ -6,6 +6,7 @@
 //! `TextInput`.
 
 use rss::TextInput;
+use url::Url;
 
 impl TextInput {
     /// Get the title that exists under `TextInput`.
@@ -18,6 +19,9 @@ impl TextInput {
     /// let title = "Enter Comment";
     /// let text_input = TextInputBuilder::new()
     ///     .title(title)
+    ///     .description("Provided Feedback")
+    ///     .name("Comment")
+    ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize();
     /// assert_eq!(title.to_owned(), text_input.title());
     /// ```
@@ -35,7 +39,10 @@ impl TextInput {
     ///
     /// let description = "Provided Feedback";
     /// let text_input = TextInputBuilder::new()
+    ///     .title("Enter Comment")
     ///     .description(description)
+    ///     .name("Comment")
+    ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize();
     /// assert_eq!(description.to_owned(), text_input.description());
     /// ```
@@ -53,7 +60,10 @@ impl TextInput {
     ///
     /// let name = "Comment";
     /// let text_input = TextInputBuilder::new()
+    ///     .title("Enter Comment")
+    ///     .description("Provided Feedback")
     ///     .name(name)
+    ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize();
     /// assert_eq!(name.to_owned(), text_input.name());
     /// ```
@@ -69,13 +79,16 @@ impl TextInput {
     /// ```
     /// use feed::rss::TextInputBuilder;
     ///
-    /// let link = "www.example.com/feedback";
+    /// let link = "http://www.example.com/feedback/";
     /// let text_input = TextInputBuilder::new()
+    ///     .title("Enter Comment")
+    ///     .description("Provided Feedback")
+    ///     .name("Comment")
     ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(link.to_owned(), text_input.link());
+    /// assert_eq!(link.to_owned(), text_input.link().into_string());
     /// ```
-    pub fn link(&self) -> String {
+    pub fn link(&self) -> Url {
         self.link.clone()
     }
 }

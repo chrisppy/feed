@@ -4,383 +4,368 @@
 
 //! Implementation of `FeedReader`.
 
+use atom::{AtomFeed, AtomFeedBuilder, AtomCategory, AtomCategoryBuilder, Entry, EntryBuilder,
+           GeneratorBuilder, Link, LinkBuilder, Person, PersonBuilder, TextBuilder};
 use feedio::FeedReader;
 use quick_xml::{Event, XmlReader};
-use rss::{Channel, ChannelBuilder, Category, CategoryBuilder, CloudBuilder, EnclosureBuilder,
-          GuidBuilder, ImageBuilder, Item, ItemBuilder, SourceBuilder, TextInputBuilder};
 use util;
 
 impl FeedReader {
-    /// Construct a new `FeedReader` and return the `Channel`.
+    /// Construct a new `FeedReader` and return the `AtomFeed`.
     ///
     /// # Examples
     ///
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let feed_reader = FeedReader::new("String");
+    /// let rss = r#"<?xml version="1.0" encoding="UTF-8"?>
+    ///             <rss xmlns:atom="http://www.w3.org/2005/Atom"
+    ///                  version="2.0">
+    ///                  <channel>
+    ///                      <title>The Linux Action Show! OGG</title>
+    ///                      <atom:title>The Linux Action Show! OGG</atom:title>
+    ///                      <link>http://www.jupiterbroadcasting.com</link>
+    ///                      <atom:id>http://www.jupiterbroadcasting.com</atom:id>
+    ///                      <atom:updated>2003-12-13T18:30:02Z</atom:updated>
+    ///                      <description>Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!</description>
+    ///                  </channel>
+    ///              </rss>"#;
+    ///
+    /// FeedReader::new(rss);
     /// ```
     pub fn new(feed: &str) -> FeedReader {
         let feed_string = feed.to_owned();
-        let mut category_builder = CategoryBuilder::new();
-        let mut channel_builder = ChannelBuilder::new();
-        let mut guid_builder = GuidBuilder::new();
-        let mut image_builder = ImageBuilder::new();
-        let mut item_builder = ItemBuilder::new();
-        let mut source_builder = SourceBuilder::new();
-        let mut text_input_builder = TextInputBuilder::new();
 
-        let mut channel_categories: Vec<Category> = Vec::new();
-        let mut channel_skip_days: Vec<String> = Vec::new();
-        let mut channel_skip_hours: Vec<i64> = Vec::new();
-        let mut items: Vec<Item> = Vec::new();
-        let mut item_categories: Vec<Category> = Vec::new();
-        let mut element = "channel";
+        feed_string.replace("atom10:", "atom:");
+
+        let mut element = "feed";
         let mut name = "";
 
+        let mut authors: Vec<Person> = Vec::new();
+        let mut contributors: Vec<Person> = Vec::new();
+        let mut links: Vec<Link> = Vec::new();
+        let mut categories: Vec<AtomCategory> = Vec::new();
+        let mut entries: Vec<Entry> = Vec::new();
+        let mut entry_authors: Vec<Person> = Vec::new();
+        let mut entry_categories: Vec<AtomCategory> = Vec::new();
+        let mut entry_links: Vec<Link> = Vec::new();
+        let mut entry_contributors: Vec<Person> = Vec::new();
+
+
+        let mut feed_builder = AtomFeedBuilder::new();
+        let mut person_builder = PersonBuilder::new();
+        let mut text_builder = TextBuilder::new();
+        let mut entry_builder = EntryBuilder::new();
+        let mut generator_builder = GeneratorBuilder::new();
+
         let reader = XmlReader::from(&*feed_string).trim_text(true);
+
         for r in reader {
             match r {
                 Ok(Event::Start(ref e)) => {
                     match e.name() {
-                        b"image" => {
-                            element = "image";
+                        b"atom:entry" => {
+                            element = "entry";
+                            entry_builder = EntryBuilder::new();
+                            entry_categories = Vec::new();
+                            entry_authors = Vec::new();
+                            entry_links = Vec::new();
+                            entry_contributors = Vec::new();
                         }
-                        b"textInput" => {
-                            element = "textInput";
+                        b"atom:id" => {
+                            name = "id";
                         }
-                        b"item" => {
-                            item_builder = ItemBuilder::new();
-                            element = "item";
+                        b"atom:title" => {
+                            name = "title";
+
+                            let text_type = util::attribute_to_string(e.attributes(), "type");
+
+                            text_builder = TextBuilder::new();
+                            text_builder.text_type(text_type);
                         }
-                        b"author" => {
+                        b"atom:updated" => {
+                            name = "updated";
+                        }
+                        b"atom:author" => {
                             name = "author";
+                            person_builder = PersonBuilder::new();
                         }
-                        b"category" => {
-                            name = "category";
-
-                            category_builder = CategoryBuilder::new();
-
-                            let domain = util::attribute_to_option_string(e.attributes(), 0);
-                            category_builder.domain(domain);
+                        b"atom:contributor" => {
+                            name = "contributor";
+                            person_builder = PersonBuilder::new();
                         }
-                        b"cloud" => {
-                            let mut cloud_builder = CloudBuilder::new();
-
-                            let domain = util::attribute_to_str(e.attributes(), 0);
-                            cloud_builder.domain(domain);
-
-                            let port = util::attribute_to_i64(e.attributes(), 1);
-                            cloud_builder.port(port);
-
-                            let path = util::attribute_to_str(e.attributes(), 2);
-                            cloud_builder.path(path);
-
-                            let register_procedure = util::attribute_to_str(e.attributes(), 3);
-                            cloud_builder.register_procedure(register_procedure);
-
-                            let protocol = util::attribute_to_str(e.attributes(), 4);
-                            cloud_builder.protocol(protocol);
-
-                            channel_builder.cloud(Some(cloud_builder.finalize()));
-                        }
-                        b"comments" => {
-                            name = "comments";
-                        }
-                        b"copyright" => {
-                            name = "copyright";
-                        }
-                        b"day" => {
-                            name = "day";
-                        }
-                        b"description" => {
-                            name = "description";
-                        }
-                        b"docs" => {
-                            name = "docs";
-                        }
-                        b"enclosure" => {
-                            let mut enclosure_builder = EnclosureBuilder::new();
-
-                            let url = util::attribute_to_str(e.attributes(), 0);
-                            enclosure_builder.url(url);
-
-                            let length = util::attribute_to_i64(e.attributes(), 1);
-                            enclosure_builder.length(length);
-
-                            let enclosure_type = util::attribute_to_str(e.attributes(), 2);
-                            enclosure_builder.enclosure_type(enclosure_type);
-
-                            item_builder.enclosure(Some(enclosure_builder.finalize()));
-                        }
-                        b"generator" => {
-                            name = "generator";
-                        }
-                        b"guid" => {
-                            name = "guid";
-
-                            guid_builder = GuidBuilder::new();
-
-                            let permalink = util::attribute_to_option_bool(e.attributes(), 0);
-                            guid_builder.permalink(permalink);
-                        }
-                        b"height" => {
-                            name = "height";
-                        }
-                        b"hour" => {
-                            name = "hour";
-                        }
-                        b"language" => {
-                            name = "language";
-                        }
-                        b"lastBuildDate" => {
-                            name = "lastBuildDate";
-                        }
-                        b"link" => {
-                            name = "link";
-                        }
-                        b"managingEditor" => {
-                            name = "managingEditor";
-                        }
-                        b"name" => {
+                        b"atom:name" => {
                             name = "name";
                         }
-                        b"pubDate" => {
-                            name = "pubDate";
+                        b"atom:email" => {
+                            name = "email";
                         }
-                        b"rating" => {
-                            name = "rating";
+                        b"atom:uri" => {
+                            name = "email";
                         }
-                        b"source" => {
-                            name = "source";
+                        b"atom:icon" => {
+                            name = "icon";
+                        }
+                        b"atom:logo" => {
+                            name = "logo";
+                        }
+                        b"atom:rights" => {
+                            name = "rights";
 
-                            source_builder = SourceBuilder::new();
+                            let text_type = util::attribute_to_string(e.attributes(), "type");
 
-                            let url = util::attribute_to_str(e.attributes(), 0);
-                            source_builder.url(url);
+                            text_builder = TextBuilder::new();
+                            text_builder.text_type(text_type);
                         }
-                        b"title" => {
-                            name = "title";
+                        b"atom:subtitle" => {
+                            name = "subtitle";
+
+                            let text_type = util::attribute_to_string(e.attributes(), "type");
+
+                            text_builder = TextBuilder::new();
+                            text_builder.text_type(text_type);
                         }
-                        b"ttl" => {
-                            name = "ttl";
+                        b"atom:content" => {
+                            name = "content";
+
+                            let text_type = util::attribute_to_string(e.attributes(), "type");
+
+                            text_builder = TextBuilder::new();
+                            text_builder.text_type(text_type);
                         }
-                        b"url" => {
-                            name = "url";
+                        b"atom:summary" => {
+                            name = "summary";
+
+                            let text_type = util::attribute_to_string(e.attributes(), "type");
+
+                            text_builder = TextBuilder::new();
+                            text_builder.text_type(text_type);
                         }
-                        b"webMaster" => {
-                            name = "webMaster";
+                        b"atom:link" => {
+                            let href = util::attribute_to_string(e.attributes(), "href");
+                            let link_type = util::attribute_to_string(e.attributes(), "type");
+                            let hreflang = util::attribute_to_string(e.attributes(), "hreflang");
+                            let rel = util::attribute_to_string(e.attributes(), "rel");
+                            let title = util::attribute_to_string(e.attributes(), "title");
+                            let length = util::attribute_to_i64(e.attributes(), "length");
+
+                            let link = LinkBuilder::new()
+                                .href(href.expect("Link href cannot be None").as_str())
+                                .href_lang(hreflang)
+                                .rel(rel)
+                                .link_type(link_type)
+                                .title(title)
+                                .length(length)
+                                .finalize();
+
+                            match element {
+                                "feed" => {
+                                    links.push(link);
+                                }
+                                "entry" => {
+                                    entry_links.push(link);
+                                }
+                                _ => (),
+                            }
                         }
-                        b"width" => {
-                            name = "width";
+                        b"atom:category" => {
+                            let term = util::attribute_to_string(e.attributes(), "term");
+                            let scheme = util::attribute_to_string(e.attributes(), "scheme");
+                            let label = util::attribute_to_string(e.attributes(), "label");
+
+                            let category = AtomCategoryBuilder::new()
+                                .term(term.expect("Category term cannot be None").as_str())
+                                .scheme(scheme)
+                                .label(label)
+                                .finalize();
+
+                            match element {
+                                "feed" => {
+                                    categories.push(category);
+                                }
+                                "entry" => {
+                                    entry_categories.push(category);
+                                }
+                                _ => (),
+                            }
+                        }
+                        b"atom:generator" => {
+                            name = "generator";
+
+                            let uri = util::attribute_to_string(e.attributes(), "uri");
+                            let version = util::attribute_to_string(e.attributes(), "version");
+
+                            generator_builder.uri(uri).version(version);
+                        }
+                        b"atom:published" => {
+                            name = "published";
                         }
                         _ => (),
                     }
                 }
                 Ok(Event::Text(e)) => {
                     match name {
-                        "author" => {
-                            let author = util::element_to_option_string(e);
-                            item_builder.author(author);
-                        }
-                        "category" => {
-                            let category = util::element_to_string(e);
-                            category_builder.category(&category);
-                        }
-                        "comments" => {
-                            let comments = util::element_to_option_string(e);
-                            item_builder.comments(comments);
-                        }
-                        "copyright" => {
-                            let copyright = util::element_to_option_string(e);
-                            channel_builder.copyright(copyright);
-                        }
-                        "day" => {
-                            let skip_day = util::element_to_string(e);
-                            channel_skip_days.push(skip_day);
-                        }
-                        "description" => {
-                            let description = util::element_to_string(e);
+                        "id" => {
                             match element {
-                                "channel" => {
-                                    channel_builder.description(&description);
+                                "feed" => {
+                                    feed_builder.id(e.into_string().unwrap().as_str());
                                 }
-                                "image" => {
-                                    image_builder.description(Some(description));
-                                }
-                                "textInput" => {
-                                    text_input_builder.description(&description);
-                                }
-                                "item" => {
-                                    item_builder.description(Some(description));
+                                "entry" => {
+                                    entry_builder.id(e.into_string().unwrap().as_str());
                                 }
                                 _ => (),
-                            };
-                        }
-                        "docs" => {
-                            let docs = util::element_to_option_string(e);
-                            channel_builder.docs(docs);
-                        }
-                        "generator" => {
-                            let generator = util::element_to_option_string(e);
-                            channel_builder.generator(generator);
-                        }
-                        "guid" => {
-                            let guid = util::element_to_string(e);
-                            guid_builder.guid(&guid);
-                        }
-                        "height" => {
-                            let height = util::element_to_option_i64(e);
-                            image_builder.height(height);
-                        }
-                        "hour" => {
-                            let skip_hour = util::element_to_i64(e);
-                            channel_skip_hours.push(skip_hour);
-                        }
-                        "language" => {
-                            let language = util::element_to_option_string(e);
-                            channel_builder.language(language);
-                        }
-                        "lastBuildDate" => {
-                            let last_build_date = util::element_to_option_string(e);
-                            channel_builder.last_build_date(last_build_date);
-                        }
-                        "link" => {
-                            let link = util::element_to_string(e);
-                            match element {
-                                "channel" => {
-                                    channel_builder.link(&link);
-                                }
-                                "image" => {
-                                    image_builder.link(&link);
-                                }
-                                "textInput" => {
-                                    text_input_builder.link(&link);
-                                }
-                                "item" => {
-                                    item_builder.link(Some(link));
-                                }
-                                _ => (),
-                            };
-                        }
-                        "managingEditor" => {
-                            let managing_editor = util::element_to_option_string(e);
-                            channel_builder.managing_editor(managing_editor);
-                        }
-                        "name" => {
-                            let name = util::element_to_string(e);
-                            text_input_builder.name(&name);
-                        }
-                        "pubDate" => {
-                            let pub_date = util::element_to_option_string(e);
-                            match element {
-                                "channel" => {
-                                    channel_builder.pub_date(pub_date);
-                                }
-                                "item" => {
-                                    item_builder.pub_date(pub_date);
-                                }
-                                _ => (),
-                            };
-                        }
-                        "rating" => {
-                            let rating = util::element_to_option_string(e);
-                            channel_builder.rating(rating);
-                        }
-                        "source" => {
-                            let source = util::element_to_string(e);
-                            source_builder.source(&source);
+                            }
                         }
                         "title" => {
-                            let title = util::element_to_string(e);
+                            text_builder.text(e.into_string().unwrap().as_str());
                             match element {
-                                "channel" => {
-                                    channel_builder.title(&title);
+                                "feed" => {
+                                    feed_builder.title(text_builder.finalize());
                                 }
-                                "image" => {
-                                    image_builder.title(&title);
-                                }
-                                "textInput" => {
-                                    text_input_builder.title(&title);
-                                }
-                                "item" => {
-                                    item_builder.title(Some(title));
+                                "entry" => {
+                                    entry_builder.title(text_builder.finalize());
                                 }
                                 _ => (),
-                            };
+                            }
+
                         }
-                        "ttl" => {
-                            let ttl = util::element_to_option_i64(e);
-                            channel_builder.ttl(ttl);
+                        "updated" => {
+                            match element {
+                                "feed" => {
+                                    feed_builder.updated(e.into_string().unwrap().as_str());
+                                }
+                                "entry" => {
+                                    entry_builder.updated(e.into_string().unwrap().as_str());
+                                }
+                                _ => (),
+                            }
                         }
-                        "url" => {
-                            let url = util::element_to_string(e);
-                            image_builder.url(&url);
+                        "name" => {
+                            person_builder.name(e.into_string().unwrap().as_str());
                         }
-                        "webMaster" => {
-                            let web_master = util::element_to_option_string(e);
-                            channel_builder.web_master(web_master);
+                        "email" => {
+                            person_builder.email(Some(e.into_string().unwrap()));
                         }
-                        "width" => {
-                            let width = util::element_to_option_i64(e);
-                            image_builder.width(width);
+                        "uri" => {
+                            person_builder.email(Some(e.into_string().unwrap()));
+                        }
+                        "generator" => {
+                            generator_builder.generator(e.into_string().unwrap().as_str());
+                        }
+                        "icon" => {
+                            feed_builder.icon(Some(e.into_string().unwrap()));
+                        }
+                        "logo" => {
+                            feed_builder.logo(Some(e.into_string().unwrap()));
+                        }
+                        "rights" => {
+                            text_builder.text(e.into_string().unwrap().as_str());
+                            match element {
+                                "feed" => {
+                                    feed_builder.rights(Some(text_builder.finalize()));
+                                }
+                                "entry" => {
+                                    entry_builder.rights(Some(text_builder.finalize()));
+                                }
+                                _ => (),
+                            }
+
+                        }
+                        "subtitle" => {
+                            text_builder.text(e.into_string().unwrap().as_str());
+                            feed_builder.subtitle(Some(text_builder.finalize()));
+                        }
+                        "content" => {
+                            text_builder.text(e.into_string().unwrap().as_str());
+                            entry_builder.content(Some(text_builder.finalize()));
+                        }
+                        "summary" => {
+                            text_builder.text(e.into_string().unwrap().as_str());
+                            entry_builder.summary(Some(text_builder.finalize()));
+                        }
+                        "published" => {
+                            entry_builder.published(Some(e.into_string().unwrap()));
                         }
                         _ => (),
-                    };
+                    }
                 }
                 Ok(Event::End(ref e)) => {
                     match e.name() {
-                        b"category" => {
+                        b"atom:author" => {
                             match element {
-                                "channel" => {
-                                    channel_categories.push(category_builder.finalize());
+                                "feed" => {
+                                    authors.push(person_builder.finalize());
                                 }
-                                "item" => {
-                                    item_categories.push(category_builder.finalize());
+                                "entry" => {
+                                    entry_authors.push(person_builder.finalize());
                                 }
                                 _ => (),
-                            };
+                            }
                         }
-                        b"channel" => {
-                            channel_builder.categories(Some(channel_categories.clone()));
-                            channel_builder.image(Some(image_builder.finalize()));
-                            channel_builder.items(Some(items.clone()));
-                            channel_builder.skip_days(Some(channel_skip_days.clone()));
-                            channel_builder.skip_hours(Some(channel_skip_hours.clone()));
-                            channel_builder.text_input(Some(text_input_builder.finalize()));
+                        b"atom:contributor" => {
+                            match element {
+                                "feed" => {
+                                    contributors.push(person_builder.finalize());
+                                }
+                                "entry" => {
+                                    entry_contributors.push(person_builder.finalize());
+                                }
+                                _ => (),
+                            }
                         }
-                        b"item" => {
-                            item_builder.categories(Some(item_categories.clone()));
-                            items.push(item_builder.finalize());
+                        b"atom:generator" => {
+                            feed_builder.generator(Some(generator_builder.finalize()));
                         }
-                        b"guid" => {
-                            item_builder.guid(Some(guid_builder.finalize()));
+                        b"atom:entry" => {
+                            entry_builder.authors(Some(entry_authors.clone()));
+                            entry_builder.categories(Some(entry_categories.clone()));
+                            entry_builder.links(Some(entry_links.clone()));
+                            entry_builder.contributors(Some(entry_contributors.clone()));
+                            entries.push(entry_builder.finalize());
                         }
-                        b"source" => {
-                            item_builder.source(Some(source_builder.finalize()));
+                        b"atom:feed" => {
+                            feed_builder.authors(Some(authors.clone()));
+                            feed_builder.contributors(Some(contributors.clone()));
+                            feed_builder.links(Some(links.clone()));
+                            feed_builder.categories(Some(categories.clone()));
+                            feed_builder.entries(Some(entries.clone()));
                         }
                         _ => (),
-                    };
+                    }
                 }
                 Err((e, pos)) => panic!("{:?} at position {}", e, pos),
                 _ => (),
             }
         }
 
-        FeedReader { channel: channel_builder.finalize() }
+        FeedReader { feed: feed_builder.finalize() }
     }
 
-    /// Get the `Channel` after parsing.
+
+    /// Get the `AtomFeed` after parsing.
     ///
     /// # Examples
     ///
     /// ```
     /// use feed::feedio::FeedReader;
     ///
-    /// let feed_reader = FeedReader::new("String");
-    /// let channel = feed_reader.channel();
+    /// let rss = r#"<?xml version="1.0" encoding="UTF-8"?>
+    ///             <rss xmlns:atom="http://www.w3.org/2005/Atom"
+    ///                  version="2.0">
+    ///                  <channel>
+    ///                      <title>The Linux Action Show! OGG</title>
+    ///                      <atom:title>The Linux Action Show! OGG</atom:title>
+    ///                      <link>http://www.jupiterbroadcasting.com</link>
+    ///                      <atom:id>http://www.jupiterbroadcasting.com</atom:id>
+    ///                      <atom:updated>2003-12-13T18:30:02Z</atom:updated>
+    ///                      <description>Ogg Vorbis audio versions of The Linux Action Show! A show that covers everything geeks care about in the computer industry. Get a solid dose of Linux, gadgets, news events and much more!</description>
+    ///                  </channel>
+    ///              </rss>"#;
+    ///
+    /// let feed_reader = FeedReader::new(rss);
+    /// feed_reader.feed();
     /// ```
-    pub fn channel(self) -> Channel {
-        self.channel.clone()
+    pub fn feed(self) -> AtomFeed {
+        self.feed.clone()
     }
 }

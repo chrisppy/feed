@@ -5,7 +5,9 @@
 //! The fields can be set for category by using the methods under
 //! `CategoryBuilder`.
 
+use errors;
 use rss::{Category, CategoryBuilder};
+use url::Url;
 
 impl CategoryBuilder {
     /// Construct a new `CategoryBuilder` and return default values.
@@ -67,9 +69,22 @@ impl CategoryBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Category {
+        if self.category.is_empty() {
+            panic!(errors::empty_string_error("Category category"));
+        }
+
+        let mut domain = None;
+        let domain_option = self.domain.clone();
+        if domain_option.is_some() {
+            let dom = domain_option.clone().unwrap();
+            let url = Url::parse(dom.as_str())
+                .expect(errors::url_parse_error(dom.as_str()).as_str());
+            domain = Some(url);
+        }
+
         Category {
             category: self.category.clone(),
-            domain: self.domain.clone(),
+            domain: domain,
         }
     }
 }

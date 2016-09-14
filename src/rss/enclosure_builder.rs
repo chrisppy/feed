@@ -6,6 +6,7 @@
 
 use errors;
 use rss::{Enclosure, EnclosureBuilder};
+use url::Url;
 
 impl EnclosureBuilder {
     /// Construct a new `EnclosureBuilder` and return default values.
@@ -91,8 +92,19 @@ impl EnclosureBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Enclosure {
+        if self.url.is_empty() {
+            panic!(errors::empty_string_error("Enclosure url"));
+        }
+        if self.enclosure_type.is_empty() {
+            panic!(errors::empty_string_error("Enclosure type"));
+        }
+
+        let url_str = self.url.clone();
+        let url = Url::parse(url_str.as_str())
+            .expect(errors::url_parse_error(url_str.as_str()).as_str());
+
         Enclosure {
-            url: self.url.clone(),
+            url: url,
             length: self.length,
             enclosure_type: self.enclosure_type.clone(),
         }

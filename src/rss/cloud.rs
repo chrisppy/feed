@@ -5,6 +5,7 @@
 //! The fields under cloud can be retrieved by using the methods under `Cloud`.
 
 use rss::Cloud;
+use url::Url;
 
 impl Cloud {
     /// Get the domain that exists under `Cloud`.
@@ -14,13 +15,16 @@ impl Cloud {
     /// ```
     /// use feed::rss::CloudBuilder;
     ///
-    /// let domain = "rpc.sys.com";
+    /// let domain = "http://rpc.sys.com/";
     /// let cloud = CloudBuilder::new()
     ///     .domain(domain)
+    ///     .path("/RPC2")
+    ///     .register_procedure("pingMe")
+    ///     .protocol("soap")
     ///     .finalize();
-    /// assert_eq!(domain.to_owned(), cloud.domain());
+    /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
     /// ```
-    pub fn domain(&self) -> String {
+    pub fn domain(&self) -> Url {
         self.domain.clone()
     }
 
@@ -34,7 +38,11 @@ impl Cloud {
     ///
     /// let port: i64 = 80;
     /// let cloud = CloudBuilder::new()
+    ///     .domain("http://rpc.sys.com/")
     ///     .port(port)
+    ///     .path("/RPC2")
+    ///     .register_procedure("pingMe")
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(port, cloud.port());
     /// ```
@@ -52,7 +60,10 @@ impl Cloud {
     ///
     /// let path = "/RPC2";
     /// let cloud = CloudBuilder::new()
+    ///     .domain("http://rpc.sys.com/")
     ///     .path(path)
+    ///     .register_procedure("pingMe")
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
@@ -70,7 +81,10 @@ impl Cloud {
     ///
     /// let register_procedure = "pingMe";
     /// let cloud = CloudBuilder::new()
+    ///     .domain("http://rpc.sys.com/")
     ///     .register_procedure(register_procedure)
+    ///     .path("/RPC2")
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
@@ -88,7 +102,10 @@ impl Cloud {
     ///
     /// let protocol = "soap";
     /// let cloud = CloudBuilder::new()
+    ///     .domain("http://rpc.sys.com/")
     ///     .protocol(protocol)
+    ///     .path("/RPC2")
+    ///     .register_procedure("pingMe")
     ///     .finalize();
     /// assert_eq!(protocol.to_owned(), cloud.protocol());
     /// ```

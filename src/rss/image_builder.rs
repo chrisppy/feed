@@ -7,6 +7,7 @@
 
 use errors;
 use rss::{Image, ImageBuilder};
+use url::Url;
 
 impl ImageBuilder {
     /// Construct a new `ImageBuilder` and return default values.
@@ -158,10 +159,27 @@ impl ImageBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Image {
+        if self.url.is_empty() {
+            panic!(errors::empty_string_error("Image url"));
+        }
+        if self.title.is_empty() {
+            panic!(errors::empty_string_error("Image title"));
+        }
+        if self.link.is_empty() {
+            panic!(errors::empty_string_error("Image link"));
+        }
+
+        let url_str = self.url.clone();
+        let url = Url::parse(url_str.as_str())
+            .expect(errors::url_parse_error(url_str.as_str()).as_str());
+
+        let link_str = self.link.clone();
+        let link = Url::parse(link_str.as_str())
+            .expect(errors::url_parse_error(link_str.as_str()).as_str());
         Image {
-            url: self.url.clone(),
+            url: url,
             title: self.title.clone(),
-            link: self.link.clone(),
+            link: link,
             width: self.width,
             height: self.height,
             description: self.description.clone(),

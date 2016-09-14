@@ -5,6 +5,7 @@
 //! The fields under source can be retrieved by using the methods under `Source`.
 
 use rss::Source;
+use url::Url;
 
 impl Source {
     /// Get the url that exists under `Source`.
@@ -17,10 +18,11 @@ impl Source {
     /// let url = "http://www.tomalak.org/links2.xml";
     /// let source = SourceBuilder::new()
     ///     .url(url)
+    ///     .source("Tomalak's Realm")
     ///     .finalize();
-    /// assert_eq!(url.to_owned(), source.url());
+    /// assert_eq!(url.to_owned(), source.url().into_string());
     /// ```
-    pub fn url(&self) -> String {
+    pub fn url(&self) -> Url {
         self.url.clone()
     }
 
@@ -34,6 +36,7 @@ impl Source {
     ///
     /// let source = "Tomalak's Realm";
     /// let source_obj = SourceBuilder::new()
+    ///     .url("http://www.jupiterbroadcasting.com/")
     ///     .source(source)
     ///     .finalize();
     /// assert_eq!(source.to_owned(), source_obj.source());

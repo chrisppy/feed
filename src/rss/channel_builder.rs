@@ -6,6 +6,7 @@
 
 use errors;
 use rss::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
+use url::Url;
 use util;
 
 impl ChannelBuilder {
@@ -187,7 +188,9 @@ impl ChannelBuilder {
     /// ```
     /// use feed::rss::{ChannelBuilder, CategoryBuilder};
     ///
-    /// let category = CategoryBuilder::new().finalize();
+    /// let category = CategoryBuilder::new()
+    ///     .category("Title")
+    ///     .finalize();
     /// let categories = vec![category];
     ///
     /// let mut channel_builder = ChannelBuilder::new();
@@ -242,7 +245,12 @@ impl ChannelBuilder {
     /// ```
     /// use feed::rss::{ChannelBuilder, CloudBuilder};
     ///
-    /// let cloud = CloudBuilder::new().finalize();
+    /// let cloud = CloudBuilder::new()
+    ///     .domain("http://rpc.sys.com/")
+    ///     .path("/RPC2")
+    ///     .register_procedure("pingMe")
+    ///     .protocol("soap")
+    ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.cloud(Some(cloud));
@@ -282,7 +290,11 @@ impl ChannelBuilder {
     /// ```
     /// use feed::rss::{ChannelBuilder, ImageBuilder};
     ///
-    /// let image = ImageBuilder::new().finalize();
+    /// let image = ImageBuilder::new()
+    ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///     .title("LAS 300 Logo")
+    ///     .link("http://jupiterbroadcasting.com/")
+    ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.image(Some(image));
@@ -315,7 +327,12 @@ impl ChannelBuilder {
     /// ```
     /// use feed::rss::{ChannelBuilder, TextInputBuilder};
     ///
-    /// let text_input = TextInputBuilder::new().finalize();
+    /// let text_input = TextInputBuilder::new()
+    ///     .title("Enter Comment")
+    ///     .description("Provided Feedback")
+    ///     .name("Comment")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.text_input(Some(text_input));
@@ -449,9 +466,31 @@ impl ChannelBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Channel {
+        if self.title.is_empty() {
+            panic!(errors::empty_string_error("Channel title"));
+        }
+        if self.link.is_empty() {
+            panic!(errors::empty_string_error("Channel link"));
+        }
+        if self.description.is_empty() {
+            panic!(errors::empty_string_error("Channel description"));
+        }
+
+        let link_str = self.link.clone();
+        let link = Url::parse(link_str.as_str())
+            .expect(errors::url_parse_error(link_str.as_str()).as_str());
+
+        let mut docs = None;
+        if self.docs.clone().is_some() {
+            let docs_str = self.docs.clone().unwrap();
+            let url = Url::parse(docs_str.as_str())
+                .expect(errors::url_parse_error(docs_str.as_str()).as_str());
+            docs = Some(url);
+        }
+
         Channel {
             title: self.title.clone(),
-            link: self.link.clone(),
+            link: link,
             description: self.description.clone(),
             language: self.language.clone(),
             copyright: self.copyright.clone(),
@@ -461,7 +500,7 @@ impl ChannelBuilder {
             last_build_date: self.last_build_date,
             categories: self.categories.clone(),
             generator: self.generator.clone(),
-            docs: self.docs.clone(),
+            docs: docs,
             cloud: self.cloud.clone(),
             ttl: self.ttl,
             image: self.image.clone(),

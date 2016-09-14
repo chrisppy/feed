@@ -6,6 +6,7 @@
 
 use errors;
 use rss::{Cloud, CloudBuilder};
+use url::Url;
 
 impl CloudBuilder {
     /// Construct a new `CloudBuilder` and return default values.
@@ -119,7 +120,7 @@ impl CloudBuilder {
     /// use feed::rss::CloudBuilder;
     ///
     /// let cloud = CloudBuilder::new()
-    ///         .domain("rpc.sys.com")
+    ///         .domain("http://rpc.sys.com/")
     ///         .port(80)
     ///         .path("/RPC2")
     ///         .register_procedure("pingMe")
@@ -127,8 +128,25 @@ impl CloudBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Cloud {
+        if self.domain.is_empty() {
+            panic!(errors::empty_string_error("Cloud domain"));
+        }
+        if self.path.is_empty() {
+            panic!(errors::empty_string_error("Cloud path"));
+        }
+        if self.register_procedure.is_empty() {
+            panic!(errors::empty_string_error("Cloud register procedure"));
+        }
+        if self.protocol.is_empty() {
+            panic!(errors::empty_string_error("Cloud protocol"));
+        }
+
+        let domain_str = self.domain.clone();
+        let domain = Url::parse(domain_str.as_str())
+            .expect(errors::url_parse_error(domain_str.as_str()).as_str());
+
         Cloud {
-            domain: self.domain.clone(),
+            domain: domain,
             port: self.port,
             path: self.path.clone(),
             register_procedure: self.register_procedure.clone(),

@@ -5,7 +5,9 @@
 //! The fields can be set for text input by using the methods
 //! under `TextInputBuilder`.
 
+use errors;
 use rss::{TextInput, TextInputBuilder};
+use url::Url;
 
 impl TextInputBuilder {
     /// Construct a new `TextInputBuilder` and return default values.
@@ -101,11 +103,28 @@ impl TextInputBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> TextInput {
+        if self.title.is_empty() {
+            panic!(errors::empty_string_error("TextInput title"));
+        }
+        if self.description.is_empty() {
+            panic!(errors::empty_string_error("TextInput description"));
+        }
+        if self.name.is_empty() {
+            panic!(errors::empty_string_error("TextInput name"));
+        }
+        if self.link.is_empty() {
+            panic!(errors::empty_string_error("TextInput link"));
+        }
+
+        let link_str = self.link.clone();
+        let link = Url::parse(link_str.as_str())
+            .expect(errors::url_parse_error(link_str.as_str()).as_str());
+
         TextInput {
             title: self.title.clone(),
             description: self.description.clone(),
             name: self.name.clone(),
-            link: self.link.clone(),
+            link: link,
         }
     }
 }

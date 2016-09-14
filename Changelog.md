@@ -1,5 +1,21 @@
 # Changelog
 
+## master
++ New Features
+    + Atom Feeds are now supported as an extension to rss
++ Bug Fixes
+    + RSS Cloud Protocol has been fixed to only support the protocols noted in the SPEC
+    + RSS SkipHours can now only by 0 - 23
+    + RSS SkipDays can now only be Monday - Sunday
+    + All integer values must be positive
++ Breaking Changes
+    + In RSS Features where dealing with URLs the String is parsed into url::Url from the Builder
+    + In RSS Features where dealing with dates the String is parsed into chrono::DateTime from the Builder
++ Tests
+    + None
++ Maintenance
+    + None
+
 ## feed 1.2.3
 + simplified Doc versioning
 

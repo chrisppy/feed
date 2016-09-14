@@ -6,6 +6,7 @@
 
 use chrono::*;
 use rss::{Category, Channel, Cloud, Image, Item, TextInput};
+use url::Url;
 
 
 impl Channel {
@@ -19,6 +20,8 @@ impl Channel {
     /// let title = "The Linux Action Show! OGG";
     /// let channel = ChannelBuilder::new()
     ///     .title(title)
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .finalize();
     /// assert_eq!(title.to_owned(), channel.title());
     /// ```
@@ -34,13 +37,15 @@ impl Channel {
     /// ```
     /// use feed::rss::ChannelBuilder;
     ///
-    /// let link = "http://www.jupiterbroadcasting.com";
+    /// let link = "http://www.jupiterbroadcasting.com/";
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
     ///     .link(link)
+    ///     .description("Description")
     ///     .finalize();
-    /// assert_eq!(link.to_owned(), channel.link());
+    /// assert_eq!(link.to_owned(), channel.link().into_string());
     /// ```
-    pub fn link(&self) -> String {
+    pub fn link(&self) -> Url {
         self.link.clone()
     }
 
@@ -57,6 +62,8 @@ impl Channel {
     /// + "computer industry. Get a solid dose of Linux, gadgets, news events "
     /// + "and much more!";
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .description(description.as_ref())
     ///     .finalize();
     /// assert_eq!(description.to_owned(), channel.description());
@@ -75,6 +82,9 @@ impl Channel {
     ///
     /// let language_string = "en".to_owned();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .language(Some(language_string.clone()))
     ///     .finalize();
     /// let language_option = channel.language();
@@ -87,6 +97,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .language(None)
     ///     .finalize();
     /// assert!(channel.language().is_none());
@@ -106,6 +119,9 @@ impl Channel {
     /// let copyright_string =
     ///     "Copyright 2002, Spartanburg Herald-Journal".to_owned();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .copyright(Some(copyright_string.clone()))
     ///     .finalize();
     /// let copyright_option = channel.copyright();
@@ -118,6 +134,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .copyright(None)
     ///     .finalize();
     /// assert!(channel.copyright().is_none());
@@ -137,6 +156,9 @@ impl Channel {
     /// let managing_editor_string =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .managing_editor(Some(managing_editor_string.clone()))
     ///     .finalize();
     /// let managing_editor_option = channel.managing_editor();
@@ -149,6 +171,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .managing_editor(None)
     ///     .finalize();
     /// assert!(channel.managing_editor().is_none());
@@ -167,6 +192,9 @@ impl Channel {
     /// let web_master_string =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .web_master(Some(web_master_string.clone()))
     ///     .finalize();
     /// let web_master_option = channel.web_master();
@@ -179,6 +207,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .web_master(None)
     ///     .finalize();
     /// assert!(channel.web_master().is_none());
@@ -197,6 +228,9 @@ impl Channel {
     ///
     /// let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .pub_date(Some(pub_date.to_owned()))
     ///     .finalize();
     /// let local = channel.pub_date();
@@ -209,6 +243,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .pub_date(None)
     ///     .finalize();
     /// assert!(channel.pub_date().is_none());
@@ -227,6 +264,9 @@ impl Channel {
     ///
     /// let last_build_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .last_build_date(Some(last_build_date.to_owned()))
     ///     .finalize();
     /// let local = channel.last_build_date();
@@ -239,6 +279,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .last_build_date(None)
     ///     .finalize();
     /// assert!(channel.last_build_date().is_none());
@@ -265,6 +308,9 @@ impl Channel {
     ///     .finalize();
     /// let categories_vec = vec![category_1, category_2];
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .categories(Some(categories_vec.clone()))
     ///     .finalize();
     /// let categories_option = channel.categories();
@@ -277,6 +323,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .categories(None)
     ///     .finalize();
     /// assert!(channel.categories().is_none());
@@ -298,6 +347,9 @@ impl Channel {
     /// + "http://reinventedsoftware.com/feeder/";
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .generator(Some(generator_string.clone()))
     ///     .finalize();
     /// let generator_option = channel.generator();
@@ -310,6 +362,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .generator(None)
     ///     .finalize();
     /// assert!(channel.generator().is_none());
@@ -326,25 +381,31 @@ impl Channel {
     /// ```
     /// use feed::rss::ChannelBuilder;
     ///
-    /// let docs_string = "http://blogs.law.harvard.edu/tech/rss".to_owned();
+    /// let docs_string = "http://blogs.law.harvard.edu/tech/rss/".to_owned();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .docs(Some(docs_string.clone()))
     ///     .finalize();
     /// let docs_option = channel.docs();
     /// assert!(docs_option.is_some());
     /// let docs = docs_option.unwrap();
-    /// assert_eq!(docs_string.clone(), docs);
+    /// assert_eq!(docs_string.clone(), docs.into_string());
     /// ```
     ///
     /// ```
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .docs(None)
     ///     .finalize();
     /// assert!(channel.docs().is_none());
     /// ```
-    pub fn docs(&self) -> Option<String> {
+    pub fn docs(&self) -> Option<Url> {
         self.docs.clone()
     }
 
@@ -356,13 +417,16 @@ impl Channel {
     /// use feed::rss::{ChannelBuilder, CloudBuilder};
     ///
     /// let cloud = CloudBuilder::new()
-    ///     .domain("rpc.sys.com")
+    ///     .domain("http://rpc.sys.com/")
     ///     .port(80)
     ///     .path("/RPC2")
     ///     .register_procedure("pingMe")
     ///     .protocol("soap")
     ///     .finalize();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .cloud(Some(cloud))
     ///     .finalize();
     /// assert!(channel.cloud().is_some());
@@ -372,6 +436,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .cloud(None)
     ///     .finalize();
     /// assert!(channel.cloud().is_none());
@@ -390,6 +457,9 @@ impl Channel {
     ///
     /// let ttl_num = 60;
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .ttl(Some(ttl_num))
     ///     .finalize();
     /// let ttl_option = channel.ttl();
@@ -402,6 +472,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .ttl(None)
     ///     .finalize();
     /// assert!(channel.ttl().is_none());
@@ -419,7 +492,7 @@ impl Channel {
     /// use feed::rss::{ChannelBuilder, ImageBuilder};
     ///
     /// let image = ImageBuilder::new()
-    ///     .link("http://www.jupiterbroadcasting.com")
+    ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
     ///     .title("LAS 300 Logo")
     ///     .height(None)
@@ -428,6 +501,9 @@ impl Channel {
     ///     .finalize();
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .image(Some(image))
     ///     .finalize();
     /// assert!(channel.image().is_some());
@@ -437,6 +513,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .image(None)
     ///     .finalize();
     /// assert!(channel.image().is_none());
@@ -455,6 +534,9 @@ impl Channel {
     ///
     /// let rating_string = "PG-13:".to_owned();
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .rating(Some(rating_string.clone()))
     ///     .finalize();
     /// let rating_option = channel.rating();
@@ -467,6 +549,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .rating(None)
     ///     .finalize();
     /// assert!(channel.rating().is_none());
@@ -487,10 +572,13 @@ impl Channel {
     ///     .title("Enter Comment")
     ///     .description("Provided Feedback")
     ///     .name("Comment")
-    ///     .link("www.example.com/feedback")
+    ///     .link("http://www.example.com/feedback/")
     ///     .finalize();
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .text_input(Some(text_input))
     ///     .finalize();
     /// assert!(channel.text_input().is_some());
@@ -500,6 +588,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .text_input(None)
     ///     .finalize();
     /// assert!(channel.text_input().is_none());
@@ -517,6 +608,9 @@ impl Channel {
     ///
     /// let skip_hours_vec: Vec<i64> = vec![6,7,8,14,22];
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .skip_hours(Some(skip_hours_vec.clone()))
     ///     .finalize();
     /// let skip_hours_option = channel.skip_hours();
@@ -533,6 +627,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .skip_hours(None)
     ///     .finalize();
     /// assert!(channel.skip_hours().is_none());
@@ -552,6 +649,9 @@ impl Channel {
     /// let skip_days_vec: Vec<String> = vec!["Monday".to_owned(),
     ///     "Wednesday".to_owned(),"Thursday".to_owned(),"Sunday".to_owned()];
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .skip_days(Some(skip_days_vec.clone()))
     ///     .finalize();
     /// let skip_days_option = channel.skip_days();
@@ -568,6 +668,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .skip_days(None)
     ///     .finalize();
     /// assert!(channel.skip_days().is_none());
@@ -620,6 +723,9 @@ impl Channel {
     ///     .finalize();
     /// let items_vec = vec![item_1, item_2];
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .items(Some(items_vec.clone()))
     ///     .finalize();
     /// let items_option = channel.items();
@@ -632,6 +738,9 @@ impl Channel {
     /// use feed::rss::ChannelBuilder;
     ///
     /// let channel = ChannelBuilder::new()
+    ///     .title("The Linux Action Show! OGG")
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .description("Description")
     ///     .items(None)
     ///     .finalize();
     /// assert!(channel.items().is_none());
