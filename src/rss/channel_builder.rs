@@ -376,12 +376,7 @@ impl ChannelBuilder {
             for day in skip_days_vec {
                 let day_upper = day.to_uppercase();
                 match day_upper.as_str() {
-                    "MONDAY" => (),
-                    "TUESDAY" => (),
-                    "WEDNESDAY" => (),
-                    "THURSDAY" => (),
-                    "FRIDAY" => (),
-                    "SATURDAY" => (),
+                    "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" |
                     "SUNDAY" => (),
                     _ => panic!(errors::invalid_str_error("skip days", day.as_str())),
                 }

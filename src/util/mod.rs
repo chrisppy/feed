@@ -79,6 +79,6 @@ pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateT
     }
     let date_string = date_option.unwrap();
     let datetime = DateTime::parse_from_rfc2822(&date_string)
-                       .expect(errors::str_to_datetime_error());
+        .expect(errors::str_to_datetime_error());
     Some(datetime)
 }
