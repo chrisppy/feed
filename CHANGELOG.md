@@ -14,6 +14,8 @@
     + Refactored lib.rs to move impl code into feed.rs and feed_builder.rs
     + Added IntelliJ and Linux sections to gitignore
     + Updated README to use docs.rs
+    + Update quick-xml to 0.4
+    + Update url to 1.2
 
 ## feed 1.2.3
 + simplified Doc versioning
