@@ -4,7 +4,7 @@
 + New Features
     + None
 + Bug Fixes
-    + None
+    + Constrain image url to only accept JPEG, PNG, and GIF
 + Breaking Changes
     + None
 + Tests
