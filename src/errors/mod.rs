@@ -84,3 +84,9 @@ pub fn invalid_str_error(tag: &str, string: &str) -> String {
 pub fn content_type_error() -> String {
     "Error retrieving content type".to_owned()
 }
+
+
+// image url error
+pub fn image_url_error() -> String {
+    "Image Url must end with .jpeg, .png, or .gif".to_owned()
+}
