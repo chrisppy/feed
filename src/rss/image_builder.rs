@@ -34,6 +34,11 @@ impl ImageBuilder {
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
     /// ```
     pub fn url(&mut self, url: &str) -> &mut ImageBuilder {
+        let url_string = url.to_owned();
+        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") &&
+           !url_string.ends_with(".png") && !url_string.ends_with(".gif") {
+            panic!(errors::image_url_error());
+        }
         self.url = url.to_owned();
         self
     }
