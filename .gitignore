@@ -14,4 +14,4 @@ target-install
 *.bk
 
 # IntelliJ
-.idea/
+.idea

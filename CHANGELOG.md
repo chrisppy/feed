@@ -16,6 +16,7 @@
     + Updated README to use docs.rs
     + Update quick-xml to 0.4
     + Update url to 1.2
+    + Update curl to 0.3
 
 ## feed 1.2.3
 + simplified Doc versioning

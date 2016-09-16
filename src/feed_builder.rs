@@ -4,7 +4,7 @@
 
 //! Implementation of `FeedBuilder`.
 
-use curl::http;
+use curl::easy::Easy;
 use errors;
 use Feed;
 use FeedBuilder;
@@ -82,20 +82,30 @@ impl FeedBuilder {
     /// }
     /// ```
     pub fn read_from_url(&mut self, feed_url: Url) -> &mut FeedBuilder {
-        let response = http::handle()
-            .get(feed_url.into_string())
-            .exec()
-            .expect(errors::response_error());
+        let mut data = Vec::new();
+        let mut handle = Easy::new();
+        handle.url(feed_url.into_string().as_str()).unwrap();
+        {
+            let mut transfer = handle.transfer();
+            transfer.write_function(|new_data| {
+                    data.extend_from_slice(new_data);
+                    Ok(new_data.len())
+                })
+                .unwrap();
+            transfer.perform().unwrap();
+        }
+        let content_type = handle.content_type()
+            .expect(errors::content_type_error().as_str())
+            .unwrap();
 
-        let content_type = response.get_header("content-type");
-        if !content_type[0].as_str().contains("xml") {
+        if !content_type.contains("xml") {
             panic!(errors::missing_xml_error());
         }
 
-        let body = response.get_body();
-        let feed_str = str::from_utf8(body).expect(errors::utf8_to_str_error());
-        debug!("feed xml:{}", feed_str);
-        self.channel = FeedReader::new(feed_str).channel();
+        let feed_string = String::from_utf8(data).expect(errors::utf8_to_str_error().as_str());
+
+        debug!("feed xml:{}", feed_string);
+        self.channel = FeedReader::new(feed_string.as_str()).channel();
         self
     }
 
