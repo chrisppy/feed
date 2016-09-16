@@ -4,8 +4,8 @@ version = "1.2.3"
 authors = ["Chris Palmer <pennstate5013@gmail.com>"]
 homepage = "http://red-oxide.org"
 repository = "https://github.com/red-oxide/feed"
-documentation = "http://feed.red-oxide.org"
-description = "Parse RSS feeds from url"
+documentation = "https://docs.rs/feed/"
+description = "Library for creating rss feeds and parsing rss feeds from an URL and retrieving the elements"
 readme = "README.md"
 license = "LGPL-3.0"
 

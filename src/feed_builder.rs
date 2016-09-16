@@ -104,8 +104,6 @@ impl FeedBuilder {
 
         let feed_string = String::from_utf8(data).expect(errors::utf8_to_str_error().as_str());
 
-        println!("content:{}", feed_string);
-
         debug!("feed xml:{}", feed_string);
         self.channel = FeedReader::new(feed_string.as_str()).channel();
         self
