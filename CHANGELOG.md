@@ -4,6 +4,18 @@
 + New Features
     + None
 + Bug Fixes
+    + None
++ Breaking Changes
+    + None
++ Tests
+    + None
++ Maintenance
+    + None
+
+## feed 1.2.4
++ New Features
+    + None
++ Bug Fixes
     + clippy cyclomatic complexity warning resolved
     + allow rss feeds that does not end with 'xml'
 + Breaking Changes

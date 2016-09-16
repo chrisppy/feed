@@ -12,7 +12,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feedreader = "1.2"
+//! feed = "1.2"
 //! ```
 //!
 //! And put this in your crate root:
@@ -67,7 +67,7 @@
 //! }
 //! ```
 
-#![doc(html_root_url = "https://red-oxide.github.io/feed/")]
+#![doc(html_root_url = "https://docs.rs/feed/")]
 
 #![deny(missing_docs)]
 

@@ -1,6 +1,6 @@
 [package]
 name = "feed"
-version = "1.2.3"
+version = "1.2.4"
 authors = ["Chris Palmer <pennstate5013@gmail.com>"]
 homepage = "http://red-oxide.org"
 repository = "https://github.com/red-oxide/feed"
