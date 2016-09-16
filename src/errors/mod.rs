@@ -3,50 +3,44 @@
 // found in the LICENSE file.
 
 // utf8 to str error.
-pub fn utf8_to_str_error() -> &'static str {
-    "Error converting utf8 to str"
+pub fn utf8_to_str_error() -> String {
+    "Error converting utf8 to str".to_owned()
 }
 
 
 // str to bool error.
-pub fn str_to_bool_error() -> &'static str {
-    "Error converting str to bool"
+pub fn str_to_bool_error() -> String {
+    "Error converting str to bool".to_owned()
 }
 
 
 // str to datetime error.
-pub fn str_to_datetime_error() -> &'static str {
-    "Error converting str to datetime"
+pub fn str_to_datetime_error() -> String {
+    "Error converting str to datetime".to_owned()
 }
 
 
 // str to i64 error.
-pub fn str_to_i64_error() -> &'static str {
-    "Error converting str to i64"
+pub fn str_to_i64_error() -> String {
+    "Error converting str to i64".to_owned()
 }
 
 
 // element to string error.
-pub fn element_to_string_error() -> &'static str {
-    "Error converting element to string"
+pub fn element_to_string_error() -> String {
+    "Error converting element to string".to_owned()
 }
 
 
 // response error
-pub fn response_error() -> &'static str {
-    "Error retrieving response"
-}
-
-
-// response error
-pub fn missing_xml_error() -> &'static str {
-    "Url must end with .xml"
+pub fn missing_xml_error() -> String {
+    "Url must end with .xml".to_owned()
 }
 
 
 // item required field error
-pub fn item_required_field_error() -> &'static str {
-    "Either Title or Description must have a value"
+pub fn item_required_field_error() -> String {
+    "Either Title or Description must have a value".to_owned()
 }
 
 
@@ -83,4 +77,10 @@ pub fn invalid_int_error(tag: &str, num: i64) -> String {
 // invalid string error
 pub fn invalid_str_error(tag: &str, string: &str) -> String {
     format!("{} contains an invalid value: {}", tag, string)
+}
+
+
+// content type error
+pub fn content_type_error() -> String {
+    "Error retrieving content type".to_owned()
 }

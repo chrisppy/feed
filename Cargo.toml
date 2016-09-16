@@ -13,7 +13,7 @@ license = "LGPL-3.0"
 [dependencies]
 chrono = "0.2"
 clippy = {version = "0.0", optional = true}
-curl = "0.2"
+curl = "0.3"
 log = "0.3"
 quick-xml = "0.4"
 url = "1.2"

@@ -18,20 +18,20 @@ pub fn str_to_option_string(s: &str) -> Option<String> {
 // Common code to convert attribute to &str.
 pub fn attribute_to_str(attributes: Attributes, index: usize) -> &str {
     let attr = attributes.map(|a| a.unwrap().1).collect::<Vec<_>>();
-    str::from_utf8(attr[index]).expect(errors::utf8_to_str_error())
+    str::from_utf8(attr[index]).expect(errors::utf8_to_str_error().as_str())
 }
 
 
 // Common code to convert attribute to i64.
 pub fn attribute_to_i64(attributes: Attributes, index: usize) -> i64 {
     let attr_str = attribute_to_str(attributes, index);
-    i64::from_str(attr_str).expect(errors::str_to_i64_error())
+    i64::from_str(attr_str).expect(errors::str_to_i64_error().as_str())
 }
 
 // Common code to convert attribute to bool.
 pub fn attribute_to_bool(attributes: Attributes, index: usize) -> bool {
     let attr_str = attribute_to_str(attributes, index);
-    bool::from_str(attr_str).expect(errors::str_to_bool_error())
+    bool::from_str(attr_str).expect(errors::str_to_bool_error().as_str())
 }
 
 
@@ -49,7 +49,7 @@ pub fn attribute_to_option_bool(attributes: Attributes, index: usize) -> Option<
 
 // Common code to convert element to String.
 pub fn element_to_string(e: Element) -> String {
-    e.into_string().expect(errors::element_to_string_error())
+    e.into_string().expect(errors::element_to_string_error().as_str())
 }
 
 
@@ -62,7 +62,7 @@ pub fn element_to_option_string(e: Element) -> Option<String> {
 // Common code to convert attribute to i64.
 pub fn element_to_i64(e: Element) -> i64 {
     let e_string = element_to_string(e);
-    i64::from_str(&e_string).expect(errors::str_to_i64_error())
+    i64::from_str(&e_string).expect(errors::str_to_i64_error().as_str())
 }
 
 
@@ -79,6 +79,6 @@ pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateT
     }
     let date_string = date_option.unwrap();
     let datetime = DateTime::parse_from_rfc2822(&date_string)
-        .expect(errors::str_to_datetime_error());
+        .expect(errors::str_to_datetime_error().as_str());
     Some(datetime)
 }
