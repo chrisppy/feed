@@ -1,76 +1,48 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! Implementation of `FeedWriter`.
+
+//! writer utilities.
+
 
 use errors;
-use feedio::FeedWriter;
 use quick_xml::{Element, XmlWriter};
 use quick_xml::Event::*;
-use rss::{Channel, Item};
+use channels::{Channel, Item};
 use std::io::Cursor;
 
-impl FeedWriter {
-    /// Construct a new `FeedWriter` and return default values.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::feedio::{FeedReader, FeedWriter};
-    ///
-    /// let feed_reader = FeedReader::new("String");
-    /// let channel = feed_reader.channel();
-    ///
-    /// let feed_writer = FeedWriter::new(channel);
-    /// ```
-    pub fn new(channel: Channel) -> FeedWriter {
-        let mut writer = XmlWriter::new(Cursor::new(Vec::new()));
 
-        let xml_tag_str = "?xml";
-        let mut xml_tag = Element::new(xml_tag_str);
-        xml_tag.push_attribute(b"version", "1.0");
-        xml_tag.push_attribute(b"encoding", "UTF-8");
-        writer.write(Start(xml_tag)).expect(errors::tag_start_error(xml_tag_str).as_str());
-        writer.write(End(Element::new(xml_tag_str)))
-            .expect(errors::tag_end_error(xml_tag_str).as_str());
+/// Construct xml from a `Channel`.
+pub fn write(channel: Channel) -> Vec<u8> {
+    let mut writer = XmlWriter::new(Cursor::new(Vec::new()));
 
-        let rss_tag_str = "rss";
-        let mut rss_tag = Element::new(rss_tag_str);
-        rss_tag.push_attribute(b"xmlns:atom", "http://www.w3.org/2005/Atom");
-        rss_tag.push_attribute(b"xmlns:itunes",
-                               "http://www.itunes.com/dtds/podcast-1.0.dtd");
-        rss_tag.push_attribute(b"version", "2.0");
-        writer.write(Start(rss_tag)).expect(errors::tag_start_error(rss_tag_str).as_str());
+    let xml_tag_str = "?xml";
+    let mut xml_tag = Element::new(xml_tag_str);
+    xml_tag.push_attribute(b"version", "1.0");
+    xml_tag.push_attribute(b"encoding", "UTF-8");
+    writer.write(Start(xml_tag)).expect(errors::tag_start_error(xml_tag_str).as_str());
+    writer.write(End(Element::new(xml_tag_str)))
+        .expect(errors::tag_end_error(xml_tag_str).as_str());
 
-        write_channel(writer.clone(), channel.clone());
+    let rss_tag_str = "channels";
+    let mut rss_tag = Element::new(rss_tag_str);
+    rss_tag.push_attribute(b"xmlns:atom", "http://www.w3.org/2005/Atom");
+    rss_tag.push_attribute(b"xmlns:itunes",
+                           "http://www.itunes.com/dtds/podcast-1.0.dtd");
+    rss_tag.push_attribute(b"version", "2.0");
+    writer.write(Start(rss_tag)).expect(errors::tag_start_error(rss_tag_str).as_str());
 
-        writer.write(End(Element::new(rss_tag_str)))
-            .expect(errors::tag_end_error(rss_tag_str).as_str());
-        FeedWriter { xml: writer.into_inner().into_inner() }
-    }
+    write_channel(writer.clone(), channel.clone());
 
-
-    /// Convert the `Channel` to XML.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::feedio::{FeedReader, FeedWriter};
-    ///
-    /// let feed_reader = FeedReader::new("String");
-    /// let channel = feed_reader.channel();
-    ///
-    /// let xml = FeedWriter::new(channel).xml();
-    /// ```
-    pub fn xml(&self) -> Vec<u8> {
-        self.xml.clone()
-    }
+    writer.write(End(Element::new(rss_tag_str)))
+        .expect(errors::tag_end_error(rss_tag_str).as_str());
+    writer.into_inner().into_inner()
 }
 
 
 fn write_channel(mut writer: XmlWriter<Cursor<Vec<u8>>>, channel: Channel) {
-    let channel_tag_str = "channel";
+    let channel_tag_str = "channels";
     let channel_tag = Element::new(channel_tag_str);
     writer.write(Start(channel_tag))
         .expect(errors::tag_start_error(channel_tag_str).as_str());

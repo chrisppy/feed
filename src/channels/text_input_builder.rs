@@ -1,11 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
+
 
 //! The fields can be set for text input by using the methods
 //! under `TextInputBuilder`.
 
-use rss::{TextInput, TextInputBuilder};
+
+use channels::{TextInput, TextInputBuilder};
+
 
 impl TextInputBuilder {
     /// Construct a new `TextInputBuilder` and return default values.
@@ -13,7 +16,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let text_input_builder = TextInputBuilder::new();
     /// ```
@@ -27,7 +30,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.title("Title");
@@ -43,7 +46,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.description("This is a test description.");
@@ -59,7 +62,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.name("Comments");
@@ -75,7 +78,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.link("http://www.example.com/feedback");
@@ -91,7 +94,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let text_input = TextInputBuilder::new()
     ///         .title("Title")

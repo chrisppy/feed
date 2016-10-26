@@ -1,14 +1,15 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields can be set for item by using the methods under `ItemBuilder`.
 
-use rss::{Category, Enclosure, Guid, Source};
-use util;
+
+use channels::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
+use utils;
 use errors;
 
-use rss::{Item, ItemBuilder};
 
 impl ItemBuilder {
     /// Construct a new `ItemBuilder` and return default values.
@@ -16,7 +17,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item_builder = ItemBuilder::new();
     /// ```
@@ -30,7 +31,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.title(Some("Making Music with Linux | LAS 408".to_owned()));
@@ -46,7 +47,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.link(Some("http://www.jupiterbroadcasting.com".to_owned()));
@@ -62,7 +63,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.description(Some("This is a test description".to_owned()));
@@ -78,7 +79,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.author(Some("Chris Fisher".to_owned()));
@@ -94,7 +95,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{CategoryBuilder, ItemBuilder};
+    /// use feed::channels::{CategoryBuilder, ItemBuilder};
     ///
     /// let category = CategoryBuilder::new().finalize();
     /// let categories = vec![category];
@@ -113,7 +114,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.comments(Some("Test Comment".to_owned()));
@@ -129,7 +130,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{EnclosureBuilder, ItemBuilder};
+    /// use feed::channels::{EnclosureBuilder, ItemBuilder};
     ///
     /// let enclosure = EnclosureBuilder::new().finalize();
     ///
@@ -147,7 +148,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{GuidBuilder, ItemBuilder};
+    /// use feed::channels::{GuidBuilder, ItemBuilder};
     ///
     /// let guid = GuidBuilder::new().finalize();
     ///
@@ -165,13 +166,13 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
-        self.pub_date = util::option_string_to_option_date(pub_date);
+        self.pub_date = utils::option_string_to_option_date(pub_date);
         self
     }
 
@@ -181,7 +182,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{ItemBuilder, SourceBuilder};
+    /// use feed::channels::{ItemBuilder, SourceBuilder};
     ///
     /// let source = SourceBuilder::new().finalize();
     ///
@@ -199,7 +200,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///         .title(Some("Making Music with Linux | LAS 408".to_owned()))

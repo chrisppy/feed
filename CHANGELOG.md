@@ -17,7 +17,7 @@
     + None
 + Bug Fixes
     + clippy cyclomatic complexity warning resolved
-    + allow rss feeds that does not end with 'xml'
+    + allow channels feeds that does not end with 'xml'
 + Breaking Changes
     + None
 + Tests

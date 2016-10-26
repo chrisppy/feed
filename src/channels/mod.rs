@@ -1,8 +1,10 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! All the structs for rss.
+
+//! All the structs for channels.
+
 
 pub mod category;
 pub mod category_builder;
@@ -23,7 +25,9 @@ pub mod source_builder;
 pub mod text_input;
 pub mod text_input_builder;
 
+
 use chrono::*;
+
 
 /// This `Category` struct contains all the items that exist for the category
 /// field under 'Channel' and `Item`.

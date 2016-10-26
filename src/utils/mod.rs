@@ -1,6 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
+
+
+//! The feed can be converted to xml.
+
+
+pub mod reader_utils;
+pub mod writer_utils;
+
 
 use chrono::*;
 use errors;
@@ -8,6 +16,7 @@ use quick_xml::attributes::Attributes;
 use quick_xml::Element;
 use std::{i64, str};
 use std::str::FromStr;
+
 
 // Common code to convert &str to Option<String>.
 pub fn str_to_option_string(s: &str) -> Option<String> {

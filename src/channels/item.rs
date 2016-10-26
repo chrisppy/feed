@@ -1,13 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields under item can be retrieved by using the methods under `Item`.
 
-use chrono::*;
-use rss::{Category, Enclosure, Guid, Source};
 
-use rss::Item;
+use chrono::*;
+use channels::{Category, Enclosure, Guid, Item, Source};
+
 
 impl Item {
     /// Get the optional title that exists under `Item`.
@@ -15,7 +16,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let title_string = "Making Music with Linux | LAS 408".to_owned();
     /// let item = ItemBuilder::new()
@@ -28,7 +29,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(None)
@@ -46,7 +47,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let link_string = "http://www.jupiterbroadcasting.com".to_owned();
     /// let item = ItemBuilder::new()
@@ -60,7 +61,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -78,7 +79,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let description_string = "This is a test description".to_owned();
     /// let item = ItemBuilder::new()
@@ -92,7 +93,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -110,7 +111,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let author_string = "Chris Fisher".to_owned();
     /// let item = ItemBuilder::new()
@@ -124,7 +125,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -142,7 +143,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{CategoryBuilder, ItemBuilder};
+    /// use feed::channels::{CategoryBuilder, ItemBuilder};
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
@@ -164,7 +165,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -182,7 +183,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let comments_string = "This is a test comment.".to_owned();
     /// let item = ItemBuilder::new()
@@ -196,7 +197,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -214,7 +215,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{EnclosureBuilder, ItemBuilder};
+    /// use feed::channels::{EnclosureBuilder, ItemBuilder};
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -234,7 +235,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -252,7 +253,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{GuidBuilder, ItemBuilder};
+    /// use feed::channels::{GuidBuilder, ItemBuilder};
     ///
     /// let guid = GuidBuilder::new()
     ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
@@ -267,7 +268,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -285,7 +286,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     ///
@@ -302,7 +303,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -320,7 +321,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::{ItemBuilder, SourceBuilder};
+    /// use feed::channels::{ItemBuilder, SourceBuilder};
     ///
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
@@ -335,7 +336,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))

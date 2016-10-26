@@ -1,11 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields can be set for cloud by using the methods under `CloudBuilder`.
 
+
 use errors;
-use rss::{Cloud, CloudBuilder};
+use channels::{Cloud, CloudBuilder};
+
 
 impl CloudBuilder {
     /// Construct a new `CloudBuilder` and return default values.
@@ -13,7 +16,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let cloud_builder = CloudBuilder::new();
     /// ```
@@ -27,7 +30,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.domain("rpc.sys.com");
@@ -43,7 +46,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.port(80);
@@ -62,7 +65,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.path("/RPC2");
@@ -78,7 +81,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.register_procedure("pingMe");
@@ -94,7 +97,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.protocol("soap");
@@ -114,7 +117,7 @@ impl CloudBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let cloud = CloudBuilder::new()
     ///         .domain("rpc.sys.com")

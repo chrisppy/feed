@@ -1,11 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
+
 
 //! The fields under text input can be retrieved by using the methods under
 //! `TextInput`.
 
-use rss::TextInput;
+
+use channels::TextInput;
+
 
 impl TextInput {
     /// Get the title that exists under `TextInput`.
@@ -13,7 +16,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let title = "Enter Comment";
     /// let text_input = TextInputBuilder::new()
@@ -31,7 +34,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let description = "Provided Feedback";
     /// let text_input = TextInputBuilder::new()
@@ -49,7 +52,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let name = "Comment";
     /// let text_input = TextInputBuilder::new()
@@ -67,7 +70,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let link = "www.example.com/feedback";
     /// let text_input = TextInputBuilder::new()

@@ -1,6 +1,7 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
+
 
 // utf8 to str error.
 pub fn utf8_to_str_error() -> String {
@@ -89,4 +90,16 @@ pub fn content_type_error() -> String {
 // image url error
 pub fn image_url_error() -> String {
     "Image Url must end with .jpeg, .png, or .gif".to_owned()
+}
+
+
+// string to url error
+pub fn str_to_url_error() -> String {
+    "Error parsing str into url".to_owned()
+}
+
+
+// url error
+pub fn url_error() -> String {
+    "Url error".to_owned()
 }
