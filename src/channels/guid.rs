@@ -6,7 +6,8 @@
 //! The fields under guid can be retrieved by using the methods under `Guid`.
 
 
-use channel::Guid;
+use channels::Guid;
+
 
 impl Guid {
     /// Get the permalink that exists under `Guid`.
@@ -14,7 +15,7 @@ impl Guid {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///     .permalink(None)
@@ -23,7 +24,7 @@ impl Guid {
     /// ```
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
@@ -33,7 +34,7 @@ impl Guid {
     /// ```
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
@@ -51,7 +52,7 @@ impl Guid {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let guid = "9DE46946-2F90-4D5D-9047-7E9165C16E7C";
     /// let guid_obj = GuidBuilder::new()

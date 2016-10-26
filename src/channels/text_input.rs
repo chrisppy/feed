@@ -7,7 +7,7 @@
 //! `TextInput`.
 
 
-use channel::TextInput;
+use channels::TextInput;
 
 
 impl TextInput {
@@ -16,7 +16,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let title = "Enter Comment";
     /// let text_input = TextInputBuilder::new()
@@ -34,7 +34,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let description = "Provided Feedback";
     /// let text_input = TextInputBuilder::new()
@@ -52,7 +52,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let name = "Comment";
     /// let text_input = TextInputBuilder::new()
@@ -70,7 +70,7 @@ impl TextInput {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let link = "www.example.com/feedback";
     /// let text_input = TextInputBuilder::new()

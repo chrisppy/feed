@@ -6,7 +6,7 @@
 //! The fields can be set for guid by using the methods under `GuidBuilder`.
 
 
-use channel::{Guid, GuidBuilder};
+use channels::{Guid, GuidBuilder};
 
 
 impl GuidBuilder {
@@ -15,7 +15,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let guid_builder = GuidBuilder::new();
     /// ```
@@ -29,7 +29,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
     /// guid_builder.permalink(Some(false));
@@ -49,7 +49,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
     /// guid_builder.guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
@@ -65,7 +65,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::GuidBuilder;
+    /// use feed::channels::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///         .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")

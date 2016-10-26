@@ -7,7 +7,7 @@
 
 
 use chrono::*;
-use channel::{Category, Enclosure, Guid, Item, Source};
+use channels::{Category, Enclosure, Guid, Item, Source};
 
 
 impl Item {
@@ -16,7 +16,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let title_string = "Making Music with Linux | LAS 408".to_owned();
     /// let item = ItemBuilder::new()
@@ -29,7 +29,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(None)
@@ -47,7 +47,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let link_string = "http://www.jupiterbroadcasting.com".to_owned();
     /// let item = ItemBuilder::new()
@@ -61,7 +61,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -79,7 +79,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let description_string = "This is a test description".to_owned();
     /// let item = ItemBuilder::new()
@@ -93,7 +93,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -111,7 +111,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let author_string = "Chris Fisher".to_owned();
     /// let item = ItemBuilder::new()
@@ -125,7 +125,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -143,7 +143,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{CategoryBuilder, ItemBuilder};
+    /// use feed::channels::{CategoryBuilder, ItemBuilder};
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
@@ -165,7 +165,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -183,7 +183,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let comments_string = "This is a test comment.".to_owned();
     /// let item = ItemBuilder::new()
@@ -197,7 +197,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -215,7 +215,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{EnclosureBuilder, ItemBuilder};
+    /// use feed::channels::{EnclosureBuilder, ItemBuilder};
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -235,7 +235,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -253,7 +253,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{GuidBuilder, ItemBuilder};
+    /// use feed::channels::{GuidBuilder, ItemBuilder};
     ///
     /// let guid = GuidBuilder::new()
     ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
@@ -268,7 +268,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -286,7 +286,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     ///
@@ -303,7 +303,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -321,7 +321,7 @@ impl Item {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ItemBuilder, SourceBuilder};
+    /// use feed::channels::{ItemBuilder, SourceBuilder};
     ///
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
@@ -336,7 +336,7 @@ impl Item {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))

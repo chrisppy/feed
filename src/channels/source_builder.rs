@@ -6,7 +6,7 @@
 //! The fields can be set for source by using the methods under `SourceBuilder`.
 
 
-use channel::{Source, SourceBuilder};
+use channels::{Source, SourceBuilder};
 
 
 impl SourceBuilder {
@@ -15,7 +15,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::SourceBuilder;
+    /// use feed::channels::SourceBuilder;
     ///
     /// let source_builder = SourceBuilder::new();
     /// ```
@@ -29,7 +29,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::SourceBuilder;
+    /// use feed::channels::SourceBuilder;
     ///
     /// let mut source_builder = SourceBuilder::new();
     /// source_builder.url("http://www.example.com/source");
@@ -45,7 +45,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::SourceBuilder;
+    /// use feed::channels::SourceBuilder;
     ///
     /// let mut source_builder = SourceBuilder::new();
     /// source_builder.source("Test");
@@ -61,7 +61,7 @@ impl SourceBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::SourceBuilder;
+    /// use feed::channels::SourceBuilder;
     ///
     /// let source = SourceBuilder::new()
     ///         .url("http://www.example.com/source")

@@ -6,7 +6,7 @@
 //! The fields can be set for item by using the methods under `ItemBuilder`.
 
 
-use channel::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
+use channels::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
 use utils;
 use errors;
 
@@ -17,7 +17,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item_builder = ItemBuilder::new();
     /// ```
@@ -31,7 +31,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.title(Some("Making Music with Linux | LAS 408".to_owned()));
@@ -47,7 +47,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.link(Some("http://www.jupiterbroadcasting.com".to_owned()));
@@ -63,7 +63,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.description(Some("This is a test description".to_owned()));
@@ -79,7 +79,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.author(Some("Chris Fisher".to_owned()));
@@ -95,7 +95,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{CategoryBuilder, ItemBuilder};
+    /// use feed::channels::{CategoryBuilder, ItemBuilder};
     ///
     /// let category = CategoryBuilder::new().finalize();
     /// let categories = vec![category];
@@ -114,7 +114,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.comments(Some("Test Comment".to_owned()));
@@ -130,7 +130,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{EnclosureBuilder, ItemBuilder};
+    /// use feed::channels::{EnclosureBuilder, ItemBuilder};
     ///
     /// let enclosure = EnclosureBuilder::new().finalize();
     ///
@@ -148,7 +148,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{GuidBuilder, ItemBuilder};
+    /// use feed::channels::{GuidBuilder, ItemBuilder};
     ///
     /// let guid = GuidBuilder::new().finalize();
     ///
@@ -166,7 +166,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
@@ -182,7 +182,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ItemBuilder, SourceBuilder};
+    /// use feed::channels::{ItemBuilder, SourceBuilder};
     ///
     /// let source = SourceBuilder::new().finalize();
     ///
@@ -200,7 +200,7 @@ impl ItemBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ItemBuilder;
+    /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
     ///         .title(Some("Making Music with Linux | LAS 408".to_owned()))

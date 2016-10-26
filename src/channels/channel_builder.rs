@@ -2,11 +2,11 @@
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
-//! The fields can be set for channel by using the methods under `ChannelBuilder`.
+//! The fields can be set for channels by using the methods under `ChannelBuilder`.
 
 
 use errors;
-use channel::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
+use channels::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
 use utils;
 
 
@@ -16,7 +16,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let channel_builder = ChannelBuilder::new();
     /// ```
@@ -30,7 +30,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.title("The Linux Action Show! OGG");
@@ -46,7 +46,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.link("http://www.jupiterbroadcasting.com");
@@ -62,7 +62,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
     /// + "Action Show! A show that covers everything geeks care about in the "
@@ -83,7 +83,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.language(Some("en".to_owned()));
@@ -99,7 +99,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let copyright = "Copyright 2002, Spartanburg Herald-Journal".to_owned();
     ///
@@ -117,7 +117,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let managing_editor =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
@@ -136,7 +136,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let web_master =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
@@ -155,7 +155,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
@@ -171,7 +171,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.last_build_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
@@ -187,7 +187,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ChannelBuilder, CategoryBuilder};
+    /// use feed::channels::{ChannelBuilder, CategoryBuilder};
     ///
     /// let category = CategoryBuilder::new().finalize();
     /// let categories = vec![category];
@@ -206,7 +206,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let generator = "Feeder 2.5.12(2294); ".to_owned()
     /// + "Mac OS X Version 10.9.5 (Build 13F34) "
@@ -226,7 +226,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.docs(Some("http://blogs.law.harvard.edu/tech/rss".to_owned()));
@@ -242,7 +242,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ChannelBuilder, CloudBuilder};
+    /// use feed::channels::{ChannelBuilder, CloudBuilder};
     ///
     /// let cloud = CloudBuilder::new().finalize();
     ///
@@ -260,7 +260,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.ttl(Some(60));
@@ -282,7 +282,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ChannelBuilder, ImageBuilder};
+    /// use feed::channels::{ChannelBuilder, ImageBuilder};
     ///
     /// let image = ImageBuilder::new().finalize();
     ///
@@ -299,7 +299,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.rating(Some("PG-13".to_owned()));
@@ -315,7 +315,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ChannelBuilder, TextInputBuilder};
+    /// use feed::channels::{ChannelBuilder, TextInputBuilder};
     ///
     /// let text_input = TextInputBuilder::new().finalize();
     ///
@@ -333,7 +333,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let hours: Vec<i64> = vec![0, 12, 18];
     ///
@@ -363,7 +363,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let days = vec!["Monday".to_owned(), "Tuesday".to_owned()];
     ///
@@ -394,7 +394,7 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::{ChannelBuilder, ItemBuilder};
+    /// use feed::channels::{ChannelBuilder, ItemBuilder};
     ///
     /// let title = "Making Music with Linux | LAS 408".to_owned();
     ///
@@ -415,14 +415,14 @@ impl ChannelBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ChannelBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
     /// let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
     /// + "Action Show! A show that covers everything geeks care about in the "
     /// + "computer industry. Get a solid dose of Linux, gadgets, news events "
     /// + "and much more!";
     ///
-    /// let channel = ChannelBuilder::new()
+    /// let channels = ChannelBuilder::new()
     ///         .title("The Linux Action Show! OGG")
     ///         .link("http://www.jupiterbroadcasting.com")
     ///         .description(description.as_ref())

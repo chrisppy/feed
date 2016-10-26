@@ -7,7 +7,7 @@
 //! `Category`.
 
 
-use channel::Category;
+use channels::Category;
 
 
 impl Category {
@@ -16,7 +16,7 @@ impl Category {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let category = "podcast";
     /// let category_obj = CategoryBuilder::new()
@@ -34,7 +34,7 @@ impl Category {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let domain_string = "http://jupiterbroadcasting.com".to_owned();
     /// let category = CategoryBuilder::new()
@@ -47,7 +47,7 @@ impl Category {
     /// ```
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
     ///     .domain(None)

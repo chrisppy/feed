@@ -1,11 +1,18 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
+#![doc(html_root_url = "https://docs.rs/feed/")]
+#![deny(missing_docs)]
+#![cfg_attr(feature="clippy", feature(plugin))]
+#![cfg_attr(feature="clippy", plugin(clippy))]
+
+
 //! # feed 1.2
 //!
-//! This Library is for parsing through a rss field and creating a `Feed`
-//! struct containing all elements of a `Channel` based on the rss spec.
+//! This Library is for parsing through a channels field and creating a `Feed`
+//! struct containing all elements of a `Channel` based on the channels spec.
 //!
 //! ## Usage
 //! Put this in your Cargo.toml:
@@ -30,12 +37,10 @@
 //! extern crate url;
 //!
 //! use feed::FeedBuilder;
-//! use url::Url;
 //!
 //! fn main() {
 //!     let url_str = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
-//!     let url = Url::parse(url_str).expect("Url parse Error");
-//!     let feed = FeedBuilder::new().read_from_url(url).finalize();
+//!     let feed = FeedBuilder::read_from_url(url_str).finalize();
 //!     let channel = feed.channel();
 //!     println!("Title: {}", channel.title());
 //! }
@@ -47,7 +52,7 @@
 //! extern crate feed;
 //!
 //! use feed::FeedBuilder;
-//! use feed::rss::ChannelBuilder;
+//! use feed::channels::ChannelBuilder;
 //!
 //! fn main() {
 //!
@@ -61,38 +66,29 @@
 //!             .link("http://www.jupiterbroadcasting.com")
 //!             .description(description.as_ref())
 //!             .finalize();
-//!     let feed = FeedBuilder::new().channel(channel).finalize();
+//!     let feed = FeedBuilder::channel(channel).finalize();
 //!     let xml = feed.to_xml();
 //!     println!("Feed: {:?}", xml);
 //! }
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/feed/")]
-
-#![deny(missing_docs)]
-
-#![cfg_attr(feature="clippy", feature(plugin))]
-
-#![cfg_attr(feature="clippy", plugin(clippy))]
-
-pub mod feed;
-pub mod feed_builder;
-pub mod feedio;
-pub mod itunes;
-pub mod media;
-pub mod rss;
-mod util;
-mod errors;
 
 extern crate chrono;
 extern crate curl;
 extern crate quick_xml;
+extern crate rss;
 extern crate url;
 
-#[macro_use]
-extern crate log;
 
-use rss::Channel;
+pub mod channels;
+mod errors;
+pub mod feed;
+pub mod feed_builder;
+mod utils;
+
+
+use channels::Channel;
+
 
 /// This `Feed` struct contains all the items that exist for the feeds.
 #[derive(Clone)]

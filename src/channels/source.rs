@@ -6,7 +6,7 @@
 //! The fields under source can be retrieved by using the methods under `Source`.
 
 
-use channel::Source;
+use channels::Source;
 
 
 impl Source {
@@ -15,7 +15,7 @@ impl Source {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::SourceBuilder;
+    /// use feed::channels::SourceBuilder;
     ///
     /// let url = "http://www.tomalak.org/links2.xml";
     /// let source = SourceBuilder::new()
@@ -33,7 +33,7 @@ impl Source {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::SourceBuilder;
+    /// use feed::channels::SourceBuilder;
     ///
     /// let source = "Tomalak's Realm";
     /// let source_obj = SourceBuilder::new()

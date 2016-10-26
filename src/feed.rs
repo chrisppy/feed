@@ -1,12 +1,15 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! Implementation of `Feed`.
 
+
 use Feed;
-use feedio::FeedWriter;
-use rss::Channel;
+use utils::writer_utils;
+use channels::Channel;
+
 
 impl Feed {
     /// Get the `Channel` that exists under `Feed`.
@@ -14,11 +17,12 @@ impl Feed {
     /// # Examples
     ///
     /// ```
-    /// use feed::{Feed, FeedBuilder};
-    /// use feed::channel::Channel;
+    /// use feed::FeedBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
-    /// let feed = FeedBuilder::new().finalize();
-    /// let channel = feed.channel();
+    /// let channel = ChannelBuilder::new().finalize();
+    /// let feed = FeedBuilder::channel(channel).finalize();
+    /// let channels = feed.channel();
     /// ```
     pub fn channel(self) -> Channel {
         self.channel
@@ -30,13 +34,14 @@ impl Feed {
     /// # Examples
     ///
     /// ```
-    /// use feed::{Feed, FeedBuilder};
-    /// use feed::channel::Channel;
+    /// use feed::FeedBuilder;
+    /// use feed::channels::ChannelBuilder;
     ///
-    /// let feed = FeedBuilder::new().finalize();
+    /// let channel = ChannelBuilder::new().finalize();
+    /// let feed = FeedBuilder::channel(channel).finalize();
     /// let xml = feed.to_xml();
     /// ```
     pub fn to_xml(&self) -> Vec<u8> {
-        FeedWriter::new(self.channel.clone()).xml()
+        writer_utils::write(self.channel.clone())
     }
 }

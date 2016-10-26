@@ -7,7 +7,7 @@
 //! under `TextInputBuilder`.
 
 
-use channel::{TextInput, TextInputBuilder};
+use channels::{TextInput, TextInputBuilder};
 
 
 impl TextInputBuilder {
@@ -16,7 +16,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let text_input_builder = TextInputBuilder::new();
     /// ```
@@ -30,7 +30,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.title("Title");
@@ -46,7 +46,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.description("This is a test description.");
@@ -62,7 +62,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.name("Comments");
@@ -78,7 +78,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.link("http://www.example.com/feedback");
@@ -94,7 +94,7 @@ impl TextInputBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::TextInputBuilder;
+    /// use feed::channels::TextInputBuilder;
     ///
     /// let text_input = TextInputBuilder::new()
     ///         .title("Title")

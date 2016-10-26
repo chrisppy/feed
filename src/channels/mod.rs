@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 
-//! All the structs for channel.
+//! All the structs for channels.
 
 
 pub mod category;

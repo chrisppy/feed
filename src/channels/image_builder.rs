@@ -8,7 +8,7 @@
 
 
 use errors;
-use channel::{Image, ImageBuilder};
+use channels::{Image, ImageBuilder};
 
 
 impl ImageBuilder {
@@ -17,7 +17,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let image_builder = ImageBuilder::new();
     /// ```
@@ -31,7 +31,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
@@ -52,7 +52,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.title("LAS 300 Logo");
@@ -68,7 +68,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.link("http://www.jupiterbroadcasting.com");
@@ -84,7 +84,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.width(Some(88));
@@ -111,7 +111,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.height(Some(88));
@@ -138,7 +138,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.description(Some("This is a test".to_owned()));
@@ -154,7 +154,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
     ///         .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")

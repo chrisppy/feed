@@ -7,7 +7,7 @@
 //! `CategoryBuilder`.
 
 
-use channel::{Category, CategoryBuilder};
+use channels::{Category, CategoryBuilder};
 
 
 impl CategoryBuilder {
@@ -16,7 +16,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let category_builder = CategoryBuilder::new();
     /// ```
@@ -30,7 +30,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.category("Podcast");
@@ -46,7 +46,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.domain(Some("http://www.example.com".to_owned()));
@@ -62,7 +62,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CategoryBuilder;
+    /// use feed::channels::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
     ///         .category("Title")

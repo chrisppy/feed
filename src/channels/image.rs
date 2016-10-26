@@ -6,7 +6,7 @@
 //! The fields under image can be retrieved by using the methods under `Image`.
 
 
-use channel::Image;
+use channels::Image;
 
 
 impl Image {
@@ -15,7 +15,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     /// let image = ImageBuilder::new()
@@ -33,7 +33,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let title = "LAS 300 Logo";
     /// let image = ImageBuilder::new()
@@ -51,7 +51,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let link = "http://www.jupiterbroadcasting.com";
     /// let image = ImageBuilder::new()
@@ -69,7 +69,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let default: i64 = 88;
     /// let image = ImageBuilder::new()
@@ -79,7 +79,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let width: i64 = 60;
     /// let image = ImageBuilder::new()
@@ -89,7 +89,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let width: i64 = 777;
     /// let max: i64 = 144;
@@ -108,7 +108,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let default: i64 = 31;
     /// let image = ImageBuilder::new()
@@ -118,7 +118,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let height: i64 = 60;
     /// let image = ImageBuilder::new()
@@ -128,7 +128,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let height: i64 = 777;
     /// let max: i64 = 400;
@@ -147,7 +147,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
     ///     .description(None)
@@ -156,7 +156,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::channel::ImageBuilder;
+    /// use feed::channels::ImageBuilder;
     ///
     /// let description_string = "This is a test".to_owned();
     /// let image = ImageBuilder::new()

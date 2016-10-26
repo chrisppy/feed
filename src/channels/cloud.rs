@@ -6,7 +6,7 @@
 //! The fields under cloud can be retrieved by using the methods under `Cloud`.
 
 
-use channel::Cloud;
+use channels::Cloud;
 
 
 impl Cloud {
@@ -15,7 +15,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let domain = "rpc.sys.com";
     /// let cloud = CloudBuilder::new()
@@ -33,7 +33,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let port: i64 = 80;
     /// let cloud = CloudBuilder::new()
@@ -51,7 +51,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let path = "/RPC2";
     /// let cloud = CloudBuilder::new()
@@ -69,7 +69,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let register_procedure = "pingMe";
     /// let cloud = CloudBuilder::new()
@@ -87,7 +87,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::CloudBuilder;
+    /// use feed::channels::CloudBuilder;
     ///
     /// let protocol = "soap";
     /// let cloud = CloudBuilder::new()

@@ -6,7 +6,7 @@
 //! The fields under enclosure can be retrieved by using the methods under `Enclosure`.
 
 
-use channel::Enclosure;
+use channels::Enclosure;
 
 
 impl Enclosure {
@@ -15,7 +15,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::EnclosureBuilder;
+    /// use feed::channels::EnclosureBuilder;
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -34,7 +34,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::EnclosureBuilder;
+    /// use feed::channels::EnclosureBuilder;
     ///
     /// let length: i64 = 70772893;
     /// let enclosure = EnclosureBuilder::new()
@@ -52,7 +52,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::channel::EnclosureBuilder;
+    /// use feed::channels::EnclosureBuilder;
     ///
     /// let enclosure_type = "audio/ogg";
     /// let enclosure = EnclosureBuilder::new()
