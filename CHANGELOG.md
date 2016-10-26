@@ -6,7 +6,10 @@
 + Bug Fixes
     + Constrain image url to only accept JPEG, PNG, and GIF
 + Breaking Changes
-    + None
+    + read from url parameter has been changed from url to str
+    + new() has been removed from FeedBuilder
++ Refactor
+    + reader and writer have been moved into utils
 + Tests
     + None
 + Maintenance
