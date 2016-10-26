@@ -29,9 +29,7 @@ impl FeedBuilder {
     /// FeedBuilder::channel(channel);
     /// ```
     pub fn channel(channel: Channel) -> FeedBuilder {
-        FeedBuilder {
-            channel: channel,
-        }
+        FeedBuilder { channel: channel }
     }
 
 
@@ -71,8 +69,7 @@ impl FeedBuilder {
     /// }
     /// ```
     pub fn read_from_url(feed_str: &str) -> FeedBuilder {
-        let feed_url = Url::parse(feed_str)
-            .expect(errors::str_to_url_error().as_str());
+        let feed_url = Url::parse(feed_str).expect(errors::str_to_url_error().as_str());
         let mut dst = Vec::new();
         let mut handle = Easy::new();
 
@@ -80,9 +77,10 @@ impl FeedBuilder {
         {
             let mut transfer = handle.transfer();
             transfer.write_function(|data| {
-                dst.extend_from_slice(data);
-                Ok(data.len())
-            }).unwrap();
+                    dst.extend_from_slice(data);
+                    Ok(data.len())
+                })
+                .unwrap();
             transfer.perform().unwrap();
         }
 
@@ -98,12 +96,9 @@ impl FeedBuilder {
             panic!(errors::missing_xml_error());
         }
 
-        let feed_string = String::from_utf8(dst)
-        .expect(errors::utf8_to_str_error().as_str());
+        let feed_string = String::from_utf8(dst).expect(errors::utf8_to_str_error().as_str());
 
-        FeedBuilder {
-            channel: reader_utils::read(feed_string.as_str()),
-        }
+        FeedBuilder { channel: reader_utils::read(feed_string.as_str()) }
     }
 
 
