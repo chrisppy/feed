@@ -1,11 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields can be set for enclosure by using the methods under `EnclosureBuilder`.
 
+
 use errors;
-use rss::{Enclosure, EnclosureBuilder};
+use channel::{Enclosure, EnclosureBuilder};
+
 
 impl EnclosureBuilder {
     /// Construct a new `EnclosureBuilder` and return default values.
@@ -13,7 +16,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let enclosure_builder = EnclosureBuilder::new();
     /// ```
@@ -27,7 +30,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let url = "http://www.podtrac.com/pts/".to_owned()
     /// + "redirect.ogg/traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -45,7 +48,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let mut enclosure_builder = EnclosureBuilder::new();
     /// enclosure_builder.length(70772893);
@@ -64,7 +67,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let mut enclosure_builder = EnclosureBuilder::new();
     /// enclosure_builder.enclosure_type("audio/ogg");
@@ -80,7 +83,7 @@ impl EnclosureBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";

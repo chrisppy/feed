@@ -1,11 +1,14 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
+
 
 //! The fields can be set for category by using the methods under
 //! `CategoryBuilder`.
 
-use rss::{Category, CategoryBuilder};
+
+use channel::{Category, CategoryBuilder};
+
 
 impl CategoryBuilder {
     /// Construct a new `CategoryBuilder` and return default values.
@@ -13,7 +16,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CategoryBuilder;
+    /// use feed::channel::CategoryBuilder;
     ///
     /// let category_builder = CategoryBuilder::new();
     /// ```
@@ -27,7 +30,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CategoryBuilder;
+    /// use feed::channel::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.category("Podcast");
@@ -43,7 +46,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CategoryBuilder;
+    /// use feed::channel::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.domain(Some("http://www.example.com".to_owned()));
@@ -59,7 +62,7 @@ impl CategoryBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CategoryBuilder;
+    /// use feed::channel::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
     ///         .category("Title")

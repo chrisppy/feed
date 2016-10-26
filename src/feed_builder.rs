@@ -34,7 +34,7 @@ impl FeedBuilder {
     ///
     /// ```
     /// use feed::FeedBuilder;
-    /// use feed::rss::{Channel, ChannelBuilder};
+    /// use feed::channel::{Channel, ChannelBuilder};
     ///
     /// let channel = ChannelBuilder::new().finalize();
     /// let feed = FeedBuilder::new().channel(channel).finalize();

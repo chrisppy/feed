@@ -1,10 +1,13 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields under image can be retrieved by using the methods under `Image`.
 
-use rss::Image;
+
+use channel::Image;
+
 
 impl Image {
     /// Get the url that exists under `Image`.
@@ -12,7 +15,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     /// let image = ImageBuilder::new()
@@ -30,7 +33,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let title = "LAS 300 Logo";
     /// let image = ImageBuilder::new()
@@ -48,7 +51,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let link = "http://www.jupiterbroadcasting.com";
     /// let image = ImageBuilder::new()
@@ -66,7 +69,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let default: i64 = 88;
     /// let image = ImageBuilder::new()
@@ -76,7 +79,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let width: i64 = 60;
     /// let image = ImageBuilder::new()
@@ -86,7 +89,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let width: i64 = 777;
     /// let max: i64 = 144;
@@ -105,7 +108,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let default: i64 = 31;
     /// let image = ImageBuilder::new()
@@ -115,7 +118,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let height: i64 = 60;
     /// let image = ImageBuilder::new()
@@ -125,7 +128,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let height: i64 = 777;
     /// let max: i64 = 400;
@@ -144,7 +147,7 @@ impl Image {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
     ///     .description(None)
@@ -153,7 +156,7 @@ impl Image {
     /// ```
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let description_string = "This is a test".to_owned();
     /// let image = ImageBuilder::new()

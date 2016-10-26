@@ -1,10 +1,13 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields under enclosure can be retrieved by using the methods under `Enclosure`.
 
-use rss::Enclosure;
+
+use channel::Enclosure;
+
 
 impl Enclosure {
     /// Get the url that exists under `Enclosure`.
@@ -12,7 +15,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -31,7 +34,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let length: i64 = 70772893;
     /// let enclosure = EnclosureBuilder::new()
@@ -49,7 +52,7 @@ impl Enclosure {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::EnclosureBuilder;
+    /// use feed::channel::EnclosureBuilder;
     ///
     /// let enclosure_type = "audio/ogg";
     /// let enclosure = EnclosureBuilder::new()

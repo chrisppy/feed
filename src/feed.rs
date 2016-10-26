@@ -15,7 +15,7 @@ impl Feed {
     ///
     /// ```
     /// use feed::{Feed, FeedBuilder};
-    /// use feed::rss::Channel;
+    /// use feed::channel::Channel;
     ///
     /// let feed = FeedBuilder::new().finalize();
     /// let channel = feed.channel();
@@ -31,7 +31,7 @@ impl Feed {
     ///
     /// ```
     /// use feed::{Feed, FeedBuilder};
-    /// use feed::rss::Channel;
+    /// use feed::channel::Channel;
     ///
     /// let feed = FeedBuilder::new().finalize();
     /// let xml = feed.to_xml();

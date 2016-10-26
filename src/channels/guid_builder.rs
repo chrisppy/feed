@@ -1,10 +1,13 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields can be set for guid by using the methods under `GuidBuilder`.
 
-use rss::{Guid, GuidBuilder};
+
+use channel::{Guid, GuidBuilder};
+
 
 impl GuidBuilder {
     /// Construct a new `GuidBuilder` and return default values.
@@ -12,7 +15,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::GuidBuilder;
+    /// use feed::channel::GuidBuilder;
     ///
     /// let guid_builder = GuidBuilder::new();
     /// ```
@@ -26,7 +29,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::GuidBuilder;
+    /// use feed::channel::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
     /// guid_builder.permalink(Some(false));
@@ -46,7 +49,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::GuidBuilder;
+    /// use feed::channel::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
     /// guid_builder.guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
@@ -62,7 +65,7 @@ impl GuidBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::GuidBuilder;
+    /// use feed::channel::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
     ///         .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")

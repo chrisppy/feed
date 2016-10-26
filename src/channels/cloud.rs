@@ -1,10 +1,13 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
 
+
 //! The fields under cloud can be retrieved by using the methods under `Cloud`.
 
-use rss::Cloud;
+
+use channel::Cloud;
+
 
 impl Cloud {
     /// Get the domain that exists under `Cloud`.
@@ -12,7 +15,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channel::CloudBuilder;
     ///
     /// let domain = "rpc.sys.com";
     /// let cloud = CloudBuilder::new()
@@ -30,7 +33,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channel::CloudBuilder;
     ///
     /// let port: i64 = 80;
     /// let cloud = CloudBuilder::new()
@@ -48,7 +51,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channel::CloudBuilder;
     ///
     /// let path = "/RPC2";
     /// let cloud = CloudBuilder::new()
@@ -66,7 +69,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channel::CloudBuilder;
     ///
     /// let register_procedure = "pingMe";
     /// let cloud = CloudBuilder::new()
@@ -84,7 +87,7 @@ impl Cloud {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::CloudBuilder;
+    /// use feed::channel::CloudBuilder;
     ///
     /// let protocol = "soap";
     /// let cloud = CloudBuilder::new()

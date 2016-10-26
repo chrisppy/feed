@@ -1,12 +1,15 @@
-// Copyright (c) 2016 Chris Palmer <pennstate5013@gmail.com>
+// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
 // Use of this source code is governed by the LGPLv3 license that can be
 // found in the LICENSE file.
+
 
 //! The fields under image can be retrieved by using the methods under `Image`
 //! and the fields can be set for image by using the methods under `ImageBuilder`.
 
+
 use errors;
-use rss::{Image, ImageBuilder};
+use channel::{Image, ImageBuilder};
+
 
 impl ImageBuilder {
     /// Construct a new `ImageBuilder` and return default values.
@@ -14,7 +17,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let image_builder = ImageBuilder::new();
     /// ```
@@ -28,7 +31,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
@@ -49,7 +52,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.title("LAS 300 Logo");
@@ -65,7 +68,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.link("http://www.jupiterbroadcasting.com");
@@ -81,7 +84,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.width(Some(88));
@@ -108,7 +111,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.height(Some(88));
@@ -135,7 +138,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.description(Some("This is a test".to_owned()));
@@ -151,7 +154,7 @@ impl ImageBuilder {
     /// # Examples
     ///
     /// ```
-    /// use feed::rss::ImageBuilder;
+    /// use feed::channel::ImageBuilder;
     ///
     /// let image = ImageBuilder::new()
     ///         .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
