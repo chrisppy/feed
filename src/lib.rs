@@ -9,7 +9,7 @@
 #![cfg_attr(feature="clippy", plugin(clippy))]
 
 
-//! # feed 1.2
+//! # feed 2.0
 //!
 //! This Library is for parsing through a channels field and creating a `Feed`
 //! struct containing all elements of a `Channel` based on the channels spec.
@@ -19,7 +19,7 @@
 //!
 //! ```Toml
 //! [dependencies]
-//! feed = "1.2"
+//! feed = "2.0"
 //! ```
 //!
 //! And put this in your crate root:

@@ -16,7 +16,7 @@ Library for creating channels feeds and parsing channels feeds from an URL and r
 To include feed as a cargo dependency you have to add it to your Cargo.toml:
 ```Toml
 [dependencies]
-feed = "1.2"
+feed = "2.0"
 ```
 
 ## Bugs and feature requests
