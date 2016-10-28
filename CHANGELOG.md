@@ -8,8 +8,18 @@
 + Breaking Changes
     + read from url parameter has been changed from url to str
     + new() has been removed from FeedBuilder
+    + The following values have been changed:
+    	+ Guid
+    	    + permalink -> is_permalink
+    	    + guid -> value
+        + Enclosure
+            + enclosure_type -> mime_type
+    	+ Source
+    	    + source -> title
+    	    + title is now Option<String>
 + Refactor
     + reader and writer have been moved into utils
+    + reader has been refactored to use rss package
 + Tests
     + None
 + Maintenance

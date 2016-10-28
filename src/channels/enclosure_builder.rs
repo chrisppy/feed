@@ -70,10 +70,10 @@ impl EnclosureBuilder {
     /// use feed::channels::EnclosureBuilder;
     ///
     /// let mut enclosure_builder = EnclosureBuilder::new();
-    /// enclosure_builder.enclosure_type("audio/ogg");
+    /// enclosure_builder.mime_type("audio/ogg");
     /// ```
-    pub fn enclosure_type(&mut self, enclosure_type: &str) -> &mut EnclosureBuilder {
-        self.enclosure_type = enclosure_type.to_owned();
+    pub fn mime_type(&mut self, mime_type: &str) -> &mut EnclosureBuilder {
+        self.mime_type = mime_type.to_owned();
         self
     }
 
@@ -90,14 +90,14 @@ impl EnclosureBuilder {
     /// let enclosure = EnclosureBuilder::new()
     ///         .url(url.as_ref())
     ///         .length(70772893)
-    ///         .enclosure_type("audio/ogg")
+    ///         .mime_type("audio/ogg")
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Enclosure {
         Enclosure {
             url: self.url.clone(),
             length: self.length,
-            enclosure_type: self.enclosure_type.clone(),
+            mime_type: self.mime_type.clone(),
         }
     }
 }

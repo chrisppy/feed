@@ -56,11 +56,11 @@ impl Enclosure {
     ///
     /// let enclosure_type = "audio/ogg";
     /// let enclosure = EnclosureBuilder::new()
-    ///     .enclosure_type(enclosure_type)
+    ///     .mime_type(enclosure_type)
     ///     .finalize();
-    /// assert_eq!(enclosure_type.to_owned(), enclosure.enclosure_type())
+    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type())
     /// ```
-    pub fn enclosure_type(&self) -> String {
-        self.enclosure_type.clone()
+    pub fn mime_type(&self) -> String {
+        self.mime_type.clone()
     }
 }

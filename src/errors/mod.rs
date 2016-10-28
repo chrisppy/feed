@@ -9,12 +9,6 @@ pub fn utf8_to_str_error() -> String {
 }
 
 
-// str to bool error.
-pub fn str_to_bool_error() -> String {
-    "Error converting str to bool".to_owned()
-}
-
-
 // str to datetime error.
 pub fn str_to_datetime_error() -> String {
     "Error converting str to datetime".to_owned()
@@ -24,12 +18,6 @@ pub fn str_to_datetime_error() -> String {
 // str to i64 error.
 pub fn str_to_i64_error() -> String {
     "Error converting str to i64".to_owned()
-}
-
-
-// element to string error.
-pub fn element_to_string_error() -> String {
-    "Error converting element to string".to_owned()
 }
 
 

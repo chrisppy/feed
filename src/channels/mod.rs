@@ -125,7 +125,7 @@ pub struct CloudBuilder {
 pub struct Enclosure {
     url: String,
     length: i64,
-    enclosure_type: String,
+    mime_type: String,
 }
 
 
@@ -134,23 +134,23 @@ pub struct Enclosure {
 pub struct EnclosureBuilder {
     url: String,
     length: i64,
-    enclosure_type: String,
+    mime_type: String,
 }
 
 
 /// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
 #[derive(Clone)]
 pub struct Guid {
-    permalink: bool,
-    guid: String,
+    is_permalink: bool,
+    value: String,
 }
 
 
 /// This `GuidBuilder` struct creates the `Guid`.
 #[derive(Default)]
 pub struct GuidBuilder {
-    permalink: bool,
-    guid: String,
+    is_permalink: bool,
+    value: String,
 }
 
 
@@ -215,7 +215,7 @@ pub struct ItemBuilder {
 #[derive(Clone)]
 pub struct Source {
     url: String,
-    source: String,
+    title: Option<String>,
 }
 
 
@@ -223,7 +223,7 @@ pub struct Source {
 #[derive(Default)]
 pub struct SourceBuilder {
     url: String,
-    source: String,
+    title: Option<String>,
 }
 
 

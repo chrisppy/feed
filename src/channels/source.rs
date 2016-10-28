@@ -35,13 +35,13 @@ impl Source {
     /// ```
     /// use feed::channels::SourceBuilder;
     ///
-    /// let source = "Tomalak's Realm";
+    /// let title = "Tomalak's Realm";
     /// let source_obj = SourceBuilder::new()
-    ///     .source(source)
+    ///     .title(Some(title.to_owned()))
     ///     .finalize();
-    /// assert_eq!(source.to_owned(), source_obj.source());
+    /// assert_eq!(title.to_owned(), source_obj.title().unwrap());
     /// ```
-    pub fn source(&self) -> String {
-        self.source.clone()
+    pub fn title(&self) -> Option<String> {
+        self.title.clone()
     }
 }

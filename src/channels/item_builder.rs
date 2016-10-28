@@ -7,7 +7,7 @@
 
 
 use channels::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
-use utils;
+use utils::string_utils;
 use errors;
 
 
@@ -172,7 +172,7 @@ impl ItemBuilder {
     /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
-        self.pub_date = utils::option_string_to_option_date(pub_date);
+        self.pub_date = string_utils::option_string_to_option_date(pub_date);
         self
     }
 

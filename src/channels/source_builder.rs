@@ -48,10 +48,10 @@ impl SourceBuilder {
     /// use feed::channels::SourceBuilder;
     ///
     /// let mut source_builder = SourceBuilder::new();
-    /// source_builder.source("Test");
+    /// source_builder.title(Some("Test".to_owned()));
     /// ```
-    pub fn source(&mut self, source: &str) -> &mut SourceBuilder {
-        self.source = source.to_owned();
+    pub fn title(&mut self, title: Option<String>) -> &mut SourceBuilder {
+        self.title = title;
         self
     }
 
@@ -65,13 +65,13 @@ impl SourceBuilder {
     ///
     /// let source = SourceBuilder::new()
     ///         .url("http://www.example.com/source")
-    ///         .source("Test")
+    ///         .title(None)
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Source {
         Source {
             url: self.url.clone(),
-            source: self.source.clone(),
+            title: self.title.clone(),
         }
     }
 }
