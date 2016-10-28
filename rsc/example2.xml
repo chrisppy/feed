@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~files/feed-premium.xsl"?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://www.rssboard.org/media-rss" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedpress="https://feed.press/xmlns" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" version="2.0">
+  <channel>
+    <feedpress:locale>en</feedpress:locale>
+    <atom:link rel="hub" href="http://feedpress.superfeedr.com/"/>
+    <image>
+      <link>http://error.show</link>
+      <title><![CDATA[User Error Podcast]]></title>
+      <url>http://static.feedpress.it/logo/usererror.png</url>
+    </image>
+    <itunes:category text="Technology"/>
+    <media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology</media:category>
+    <media:rating>nonadult</media:rating>
+    <media:description type="plain">Opinionated nice guys, exploring the bigger picture.</media:description>
+    <media:credit role="author">Jupiter Broadcasting</media:credit>
+    <media:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</media:keywords>
+    <media:copyright>Copyright Jupiter Broadcasting</media:copyright>
+    <copyright>Copyright Jupiter Broadcasting</copyright>
+    <dc:creator>Jupiter Broadcasting</dc:creator>
+    <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:author>Jupiter Broadcasting</itunes:author>
+    <itunes:owner>
+      <itunes:email>error@jupiterbroadcasting.com</itunes:email>
+      <itunes:name>Jupiter Broadcasting</itunes:name>
+    </itunes:owner>
+    <itunes:summary>Everyone makes mistakes, we just make show content out of them. Insightful yet irreverent and somewhat raw, User Error is a weekly talk show contemplating our own issues and those of our community.</itunes:summary>
+    <itunes:subtitle>Opinionated nice guys, exploring the bigger picture.</itunes:subtitle>
+    <feedpress:podcastId>1145648639</feedpress:podcastId>
+    <googleplay:email>error@jupiterbroadcasting.com</googleplay:email>
+    <googleplay:description>Everyone makes mistakes, we just make show content out of them. Insightful yet irreverent and somewhat raw, User Error is a weekly talk show contemplating our own issues and those of our community.</googleplay:description>
+    <googleplay:explicit>no</googleplay:explicit>
+    <googleplay:author>Jupiter Broadcasting</googleplay:author>
+    <atom:link rel="self" href="http://feedpress.me/usererror"/>
+    <title>User Error Podcast</title>
+    <link>http://error.show</link>
+    <language>en</language>
+    <generator>FeedPress (https://feed.press)</generator>
+    <description>User Error MP3 Feed</description>
+    <item>
+      <title>User Error Diamond Collection 2</title>
+      <link>http://feedpress.me/usererror#entry-237</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-237</guid>
+      <pubDate>Mon, 24 Oct 2016 18:42:52 +0200</pubDate>
+      <description>Outtakes from the first few episodes of User Error</description>
+      <content:encoded><![CDATA[<p>An exclusive for our RSS subscibers, quick outtakes from the past few episode of User Error.  From time to time we'll be publishing the very best of our very worst to our RSS feed, and we call it the Diamond Collection. </p>
+
+<p>Enjoy our mistakes!</p>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4691893/UE-DiamondCollection-02.mp3" length="14689252" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>An exclusive for our RSS subscibers, quick outtakes from the past few episode of User Error. From time to time we'll be publishing the very best of our very worst to our RSS feed, and we call it the…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;An exclusive for our RSS subscibers, quick outtakes from the past few episode of User Error.  From time to time we'll be publishing the very best of our very worst to our RSS feed, and we call it the Diamond Collection. &lt;/p&gt;
+
+&lt;p&gt;Enjoy our mistakes!&lt;/p&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>A Gift for Future Chris | User Error 7</title>
+      <link>http://feedpress.me/usererror#entry-196</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-196</guid>
+      <pubDate>Mon, 17 Oct 2016 21:17:43 +0200</pubDate>
+      <description>Our take on the Google Pixel and the best way to cook pizza.</description>
+      <content:encoded><![CDATA[<p>Our take on the Google Pixel and its possible fatal flaw, pushing through a funk and maintaining motivation, a random headphone and Bluetooth speaker discussion, and the best way to cook pizza ever.</p>
+
+<ul>
+<li>(00:00:27) - Our take on the Google Pixel.</li>
+<li>(00:02:11) - Run down of the Pixel specs and features </li>
+<li>(00:06:53) - Why Pixel represents a huge change for the Android Ecosystem </li>
+<li>(00:10:00) - Why Google might be the Pixel's fatal flaw.  </li>
+<li>(00:18:03) - The REAL use for the new Google Daydream VR Gear. </li>
+<li>(00:19:36) - Now there are only two phones on the market. </li>
+<li>(00:20:11) - Best USB Audio interface for your Linux box.</li>
+<li>(00:22:10) - Beard calls out Noah for once again ignoring his hardware advice.</li>
+<li>(00:24:40) - The Beard shares he's recently been in a funk.</li>
+<li>(00:25:00) - Beard seeks advice on maintaining motivation.</li>
+<li>(00:26:22) - Noah's method for setting a tangible goal.</li>
+<li>(00:27:00) - Chris' approach to building momentum by starting small.</li>
+<li>(00:28:15) - Getting closer to the elephant in the room.</li>
+<li>(00:31:10) - Get started by giving a gift to your future self.</li>
+<li>(00:32:49) - Despite Noah's skepticism, Chris pre-ordered wireless headphones.    </li>
+<li>(00:35:08) - How Noah learned to appreciate good headphones.</li>
+<li>(00:36:13) - Chris reveals the secret fancy feature of the headphones.</li>
+<li>(00:37:05) - A random Bluetooth speaker discussion occurs. </li>
+<li>(00:38:56) - Really good Bluetooth speaker for a great price.</li>
+<li>(00:40:10) - Using Noise Apps and speakers to fall asleep. It Really works.</li>
+<li>(00:42:34) - The Beard nearly burns the studio down, again.</li>
+<li>(00:44:17) - Noah admits a recent "man failure". </li>
+<li>(00:46:35) - The new member of Noah's family, that cooks pizza like a boss.</li>
+<li>(00:47:38) - Beard calls out Noah, again, for once again ignoring his hardware advice.</li>
+</ul>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4651935/ue-007.mp3" length="51254701" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>Our take on the Google Pixel and its possible fatal flaw, pushing through a funk and maintaining motivation, a random headphone and Bluetooth speaker discussion, and the best way to cook pizza…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;Our take on the Google Pixel and its possible fatal flaw, pushing through a funk and maintaining motivation, a random headphone and Bluetooth speaker discussion, and the best way to cook pizza ever.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(00:00:27) - Our take on the Google Pixel.&lt;/li&gt;
+&lt;li&gt;(00:02:11) - Run down of the Pixel specs and features &lt;/li&gt;
+&lt;li&gt;(00:06:53) - Why Pixel represents a huge change for the Android Ecosystem &lt;/li&gt;
+&lt;li&gt;(00:10:00) - Why Google might be the Pixel's fatal flaw.  &lt;/li&gt;
+&lt;li&gt;(00:18:03) - The REAL use for the new Google Daydream VR Gear. &lt;/li&gt;
+&lt;li&gt;(00:19:36) - Now there are only two phones on the market. &lt;/li&gt;
+&lt;li&gt;(00:20:11) - Best USB Audio interface for your Linux box.&lt;/li&gt;
+&lt;li&gt;(00:22:10) - Beard calls out Noah for once again ignoring his hardware advice.&lt;/li&gt;
+&lt;li&gt;(00:24:40) - The Beard shares he's recently been in a funk.&lt;/li&gt;
+&lt;li&gt;(00:25:00) - Beard seeks advice on maintaining motivation.&lt;/li&gt;
+&lt;li&gt;(00:26:22) - Noah's method for setting a tangible goal.&lt;/li&gt;
+&lt;li&gt;(00:27:00) - Chris' approach to building momentum by starting small.&lt;/li&gt;
+&lt;li&gt;(00:28:15) - Getting closer to the elephant in the room.&lt;/li&gt;
+&lt;li&gt;(00:31:10) - Get started by giving a gift to your future self.&lt;/li&gt;
+&lt;li&gt;(00:32:49) - Despite Noah's skepticism, Chris pre-ordered wireless headphones.    &lt;/li&gt;
+&lt;li&gt;(00:35:08) - How Noah learned to appreciate good headphones.&lt;/li&gt;
+&lt;li&gt;(00:36:13) - Chris reveals the secret fancy feature of the headphones.&lt;/li&gt;
+&lt;li&gt;(00:37:05) - A random Bluetooth speaker discussion occurs. &lt;/li&gt;
+&lt;li&gt;(00:38:56) - Really good Bluetooth speaker for a great price.&lt;/li&gt;
+&lt;li&gt;(00:40:10) - Using Noise Apps and speakers to fall asleep. It Really works.&lt;/li&gt;
+&lt;li&gt;(00:42:34) - The Beard nearly burns the studio down, again.&lt;/li&gt;
+&lt;li&gt;(00:44:17) - Noah admits a recent "man failure". &lt;/li&gt;
+&lt;li&gt;(00:46:35) - The new member of Noah's family, that cooks pizza like a boss.&lt;/li&gt;
+&lt;li&gt;(00:47:38) - Beard calls out Noah, again, for once again ignoring his hardware advice.&lt;/li&gt;
+&lt;/ul&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>A Perfectly Fine Gun | User Error 6</title>
+      <link>http://feedpress.me/usererror#entry-181</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-181</guid>
+      <pubDate>Mon, 10 Oct 2016 16:11:48 +0200</pubDate>
+      <description>Should Linux users expect sacrifices? </description>
+      <content:encoded><![CDATA[<p>Should Linux users expect sacrifices? A Linux soft spot, learning lessons from those who came before you, the best and most rational discussion about guns you've ever heard, we debate if its irresponsible to drive a car, and the secret killer that might rip us apart.</p>
+
+<ul>
+<li>(00:00:45) The Beard has been typecast 6 episodes in. All Noah's fault. </li>
+<li>(00:05:05) Chris calls out Noah for implying Linux is a weak competitor on the desktop.</li>
+<li>(00:07:00) A online media is a difficult market for Linux to compete in.</li>
+<li>(00:14:30) The dark secret of the Jupiter Broadcasting network. </li>
+<li>(00:15:45) Noah walks into a bar, and ends up at a radio station. </li>
+<li>(00:19:00) Taking a note from the old school could be a game changer. </li>
+<li>(00:20:15) Introducing User Error's Diamond Collection.</li>
+<li>(00:21:45) Noah's big revelation about guns, after becoming a firearm instructor. </li>
+<li>(00:23:07) Noah's three simple rules about guns that he follows 100% of the time.</li>
+<li>(00:24:00) The Beard share's his background with guns. </li>
+<li>(00:26:11) Chris shares his experience around Noah and guns.</li>
+<li>(00:26:50) Why Chris enjoys watching the gun debate, and what he feel's it might really be about.</li>
+<li>(00:29:00) How the Beard does not feel the need to own a gun for his own protection. </li>
+<li>(00:30:10) The recent semi-dangerous moment Chris almost wished he owned a gun. </li>
+<li>(00:32:30) There are some situations where Noah see's no dilemma in owning a gun and using it.</li>
+<li>(00:33:43) The Beard finds a major correlation between guns and cars.</li>
+<li>(00:34:10) Why the Beard feels it's irresponsible to be behind the wheel of a car, and chooses not to drive.</li>
+<li>(00:35:30) Chris (like most of us?) truly believes he's the best driver on the road, and Noah REALLY agrees. </li>
+<li>(00:38:12) The Beard makes the case to wait for the robots to drive. </li>
+<li>(00:42:00) What "rights" to US citizens have to guns? And why the words matter.</li>
+<li>(00:44:45) Why food might just be what breaks us up. </li>
+</ul>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4603560/ue-006.mp3" length="47027144" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>Should Linux users expect sacrifices? A Linux soft spot, learning lessons from those who came before you, the best and most rational discussion about guns you've ever heard, we debate if its…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;Should Linux users expect sacrifices? A Linux soft spot, learning lessons from those who came before you, the best and most rational discussion about guns you've ever heard, we debate if its irresponsible to drive a car, and the secret killer that might rip us apart.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(00:00:45) The Beard has been typecast 6 episodes in. All Noah's fault. &lt;/li&gt;
+&lt;li&gt;(00:05:05) Chris calls out Noah for implying Linux is a weak competitor on the desktop.&lt;/li&gt;
+&lt;li&gt;(00:07:00) A online media is a difficult market for Linux to compete in.&lt;/li&gt;
+&lt;li&gt;(00:14:30) The dark secret of the Jupiter Broadcasting network. &lt;/li&gt;
+&lt;li&gt;(00:15:45) Noah walks into a bar, and ends up at a radio station. &lt;/li&gt;
+&lt;li&gt;(00:19:00) Taking a note from the old school could be a game changer. &lt;/li&gt;
+&lt;li&gt;(00:20:15) Introducing User Error's Diamond Collection.&lt;/li&gt;
+&lt;li&gt;(00:21:45) Noah's big revelation about guns, after becoming a firearm instructor. &lt;/li&gt;
+&lt;li&gt;(00:23:07) Noah's three simple rules about guns that he follows 100% of the time.&lt;/li&gt;
+&lt;li&gt;(00:24:00) The Beard share's his background with guns. &lt;/li&gt;
+&lt;li&gt;(00:26:11) Chris shares his experience around Noah and guns.&lt;/li&gt;
+&lt;li&gt;(00:26:50) Why Chris enjoys watching the gun debate, and what he feel's it might really be about.&lt;/li&gt;
+&lt;li&gt;(00:29:00) How the Beard does not feel the need to own a gun for his own protection. &lt;/li&gt;
+&lt;li&gt;(00:30:10) The recent semi-dangerous moment Chris almost wished he owned a gun. &lt;/li&gt;
+&lt;li&gt;(00:32:30) There are some situations where Noah see's no dilemma in owning a gun and using it.&lt;/li&gt;
+&lt;li&gt;(00:33:43) The Beard finds a major correlation between guns and cars.&lt;/li&gt;
+&lt;li&gt;(00:34:10) Why the Beard feels it's irresponsible to be behind the wheel of a car, and chooses not to drive.&lt;/li&gt;
+&lt;li&gt;(00:35:30) Chris (like most of us?) truly believes he's the best driver on the road, and Noah REALLY agrees. &lt;/li&gt;
+&lt;li&gt;(00:38:12) The Beard makes the case to wait for the robots to drive. &lt;/li&gt;
+&lt;li&gt;(00:42:00) What "rights" to US citizens have to guns? And why the words matter.&lt;/li&gt;
+&lt;li&gt;(00:44:45) Why food might just be what breaks us up. &lt;/li&gt;
+&lt;/ul&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>User Error Diamond Collection 1</title>
+      <link>http://feedpress.me/usererror#entry-154</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-154</guid>
+      <pubDate>Mon, 26 Sep 2016 16:36:53 +0200</pubDate>
+      <description>Outtakes from the first 5 episodes of User Error</description>
+      <content:encoded><![CDATA[<p>An exclusive for our RSS subscribers, quick outtakes from the past five episode of User Error.  From time to time we'll be publishing the very best of our very worst to our RSS feed, and we call it the Diamond Collection. </p>
+
+<p>Enjoy our mistakes!</p>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4508830/UE-DiamondCollection-01.mp3" length="1998848" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>An exclusive for our RSS subscribers, quick outtakes from the past five episode of User Error. From time to time we'll be publishing the very best of our very worst to our RSS feed, and we call it…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;An exclusive for our RSS subscribers, quick outtakes from the past five episode of User Error.  From time to time we'll be publishing the very best of our very worst to our RSS feed, and we call it the Diamond Collection. &lt;/p&gt;
+
+&lt;p&gt;Enjoy our mistakes!&lt;/p&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>Making it Stick | User Error 5</title>
+      <link>http://feedpress.me/usererror#entry-138</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-138</guid>
+      <pubDate>Thu, 22 Sep 2016 16:25:25 +0200</pubDate>
+      <description>Killing projects for new projects, working outside your comfort zone, and switching to Linux in a way that sticks.</description>
+      <content:encoded><![CDATA[<p>Killing projects for new projects, working outside your comfort zone, and switching to Linux in a way that sticks.</p>
+
+<ul>
+<li>(0:00:44) Why Noah decided to re-do his roof himself, and maybe a lesson we could all learn.</li>
+<li>(0:05:00) Our thoughts on working with people remotely.</li>
+<li>(0:10:15) Rikai tries out LibreVault, and nothing works right for him.</li>
+<li>(0:13:25) Why we decided to end Tech Talk Today, when to kill a project, and why.</li>
+<li>(0:20:27) The straw that broke the camels back. </li>
+<li>(0:22:10) Why JB needs more hosts, and Chris doing less shows.</li>
+<li>(0:23:35) Noah realizes he might have a solution, and new show idea for JB.</li>
+<li>(0:26:47) A new show is born live on the air, and we make immediate plans to try the idea out.</li>
+<li>(0:31:44) Rikai PC Build Update: What could he do with Linux that would excite him, and make it stick?</li>
+<li>(0:33:00) The only two types of SSD's Noah will buy. OK maybe three. </li>
+<li>(0:35:30) One of our favorite Linux kick's ass examples.</li>
+<li>(0:39:27) Chris' 360 approach to getting Rikai to stay on Linux.</li>
+<li>(0:43:00) A guaranteed way to switching: Solve a problem.</li>
+<li>(0:46:38) Noah's backup Rikai ambush plans, which leads us to a battle of Stay-wake and 3am leaks.</li>
+</ul>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4477328/ue-005.mp3" length="49246208" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>Killing projects for new projects, working outside your comfort zone, and switching to Linux in a way that sticks.
+
+(0:00:44) Why Noah decided to re-do his roof himself, and maybe a lesson we could…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;Killing projects for new projects, working outside your comfort zone, and switching to Linux in a way that sticks.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(0:00:44) Why Noah decided to re-do his roof himself, and maybe a lesson we could all learn.&lt;/li&gt;
+&lt;li&gt;(0:05:00) Our thoughts on working with people remotely.&lt;/li&gt;
+&lt;li&gt;(0:10:15) Rikai tries out LibreVault, and nothing works right for him.&lt;/li&gt;
+&lt;li&gt;(0:13:25) Why we decided to end Tech Talk Today, when to kill a project, and why.&lt;/li&gt;
+&lt;li&gt;(0:20:27) The straw that broke the camels back. &lt;/li&gt;
+&lt;li&gt;(0:22:10) Why JB needs more hosts, and Chris doing less shows.&lt;/li&gt;
+&lt;li&gt;(0:23:35) Noah realizes he might have a solution, and new show idea for JB.&lt;/li&gt;
+&lt;li&gt;(0:26:47) A new show is born live on the air, and we make immediate plans to try the idea out.&lt;/li&gt;
+&lt;li&gt;(0:31:44) Rikai PC Build Update: What could he do with Linux that would excite him, and make it stick?&lt;/li&gt;
+&lt;li&gt;(0:33:00) The only two types of SSD's Noah will buy. OK maybe three. &lt;/li&gt;
+&lt;li&gt;(0:35:30) One of our favorite Linux kick's ass examples.&lt;/li&gt;
+&lt;li&gt;(0:39:27) Chris' 360 approach to getting Rikai to stay on Linux.&lt;/li&gt;
+&lt;li&gt;(0:43:00) A guaranteed way to switching: Solve a problem.&lt;/li&gt;
+&lt;li&gt;(0:46:38) Noah's backup Rikai ambush plans, which leads us to a battle of Stay-wake and 3am leaks.&lt;/li&gt;
+&lt;/ul&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>Chicken Digiorn | User Error 4</title>
+      <link>http://feedpress.me/usererror#entry-116</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-116</guid>
+      <pubDate>Fri, 16 Sep 2016 16:03:59 +0200</pubDate>
+      <description>Geeky with hardware.</description>
+      <content:encoded><![CDATA[<p>We experiment with our bodies, get particular about new PC hardware, water cool, geek out about VHF radio, and discuss recent software upgrades to improve our shows.</p>
+
+<ul>
+<li>(0:0:03)  Chris tries out Soylent 2.0</li>
+<li>(0:12:08) Noah talk about the best VHF Radio for areas that don't have mobile signal.</li>
+<li>(0:15:41) Rikai gives an update on his new PC build.</li>
+<li>(0:18:04) Noah's new build that focuses on the CPU to improve LAS video.</li>
+<li>(0:22:44) Software improvements being made to LAS visual quality. </li>
+<li>(0:28:11) Rikai's quick hacks to make WebRTC work for us.</li>
+<li>(0:30:35) The tool we use for our video visualizer. </li>
+<li>(0:32:42) Noah's goes on a mission to make Chicken Digiorn, discovers it does not exist.</li>
+<li>(0:35:25) Noah offends Rikai, simply because he lives in the future.</li>
+<li>(0:36:30) Chris passes the 1 year mark living in an RV, reflects on it a bit.</li>
+<li>(0:38:14) The surprisingly obvious thing Chris never thought about before living in an RV.</li>
+<li>(0:40:25) Do we find joy in chores, or avoid them like the plague?</li>
+<li>(0:45:02) Why Noah has no sympathy for his kids.</li>
+</ul>
+
+<h4>Links:</h4>
+
+<ul>
+<li><a href="https://www.soylent.com/product/drink/">Soylent.com - Soylent Drink 2.0 details</a></li>
+<li><a href="http://jamesclear.com/the-beginners-guide-to-intermittent-fasting">The Beginner's Guide to Intermittent Fasting</a></li>
+<li><a href="http://www.mensjournal.com/magazine/the-benefits-of-occasional-fasting-20121116">The Benefits of Occasional Fasting - Men's Journal</a></li>
+<li><a href="https://www.amazon.com/dp/B01F0KWL6A/">Phanteks Enthoo Evolv ATX Computer Case - Tempered Glass Edition</a></li>
+<li><a href="http://www.motorolasolutions.com/en_us/products/two-way-radios/project-25-radios/portable-radios/apx1000.html#tabproductinfo">Motorola APX™ 1000 P25 Portable Radio - Motorola Solutions</a></li>
+<li><a href="http://www.buytwowayradios.com/products/icom/F60V-11.aspx?source=voltage&amp;gclid=Cj0KEQjwpNm-BRCJ3rDNmOuKi9IBEiQAlzDJH2ltER71f5QfawouCnNfnjbkg0StdzKHB_jh5tX_HTUaAo_M8P8HAQ&amp;ad=53736626959">Icom F60V-11 Two Way Radio +Pager w/ Voice and Vibrate (UHF)</a></li>
+<li><a href="https://www.amazon.com/BaoFeng-UV-5R-Dual-Radio-Black/dp/B007H4VT7A/ref=sr_1_1?ie=UTF8&amp;qid=1473730966&amp;sr=8-1&amp;keywords=UV-5r">Amazon.com: BaoFeng UV-5R Dual Band Two Way Radio (Black): Cell Phones &amp; Accessories</a></li>
+<li><a href="https://github.com/djfun/audio-visualizer-python">GitHub - djfun/audio-visualizer-python: a little GUI tool to render visualization videos of audio files</a> </li>
+<li><a href="https://meet.jit.si/">Jitsi Meet</a></li>
+</ul>
+
+<p><img src="http://i.imgur.com/O86uktg.jpg?1" alt="DigiornDinner" /></p>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4429395/ue-004.mp3" length="45674496" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>We experiment with our bodies, get particular about new PC hardware, water cool, geek out about VHF radio, and discuss recent software upgrades to improve our shows.
+
+(0:0:03) Chris tries out…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;We experiment with our bodies, get particular about new PC hardware, water cool, geek out about VHF radio, and discuss recent software upgrades to improve our shows.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(0:0:03)  Chris tries out Soylent 2.0&lt;/li&gt;
+&lt;li&gt;(0:12:08) Noah talk about the best VHF Radio for areas that don't have mobile signal.&lt;/li&gt;
+&lt;li&gt;(0:15:41) Rikai gives an update on his new PC build.&lt;/li&gt;
+&lt;li&gt;(0:18:04) Noah's new build that focuses on the CPU to improve LAS video.&lt;/li&gt;
+&lt;li&gt;(0:22:44) Software improvements being made to LAS visual quality. &lt;/li&gt;
+&lt;li&gt;(0:28:11) Rikai's quick hacks to make WebRTC work for us.&lt;/li&gt;
+&lt;li&gt;(0:30:35) The tool we use for our video visualizer. &lt;/li&gt;
+&lt;li&gt;(0:32:42) Noah's goes on a mission to make Chicken Digiorn, discovers it does not exist.&lt;/li&gt;
+&lt;li&gt;(0:35:25) Noah offends Rikai, simply because he lives in the future.&lt;/li&gt;
+&lt;li&gt;(0:36:30) Chris passes the 1 year mark living in an RV, reflects on it a bit.&lt;/li&gt;
+&lt;li&gt;(0:38:14) The surprisingly obvious thing Chris never thought about before living in an RV.&lt;/li&gt;
+&lt;li&gt;(0:40:25) Do we find joy in chores, or avoid them like the plague?&lt;/li&gt;
+&lt;li&gt;(0:45:02) Why Noah has no sympathy for his kids.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Links:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.soylent.com/product/drink/"&gt;Soylent.com - Soylent Drink 2.0 details&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://jamesclear.com/the-beginners-guide-to-intermittent-fasting"&gt;The Beginner's Guide to Intermittent Fasting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.mensjournal.com/magazine/the-benefits-of-occasional-fasting-20121116"&gt;The Benefits of Occasional Fasting - Men's Journal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/dp/B01F0KWL6A/"&gt;Phanteks Enthoo Evolv ATX Computer Case - Tempered Glass Edition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.motorolasolutions.com/en_us/products/two-way-radios/project-25-radios/portable-radios/apx1000.html#tabproductinfo"&gt;Motorola APX™ 1000 P25 Portable Radio - Motorola Solutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.buytwowayradios.com/products/icom/F60V-11.aspx?source=voltage&amp;amp;gclid=Cj0KEQjwpNm-BRCJ3rDNmOuKi9IBEiQAlzDJH2ltER71f5QfawouCnNfnjbkg0StdzKHB_jh5tX_HTUaAo_M8P8HAQ&amp;amp;ad=53736626959"&gt;Icom F60V-11 Two Way Radio +Pager w/ Voice and Vibrate (UHF)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/BaoFeng-UV-5R-Dual-Radio-Black/dp/B007H4VT7A/ref=sr_1_1?ie=UTF8&amp;amp;qid=1473730966&amp;amp;sr=8-1&amp;amp;keywords=UV-5r"&gt;Amazon.com: BaoFeng UV-5R Dual Band Two Way Radio (Black): Cell Phones &amp;amp; Accessories&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/djfun/audio-visualizer-python"&gt;GitHub - djfun/audio-visualizer-python: a little GUI tool to render visualization videos of audio files&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://meet.jit.si/"&gt;Jitsi Meet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src="http://i.imgur.com/O86uktg.jpg?1" alt="DigiornDinner" /&gt;&lt;/p&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>Sustainable Laziness | User Error 3</title>
+      <link>http://feedpress.me/usererror#entry-62</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-62</guid>
+      <pubDate>Tue, 06 Sep 2016 21:41:18 +0200</pubDate>
+      <description>How Focus, cutting back, and rethinking your project can save it.</description>
+      <content:encoded><![CDATA[<p>How Focus, cutting back, and rethinking your project can save it. A new rift forming in the Linux community, a serious sweet corn throw down, and some laptop window shopping.</p>
+
+<ul>
+<li>(00:00:13) Chris realizes something smells dead, and it might be Rikai.</li>
+<li>(00:02:07) Special thanks, new rss feeds, and podcatchers.</li>
+<li>(00:03:26) Chris and Rikai speculate that Noah might be a workaholic.</li>
+<li>(00:07:33) Working for more than the bottom line.</li>
+<li>(00:08:15) Rikai's new Linux servers run Arch, why, and what for.</li>
+<li>(00:09:30) Was Noah a Windows support guy before starting his own business?</li>
+<li>(00:16:00) How Noah got started with his own IT practice. </li>
+<li>(00:21:27) Rikai's got a new problem, and needs our help.</li>
+<li>(00:23:28) How do you get to the point where you can hire someone?</li>
+<li>(00:25:21) How Focus, cutting back, and rethinking your project can save it. </li>
+<li>(00:30:12) Noah's hard learned philosophy about starting your own business. </li>
+<li>(00:30:38) If you want to stick with it, always make it as easy as possible.</li>
+<li>(00:34:53) Coach vs Sue. The new dangerous rift forming in the Linux community.</li>
+<li>(00:35:53) A quick summary of the Software Freedom Conservancy general position. </li>
+<li>(00:36:18) A quick summary of Greg KH, Linus, and other dev's general position. </li>
+<li>(00:38:25) The gap between the community and the business side of Linux. </li>
+<li>(00:40:57) Rikai argues the well is being poisoned.</li>
+<li>(00:41:41) How the SFC could work with the developers to coach companies.</li>
+<li>(00:42:38) Noah and a listener grilled up some tasty grub.</li>
+<li>(00:46:00) Chris and Noah get into a sweet corn throw down.</li>
+<li>(00:47:24) Hadea makes her first User Error appearance with class and splash.</li>
+<li>(00:48:22) How to make a compound butter ninja glamping style.</li>
+<li>(00:51:31) Chris and Rikai play Noah Hardware Bingo.</li>
+<li>(00:53:00) Noah is interested in a ASUS ZenBook Pro UX501VW.</li>
+<li>(00:55:25) The Oryx didn't work for Noah, what about the The Acer Predator 21X?</li>
+<li>(01:02:47) Why a laptop docking station is high on Chris' wish list for next laptop.</li>
+<li>(01:05:51) Chris share's one of his total n00b moments when starting JB.</li>
+</ul>
+
+<p><img src="http://i.imgur.com/4Lk3U4M.jpg?1" alt="CompundButter" /></p>
+
+<h4>Links:</h4>
+
+<ul>
+<li><a href="https://github.com/gsand/mark2">mark2: Minecraft Multi Server Wrapper, Written in Python with Twisted; Pull Requests Encouraged</a></li>
+</ul>
+
+<blockquote>
+  <p>Minecraft Multi Server Wrapper, Written in Python with Twisted; Pull Requests Encouraged</p>
+</blockquote>
+
+<ul>
+<li><p><a href="https://github.com/gsand/mark2/issues/66">Getting mark2 installed on Arch Linux · Issue #66 · gsand/mark2 · GitHub</a></p></li>
+<li><p><a href="https://www.asus.com/us/Notebooks/ASUS-ZenBook-Pro-UX501VW/">ASUS ZenBook Pro UX501VW | Notebooks | ASUS USA</a></p></li>
+<li><a href="http://arstechnica.com/gadgets/2016/08/acer-predator-21x-curved-laptop-details-uk/">The Acer Predator 21X is the world’s first curved-screen laptop | Ars Technica</a></li>
+<li><p><a href="http://www.razerzone.com/store/razer-blade">The New Razer Blade</a></p></li>
+<li><p><a href="http://imgur.com/a/FHhU1">Hadea Warms up the Butter</a></p></li>
+</ul>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4353686/ue-003.mp3" length="65972224" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>How Focus, cutting back, and rethinking your project can save it. A new rift forming in the Linux community, a serious sweet corn throw down, and some laptop window shopping.
+
+(00:00:13) Chris…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;How Focus, cutting back, and rethinking your project can save it. A new rift forming in the Linux community, a serious sweet corn throw down, and some laptop window shopping.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(00:00:13) Chris realizes something smells dead, and it might be Rikai.&lt;/li&gt;
+&lt;li&gt;(00:02:07) Special thanks, new rss feeds, and podcatchers.&lt;/li&gt;
+&lt;li&gt;(00:03:26) Chris and Rikai speculate that Noah might be a workaholic.&lt;/li&gt;
+&lt;li&gt;(00:07:33) Working for more than the bottom line.&lt;/li&gt;
+&lt;li&gt;(00:08:15) Rikai's new Linux servers run Arch, why, and what for.&lt;/li&gt;
+&lt;li&gt;(00:09:30) Was Noah a Windows support guy before starting his own business?&lt;/li&gt;
+&lt;li&gt;(00:16:00) How Noah got started with his own IT practice. &lt;/li&gt;
+&lt;li&gt;(00:21:27) Rikai's got a new problem, and needs our help.&lt;/li&gt;
+&lt;li&gt;(00:23:28) How do you get to the point where you can hire someone?&lt;/li&gt;
+&lt;li&gt;(00:25:21) How Focus, cutting back, and rethinking your project can save it. &lt;/li&gt;
+&lt;li&gt;(00:30:12) Noah's hard learned philosophy about starting your own business. &lt;/li&gt;
+&lt;li&gt;(00:30:38) If you want to stick with it, always make it as easy as possible.&lt;/li&gt;
+&lt;li&gt;(00:34:53) Coach vs Sue. The new dangerous rift forming in the Linux community.&lt;/li&gt;
+&lt;li&gt;(00:35:53) A quick summary of the Software Freedom Conservancy general position. &lt;/li&gt;
+&lt;li&gt;(00:36:18) A quick summary of Greg KH, Linus, and other dev's general position. &lt;/li&gt;
+&lt;li&gt;(00:38:25) The gap between the community and the business side of Linux. &lt;/li&gt;
+&lt;li&gt;(00:40:57) Rikai argues the well is being poisoned.&lt;/li&gt;
+&lt;li&gt;(00:41:41) How the SFC could work with the developers to coach companies.&lt;/li&gt;
+&lt;li&gt;(00:42:38) Noah and a listener grilled up some tasty grub.&lt;/li&gt;
+&lt;li&gt;(00:46:00) Chris and Noah get into a sweet corn throw down.&lt;/li&gt;
+&lt;li&gt;(00:47:24) Hadea makes her first User Error appearance with class and splash.&lt;/li&gt;
+&lt;li&gt;(00:48:22) How to make a compound butter ninja glamping style.&lt;/li&gt;
+&lt;li&gt;(00:51:31) Chris and Rikai play Noah Hardware Bingo.&lt;/li&gt;
+&lt;li&gt;(00:53:00) Noah is interested in a ASUS ZenBook Pro UX501VW.&lt;/li&gt;
+&lt;li&gt;(00:55:25) The Oryx didn't work for Noah, what about the The Acer Predator 21X?&lt;/li&gt;
+&lt;li&gt;(01:02:47) Why a laptop docking station is high on Chris' wish list for next laptop.&lt;/li&gt;
+&lt;li&gt;(01:05:51) Chris share's one of his total n00b moments when starting JB.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src="http://i.imgur.com/4Lk3U4M.jpg?1" alt="CompundButter" /&gt;&lt;/p&gt;
+
+&lt;h4&gt;Links:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/gsand/mark2"&gt;mark2: Minecraft Multi Server Wrapper, Written in Python with Twisted; Pull Requests Encouraged&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Minecraft Multi Server Wrapper, Written in Python with Twisted; Pull Requests Encouraged&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/gsand/mark2/issues/66"&gt;Getting mark2 installed on Arch Linux · Issue #66 · gsand/mark2 · GitHub&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://www.asus.com/us/Notebooks/ASUS-ZenBook-Pro-UX501VW/"&gt;ASUS ZenBook Pro UX501VW | Notebooks | ASUS USA&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://arstechnica.com/gadgets/2016/08/acer-predator-21x-curved-laptop-details-uk/"&gt;The Acer Predator 21X is the world’s first curved-screen laptop | Ars Technica&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="http://www.razerzone.com/store/razer-blade"&gt;The New Razer Blade&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="http://imgur.com/a/FHhU1"&gt;Hadea Warms up the Butter&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>Just Do It | User Error 2</title>
+      <link>http://feedpress.me/usererror#entry-43</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-43</guid>
+      <pubDate>Tue, 30 Aug 2016 16:59:35 +0200</pubDate>
+      <description>Chris and Noah's love for Linux and hate for Windows almost brings them to blows.</description>
+      <content:encoded><![CDATA[<p>Chris and Noah's love for Linux and hate for Windows almost brings them to blows this week, the Beard launches new projects, and we discuss the real value in just getting started.</p>
+
+<ul>
+<li>(00:03) The Story of Chris and Noah almost getting in a huge fight.</li>
+<li>(12:00) Rikai's Process of Researching a new PC build.</li>
+<li>(16:33) The Hardware Rikai Chose for his new build.</li>
+<li>(18:45) Starting a community and hacking around social anxiety.</li>
+<li>(20:49) One of the core difference between content for a community vs advertising</li>
+<li>(24:10) Noah's solution to charging for work, while still staying generous.</li>
+<li>(25:52) Why Rikai runs Windows.</li>
+<li>(31:34) What's bugging Rikai about Windows 10.</li>
+<li>(32:49) Noah's up coming trip for LAS.</li>
+<li>(39:42) Dry Camping with the guy Noah's switching to Linux.</li>
+<li>(41:00) Getting the Microsoft Surface to Charge off DC Power.</li>
+<li>(42:00) Chris goes on a spur of the moment road trip.</li>
+<li>(46:05) Starting something before you have it all figured out.</li>
+<li>(46:32) Rikai talks about taking the leap to join JB.</li>
+</ul>
+
+<p><img src="http://i.imgur.com/VDXU52C.jpg?1" alt="Noah's Camping Spot" /></p>
+
+<h4>Episode Links:</h4>
+
+<ul>
+<li><a href="https://www.patreon.com/rikai/posts">Rikai is creating Let's Plays and other content! | Patreon</a></li>
+<li><a href="http://www.thinkgeek.com/product/e73b/">Star Trek Bathrobes | ThinkGeek</a></li>
+<li><a href="https://www.walmart.com/ip/Compatible-Car-Charger-Power-Adapter-Replacement-For-Microsoft-Surface-Pro-3-Tablet-12V-2.58A-Black/50614889?wmlspartner=wlpa&amp;selectedSellerId=1284&amp;adid=22222222227038207889&amp;wl0=&amp;wl1=g&amp;wl2=c&amp;wl3=97658691874&amp;wl4=pla-221807396194&amp;wl5=9020765&amp;wl6=&amp;wl7=&amp;wl8=&amp;wl9=pla&amp;wl10=112561964&amp;wl11=online&amp;wl12=50614889&amp;wl13=&amp;veh=sem">Compatible Car Charger Power Adapter Replacement For Microsoft Surface Pro 3 Tablet 12V 2.58A Black - Walmart.com</a></li>
+</ul>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4293439/ue-002.mp3" length="46108672" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>Chris and Noah's love for Linux and hate for Windows almost brings them to blows this week, the Beard launches new projects, and we discuss the real value in just getting started.
+
+(00:03) The Story…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;Chris and Noah's love for Linux and hate for Windows almost brings them to blows this week, the Beard launches new projects, and we discuss the real value in just getting started.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(00:03) The Story of Chris and Noah almost getting in a huge fight.&lt;/li&gt;
+&lt;li&gt;(12:00) Rikai's Process of Researching a new PC build.&lt;/li&gt;
+&lt;li&gt;(16:33) The Hardware Rikai Chose for his new build.&lt;/li&gt;
+&lt;li&gt;(18:45) Starting a community and hacking around social anxiety.&lt;/li&gt;
+&lt;li&gt;(20:49) One of the core difference between content for a community vs advertising&lt;/li&gt;
+&lt;li&gt;(24:10) Noah's solution to charging for work, while still staying generous.&lt;/li&gt;
+&lt;li&gt;(25:52) Why Rikai runs Windows.&lt;/li&gt;
+&lt;li&gt;(31:34) What's bugging Rikai about Windows 10.&lt;/li&gt;
+&lt;li&gt;(32:49) Noah's up coming trip for LAS.&lt;/li&gt;
+&lt;li&gt;(39:42) Dry Camping with the guy Noah's switching to Linux.&lt;/li&gt;
+&lt;li&gt;(41:00) Getting the Microsoft Surface to Charge off DC Power.&lt;/li&gt;
+&lt;li&gt;(42:00) Chris goes on a spur of the moment road trip.&lt;/li&gt;
+&lt;li&gt;(46:05) Starting something before you have it all figured out.&lt;/li&gt;
+&lt;li&gt;(46:32) Rikai talks about taking the leap to join JB.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src="http://i.imgur.com/VDXU52C.jpg?1" alt="Noah's Camping Spot" /&gt;&lt;/p&gt;
+
+&lt;h4&gt;Episode Links:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.patreon.com/rikai/posts"&gt;Rikai is creating Let's Plays and other content! | Patreon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.thinkgeek.com/product/e73b/"&gt;Star Trek Bathrobes | ThinkGeek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.walmart.com/ip/Compatible-Car-Charger-Power-Adapter-Replacement-For-Microsoft-Surface-Pro-3-Tablet-12V-2.58A-Black/50614889?wmlspartner=wlpa&amp;amp;selectedSellerId=1284&amp;amp;adid=22222222227038207889&amp;amp;wl0=&amp;amp;wl1=g&amp;amp;wl2=c&amp;amp;wl3=97658691874&amp;amp;wl4=pla-221807396194&amp;amp;wl5=9020765&amp;amp;wl6=&amp;amp;wl7=&amp;amp;wl8=&amp;amp;wl9=pla&amp;amp;wl10=112561964&amp;amp;wl11=online&amp;amp;wl12=50614889&amp;amp;wl13=&amp;amp;veh=sem"&gt;Compatible Car Charger Power Adapter Replacement For Microsoft Surface Pro 3 Tablet 12V 2.58A Black - Walmart.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</itunes:summary>
+    </item>
+    <item>
+      <title>Meet the Beard | User Error 1</title>
+      <link>http://feedpress.me/usererror#entry-9</link>
+      <guid isPermalink="false">http://feedpress.me/usererror#entry-9</guid>
+      <pubDate>Thu, 18 Aug 2016 16:07:42 +0200</pubDate>
+      <description>Tiling Window managers, and picking up coding are our main topics this week.</description>
+      <content:encoded><![CDATA[<p>Tiling Window managers, and picking up coding are our main topics this week.</p>
+
+<ul>
+<li>(2:00) Chris and Rikai share what they love about No Man'S Sky and their clever hack.</li>
+<li>(8:45) MacBook Linux, is it better than expected? And why Noah fears it.</li>
+<li>(22:00) Who is buying high end machines, why do some of them buy Macs?</li>
+<li>(27:00) Our Adventures with tiling Window Managers</li>
+<li>(43:10) Introduction to the new show, our ideas and plans for it.</li>
+<li>(47:00) New features coming to jbot, improvements to our site, new HTML 5 player, and live stream updates.</li>
+<li>(52:00) Getting an update on Chris and Noah's coding adventures. </li>
+</ul>
+
+<h4>Everyone makes mistakes, we just make show content out of them.</h4>
+]]></content:encoded>
+      <enclosure url="http://tracking.feedpress.it/link/15416/4180709/ue-001.mp3" length="61499392" type="audio/mpeg"/>
+      <itunes:author>Jupiter Broadcasting</itunes:author>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>Linux, Ubuntu, Advocacy, arch, BBQ, Travel, Bitcoin, talk, independent, Stereo, Jupiter Broadcasting</itunes:keywords>
+      <dc:creator>Jupiter Broadcasting</dc:creator>
+      <itunes:subtitle>Tiling Window managers, and picking up coding are our main topics this week.
+
+(2:00) Chris and Rikai share what they love about No Man'S Sky and their clever hack.
+(8:45) MacBook Linux, is it better…</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;Tiling Window managers, and picking up coding are our main topics this week.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(2:00) Chris and Rikai share what they love about No Man'S Sky and their clever hack.&lt;/li&gt;
+&lt;li&gt;(8:45) MacBook Linux, is it better than expected? And why Noah fears it.&lt;/li&gt;
+&lt;li&gt;(22:00) Who is buying high end machines, why do some of them buy Macs?&lt;/li&gt;
+&lt;li&gt;(27:00) Our Adventures with tiling Window Managers&lt;/li&gt;
+&lt;li&gt;(43:10) Introduction to the new show, our ideas and plans for it.&lt;/li&gt;
+&lt;li&gt;(47:00) New features coming to jbot, improvements to our site, new HTML 5 player, and live stream updates.&lt;/li&gt;
+&lt;li&gt;(52:00) Getting an update on Chris and Noah's coding adventures. &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Everyone makes mistakes, we just make show content out of them.&lt;/h4&gt;
+</itunes:summary>
+    </item>
+    <itunes:image href="http://static.feedpress.it/logo/usererror.png"/>
+  </channel>
+</rss>
