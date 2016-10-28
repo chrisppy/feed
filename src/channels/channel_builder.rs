@@ -7,7 +7,7 @@
 
 use errors;
 use channels::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
-use utils;
+use utils::string_utils;
 
 
 impl ChannelBuilder {
@@ -161,7 +161,7 @@ impl ChannelBuilder {
     /// channel_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ChannelBuilder {
-        self.pub_date = utils::option_string_to_option_date(pub_date);
+        self.pub_date = string_utils::option_string_to_option_date(pub_date);
         self
     }
 
@@ -177,7 +177,7 @@ impl ChannelBuilder {
     /// channel_builder.last_build_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn last_build_date(&mut self, last_build_date: Option<String>) -> &mut ChannelBuilder {
-        self.last_build_date = utils::option_string_to_option_date(last_build_date);
+        self.last_build_date = string_utils::option_string_to_option_date(last_build_date);
         self
     }
 
