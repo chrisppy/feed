@@ -592,7 +592,7 @@ fn write_item_enclosure(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
         item_enclosure_tag.push_attribute(b"type",
                                           item.enclosure()
                                               .unwrap()
-                                              .enclosure_type()
+                                              .mime_type()
                                               .as_str());
         writer.write(Start(item_enclosure_tag))
             .expect(errors::tag_start_error(item_enclosure_tag_str).as_str());
@@ -606,10 +606,10 @@ fn write_item_guid(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
         let item_guid_tag_str = "guid";
         let mut item_guid_tag = Element::new(item_guid_tag_str);
         item_guid_tag.push_attribute(b"isPermaLink",
-                                     item.guid().unwrap().permalink().to_string().as_str());
+                                     item.guid().unwrap().is_permalink().to_string().as_str());
         writer.write(Start(item_guid_tag))
             .expect(errors::tag_start_error(item_guid_tag_str).as_str());
-        writer.write(Text(Element::new(item.guid().unwrap().guid().as_str())))
+        writer.write(Text(Element::new(item.guid().unwrap().value().as_str())))
             .expect(errors::tag_text_error(item_guid_tag_str).as_str());
         writer.write(End(Element::new(item_guid_tag_str)))
             .expect(errors::tag_end_error(item_guid_tag_str).as_str());
@@ -638,8 +638,11 @@ fn write_item_source(mut writer: XmlWriter<Cursor<Vec<u8>>>, item: Item) {
         item_source_tag.push_attribute(b"url", item.source().unwrap().url().to_string().as_str());
         writer.write(Start(item_source_tag))
             .expect(errors::tag_start_error(item_source_tag_str).as_str());
-        writer.write(Text(Element::new(item.source().unwrap().source().as_str())))
-            .expect(errors::tag_text_error(item_source_tag_str).as_str());
+        if item.source().unwrap().title().is_some() {
+            let src = item.source().unwrap().title().unwrap();
+            writer.write(Text(Element::new(src.as_str())))
+                .expect(errors::tag_text_error(item_source_tag_str).as_str());
+        }
         writer.write(End(Element::new(item_source_tag_str)))
             .expect(errors::tag_end_error(item_source_tag_str).as_str());
     }

@@ -12,12 +12,17 @@ use std::str::FromStr;
 pub fn option_string_to_option_i64(o: Option<String>) -> Option<i64> {
     if o.is_some() {
         let s = o.unwrap();
-        let i = i64::from_str(s.as_str())
-            .expect(errors::str_to_i64_error().as_str());
+        let i = string_to_i64(s.as_str());
         Some(i)
     } else {
         None
     }
+}
+
+
+// Common code to convert String to i64
+pub fn string_to_i64(s: &str) -> i64 {
+    i64::from_str(s).expect(errors::str_to_i64_error().as_str())
 }
 
 

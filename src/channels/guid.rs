@@ -18,9 +18,9 @@ impl Guid {
     /// use feed::channels::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
-    ///     .permalink(None)
+    ///     .is_permalink(None)
     ///     .finalize();
-    /// assert!(guid.permalink());
+    /// assert!(guid.is_permalink());
     /// ```
     ///
     /// ```
@@ -28,9 +28,9 @@ impl Guid {
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
-    ///     .permalink(Some(permalink))
+    ///     .is_permalink(Some(permalink))
     ///     .finalize();
-    /// assert_eq!(permalink, guid.permalink());
+    /// assert_eq!(permalink, guid.is_permalink());
     /// ```
     ///
     /// ```
@@ -38,12 +38,12 @@ impl Guid {
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
-    ///     .permalink(Some(permalink))
+    ///     .is_permalink(Some(permalink))
     ///     .finalize();
-    /// assert_eq!(permalink, guid.permalink());
+    /// assert_eq!(permalink, guid.is_permalink());
     /// ```
-    pub fn permalink(&self) -> bool {
-        self.permalink
+    pub fn is_permalink(&self) -> bool {
+        self.is_permalink
     }
 
 
@@ -56,11 +56,11 @@ impl Guid {
     ///
     /// let guid = "9DE46946-2F90-4D5D-9047-7E9165C16E7C";
     /// let guid_obj = GuidBuilder::new()
-    ///     .guid(guid)
+    ///     .value(guid)
     ///     .finalize();
-    /// assert_eq!(guid.to_owned(), guid_obj.guid());
+    /// assert_eq!(guid.to_owned(), guid_obj.value());
     /// ```
-    pub fn guid(&self) -> String {
-        self.guid.clone()
+    pub fn value(&self) -> String {
+        self.value.clone()
     }
 }

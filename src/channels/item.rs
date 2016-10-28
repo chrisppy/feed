@@ -223,7 +223,7 @@ impl Item {
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_ref())
     ///     .length(70772893)
-    ///     .enclosure_type("audio/ogg")
+    ///     .mime_type("audio/ogg")
     ///     .finalize();
     ///
     /// let item = ItemBuilder::new()
@@ -256,8 +256,8 @@ impl Item {
     /// use feed::channels::{GuidBuilder, ItemBuilder};
     ///
     /// let guid = GuidBuilder::new()
-    ///     .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///     .permalink(None)
+    ///     .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
+    ///     .is_permalink(None)
     ///     .finalize();
     ///
     /// let item = ItemBuilder::new()
@@ -325,7 +325,7 @@ impl Item {
     ///
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
-    ///     .source("Tomalak's Realm")
+    ///     .title(Some("Tomalak's Realm".to_owned()))
     ///     .finalize();
     ///
     /// let item = ItemBuilder::new()

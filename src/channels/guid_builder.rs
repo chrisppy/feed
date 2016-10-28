@@ -32,13 +32,13 @@ impl GuidBuilder {
     /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.permalink(Some(false));
+    /// guid_builder.is_permalink(Some(false));
     /// ```
-    pub fn permalink(&mut self, permalink: Option<bool>) -> &mut GuidBuilder {
-        if permalink.is_some() {
-            self.permalink = permalink.unwrap();
+    pub fn is_permalink(&mut self, is_permalink: Option<bool>) -> &mut GuidBuilder {
+        if is_permalink.is_some() {
+            self.is_permalink = is_permalink.unwrap();
         } else {
-            self.permalink = true;
+            self.is_permalink = true;
         }
         self
     }
@@ -52,10 +52,10 @@ impl GuidBuilder {
     /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
+    /// guid_builder.value("9DE46946-2F90-4D5D-9047-7E9165C16E7C");
     /// ```
-    pub fn guid(&mut self, guid: &str) -> &mut GuidBuilder {
-        self.guid = guid.to_owned();
+    pub fn value(&mut self, value: &str) -> &mut GuidBuilder {
+        self.value = value.to_owned();
         self
     }
 
@@ -68,14 +68,14 @@ impl GuidBuilder {
     /// use feed::channels::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
-    ///         .guid("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///         .permalink(Some(true))
+    ///         .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
+    ///         .is_permalink(Some(true))
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Guid {
         Guid {
-            permalink: self.permalink,
-            guid: self.guid.clone(),
+            is_permalink: self.is_permalink,
+            value: self.value.clone(),
         }
     }
 }
