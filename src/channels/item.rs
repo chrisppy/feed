@@ -147,11 +147,11 @@ impl Item {
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
-    ///     .category("Media")
+    ///     .name("Media")
     ///     .finalize();
     /// let category_2 = CategoryBuilder::new()
     ///     .domain(Some("http://jupiterbroadcasting.com".to_owned()))
-    ///     .category("Podcast")
+    ///     .name("Podcast")
     ///     .finalize();
     /// let categories_vec = vec![category_1, category_2];
     /// let item = ItemBuilder::new()
@@ -257,7 +257,7 @@ impl Item {
     ///
     /// let guid = GuidBuilder::new()
     ///     .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///     .is_permalink(None)
+    ///     .permalink(None)
     ///     .finalize();
     ///
     /// let item = ItemBuilder::new()

@@ -33,10 +33,10 @@ impl CategoryBuilder {
     /// use feed::channels::CategoryBuilder;
     ///
     /// let mut category_builder = CategoryBuilder::new();
-    /// category_builder.category("Podcast");
+    /// category_builder.name("Podcast");
     /// ```
-    pub fn category(&mut self, category: &str) -> &mut CategoryBuilder {
-        self.category = category.to_owned();
+    pub fn name(&mut self, name: &str) -> &mut CategoryBuilder {
+        self.name = name.to_owned();
         self
     }
 
@@ -65,13 +65,13 @@ impl CategoryBuilder {
     /// use feed::channels::CategoryBuilder;
     ///
     /// let category = CategoryBuilder::new()
-    ///         .category("Title")
+    ///         .name("Title")
     ///         .domain(None)
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Category {
         Category {
-            category: self.category.clone(),
+            name: self.name.clone(),
             domain: self.domain.clone(),
         }
     }

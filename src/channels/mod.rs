@@ -33,7 +33,7 @@ use chrono::*;
 /// field under 'Channel' and `Item`.
 #[derive(Clone)]
 pub struct Category {
-    category: String,
+    name: String,
     domain: Option<String>,
 }
 
@@ -41,7 +41,7 @@ pub struct Category {
 /// This `CategoryBuilder` struct creates the `Category`.
 #[derive(Default)]
 pub struct CategoryBuilder {
-    category: String,
+    name: String,
     domain: Option<String>,
 }
 
@@ -141,7 +141,7 @@ pub struct EnclosureBuilder {
 /// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
 #[derive(Clone)]
 pub struct Guid {
-    is_permalink: bool,
+    permalink: bool,
     value: String,
 }
 
@@ -149,7 +149,7 @@ pub struct Guid {
 /// This `GuidBuilder` struct creates the `Guid`.
 #[derive(Default)]
 pub struct GuidBuilder {
-    is_permalink: bool,
+    permalink: bool,
     value: String,
 }
 

@@ -32,13 +32,13 @@ impl GuidBuilder {
     /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.is_permalink(Some(false));
+    /// guid_builder.permalink(Some(false));
     /// ```
-    pub fn is_permalink(&mut self, is_permalink: Option<bool>) -> &mut GuidBuilder {
-        if is_permalink.is_some() {
-            self.is_permalink = is_permalink.unwrap();
+    pub fn permalink(&mut self, permalink: Option<bool>) -> &mut GuidBuilder {
+        if permalink.is_some() {
+            self.permalink = permalink.unwrap();
         } else {
-            self.is_permalink = true;
+            self.permalink = true;
         }
         self
     }
@@ -69,12 +69,12 @@ impl GuidBuilder {
     ///
     /// let guid = GuidBuilder::new()
     ///         .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///         .is_permalink(Some(true))
+    ///         .permalink(Some(true))
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Guid {
         Guid {
-            is_permalink: self.is_permalink,
+            permalink: self.permalink,
             value: self.value.clone(),
         }
     }
