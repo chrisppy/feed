@@ -14,12 +14,15 @@
     	    + guid -> value
         + Enclosure
             + enclosure_type -> mime_type
+        + Category
+            + category -> name
     	+ Source
     	    + source -> title
     	    + title is now Option<String>
 + Refactor
     + reader and writer have been moved into utils
-    + reader has been refactored to use rss package
+    + reader has been refactored to use rss crate
+    + writer has been refactored to use rss crate
 + Tests
     + None
 + Maintenance

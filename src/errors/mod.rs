@@ -33,24 +33,6 @@ pub fn item_required_field_error() -> String {
 }
 
 
-// xml start tag error
-pub fn tag_start_error(tag: &str) -> String {
-    format!("Error creating start tag for {}", tag)
-}
-
-
-// xml start tag error
-pub fn tag_text_error(tag: &str) -> String {
-    format!("Error creating text for {}", tag)
-}
-
-
-// xml end tag error
-pub fn tag_end_error(tag: &str) -> String {
-    format!("Error creating end tag for {}", tag)
-}
-
-
 // negative integer error
 pub fn negative_error(tag: &str, num: i64) -> String {
     format!("{} cannot be negative: {}", tag, num)

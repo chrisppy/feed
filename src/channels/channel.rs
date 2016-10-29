@@ -259,11 +259,11 @@ impl Channel {
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
-    ///     .category("Media")
+    ///     .name("Media")
     ///     .finalize();
     /// let category_2 = CategoryBuilder::new()
     ///     .domain(Some("http://jupiterbroadcasting.com".to_owned()))
-    ///     .category("Podcast")
+    ///     .name("Podcast")
     ///     .finalize();
     /// let categories_vec = vec![category_1, category_2];
     /// let channels = ChannelBuilder::new()

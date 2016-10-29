@@ -20,12 +20,12 @@ impl Category {
     ///
     /// let category = "podcast";
     /// let category_obj = CategoryBuilder::new()
-    ///     .category(category)
+    ///     .name(category)
     ///     .finalize();
-    /// assert_eq!(category.to_owned(), category_obj.category());
+    /// assert_eq!(category.to_owned(), category_obj.name());
     /// ```
-    pub fn category(&self) -> String {
-        self.category.clone()
+    pub fn name(&self) -> String {
+        self.name.clone()
     }
 
 

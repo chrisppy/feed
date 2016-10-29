@@ -13,9 +13,13 @@ use utils::string_utils;
 
 // Construct a new `Channel` and return it.
 pub fn read(feed: &str) -> Channel {
-
     let rss_channel = rss::Channel::from_str(feed).unwrap();
+    convert_channel(rss_channel)
+}
 
+
+// convert rss channel to feed channel
+fn convert_channel(rss_channel: rss::Channel) -> Channel {
     ChannelBuilder::new()
         .title(rss_channel.title.as_str())
         .link(rss_channel.link.as_str())
@@ -49,7 +53,7 @@ fn convert_categories(rss_cats: Vec<rss::Category>) -> Option<Vec<Category>> {
         let mut cats: Vec<Category> = Vec::new();
         for rss_cat in rss_cats {
             let cat = CategoryBuilder::new()
-                .category(rss_cat.name.as_str())
+                .name(rss_cat.name.as_str())
                 .domain(rss_cat.domain)
                 .finalize();
             cats.push(cat);
@@ -188,7 +192,7 @@ fn convert_guid(rss_guid_opt: Option<rss::Guid>) -> Option<Guid> {
         let rss_guid = rss_guid_opt.unwrap();
         let guid = GuidBuilder::new()
             .value(rss_guid.value.as_str())
-            .is_permalink(Some(rss_guid.is_permalink))
+            .permalink(Some(rss_guid.is_permalink))
             .finalize();
         Some(guid)
     }

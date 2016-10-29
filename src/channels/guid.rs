@@ -18,9 +18,9 @@ impl Guid {
     /// use feed::channels::GuidBuilder;
     ///
     /// let guid = GuidBuilder::new()
-    ///     .is_permalink(None)
+    ///     .permalink(None)
     ///     .finalize();
-    /// assert!(guid.is_permalink());
+    /// assert!(guid.permalink());
     /// ```
     ///
     /// ```
@@ -28,9 +28,9 @@ impl Guid {
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
-    ///     .is_permalink(Some(permalink))
+    ///     .permalink(Some(permalink))
     ///     .finalize();
-    /// assert_eq!(permalink, guid.is_permalink());
+    /// assert_eq!(permalink, guid.permalink());
     /// ```
     ///
     /// ```
@@ -38,12 +38,12 @@ impl Guid {
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
-    ///     .is_permalink(Some(permalink))
+    ///     .permalink(Some(permalink))
     ///     .finalize();
-    /// assert_eq!(permalink, guid.is_permalink());
+    /// assert_eq!(permalink, guid.permalink());
     /// ```
-    pub fn is_permalink(&self) -> bool {
-        self.is_permalink
+    pub fn permalink(&self) -> bool {
+        self.permalink
     }
 
 
