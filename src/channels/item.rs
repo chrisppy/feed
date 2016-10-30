@@ -8,6 +8,7 @@
 
 use chrono::*;
 use channels::{Category, Enclosure, Guid, Item, Source};
+use url::Url;
 
 
 impl Item {
@@ -49,15 +50,16 @@ impl Item {
     /// ```
     /// use feed::channels::ItemBuilder;
     ///
-    /// let link_string = "http://www.jupiterbroadcasting.com".to_owned();
+    /// let link_string = "http://www.jupiterbroadcasting.com/".to_owned();
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .link(Some(link_string.clone()))
     ///     .finalize();
     /// let link_option = item.link();
     /// assert!(link_option.is_some());
+    ///
     /// let link = link_option.unwrap();
-    /// assert_eq!(link_string.clone(), link);
+    /// assert_eq!(link_string.clone(), link.into_string());
     /// ```
     ///
     /// ```
@@ -69,7 +71,7 @@ impl Item {
     ///     .finalize();
     /// assert!(item.link().is_none());
     /// ```
-    pub fn link(&self) -> Option<String> {
+    pub fn link(&self) -> Option<Url> {
         self.link.clone()
     }
 
@@ -185,15 +187,17 @@ impl Item {
     /// ```
     /// use feed::channels::ItemBuilder;
     ///
-    /// let comments_string = "This is a test comment.".to_owned();
+    /// let comments_string = "http://example.com/comments".to_owned();
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .comments(Some(comments_string.clone()))
     ///     .finalize();
+    ///
     /// let comments_option =  item.comments();
     /// assert!(comments_option.is_some());
+    ///
     /// let comments = comments_option.unwrap();
-    /// assert_eq!(comments_string.clone(), comments);
+    /// assert_eq!(comments_string.clone(), comments.into_string());
     /// ```
     ///
     /// ```
@@ -205,7 +209,7 @@ impl Item {
     ///     .finalize();
     /// assert!(item.comments().is_none());
     /// ```
-    pub fn comments(&self) -> Option<String> {
+    pub fn comments(&self) -> Option<Url> {
         self.comments.clone()
     }
 

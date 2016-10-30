@@ -39,7 +39,7 @@
 //! use feed::FeedBuilder;
 //!
 //! fn main() {
-//!     let url_str = "http://feeds2.feedburner.com/TheLinuxActionShowOGG.xml";
+//!     let url_str = "https://feedpress.me/usererror.xml";
 //!     let feed = FeedBuilder::read_from_url(url_str).finalize();
 //!     let channel = feed.channel();
 //!     println!("Title: {}", channel.title());
@@ -75,7 +75,6 @@
 
 extern crate chrono;
 extern crate curl;
-extern crate quick_xml;
 extern crate rss;
 extern crate url;
 
@@ -98,7 +97,7 @@ pub struct Feed {
 
 
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
-#[derive(Default)]
+#[derive(Clone)]
 pub struct FeedBuilder {
     channel: Channel,
 }

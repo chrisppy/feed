@@ -8,6 +8,7 @@
 
 
 use channels::{TextInput, TextInputBuilder};
+use utils::string_utils;
 
 
 impl TextInputBuilder {
@@ -104,11 +105,14 @@ impl TextInputBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> TextInput {
+        let link_string = self.link.clone();
+        let link = string_utils::str_to_url(link_string.as_str(), "TextInput Link");
+
         TextInput {
             title: self.title.clone(),
             description: self.description.clone(),
             name: self.name.clone(),
-            link: self.link.clone(),
+            link: link,
         }
     }
 }

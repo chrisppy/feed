@@ -8,6 +8,7 @@
 
 use errors;
 use channels::{Enclosure, EnclosureBuilder};
+use utils::string_utils;
 
 
 impl EnclosureBuilder {
@@ -94,8 +95,11 @@ impl EnclosureBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Enclosure {
+        let url_string = self.url.clone();
+        let url = string_utils::str_to_url(url_string.as_str(), "Enclosure Url");
+
         Enclosure {
-            url: self.url.clone(),
+            url: url,
             length: self.length,
             mime_type: self.mime_type.clone(),
         }

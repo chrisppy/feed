@@ -7,7 +7,7 @@
 
 
 use channels::Image;
-
+use url::Url;
 
 impl Image {
     /// Get the url that exists under `Image`.
@@ -18,12 +18,16 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(url.to_owned(), image.url());
+    /// assert_eq!(url.to_owned(), image.url().into_string());
     /// ```
-    pub fn url(&self) -> String {
+    pub fn url(&self) -> Url {
         self.url.clone()
     }
 
@@ -36,8 +40,15 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let title = "LAS 300 Logo";
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .title(title)
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(title.to_owned(), image.title());
     /// ```
@@ -53,13 +64,17 @@ impl Image {
     /// ```
     /// use feed::channels::ImageBuilder;
     ///
-    /// let link = "http://www.jupiterbroadcasting.com";
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com/";
+    ///
     /// let image = ImageBuilder::new()
+    ///     .url(url)
     ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(link.to_owned(), image.link());
+    /// assert_eq!(link.to_owned(), image.link().into_string());
     /// ```
-    pub fn link(&self) -> String {
+    pub fn link(&self) -> Url {
         self.link.clone()
     }
 
@@ -72,8 +87,15 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let default: i64 = 88;
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .width(None)
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(default, image.width());
     /// ```
@@ -82,8 +104,15 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let width: i64 = 60;
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .width(Some(width))
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(width, image.width());
     /// ```
@@ -92,9 +121,17 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let width: i64 = 777;
+    ///
     /// let max: i64 = 144;
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .width(Some(width))
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(max, image.width());
     /// ```
@@ -111,8 +148,15 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let default: i64 = 31;
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .height(None)
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(default, image.height());
     /// ```
@@ -121,8 +165,15 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let height: i64 = 60;
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .height(Some(height))
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(height, image.height());
     /// ```
@@ -131,9 +182,17 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let height: i64 = 777;
+    ///
     /// let max: i64 = 400;
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .height(Some(height))
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert_eq!(max, image.height());
     /// ```
@@ -149,8 +208,14 @@ impl Image {
     /// ```
     /// use feed::channels::ImageBuilder;
     ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .description(None)
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
     /// assert!(image.description().is_none());
     /// ```
@@ -159,11 +224,20 @@ impl Image {
     /// use feed::channels::ImageBuilder;
     ///
     /// let description_string = "This is a test".to_owned();
+    ///
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com";
+    ///
     /// let image = ImageBuilder::new()
     ///     .description(Some(description_string.clone()))
+    ///     .url(url)
+    ///     .link(link)
     ///     .finalize();
+    ///
     /// let description_option = image.description();
     /// assert!(description_option.is_some());
+    ///
     /// let description = description_option.unwrap();
     /// assert_eq!(description.clone(), description);
     /// ```

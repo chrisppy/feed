@@ -7,8 +7,9 @@
 //! and the fields can be set for image by using the methods under `ImageBuilder`.
 
 
-use errors;
 use channels::{Image, ImageBuilder};
+use errors;
+use utils::string_utils;
 
 
 impl ImageBuilder {
@@ -37,11 +38,6 @@ impl ImageBuilder {
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
     /// ```
     pub fn url(&mut self, url: &str) -> &mut ImageBuilder {
-        let url_string = url.to_owned();
-        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") &&
-           !url_string.ends_with(".png") && !url_string.ends_with(".gif") {
-            panic!(errors::image_url_error());
-        }
         self.url = url.to_owned();
         self
     }
@@ -71,7 +67,7 @@ impl ImageBuilder {
     /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
-    /// image_builder.link("http://www.jupiterbroadcasting.com");
+    /// image_builder.link("http://www.jupiterbroadcasting.com/");
     /// ```
     pub fn link(&mut self, link: &str) -> &mut ImageBuilder {
         self.link = link.to_owned();
@@ -166,10 +162,20 @@ impl ImageBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Image {
+        let url_string = self.url.clone();
+        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") &&
+           !url_string.ends_with(".png") && !url_string.ends_with(".gif") {
+            panic!(errors::image_url_error());
+        }
+        let url = string_utils::str_to_url(url_string.as_str(), "Image Url");
+
+        let link_string = self.link.clone();
+        let link = string_utils::str_to_url(link_string.as_str(), "Image Link");
+
         Image {
-            url: self.url.clone(),
+            url: url,
             title: self.title.clone(),
-            link: self.link.clone(),
+            link: link,
             width: self.width,
             height: self.height,
             description: self.description.clone(),

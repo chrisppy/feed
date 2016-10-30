@@ -8,6 +8,7 @@
 
 use errors;
 use channels::{Cloud, CloudBuilder};
+use utils::string_utils;
 
 
 impl CloudBuilder {
@@ -33,7 +34,7 @@ impl CloudBuilder {
     /// use feed::channels::CloudBuilder;
     ///
     /// let mut cloud_builder = CloudBuilder::new();
-    /// cloud_builder.domain("rpc.sys.com");
+    /// cloud_builder.domain("http://rpc.sys.com/");
     /// ```
     pub fn domain(&mut self, domain: &str) -> &mut CloudBuilder {
         self.domain = domain.to_owned();
@@ -120,7 +121,7 @@ impl CloudBuilder {
     /// use feed::channels::CloudBuilder;
     ///
     /// let cloud = CloudBuilder::new()
-    ///         .domain("rpc.sys.com")
+    ///         .domain("http://rpc.sys.com/")
     ///         .port(80)
     ///         .path("/RPC2")
     ///         .register_procedure("pingMe")
@@ -128,8 +129,11 @@ impl CloudBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Cloud {
+        let domain_string = self.domain.clone();
+        let domain = string_utils::str_to_url(domain_string.as_str(), "Cloud Domain");
+
         Cloud {
-            domain: self.domain.clone(),
+            domain: domain,
             port: self.port,
             path: self.path.clone(),
             register_procedure: self.register_procedure.clone(),

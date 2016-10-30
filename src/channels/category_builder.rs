@@ -8,6 +8,7 @@
 
 
 use channels::{Category, CategoryBuilder};
+use utils::string_utils;
 
 
 impl CategoryBuilder {
@@ -70,9 +71,17 @@ impl CategoryBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Category {
+        let domain = if self.domain.is_none() {
+            None
+        } else {
+            let d = self.domain.clone().unwrap();
+            let url = string_utils::str_to_url(d.as_str(), "Category Domain");
+            Some(url)
+        };
+
         Category {
             name: self.name.clone(),
-            domain: self.domain.clone(),
+            domain: domain,
         }
     }
 }

@@ -132,7 +132,12 @@ impl ItemBuilder {
     /// ```
     /// use feed::channels::{EnclosureBuilder, ItemBuilder};
     ///
-    /// let enclosure = EnclosureBuilder::new().finalize();
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
+    ///
+    /// let enclosure = EnclosureBuilder::new()
+    ///     .url(url.as_str())
+    ///     .finalize();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.enclosure(Some(enclosure));
@@ -184,7 +189,12 @@ impl ItemBuilder {
     /// ```
     /// use feed::channels::{ItemBuilder, SourceBuilder};
     ///
-    /// let source = SourceBuilder::new().finalize();
+    /// let url = "http://www.tomalak.org/links2.xml";
+    ///
+    /// let source = SourceBuilder::new()
+    ///     .url(url)
+    ///     .finalize();
+    ///
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.source(Some(source));
@@ -219,13 +229,32 @@ impl ItemBuilder {
         if self.title.is_none() && self.description.is_none() {
             panic!(errors::item_required_field_error());
         }
+
+        let link_opt = self.link.clone();
+        let link = if link_opt.is_none() {
+            None
+        } else {
+            let link_string = link_opt.clone().unwrap();
+            let url = string_utils::str_to_url(link_string.as_str(), "Item Link");
+            Some(url)
+        };
+
+        let comments_opt = self.comments.clone();
+        let comments = if comments_opt.is_none() {
+            None
+        } else {
+            let comments_string = comments_opt.clone().unwrap();
+            let url = string_utils::str_to_url(comments_string.as_str(), "Item Comments");
+            Some(url)
+        };
+
         Item {
             title: self.title.clone(),
-            link: self.link.clone(),
+            link: link,
             description: self.description.clone(),
             author: self.author.clone(),
             categories: self.categories.clone(),
-            comments: self.comments.clone(),
+            comments: comments,
             enclosure: self.enclosure.clone(),
             guid: self.guid.clone(),
             pub_date: self.pub_date,

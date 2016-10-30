@@ -7,6 +7,7 @@
 
 
 use channels::Cloud;
+use url::Url;
 
 
 impl Cloud {
@@ -17,13 +18,13 @@ impl Cloud {
     /// ```
     /// use feed::channels::CloudBuilder;
     ///
-    /// let domain = "rpc.sys.com";
+    /// let domain = "http://rpc.sys.com/";
     /// let cloud = CloudBuilder::new()
     ///     .domain(domain)
     ///     .finalize();
-    /// assert_eq!(domain.to_owned(), cloud.domain());
+    /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
     /// ```
-    pub fn domain(&self) -> String {
+    pub fn domain(&self) -> Url {
         self.domain.clone()
     }
 
@@ -38,6 +39,7 @@ impl Cloud {
     /// let port: i64 = 80;
     /// let cloud = CloudBuilder::new()
     ///     .port(port)
+    ///     .domain("http://rpc.sys.com/")
     ///     .finalize();
     /// assert_eq!(port, cloud.port());
     /// ```
@@ -56,6 +58,7 @@ impl Cloud {
     /// let path = "/RPC2";
     /// let cloud = CloudBuilder::new()
     ///     .path(path)
+    ///     .domain("http://rpc.sys.com/")
     ///     .finalize();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
@@ -74,6 +77,7 @@ impl Cloud {
     /// let register_procedure = "pingMe";
     /// let cloud = CloudBuilder::new()
     ///     .register_procedure(register_procedure)
+    ///     .domain("http://rpc.sys.com/")
     ///     .finalize();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
@@ -92,6 +96,7 @@ impl Cloud {
     /// let protocol = "soap";
     /// let cloud = CloudBuilder::new()
     ///     .protocol(protocol)
+    ///     .domain("http://rpc.sys.com/")
     ///     .finalize();
     /// assert_eq!(protocol.to_owned(), cloud.protocol());
     /// ```
