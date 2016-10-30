@@ -4,11 +4,12 @@
 
 [![Master API Documentation](https://img.shields.io/badge/doc-released-b7410e.svg?style=flat-square)](https://docs.rs/feed/)[![Master API Documentation](https://img.shields.io/badge/doc-master-b7410e.svg?style=flat-square)](http://red-oxide.github.io/feed)
 
-[![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)[![Clippy Linting Result](https://clippy.bashy.io/github/red-oxide/feed/master/badge.svg?style=flat-square)](https://clippy.bashy.io/github/red-oxide/feed/master/log)
+[![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)
 
 Library for creating channels feeds and parsing channels feeds from an URL and retrieving the elements
 
 **The next version will be 2.0 and there will be breaking changes to the api**
+
 **The project is migrating to use the rss library for reading and writing rss feeds**
 
 ## Use
@@ -30,7 +31,7 @@ Anyone who interacts with feed in any space including but not limited to
 this GitHub repository is expected to follow our [code of conduct](https://github.com/red-oxide/feed/blob/master/code_of_conduct.md)
 
 ## Copyright
-(C) Copyright 2015 by Chris Palmer and contributors
+(C) Copyright 2015-2016 by Chris Palmer and contributors
 
 See [here](https://github.com/red-oxide/feed/graphs/contributors) for a full list of contributors.
 
