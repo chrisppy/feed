@@ -7,6 +7,7 @@
 
 
 use channels::{Source, SourceBuilder};
+use utils::string_utils;
 
 
 impl SourceBuilder {
@@ -69,8 +70,11 @@ impl SourceBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Source {
+        let url_string = self.url.clone();
+        let url = string_utils::str_to_url(url_string.as_str(), "Source Url");
+
         Source {
-            url: self.url.clone(),
+            url: url,
             title: self.title.clone(),
         }
     }

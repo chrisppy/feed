@@ -7,6 +7,7 @@
 
 
 use channels::Source;
+use url::Url;
 
 
 impl Source {
@@ -18,12 +19,14 @@ impl Source {
     /// use feed::channels::SourceBuilder;
     ///
     /// let url = "http://www.tomalak.org/links2.xml";
+    ///
     /// let source = SourceBuilder::new()
     ///     .url(url)
     ///     .finalize();
-    /// assert_eq!(url.to_owned(), source.url());
+    ///
+    /// assert_eq!(url.to_owned(), source.url().into_string());
     /// ```
-    pub fn url(&self) -> String {
+    pub fn url(&self) -> Url {
         self.url.clone()
     }
 
@@ -36,8 +39,12 @@ impl Source {
     /// use feed::channels::SourceBuilder;
     ///
     /// let title = "Tomalak's Realm";
+    ///
+    /// let url = "http://www.tomalak.org/links2.xml";
+    ///
     /// let source_obj = SourceBuilder::new()
     ///     .title(Some(title.to_owned()))
+    ///     .url(url)
     ///     .finalize();
     /// assert_eq!(title.to_owned(), source_obj.title().unwrap());
     /// ```

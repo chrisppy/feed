@@ -24,7 +24,7 @@ pub fn write(channel: Channel) -> Vec<u8> {
 fn convert_channel(channel: Channel) -> rss::Channel {
     rss::Channel {
         title: channel.title(),
-        link: channel.link(),
+        link: channel.link().into_string(),
         description: channel.description(),
         language: channel.language(),
         copyright: channel.copyright(),
@@ -34,7 +34,7 @@ fn convert_channel(channel: Channel) -> rss::Channel {
         last_build_date: string_utils::option_date_to_option_string(channel.last_build_date()),
         categories: convert_categories(channel.categories()),
         generator: channel.generator(),
-        docs: channel.docs(),
+        docs: string_utils::option_url_to_option_string(channel.docs()),
         cloud: convert_cloud(channel.cloud()),
         ttl: string_utils::option_i64_to_option_string(channel.ttl()),
         image: convert_image(channel.image()),
@@ -56,9 +56,15 @@ fn convert_categories(cats_opt: Option<Vec<Category>>) -> Vec<rss::Category> {
     if cats_opt.is_some() {
         let cats = cats_opt.unwrap();
         for cat in cats {
+            let domain = if cat.domain().is_none() {
+                None
+            } else {
+                let url = cat.domain().unwrap().into_string();
+                Some(url)
+            };
             let rss_cat = rss::Category {
                 name: cat.name(),
-                domain: cat.domain(),
+                domain: domain,
             };
             rss_cats.push(rss_cat);
         }
@@ -74,7 +80,7 @@ fn convert_cloud(cloud_opt: Option<Cloud>) -> Option<rss::Cloud> {
     } else {
         let cloud = cloud_opt.unwrap();
         let rss_cloud = rss::Cloud {
-            domain: cloud.domain(),
+            domain: cloud.domain().into_string(),
             port: cloud.port().to_string(),
             path: cloud.path(),
             register_procedure: cloud.register_procedure(),
@@ -92,9 +98,9 @@ fn convert_image(image_opt: Option<Image>) -> Option<rss::Image> {
     } else {
         let image = image_opt.unwrap();
         let rss_image = rss::Image {
-            url: image.url(),
+            url: image.url().into_string(),
             title: image.title(),
-            link: image.link(),
+            link: image.link().into_string(),
             width: string_utils::i64_to_option_string(image.width()),
             height: string_utils::i64_to_option_string(image.height()),
             description: image.description(),
@@ -114,7 +120,7 @@ fn convert_text_input(text_input_opt: Option<TextInput>) -> Option<rss::TextInpu
             title: text_input.title(),
             description: text_input.description(),
             name: text_input.name(),
-            link: text_input.link(),
+            link: text_input.link().into_string(),
         };
         Some(rss_text_input)
     }
@@ -156,11 +162,11 @@ fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item> {
         for item in items {
             let rss_item = rss::Item {
                 title: item.title(),
-                link: item.link(),
+                link: string_utils::option_url_to_option_string(item.link()),
                 description: item.description(),
                 author: item.author(),
                 categories: convert_categories(item.categories()),
-                comments: item.comments(),
+                comments: string_utils::option_url_to_option_string(item.comments()),
                 enclosure: convert_enclosure(item.enclosure()),
                 guid: convert_guid(item.guid()),
                 pub_date: string_utils::option_date_to_option_string(item.pub_date()),
@@ -184,7 +190,7 @@ fn convert_enclosure(enc_opt: Option<Enclosure>) -> Option<rss::Enclosure> {
     } else {
         let enc = enc_opt.unwrap();
         let rss_enclosure = rss::Enclosure {
-            url: enc.url(),
+            url: enc.url().into_string(),
             length: enc.length().to_string(),
             mime_type: enc.mime_type(),
         };
@@ -215,7 +221,7 @@ fn convert_source(src_opt: Option<Source>) -> Option<rss::Source> {
     } else {
         let src = src_opt.unwrap();
         let rss_src = rss::Source {
-            url: src.url(),
+            url: src.url().into_string(),
             title: src.title(),
         };
         Some(rss_src)

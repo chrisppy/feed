@@ -64,8 +64,8 @@ pub fn image_url_error() -> String {
 
 
 // string to url error
-pub fn str_to_url_error() -> String {
-    "Error parsing str into url".to_owned()
+pub fn str_to_url_error(element: &str) -> String {
+    format!("Error parsing str into url for {}", element)
 }
 
 

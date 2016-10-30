@@ -8,6 +8,7 @@
 
 
 use channels::Category;
+use url::Url;
 
 
 impl Category {
@@ -36,14 +37,14 @@ impl Category {
     /// ```
     /// use feed::channels::CategoryBuilder;
     ///
-    /// let domain_string = "http://jupiterbroadcasting.com".to_owned();
+    /// let domain_string = "http://jupiterbroadcasting.com/".to_owned();
     /// let category = CategoryBuilder::new()
     ///     .domain(Some(domain_string.clone()))
     ///     .finalize();
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_some());
     /// let domain = domain_option.unwrap();
-    /// assert_eq!(domain_string.clone(), domain);
+    /// assert_eq!(domain_string.clone(), domain.into_string());
     /// ```
     ///
     /// ```
@@ -55,7 +56,7 @@ impl Category {
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_none());
     /// ```
-    pub fn domain(&self) -> Option<String> {
+    pub fn domain(&self) -> Option<Url> {
         self.domain.clone()
     }
 }

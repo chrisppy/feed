@@ -8,6 +8,7 @@
 
 
 use channels::TextInput;
+use url::Url;
 
 
 impl TextInput {
@@ -21,6 +22,7 @@ impl TextInput {
     /// let title = "Enter Comment";
     /// let text_input = TextInputBuilder::new()
     ///     .title(title)
+    ///     .link("http://www.example.com/feedback")
     ///     .finalize();
     /// assert_eq!(title.to_owned(), text_input.title());
     /// ```
@@ -39,6 +41,7 @@ impl TextInput {
     /// let description = "Provided Feedback";
     /// let text_input = TextInputBuilder::new()
     ///     .description(description)
+    ///     .link("http://www.example.com/feedback")
     ///     .finalize();
     /// assert_eq!(description.to_owned(), text_input.description());
     /// ```
@@ -57,6 +60,7 @@ impl TextInput {
     /// let name = "Comment";
     /// let text_input = TextInputBuilder::new()
     ///     .name(name)
+    ///     .link("http://www.example.com/feedback")
     ///     .finalize();
     /// assert_eq!(name.to_owned(), text_input.name());
     /// ```
@@ -72,13 +76,13 @@ impl TextInput {
     /// ```
     /// use feed::channels::TextInputBuilder;
     ///
-    /// let link = "www.example.com/feedback";
+    /// let link = "http://www.example.com/feedback";
     /// let text_input = TextInputBuilder::new()
     ///     .link(link)
     ///     .finalize();
-    /// assert_eq!(link.to_owned(), text_input.link());
+    /// assert_eq!(link.to_owned(), text_input.link().into_string());
     /// ```
-    pub fn link(&self) -> String {
+    pub fn link(&self) -> Url {
         self.link.clone()
     }
 }

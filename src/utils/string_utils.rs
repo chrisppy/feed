@@ -6,6 +6,7 @@ use chrono::*;
 use errors;
 use std::i64;
 use std::str::FromStr;
+use url::Url;
 
 
 // Common code to convert Option<String> to Option<i64>
@@ -62,6 +63,23 @@ pub fn option_date_to_option_string(date_option: Option<DateTime<FixedOffset>>) 
         None
     } else {
         let s = date_option.unwrap().to_rfc2822();
+        Some(s)
+    }
+}
+
+
+// Common code to convert str to Url.
+pub fn str_to_url(s: &str, e: &str) -> Url {
+    Url::parse(s).expect(errors::str_to_url_error(e).as_str())
+}
+
+
+// Common code to convert Option<Url> to Option<String>
+pub fn option_url_to_option_string(o: Option<Url>) -> Option<String> {
+    if o.is_none() {
+        None
+    } else {
+        let s = o.unwrap().into_string();
         Some(s)
     }
 }

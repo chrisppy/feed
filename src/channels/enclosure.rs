@@ -7,6 +7,7 @@
 
 
 use channels::Enclosure;
+use url::Url;
 
 
 impl Enclosure {
@@ -22,9 +23,9 @@ impl Enclosure {
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_ref())
     ///     .finalize();
-    /// assert_eq!(url.to_owned(), enclosure.url())
+    /// assert_eq!(url.to_owned(), enclosure.url().into_string())
     /// ```
-    pub fn url(&self) -> String {
+    pub fn url(&self) -> Url {
         self.url.clone()
     }
 
@@ -37,7 +38,12 @@ impl Enclosure {
     /// use feed::channels::EnclosureBuilder;
     ///
     /// let length: i64 = 70772893;
+    ///
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
+    ///
     /// let enclosure = EnclosureBuilder::new()
+    ///     .url(url.as_str())
     ///     .length(length)
     ///     .finalize();
     /// assert_eq!(length, enclosure.length())
@@ -55,7 +61,12 @@ impl Enclosure {
     /// use feed::channels::EnclosureBuilder;
     ///
     /// let enclosure_type = "audio/ogg";
+    ///
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
+    ///
     /// let enclosure = EnclosureBuilder::new()
+    ///     .url(url.as_str())
     ///     .mime_type(enclosure_type)
     ///     .finalize();
     /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type())

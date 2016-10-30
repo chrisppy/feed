@@ -27,6 +27,7 @@ pub mod text_input_builder;
 
 
 use chrono::*;
+use url::Url;
 
 
 /// This `Category` struct contains all the items that exist for the category
@@ -34,12 +35,12 @@ use chrono::*;
 #[derive(Clone)]
 pub struct Category {
     name: String,
-    domain: Option<String>,
+    domain: Option<Url>,
 }
 
 
 /// This `CategoryBuilder` struct creates the `Category`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct CategoryBuilder {
     name: String,
     domain: Option<String>,
@@ -47,10 +48,10 @@ pub struct CategoryBuilder {
 
 
 /// This `Channel` struct contains all the items that exist for the `feed`.
-#[derive(Clone, Default)]
+#[derive(Clone)]
 pub struct Channel {
     title: String,
-    link: String,
+    link: Url,
     description: String,
     language: Option<String>,
     copyright: Option<String>,
@@ -60,7 +61,7 @@ pub struct Channel {
     last_build_date: Option<DateTime<FixedOffset>>,
     categories: Option<Vec<Category>>,
     generator: Option<String>,
-    docs: Option<String>,
+    docs: Option<Url>,
     cloud: Option<Cloud>,
     ttl: Option<i64>,
     image: Option<Image>,
@@ -73,7 +74,7 @@ pub struct Channel {
 
 
 /// This `ChannelBuilder` struct creates the `Channel`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct ChannelBuilder {
     title: String,
     link: String,
@@ -101,7 +102,7 @@ pub struct ChannelBuilder {
 /// This `Cloud` struct contains all the items that exist for the cloud field under 'Channel'.
 #[derive(Clone)]
 pub struct Cloud {
-    domain: String,
+    domain: Url,
     port: i64,
     path: String,
     register_procedure: String,
@@ -110,7 +111,7 @@ pub struct Cloud {
 
 
 /// This `CloudBuilder` struct creates the `Cloud`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct CloudBuilder {
     domain: String,
     port: i64,
@@ -123,14 +124,14 @@ pub struct CloudBuilder {
 /// This `Enclosure` struct contains all the items that exist for the enclosure field under 'Item'.
 #[derive(Clone)]
 pub struct Enclosure {
-    url: String,
+    url: Url,
     length: i64,
     mime_type: String,
 }
 
 
 /// This `EnclosureBuilder` struct creates the `Enclosure`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct EnclosureBuilder {
     url: String,
     length: i64,
@@ -147,7 +148,7 @@ pub struct Guid {
 
 
 /// This `GuidBuilder` struct creates the `Guid`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct GuidBuilder {
     permalink: bool,
     value: String,
@@ -157,9 +158,9 @@ pub struct GuidBuilder {
 /// This `Image` struct contains all the items that exist for the image field under 'Channel'.
 #[derive(Clone)]
 pub struct Image {
-    url: String,
+    url: Url,
     title: String,
-    link: String,
+    link: Url,
     width: i64,
     height: i64,
     description: Option<String>,
@@ -167,7 +168,7 @@ pub struct Image {
 
 
 /// This `ImageBuilder` struct creates the `Image`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct ImageBuilder {
     url: String,
     title: String,
@@ -183,11 +184,11 @@ pub struct ImageBuilder {
 #[derive(Clone)]
 pub struct Item {
     title: Option<String>,
-    link: Option<String>,
+    link: Option<Url>,
     description: Option<String>,
     author: Option<String>,
     categories: Option<Vec<Category>>,
-    comments: Option<String>,
+    comments: Option<Url>,
     enclosure: Option<Enclosure>,
     guid: Option<Guid>,
     pub_date: Option<DateTime<FixedOffset>>,
@@ -196,7 +197,7 @@ pub struct Item {
 
 
 /// This `ItemBuilder` struct creates the `Item`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct ItemBuilder {
     title: Option<String>,
     link: Option<String>,
@@ -214,13 +215,13 @@ pub struct ItemBuilder {
 /// This `Source` struct contains all the items that exist for the source field under 'Item'.
 #[derive(Clone)]
 pub struct Source {
-    url: String,
+    url: Url,
     title: Option<String>,
 }
 
 
 /// This `SourceBuilder` struct creates the `Source`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct SourceBuilder {
     url: String,
     title: Option<String>,
@@ -234,12 +235,12 @@ pub struct TextInput {
     title: String,
     description: String,
     name: String,
-    link: String,
+    link: Url,
 }
 
 
 /// This `TextInputBuilder` struct creates the `TextInput`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct TextInputBuilder {
     title: String,
     description: String,

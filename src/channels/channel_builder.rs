@@ -229,7 +229,7 @@ impl ChannelBuilder {
     /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.docs(Some("http://blogs.law.harvard.edu/tech/rss".to_owned()));
+    /// channel_builder.docs(Some("http://blogs.law.harvard.edu/tech/rss/".to_owned()));
     /// ```
     pub fn docs(&mut self, docs: Option<String>) -> &mut ChannelBuilder {
         self.docs = docs;
@@ -244,7 +244,9 @@ impl ChannelBuilder {
     /// ```
     /// use feed::channels::{ChannelBuilder, CloudBuilder};
     ///
-    /// let cloud = CloudBuilder::new().finalize();
+    /// let cloud = CloudBuilder::new()
+    ///     .domain("http://rpc.sys.com/")
+    ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.cloud(Some(cloud));
@@ -284,7 +286,14 @@ impl ChannelBuilder {
     /// ```
     /// use feed::channels::{ChannelBuilder, ImageBuilder};
     ///
-    /// let image = ImageBuilder::new().finalize();
+    /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
+    ///
+    /// let link = "http://www.jupiterbroadcasting.com/";
+    ///
+    /// let image = ImageBuilder::new()
+    ///     .url(url)
+    ///     .link(link)
+    ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.image(Some(image));
@@ -317,7 +326,9 @@ impl ChannelBuilder {
     /// ```
     /// use feed::channels::{ChannelBuilder, TextInputBuilder};
     ///
-    /// let text_input = TextInputBuilder::new().finalize();
+    /// let text_input = TextInputBuilder::new()
+    ///     .link("http://www.example.com/feedback")
+    ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.text_input(Some(text_input));
@@ -446,9 +457,22 @@ impl ChannelBuilder {
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Channel {
+        let link_string = self.link.clone();
+        let link = string_utils::str_to_url(link_string.as_str(), "Channel Link");
+
+        let docs_opt = self.docs.clone();
+        let docs = if docs_opt.is_none() {
+            None
+        } else {
+            let docs_string = docs_opt.clone().unwrap();
+            let url = string_utils::str_to_url(docs_string.as_str(), "Channel Docs");
+            Some(url)
+        };
+
+
         Channel {
             title: self.title.clone(),
-            link: self.link.clone(),
+            link: link,
             description: self.description.clone(),
             language: self.language.clone(),
             copyright: self.copyright.clone(),
@@ -458,7 +482,7 @@ impl ChannelBuilder {
             last_build_date: self.last_build_date,
             categories: self.categories.clone(),
             generator: self.generator.clone(),
-            docs: self.docs.clone(),
+            docs: docs,
             cloud: self.cloud.clone(),
             ttl: self.ttl,
             image: self.image.clone(),

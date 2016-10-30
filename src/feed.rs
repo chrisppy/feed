@@ -20,7 +20,9 @@ impl Feed {
     /// use feed::FeedBuilder;
     /// use feed::channels::ChannelBuilder;
     ///
-    /// let channel = ChannelBuilder::new().finalize();
+    /// let channel = ChannelBuilder::new()
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .finalize();
     /// let feed = FeedBuilder::channel(channel).finalize();
     /// let channels = feed.channel();
     /// ```
@@ -37,7 +39,9 @@ impl Feed {
     /// use feed::FeedBuilder;
     /// use feed::channels::ChannelBuilder;
     ///
-    /// let channel = ChannelBuilder::new().finalize();
+    /// let channel = ChannelBuilder::new()
+    ///     .link("http://www.jupiterbroadcasting.com/")
+    ///     .finalize();
     /// let feed = FeedBuilder::channel(channel).finalize();
     /// let xml = feed.to_xml();
     /// ```
