@@ -18,7 +18,7 @@
             + category -> name
     	+ Source
     	    + source -> title
-    	    + title is now Option String
+    	    + title is now `Option<String>`
 + Refactor
     + reader and writer have been moved into utils
     + reader has been refactored to use rss crate
