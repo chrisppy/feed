@@ -27,6 +27,7 @@ pub mod text_input_builder;
 
 
 use chrono::*;
+use enums::{CloudProtocol, Day};
 use url::Url;
 
 
@@ -68,7 +69,7 @@ pub struct Channel {
     rating: Option<String>,
     text_input: Option<TextInput>,
     skip_hours: Option<Vec<i64>>,
-    skip_days: Option<Vec<String>>,
+    skip_days: Option<Vec<Day>>,
     items: Option<Vec<Item>>,
 }
 
@@ -83,8 +84,8 @@ pub struct ChannelBuilder {
     copyright: Option<String>,
     managing_editor: Option<String>,
     web_master: Option<String>,
-    pub_date: Option<DateTime<FixedOffset>>,
-    last_build_date: Option<DateTime<FixedOffset>>,
+    pub_date: Option<String>,
+    last_build_date: Option<String>,
     categories: Option<Vec<Category>>,
     generator: Option<String>,
     docs: Option<String>,
@@ -106,7 +107,7 @@ pub struct Cloud {
     port: i64,
     path: String,
     register_procedure: String,
-    protocol: String,
+    protocol: CloudProtocol,
 }
 
 
@@ -207,7 +208,7 @@ pub struct ItemBuilder {
     comments: Option<String>,
     enclosure: Option<Enclosure>,
     guid: Option<Guid>,
-    pub_date: Option<DateTime<FixedOffset>>,
+    pub_date: Option<String>,
     source: Option<Source>,
 }
 

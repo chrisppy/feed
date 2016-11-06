@@ -8,6 +8,7 @@
 
 use errors;
 use channels::{Cloud, CloudBuilder};
+use enums::CloudProtocol;
 use utils::string_utils;
 
 
@@ -104,10 +105,6 @@ impl CloudBuilder {
     /// cloud_builder.protocol("soap");
     /// ```
     pub fn protocol(&mut self, protocol: &str) -> &mut CloudBuilder {
-        match protocol {
-            "http-post" | "xml-rpc" | "soap" => (),
-            _ => panic!(errors::invalid_str_error("cloud protocol", protocol)),
-        }
         self.protocol = protocol.to_owned();
         self
     }
@@ -132,12 +129,14 @@ impl CloudBuilder {
         let domain_string = self.domain.clone();
         let domain = string_utils::str_to_url(domain_string.as_str(), "Cloud Domain");
 
+        let protocol = CloudProtocol::to_enum(self.protocol.clone().as_str());
+
         Cloud {
             domain: domain,
             port: self.port,
             path: self.path.clone(),
             register_procedure: self.register_procedure.clone(),
-            protocol: self.protocol.clone(),
+            protocol: protocol,
         }
     }
 }

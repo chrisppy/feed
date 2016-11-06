@@ -177,7 +177,7 @@ impl ItemBuilder {
     /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
-        self.pub_date = string_utils::option_string_to_option_date(pub_date);
+        self.pub_date = pub_date;
         self
     }
 
@@ -248,6 +248,8 @@ impl ItemBuilder {
             Some(url)
         };
 
+        let pub_date = string_utils::option_string_to_option_date(self.pub_date.clone());
+
         Item {
             title: self.title.clone(),
             link: link,
@@ -257,7 +259,7 @@ impl ItemBuilder {
             comments: comments,
             enclosure: self.enclosure.clone(),
             guid: self.guid.clone(),
-            pub_date: self.pub_date,
+            pub_date: pub_date,
             source: self.source.clone(),
         }
     }

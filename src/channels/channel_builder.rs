@@ -7,6 +7,7 @@
 
 use errors;
 use channels::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
+use enums::Day;
 use utils::string_utils;
 
 
@@ -161,7 +162,7 @@ impl ChannelBuilder {
     /// channel_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ChannelBuilder {
-        self.pub_date = string_utils::option_string_to_option_date(pub_date);
+        self.pub_date = pub_date;
         self
     }
 
@@ -177,7 +178,7 @@ impl ChannelBuilder {
     /// channel_builder.last_build_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
     pub fn last_build_date(&mut self, last_build_date: Option<String>) -> &mut ChannelBuilder {
-        self.last_build_date = string_utils::option_string_to_option_date(last_build_date);
+        self.last_build_date = last_build_date;
         self
     }
 
@@ -246,6 +247,7 @@ impl ChannelBuilder {
     ///
     /// let cloud = CloudBuilder::new()
     ///     .domain("http://rpc.sys.com/")
+    ///     .protocol("soap")
     ///     .finalize();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
@@ -460,6 +462,12 @@ impl ChannelBuilder {
         let link_string = self.link.clone();
         let link = string_utils::str_to_url(link_string.as_str(), "Channel Link");
 
+        let pub_date_opt = self.pub_date.clone();
+        let pub_date = string_utils::option_string_to_option_date(pub_date_opt);
+
+        let build_date_opt = self.last_build_date.clone();
+        let last_build_date = string_utils::option_string_to_option_date(build_date_opt);
+
         let docs_opt = self.docs.clone();
         let docs = if docs_opt.is_none() {
             None
@@ -470,6 +478,18 @@ impl ChannelBuilder {
         };
 
 
+        let skip_days_opt = self.skip_days.clone();
+
+        let skip_days = if skip_days_opt.is_none() {
+            None
+        } else {
+            let mut days = Vec::new();
+            for day in skip_days_opt.unwrap() {
+                days.push(Day::to_enum(day.as_str()));
+            }
+            Some(days)
+        };
+
         Channel {
             title: self.title.clone(),
             link: link,
@@ -478,8 +498,8 @@ impl ChannelBuilder {
             copyright: self.copyright.clone(),
             managing_editor: self.managing_editor.clone(),
             web_master: self.web_master.clone(),
-            pub_date: self.pub_date,
-            last_build_date: self.last_build_date,
+            pub_date: pub_date,
+            last_build_date: last_build_date,
             categories: self.categories.clone(),
             generator: self.generator.clone(),
             docs: docs,
@@ -489,7 +509,7 @@ impl ChannelBuilder {
             rating: self.rating.clone(),
             text_input: self.text_input.clone(),
             skip_hours: self.skip_hours.clone(),
-            skip_days: self.skip_days.clone(),
+            skip_days: skip_days,
             items: self.items.clone(),
         }
     }

@@ -80,6 +80,7 @@ extern crate url;
 
 
 pub mod channels;
+pub mod enums;
 mod errors;
 pub mod feed;
 pub mod feed_builder;

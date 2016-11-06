@@ -8,6 +8,7 @@
 
 use chrono::*;
 use channels::{Category, Channel, Cloud, Image, Item, TextInput};
+use enums::Day;
 use url::Url;
 
 
@@ -586,17 +587,22 @@ impl Channel {
     ///
     /// let skip_days_vec: Vec<String> = vec!["Monday".to_owned(),
     ///     "Wednesday".to_owned(),"Thursday".to_owned(),"Sunday".to_owned()];
+    ///
     /// let channels = ChannelBuilder::new()
     ///     .skip_days(Some(skip_days_vec.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize();
+    ///
     /// let skip_days_option = channels.skip_days();
     /// assert!(skip_days_option.is_some());
+    ///
     /// let skip_days = skip_days_option.unwrap();
     /// let len = skip_days_vec.clone().len();
     /// assert_eq!(len, skip_days.len());
+    ///
     /// for x in 0..len {
-    ///     assert_eq!(skip_days_vec[x], skip_days[x]);
+    ///     let day = skip_days[x].clone();
+    ///     assert_eq!(skip_days_vec[x], day.into_string());
     /// }
     /// ```
     ///
@@ -609,7 +615,7 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.skip_days().is_none());
     /// ```
-    pub fn skip_days(&self) -> Option<Vec<String>> {
+    pub fn skip_days(&self) -> Option<Vec<Day>> {
         self.skip_days.clone()
     }
 

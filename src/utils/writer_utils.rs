@@ -8,6 +8,7 @@
 
 
 use channels::{Category, Channel, Cloud, Enclosure, Image, Item, Guid, Source, TextInput};
+use enums::Day;
 use rss;
 use utils::string_utils;
 
@@ -84,7 +85,7 @@ fn convert_cloud(cloud_opt: Option<Cloud>) -> Option<rss::Cloud> {
             port: cloud.port().to_string(),
             path: cloud.path(),
             register_procedure: cloud.register_procedure(),
-            protocol: cloud.protocol(),
+            protocol: cloud.protocol().into_string(),
         };
         Some(rss_cloud)
     }
@@ -142,12 +143,12 @@ fn convert_skip_hours(skip_hours: Option<Vec<i64>>) -> Vec<String> {
 
 
 // Convert rss channel skip days from feed channel skip days
-fn convert_skip_days(skip_days: Option<Vec<String>>) -> Vec<String> {
+fn convert_skip_days(skip_days: Option<Vec<Day>>) -> Vec<String> {
     let mut rss_skip_days = Vec::new();
     if skip_days.is_some() {
         let days = skip_days.unwrap();
         for day in days {
-            rss_skip_days.push(day);
+            rss_skip_days.push(day.into_string());
         }
     }
     rss_skip_days

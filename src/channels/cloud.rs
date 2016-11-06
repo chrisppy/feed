@@ -7,6 +7,7 @@
 
 
 use channels::Cloud;
+use enums::CloudProtocol;
 use url::Url;
 
 
@@ -17,10 +18,12 @@ impl Cloud {
     ///
     /// ```
     /// use feed::channels::CloudBuilder;
+    /// use feed::enums::CloudProtocol;
     ///
     /// let domain = "http://rpc.sys.com/";
     /// let cloud = CloudBuilder::new()
     ///     .domain(domain)
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
     /// ```
@@ -35,11 +38,13 @@ impl Cloud {
     ///
     /// ```
     /// use feed::channels::CloudBuilder;
+    /// use feed::enums::CloudProtocol;
     ///
     /// let port: i64 = 80;
     /// let cloud = CloudBuilder::new()
     ///     .port(port)
     ///     .domain("http://rpc.sys.com/")
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(port, cloud.port());
     /// ```
@@ -54,11 +59,13 @@ impl Cloud {
     ///
     /// ```
     /// use feed::channels::CloudBuilder;
+    /// use feed::enums::CloudProtocol;
     ///
     /// let path = "/RPC2";
     /// let cloud = CloudBuilder::new()
     ///     .path(path)
     ///     .domain("http://rpc.sys.com/")
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
@@ -73,11 +80,13 @@ impl Cloud {
     ///
     /// ```
     /// use feed::channels::CloudBuilder;
+    /// use feed::enums::CloudProtocol;
     ///
     /// let register_procedure = "pingMe";
     /// let cloud = CloudBuilder::new()
     ///     .register_procedure(register_procedure)
     ///     .domain("http://rpc.sys.com/")
+    ///     .protocol("soap")
     ///     .finalize();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
@@ -92,15 +101,16 @@ impl Cloud {
     ///
     /// ```
     /// use feed::channels::CloudBuilder;
+    /// use feed::enums::CloudProtocol;
     ///
     /// let protocol = "soap";
     /// let cloud = CloudBuilder::new()
     ///     .protocol(protocol)
     ///     .domain("http://rpc.sys.com/")
     ///     .finalize();
-    /// assert_eq!(protocol.to_owned(), cloud.protocol());
+    /// assert_eq!(protocol.to_owned(), cloud.protocol().into_string());
     /// ```
-    pub fn protocol(&self) -> String {
+    pub fn protocol(&self) -> CloudProtocol {
         self.protocol.clone()
     }
 }
