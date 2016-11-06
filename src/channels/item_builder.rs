@@ -137,6 +137,7 @@ impl ItemBuilder {
     ///
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_str())
+    ///     .mime_type("audio/ogg")
     ///     .finalize();
     ///
     /// let mut item_builder = ItemBuilder::new();

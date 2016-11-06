@@ -28,6 +28,7 @@ pub mod text_input_builder;
 
 use chrono::*;
 use enums::{CloudProtocol, Day};
+use mime::Mime;
 use url::Url;
 
 
@@ -127,7 +128,7 @@ pub struct CloudBuilder {
 pub struct Enclosure {
     url: Url,
     length: i64,
-    mime_type: String,
+    mime_type: Mime,
 }
 
 

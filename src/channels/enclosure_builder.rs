@@ -8,6 +8,7 @@
 
 use errors;
 use channels::{Enclosure, EnclosureBuilder};
+use mime::Mime;
 use utils::string_utils;
 
 
@@ -98,10 +99,13 @@ impl EnclosureBuilder {
         let url_string = self.url.clone();
         let url = string_utils::str_to_url(url_string.as_str(), "Enclosure Url");
 
+        let mime = self.mime_type.clone();
+        let mime_type: Mime = mime.parse().expect(errors::str_to_mime_error().as_str());
+
         Enclosure {
             url: url,
             length: self.length,
-            mime_type: self.mime_type.clone(),
+            mime_type: mime_type,
         }
     }
 }

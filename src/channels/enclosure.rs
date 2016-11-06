@@ -7,6 +7,7 @@
 
 
 use channels::Enclosure;
+use mime::Mime;
 use url::Url;
 
 
@@ -22,6 +23,7 @@ impl Enclosure {
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_ref())
+    ///     .mime_type("audio/ogg")
     ///     .finalize();
     /// assert_eq!(url.to_owned(), enclosure.url().into_string())
     /// ```
@@ -45,6 +47,7 @@ impl Enclosure {
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_str())
     ///     .length(length)
+    ///     .mime_type("audio/ogg")
     ///     .finalize();
     /// assert_eq!(length, enclosure.length())
     /// ```
@@ -69,9 +72,9 @@ impl Enclosure {
     ///     .url(url.as_str())
     ///     .mime_type(enclosure_type)
     ///     .finalize();
-    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type())
+    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type().to_string())
     /// ```
-    pub fn mime_type(&self) -> String {
+    pub fn mime_type(&self) -> Mime {
         self.mime_type.clone()
     }
 }
