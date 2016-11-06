@@ -75,6 +75,7 @@
 
 extern crate chrono;
 extern crate curl;
+extern crate mime;
 extern crate rss;
 extern crate url;
 

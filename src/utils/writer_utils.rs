@@ -193,7 +193,7 @@ fn convert_enclosure(enc_opt: Option<Enclosure>) -> Option<rss::Enclosure> {
         let rss_enclosure = rss::Enclosure {
             url: enc.url().into_string(),
             length: enc.length().to_string(),
-            mime_type: enc.mime_type(),
+            mime_type: enc.mime_type().to_string(),
         };
         Some(rss_enclosure)
     }

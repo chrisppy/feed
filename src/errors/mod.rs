@@ -64,12 +64,18 @@ pub fn image_url_error() -> String {
 
 
 // string to url error
-pub fn str_to_url_error(element: &str) -> String {
-    format!("Error parsing str into url for {}", element)
+pub fn str_to_url_error(element: &str, value: &str) -> String {
+    format!("Error parsing str ({}) into url for {}", value, element)
 }
 
 
 // url error
 pub fn url_error() -> String {
     "Url error".to_owned()
+}
+
+
+// string to mime error
+pub fn str_to_mime_error() -> String {
+    "Error parsing str into mime".to_owned()
 }

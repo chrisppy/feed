@@ -70,7 +70,7 @@ pub fn option_date_to_option_string(date_option: Option<DateTime<FixedOffset>>) 
 
 // Common code to convert str to Url.
 pub fn str_to_url(s: &str, e: &str) -> Url {
-    Url::parse(s).expect(errors::str_to_url_error(e).as_str())
+    Url::parse(s).expect(errors::str_to_url_error(e, s).as_str())
 }
 
 

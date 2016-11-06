@@ -15,6 +15,7 @@
     	    + guid -> value
         + Enclosure
             + enclosure_type -> mime_type
+            + mime_type is now `Mime`
         + Category
             + category -> name
     	+ Source
