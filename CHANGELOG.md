@@ -2,7 +2,8 @@
 
 ## master
 + New Features
-    + None
+    + Added Day enum
+    + Added CloudProtocol enum
 + Bug Fixes
     + Constrain image url to only accept JPEG, PNG, and GIF
 + Breaking Changes
@@ -19,6 +20,11 @@
     	+ Source
     	    + source -> title
     	    + title is now `Option<String>`
+        + Channel
+            + skip_days is now `Option<Vec<Day>>`
+        + Cloud
+            + protocol is now `CloudProtocol`
+            
 + Refactor
     + reader and writer have been moved into utils
     + reader has been refactored to use rss crate
