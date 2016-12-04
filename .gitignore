@@ -16,3 +16,6 @@ target-install
 # IntelliJ
 .idea
 *.iml
+
+# vscode
+.vscode
