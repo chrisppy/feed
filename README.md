@@ -4,7 +4,7 @@
 
 
 
-`feed` is a library for creating channels feeds and parsing channels feeds from an URL and retrieving the elements.
+`feed` is a rust library for creating channels feeds and parsing channels feeds from an URL and retrieving the elements.
 
 **The next version will be 2.0 and there will be breaking changes to the api**
 
