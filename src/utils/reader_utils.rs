@@ -4,8 +4,8 @@
 
 
 use channels::{Category, CategoryBuilder, Channel, ChannelBuilder, Cloud, CloudBuilder, Enclosure,
-               EnclosureBuilder, Image, ImageBuilder, Item, ItemBuilder, Guid, GuidBuilder,
-               Source, SourceBuilder, TextInput, TextInputBuilder};
+               EnclosureBuilder, Image, ImageBuilder, Item, ItemBuilder, Guid, GuidBuilder, Source,
+               SourceBuilder, TextInput, TextInputBuilder};
 use rss;
 use std::str::FromStr;
 use utils::string_utils;
