@@ -22,7 +22,7 @@ feed = "2.0"
 ## Code of conduct
 
 Anyone who interacts with `feed` in any space including but not limited to
-this GitHub repository is expected to follow our [code of conduct](https://github.com/red-oxide/feed/blob/master/code_of_conduct.md)
+this GitHub repository is expected to follow our [code of conduct](https://github.com/red-oxide/org/blob/master/CODE_OF_CONDUCT.md)
 
 ## License
 
