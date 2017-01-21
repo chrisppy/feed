@@ -1,6 +1,8 @@
 # Changelog
 
 ## master
+
+## feed 2.0.0
 + New Features
     + Added Day enum
     + Added CloudProtocol enum
