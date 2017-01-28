@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under cloud can be retrieved by using the methods under `Cloud`.
@@ -11,7 +16,8 @@ use enums::CloudProtocol;
 use url::Url;
 
 
-impl Cloud {
+impl Cloud
+{
     /// Get the domain that exists under `Cloud`.
     ///
     /// # Examples
@@ -27,7 +33,8 @@ impl Cloud {
     ///     .finalize();
     /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
     /// ```
-    pub fn domain(&self) -> Url {
+    pub fn domain(&self) -> Url
+    {
         self.domain.clone()
     }
 
@@ -48,7 +55,8 @@ impl Cloud {
     ///     .finalize();
     /// assert_eq!(port, cloud.port());
     /// ```
-    pub fn port(&self) -> i64 {
+    pub fn port(&self) -> i64
+    {
         self.port
     }
 
@@ -69,7 +77,8 @@ impl Cloud {
     ///     .finalize();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
-    pub fn path(&self) -> String {
+    pub fn path(&self) -> String
+    {
         self.path.clone()
     }
 
@@ -90,7 +99,8 @@ impl Cloud {
     ///     .finalize();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
-    pub fn register_procedure(&self) -> String {
+    pub fn register_procedure(&self) -> String
+    {
         self.register_procedure.clone()
     }
 
@@ -110,7 +120,8 @@ impl Cloud {
     ///     .finalize();
     /// assert_eq!(protocol.to_owned(), cloud.protocol().into_string());
     /// ```
-    pub fn protocol(&self) -> CloudProtocol {
+    pub fn protocol(&self) -> CloudProtocol
+    {
         self.protocol.clone()
     }
 }

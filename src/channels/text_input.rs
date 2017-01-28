@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under text input can be retrieved by using the methods under
@@ -11,7 +16,8 @@ use channels::TextInput;
 use url::Url;
 
 
-impl TextInput {
+impl TextInput
+{
     /// Get the title that exists under `TextInput`.
     ///
     /// # Examples
@@ -26,7 +32,8 @@ impl TextInput {
     ///     .finalize();
     /// assert_eq!(title.to_owned(), text_input.title());
     /// ```
-    pub fn title(&self) -> String {
+    pub fn title(&self) -> String
+    {
         self.title.clone()
     }
 
@@ -45,7 +52,8 @@ impl TextInput {
     ///     .finalize();
     /// assert_eq!(description.to_owned(), text_input.description());
     /// ```
-    pub fn description(&self) -> String {
+    pub fn description(&self) -> String
+    {
         self.description.clone()
     }
 
@@ -64,7 +72,8 @@ impl TextInput {
     ///     .finalize();
     /// assert_eq!(name.to_owned(), text_input.name());
     /// ```
-    pub fn name(&self) -> String {
+    pub fn name(&self) -> String
+    {
         self.name.clone()
     }
 
@@ -82,7 +91,8 @@ impl TextInput {
     ///     .finalize();
     /// assert_eq!(link.to_owned(), text_input.link().into_string());
     /// ```
-    pub fn link(&self) -> Url {
+    pub fn link(&self) -> Url
+    {
         self.link.clone()
     }
 }

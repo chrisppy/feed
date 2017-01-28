@@ -1,21 +1,27 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! Implementation of `FeedBuilder`.
 
 
-use curl::easy::Easy;
-use errors;
 use Feed;
 use FeedBuilder;
-use utils::{reader_utils, string_utils};
 use channels::Channel;
+use curl::easy::Easy;
+use errors;
 use std::str;
+use utils::{reader_utils, string_utils};
 
 
-impl FeedBuilder {
+impl FeedBuilder
+{
     /// Construct a new `FeedBuilder` from a `Channel`.
     ///
     /// # Examples
@@ -29,7 +35,8 @@ impl FeedBuilder {
     ///     .finalize();
     /// FeedBuilder::channel(channel);
     /// ```
-    pub fn channel(channel: Channel) -> FeedBuilder {
+    pub fn channel(channel: Channel) -> FeedBuilder
+    {
         FeedBuilder { channel: channel }
     }
 
@@ -50,7 +57,8 @@ impl FeedBuilder {
     ///     feed.channel();
     /// }
     /// ```
-    pub fn read_from_url(feed_str: &str) -> FeedBuilder {
+    pub fn read_from_url(feed_str: &str) -> FeedBuilder
+    {
         let feed_url = string_utils::str_to_url(feed_str, "read_from_url");
         let mut dst = Vec::new();
         let mut handle = Easy::new();
@@ -66,7 +74,8 @@ impl FeedBuilder {
             transfer.perform().unwrap();
         }
 
-        if url.is_err() {
+        if url.is_err()
+        {
             panic!(errors::url_error());
         }
 
@@ -74,7 +83,8 @@ impl FeedBuilder {
             .expect(errors::content_type_error().as_str())
             .unwrap();
 
-        if !content_type.contains("xml") {
+        if !content_type.contains("xml")
+        {
             panic!(errors::missing_xml_error());
         }
 
@@ -97,7 +107,8 @@ impl FeedBuilder {
     ///     .finalize();
     /// let feed = FeedBuilder::channel(channel).finalize();
     /// ```
-    pub fn finalize(&self) -> Feed {
+    pub fn finalize(&self) -> Feed
+    {
         Feed { channel: self.channel.clone() }
     }
 }

@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! All the structs for channels.
@@ -35,7 +40,8 @@ use url::Url;
 /// This `Category` struct contains all the items that exist for the category
 /// field under 'Channel' and `Item`.
 #[derive(Clone)]
-pub struct Category {
+pub struct Category
+{
     name: String,
     domain: Option<Url>,
 }
@@ -43,7 +49,8 @@ pub struct Category {
 
 /// This `CategoryBuilder` struct creates the `Category`.
 #[derive(Clone, Default)]
-pub struct CategoryBuilder {
+pub struct CategoryBuilder
+{
     name: String,
     domain: Option<String>,
 }
@@ -51,7 +58,8 @@ pub struct CategoryBuilder {
 
 /// This `Channel` struct contains all the items that exist for the `feed`.
 #[derive(Clone)]
-pub struct Channel {
+pub struct Channel
+{
     title: String,
     link: Url,
     description: String,
@@ -77,7 +85,8 @@ pub struct Channel {
 
 /// This `ChannelBuilder` struct creates the `Channel`.
 #[derive(Clone, Default)]
-pub struct ChannelBuilder {
+pub struct ChannelBuilder
+{
     title: String,
     link: String,
     description: String,
@@ -103,7 +112,8 @@ pub struct ChannelBuilder {
 
 /// This `Cloud` struct contains all the items that exist for the cloud field under 'Channel'.
 #[derive(Clone)]
-pub struct Cloud {
+pub struct Cloud
+{
     domain: Url,
     port: i64,
     path: String,
@@ -114,7 +124,8 @@ pub struct Cloud {
 
 /// This `CloudBuilder` struct creates the `Cloud`.
 #[derive(Clone, Default)]
-pub struct CloudBuilder {
+pub struct CloudBuilder
+{
     domain: String,
     port: i64,
     path: String,
@@ -125,7 +136,8 @@ pub struct CloudBuilder {
 
 /// This `Enclosure` struct contains all the items that exist for the enclosure field under 'Item'.
 #[derive(Clone)]
-pub struct Enclosure {
+pub struct Enclosure
+{
     url: Url,
     length: i64,
     mime_type: Mime,
@@ -134,7 +146,8 @@ pub struct Enclosure {
 
 /// This `EnclosureBuilder` struct creates the `Enclosure`.
 #[derive(Clone, Default)]
-pub struct EnclosureBuilder {
+pub struct EnclosureBuilder
+{
     url: String,
     length: i64,
     mime_type: String,
@@ -143,7 +156,8 @@ pub struct EnclosureBuilder {
 
 /// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
 #[derive(Clone)]
-pub struct Guid {
+pub struct Guid
+{
     permalink: bool,
     value: String,
 }
@@ -151,7 +165,8 @@ pub struct Guid {
 
 /// This `GuidBuilder` struct creates the `Guid`.
 #[derive(Clone, Default)]
-pub struct GuidBuilder {
+pub struct GuidBuilder
+{
     permalink: bool,
     value: String,
 }
@@ -159,7 +174,8 @@ pub struct GuidBuilder {
 
 /// This `Image` struct contains all the items that exist for the image field under 'Channel'.
 #[derive(Clone)]
-pub struct Image {
+pub struct Image
+{
     url: Url,
     title: String,
     link: Url,
@@ -171,7 +187,8 @@ pub struct Image {
 
 /// This `ImageBuilder` struct creates the `Image`.
 #[derive(Clone, Default)]
-pub struct ImageBuilder {
+pub struct ImageBuilder
+{
     url: String,
     title: String,
     link: String,
@@ -184,7 +201,8 @@ pub struct ImageBuilder {
 /// This `Item` struct contains all the items that exist for the item field
 /// under 'Channel'.
 #[derive(Clone)]
-pub struct Item {
+pub struct Item
+{
     title: Option<String>,
     link: Option<Url>,
     description: Option<String>,
@@ -200,7 +218,8 @@ pub struct Item {
 
 /// This `ItemBuilder` struct creates the `Item`.
 #[derive(Clone, Default)]
-pub struct ItemBuilder {
+pub struct ItemBuilder
+{
     title: Option<String>,
     link: Option<String>,
     description: Option<String>,
@@ -216,7 +235,8 @@ pub struct ItemBuilder {
 
 /// This `Source` struct contains all the items that exist for the source field under 'Item'.
 #[derive(Clone)]
-pub struct Source {
+pub struct Source
+{
     url: Url,
     title: Option<String>,
 }
@@ -224,7 +244,8 @@ pub struct Source {
 
 /// This `SourceBuilder` struct creates the `Source`.
 #[derive(Clone, Default)]
-pub struct SourceBuilder {
+pub struct SourceBuilder
+{
     url: String,
     title: Option<String>,
 }
@@ -233,7 +254,8 @@ pub struct SourceBuilder {
 /// This `TextInput` struct contains all the items that exist for the text input
 /// field under 'Channel'.
 #[derive(Clone)]
-pub struct TextInput {
+pub struct TextInput
+{
     title: String,
     description: String,
     name: String,
@@ -243,7 +265,8 @@ pub struct TextInput {
 
 /// This `TextInputBuilder` struct creates the `TextInput`.
 #[derive(Clone, Default)]
-pub struct TextInputBuilder {
+pub struct TextInputBuilder
+{
     title: String,
     description: String,
     name: String,

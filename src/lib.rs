@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 #![doc(html_root_url = "https://docs.rs/feed/")]
@@ -93,13 +98,15 @@ use channels::Channel;
 
 /// This `Feed` struct contains all the items that exist for the feeds.
 #[derive(Clone)]
-pub struct Feed {
+pub struct Feed
+{
     channel: Channel,
 }
 
 
 /// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
 #[derive(Clone)]
-pub struct FeedBuilder {
+pub struct FeedBuilder
+{
     channel: Channel,
 }

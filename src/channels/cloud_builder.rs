@@ -1,18 +1,24 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields can be set for cloud by using the methods under `CloudBuilder`.
 
 
-use errors;
 use channels::{Cloud, CloudBuilder};
 use enums::CloudProtocol;
+use errors;
 use utils::string_utils;
 
 
-impl CloudBuilder {
+impl CloudBuilder
+{
     /// Construct a new `CloudBuilder` and return default values.
     ///
     /// # Examples
@@ -22,7 +28,8 @@ impl CloudBuilder {
     ///
     /// let cloud_builder = CloudBuilder::new();
     /// ```
-    pub fn new() -> CloudBuilder {
+    pub fn new() -> CloudBuilder
+    {
         CloudBuilder::default()
     }
 
@@ -37,7 +44,8 @@ impl CloudBuilder {
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.domain("http://rpc.sys.com/");
     /// ```
-    pub fn domain(&mut self, domain: &str) -> &mut CloudBuilder {
+    pub fn domain(&mut self, domain: &str) -> &mut CloudBuilder
+    {
         self.domain = domain.to_owned();
         self
     }
@@ -53,8 +61,10 @@ impl CloudBuilder {
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.port(80);
     /// ```
-    pub fn port(&mut self, port: i64) -> &mut CloudBuilder {
-        if port < 0 {
+    pub fn port(&mut self, port: i64) -> &mut CloudBuilder
+    {
+        if port < 0
+        {
             panic!(errors::negative_error("cloud port", port));
         }
         self.port = port;
@@ -72,7 +82,8 @@ impl CloudBuilder {
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.path("/RPC2");
     /// ```
-    pub fn path(&mut self, path: &str) -> &mut CloudBuilder {
+    pub fn path(&mut self, path: &str) -> &mut CloudBuilder
+    {
         self.path = path.to_owned();
         self
     }
@@ -88,7 +99,8 @@ impl CloudBuilder {
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.register_procedure("pingMe");
     /// ```
-    pub fn register_procedure(&mut self, register_procedure: &str) -> &mut CloudBuilder {
+    pub fn register_procedure(&mut self, register_procedure: &str) -> &mut CloudBuilder
+    {
         self.register_procedure = register_procedure.to_owned();
         self
     }
@@ -104,7 +116,8 @@ impl CloudBuilder {
     /// let mut cloud_builder = CloudBuilder::new();
     /// cloud_builder.protocol("soap");
     /// ```
-    pub fn protocol(&mut self, protocol: &str) -> &mut CloudBuilder {
+    pub fn protocol(&mut self, protocol: &str) -> &mut CloudBuilder
+    {
         self.protocol = protocol.to_owned();
         self
     }
@@ -125,11 +138,12 @@ impl CloudBuilder {
     ///         .protocol("soap")
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Cloud {
+    pub fn finalize(&self) -> Cloud
+    {
         let domain_string = self.domain.clone();
         let domain = string_utils::str_to_url(domain_string.as_str(), "Cloud Domain");
 
-        let protocol = CloudProtocol::to_enum(self.protocol.clone().as_str());
+        let protocol = CloudProtocol::value_of(self.protocol.clone().as_str());
 
         Cloud {
             domain: domain,

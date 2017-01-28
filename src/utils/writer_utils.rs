@@ -1,20 +1,26 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! writer utilities.
 
 
 
-use channels::{Category, Channel, Cloud, Enclosure, Image, Item, Guid, Source, TextInput};
+use channels::{Category, Channel, Cloud, Enclosure, Guid, Image, Item, Source, TextInput};
 use enums::Day;
 use rss;
 use utils::string_utils;
 
 
 /// Construct xml from a `Channel`.
-pub fn write(channel: Channel) -> Vec<u8> {
+pub fn write(channel: Channel) -> Vec<u8>
+{
     let rss_channel = convert_channel(channel);
     let s = rss_channel.to_string();
     s.into_bytes()
@@ -22,7 +28,8 @@ pub fn write(channel: Channel) -> Vec<u8> {
 
 
 // convert rss channel from feed channel
-fn convert_channel(channel: Channel) -> rss::Channel {
+fn convert_channel(channel: Channel) -> rss::Channel
+{
     rss::Channel {
         title: channel.title(),
         link: channel.link().into_string(),
@@ -52,14 +59,20 @@ fn convert_channel(channel: Channel) -> rss::Channel {
 
 
 // Convert rss categories from feed categories
-fn convert_categories(cats_opt: Option<Vec<Category>>) -> Vec<rss::Category> {
+fn convert_categories(cats_opt: Option<Vec<Category>>) -> Vec<rss::Category>
+{
     let mut rss_cats = Vec::new();
-    if cats_opt.is_some() {
+    if cats_opt.is_some()
+    {
         let cats = cats_opt.unwrap();
-        for cat in cats {
-            let domain = if cat.domain().is_none() {
+        for cat in cats
+        {
+            let domain = if cat.domain().is_none()
+            {
                 None
-            } else {
+            }
+            else
+            {
                 let url = cat.domain().unwrap().into_string();
                 Some(url)
             };
@@ -75,10 +88,14 @@ fn convert_categories(cats_opt: Option<Vec<Category>>) -> Vec<rss::Category> {
 
 
 // Convert rss channel cloud from feed channel cloud
-fn convert_cloud(cloud_opt: Option<Cloud>) -> Option<rss::Cloud> {
-    if cloud_opt.is_none() {
+fn convert_cloud(cloud_opt: Option<Cloud>) -> Option<rss::Cloud>
+{
+    if cloud_opt.is_none()
+    {
         None
-    } else {
+    }
+    else
+    {
         let cloud = cloud_opt.unwrap();
         let rss_cloud = rss::Cloud {
             domain: cloud.domain().into_string(),
@@ -93,10 +110,14 @@ fn convert_cloud(cloud_opt: Option<Cloud>) -> Option<rss::Cloud> {
 
 
 // Convert rss channel image from feed channel image
-fn convert_image(image_opt: Option<Image>) -> Option<rss::Image> {
-    if image_opt.is_none() {
+fn convert_image(image_opt: Option<Image>) -> Option<rss::Image>
+{
+    if image_opt.is_none()
+    {
         None
-    } else {
+    }
+    else
+    {
         let image = image_opt.unwrap();
         let rss_image = rss::Image {
             url: image.url().into_string(),
@@ -112,10 +133,14 @@ fn convert_image(image_opt: Option<Image>) -> Option<rss::Image> {
 
 
 // Convert rss channel text input from feed channel text input
-fn convert_text_input(text_input_opt: Option<TextInput>) -> Option<rss::TextInput> {
-    if text_input_opt.is_none() {
+fn convert_text_input(text_input_opt: Option<TextInput>) -> Option<rss::TextInput>
+{
+    if text_input_opt.is_none()
+    {
         None
-    } else {
+    }
+    else
+    {
         let text_input = text_input_opt.unwrap();
         let rss_text_input = rss::TextInput {
             title: text_input.title(),
@@ -129,11 +154,14 @@ fn convert_text_input(text_input_opt: Option<TextInput>) -> Option<rss::TextInpu
 
 
 // Convert rss channel skip hours from feed channel skip hours
-fn convert_skip_hours(skip_hours: Option<Vec<i64>>) -> Vec<String> {
+fn convert_skip_hours(skip_hours: Option<Vec<i64>>) -> Vec<String>
+{
     let mut rss_skip_hours = Vec::new();
-    if skip_hours.is_some() {
+    if skip_hours.is_some()
+    {
         let hours = skip_hours.unwrap();
-        for hour in hours {
+        for hour in hours
+        {
             rss_skip_hours.push(hour.to_string());
         }
     }
@@ -143,11 +171,14 @@ fn convert_skip_hours(skip_hours: Option<Vec<i64>>) -> Vec<String> {
 
 
 // Convert rss channel skip days from feed channel skip days
-fn convert_skip_days(skip_days: Option<Vec<Day>>) -> Vec<String> {
+fn convert_skip_days(skip_days: Option<Vec<Day>>) -> Vec<String>
+{
     let mut rss_skip_days = Vec::new();
-    if skip_days.is_some() {
+    if skip_days.is_some()
+    {
         let days = skip_days.unwrap();
-        for day in days {
+        for day in days
+        {
             rss_skip_days.push(day.into_string());
         }
     }
@@ -156,11 +187,14 @@ fn convert_skip_days(skip_days: Option<Vec<Day>>) -> Vec<String> {
 
 
 // Convert rss channel items from feed channel items
-fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item> {
+fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item>
+{
     let mut rss_items = Vec::new();
-    if items_opt.is_some() {
+    if items_opt.is_some()
+    {
         let items = items_opt.unwrap();
-        for item in items {
+        for item in items
+        {
             let rss_item = rss::Item {
                 title: item.title(),
                 link: string_utils::option_url_to_option_string(item.link()),
@@ -185,10 +219,14 @@ fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item> {
 
 
 // Convert rss item enclosure from feed item enclosure
-fn convert_enclosure(enc_opt: Option<Enclosure>) -> Option<rss::Enclosure> {
-    if enc_opt.is_none() {
+fn convert_enclosure(enc_opt: Option<Enclosure>) -> Option<rss::Enclosure>
+{
+    if enc_opt.is_none()
+    {
         None
-    } else {
+    }
+    else
+    {
         let enc = enc_opt.unwrap();
         let rss_enclosure = rss::Enclosure {
             url: enc.url().into_string(),
@@ -201,10 +239,14 @@ fn convert_enclosure(enc_opt: Option<Enclosure>) -> Option<rss::Enclosure> {
 
 
 // Convert rss item guid from feed item guid
-fn convert_guid(guid_opt: Option<Guid>) -> Option<rss::Guid> {
-    if guid_opt.is_none() {
+fn convert_guid(guid_opt: Option<Guid>) -> Option<rss::Guid>
+{
+    if guid_opt.is_none()
+    {
         None
-    } else {
+    }
+    else
+    {
         let guid = guid_opt.unwrap();
         let rss_guid = rss::Guid {
             value: guid.value(),
@@ -216,10 +258,14 @@ fn convert_guid(guid_opt: Option<Guid>) -> Option<rss::Guid> {
 
 
 // Convert rss item source from feed item source
-fn convert_source(src_opt: Option<Source>) -> Option<rss::Source> {
-    if src_opt.is_none() {
+fn convert_source(src_opt: Option<Source>) -> Option<rss::Source>
+{
+    if src_opt.is_none()
+    {
         None
-    } else {
+    }
+    else
+    {
         let src = src_opt.unwrap();
         let rss_src = rss::Source {
             url: src.url().into_string(),

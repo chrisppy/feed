@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under guid can be retrieved by using the methods under `Guid`.
@@ -9,7 +14,8 @@
 use channels::Guid;
 
 
-impl Guid {
+impl Guid
+{
     /// Get the permalink that exists under `Guid`.
     ///
     /// # Examples
@@ -42,7 +48,8 @@ impl Guid {
     ///     .finalize();
     /// assert_eq!(permalink, guid.permalink());
     /// ```
-    pub fn permalink(&self) -> bool {
+    pub fn permalink(&self) -> bool
+    {
         self.permalink
     }
 
@@ -60,7 +67,8 @@ impl Guid {
     ///     .finalize();
     /// assert_eq!(guid.to_owned(), guid_obj.value());
     /// ```
-    pub fn value(&self) -> String {
+    pub fn value(&self) -> String
+    {
         self.value.clone()
     }
 }

@@ -26,7 +26,7 @@ this GitHub repository is expected to follow our [code of conduct](https://githu
 
 ## License
 
-Copyright © 2015-2016 Chris Palmer, red-oxide.
+Copyright © 2015-2017 Chris Palmer, red-oxide.
 
 `feed` is available under the terms of the `LGPL-3.0` license.
 
