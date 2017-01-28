@@ -6,9 +6,6 @@
 
 `feed` is a rust library for creating channels feeds and parsing channels feeds from an URL and retrieving the elements.
 
-**The next version will be 2.0 and there will be breaking changes to the api**
-
-**The project is migrating to use the rss library for reading and writing rss feeds**
 
 ## Use
 
