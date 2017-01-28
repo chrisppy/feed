@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! All of the enum.
@@ -8,7 +13,8 @@
 
 /// Enumerations of protocols for `Cloud`.
 #[derive(Clone, Debug)]
-pub enum CloudProtocol {
+pub enum CloudProtocol
+{
     /// http-post
     HttpPost,
 
@@ -20,7 +26,8 @@ pub enum CloudProtocol {
 }
 
 
-impl CloudProtocol {
+impl CloudProtocol
+{
     /// Convert `&str` to `CloudProtocol`.
     ///
     /// # Examples
@@ -29,12 +36,14 @@ impl CloudProtocol {
     /// use feed::enums::CloudProtocol;
     ///
     /// let s = "soap";
-    /// let e = CloudProtocol::to_enum(s);
+    /// let e = CloudProtocol::value_of(s);
     ///
     /// assert_eq!(s.to_owned(), e.into_string());
     /// ```
-    pub fn to_enum(s: &str) -> CloudProtocol {
-        match s {
+    pub fn value_of(s: &str) -> CloudProtocol
+    {
+        match s
+        {
             "http-post" => CloudProtocol::HttpPost,
             "xml-rpc" => CloudProtocol::XmlRpc,
             "soap" => CloudProtocol::Soap,
@@ -44,8 +53,10 @@ impl CloudProtocol {
 
 
     /// Convert `CloudProtocol` to `String`.
-    pub fn into_string(self) -> String {
-        match self {
+    pub fn into_string(self) -> String
+    {
+        match self
+        {
             CloudProtocol::HttpPost => "http-post".to_owned(),
             CloudProtocol::XmlRpc => "xml-rpc".to_owned(),
             CloudProtocol::Soap => "soap".to_owned(),
@@ -56,7 +67,8 @@ impl CloudProtocol {
 
 /// Enumerations of protocols for `SkipDays`.
 #[derive(Clone, Debug)]
-pub enum Day {
+pub enum Day
+{
     /// Monday
     Monday,
 
@@ -79,7 +91,8 @@ pub enum Day {
     Sunday,
 }
 
-impl Day {
+impl Day
+{
     /// Convert `&str` to `Day`.
     ///
     /// # Examples
@@ -88,12 +101,14 @@ impl Day {
     /// use feed::enums::Day;
     ///
     /// let s = "Tuesday";
-    /// let e = Day::to_enum(s);
+    /// let e = Day::value_of(s);
     ///
     /// assert_eq!(s.to_owned(), e.into_string());
     /// ```
-    pub fn to_enum(s: &str) -> Day {
-        match s {
+    pub fn value_of(s: &str) -> Day
+    {
+        match s
+        {
             "Monday" => Day::Monday,
             "Tuesday" => Day::Tuesday,
             "Wednesday" => Day::Wednesday,
@@ -107,8 +122,10 @@ impl Day {
 
 
     /// Convert `Day` to `String`.
-    pub fn into_string(self) -> String {
-        match self {
+    pub fn into_string(self) -> String
+    {
+        match self
+        {
             Day::Monday => "Monday".to_owned(),
             Day::Tuesday => "Tuesday".to_owned(),
             Day::Wednesday => "Wednesday".to_owned(),

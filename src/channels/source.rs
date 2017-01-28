@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under source can be retrieved by using the methods under `Source`.
@@ -10,7 +15,8 @@ use channels::Source;
 use url::Url;
 
 
-impl Source {
+impl Source
+{
     /// Get the url that exists under `Source`.
     ///
     /// # Examples
@@ -26,7 +32,8 @@ impl Source {
     ///
     /// assert_eq!(url.to_owned(), source.url().into_string());
     /// ```
-    pub fn url(&self) -> Url {
+    pub fn url(&self) -> Url
+    {
         self.url.clone()
     }
 
@@ -48,7 +55,8 @@ impl Source {
     ///     .finalize();
     /// assert_eq!(title.to_owned(), source_obj.title().unwrap());
     /// ```
-    pub fn title(&self) -> Option<String> {
+    pub fn title(&self) -> Option<String>
+    {
         self.title.clone()
     }
 }

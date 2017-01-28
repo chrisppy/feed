@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields can be set for category by using the methods under
@@ -11,7 +16,8 @@ use channels::{Category, CategoryBuilder};
 use utils::string_utils;
 
 
-impl CategoryBuilder {
+impl CategoryBuilder
+{
     /// Construct a new `CategoryBuilder` and return default values.
     ///
     /// # Examples
@@ -21,7 +27,8 @@ impl CategoryBuilder {
     ///
     /// let category_builder = CategoryBuilder::new();
     /// ```
-    pub fn new() -> CategoryBuilder {
+    pub fn new() -> CategoryBuilder
+    {
         CategoryBuilder::default()
     }
 
@@ -36,7 +43,8 @@ impl CategoryBuilder {
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.name("Podcast");
     /// ```
-    pub fn name(&mut self, name: &str) -> &mut CategoryBuilder {
+    pub fn name(&mut self, name: &str) -> &mut CategoryBuilder
+    {
         self.name = name.to_owned();
         self
     }
@@ -52,7 +60,8 @@ impl CategoryBuilder {
     /// let mut category_builder = CategoryBuilder::new();
     /// category_builder.domain(Some("http://www.example.com".to_owned()));
     /// ```
-    pub fn domain(&mut self, domain: Option<String>) -> &mut CategoryBuilder {
+    pub fn domain(&mut self, domain: Option<String>) -> &mut CategoryBuilder
+    {
         self.domain = domain;
         self
     }
@@ -70,10 +79,14 @@ impl CategoryBuilder {
     ///         .domain(None)
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Category {
-        let domain = if self.domain.is_none() {
+    pub fn finalize(&self) -> Category
+    {
+        let domain = if self.domain.is_none()
+        {
             None
-        } else {
+        }
+        else
+        {
             let d = self.domain.clone().unwrap();
             let url = string_utils::str_to_url(d.as_str(), "Category Domain");
             Some(url)

@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under image can be retrieved by using the methods under `Image`
@@ -12,7 +17,8 @@ use errors;
 use utils::string_utils;
 
 
-impl ImageBuilder {
+impl ImageBuilder
+{
     /// Construct a new `ImageBuilder` and return default values.
     ///
     /// # Examples
@@ -22,7 +28,8 @@ impl ImageBuilder {
     ///
     /// let image_builder = ImageBuilder::new();
     /// ```
-    pub fn new() -> ImageBuilder {
+    pub fn new() -> ImageBuilder
+    {
         ImageBuilder::default()
     }
 
@@ -37,7 +44,8 @@ impl ImageBuilder {
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
     /// ```
-    pub fn url(&mut self, url: &str) -> &mut ImageBuilder {
+    pub fn url(&mut self, url: &str) -> &mut ImageBuilder
+    {
         self.url = url.to_owned();
         self
     }
@@ -53,7 +61,8 @@ impl ImageBuilder {
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.title("LAS 300 Logo");
     /// ```
-    pub fn title(&mut self, title: &str) -> &mut ImageBuilder {
+    pub fn title(&mut self, title: &str) -> &mut ImageBuilder
+    {
         self.title = title.to_owned();
         self
     }
@@ -69,7 +78,8 @@ impl ImageBuilder {
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.link("http://www.jupiterbroadcasting.com/");
     /// ```
-    pub fn link(&mut self, link: &str) -> &mut ImageBuilder {
+    pub fn link(&mut self, link: &str) -> &mut ImageBuilder
+    {
         self.link = link.to_owned();
         self
     }
@@ -85,17 +95,24 @@ impl ImageBuilder {
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.width(Some(88));
     /// ```
-    pub fn width(&mut self, width: Option<i64>) -> &mut ImageBuilder {
-        if width.is_some() {
+    pub fn width(&mut self, width: Option<i64>) -> &mut ImageBuilder
+    {
+        if width.is_some()
+        {
             let max_width = 144;
             let mut size = width.unwrap();
-            if size > max_width {
+            if size > max_width
+            {
                 size = max_width;
-            } else if size < 0 {
+            }
+            else if size < 0
+            {
                 panic!(errors::negative_error("image width", size));
             }
             self.width = size;
-        } else {
+        }
+        else
+        {
             self.width = 88;
         }
         self
@@ -112,17 +129,24 @@ impl ImageBuilder {
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.height(Some(88));
     /// ```
-    pub fn height(&mut self, height: Option<i64>) -> &mut ImageBuilder {
-        if height.is_some() {
+    pub fn height(&mut self, height: Option<i64>) -> &mut ImageBuilder
+    {
+        if height.is_some()
+        {
             let max_height = 400;
             let mut size = height.unwrap();
-            if size > max_height {
+            if size > max_height
+            {
                 size = max_height;
-            } else if size < 0 {
+            }
+            else if size < 0
+            {
                 panic!(errors::negative_error("image height", size));
             }
             self.height = size;
-        } else {
+        }
+        else
+        {
             self.height = 31;
         }
         self
@@ -139,7 +163,8 @@ impl ImageBuilder {
     /// let mut image_builder = ImageBuilder::new();
     /// image_builder.description(Some("This is a test".to_owned()));
     /// ```
-    pub fn description(&mut self, description: Option<String>) -> &mut ImageBuilder {
+    pub fn description(&mut self, description: Option<String>) -> &mut ImageBuilder
+    {
         self.description = description;
         self
     }
@@ -161,10 +186,12 @@ impl ImageBuilder {
     ///         .description(Some("This is a test".to_owned()))
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Image {
+    pub fn finalize(&self) -> Image
+    {
         let url_string = self.url.clone();
         if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") &&
-           !url_string.ends_with(".png") && !url_string.ends_with(".gif") {
+           !url_string.ends_with(".png") && !url_string.ends_with(".gif")
+        {
             panic!(errors::image_url_error());
         }
         let url = string_utils::str_to_url(url_string.as_str(), "Image Url");

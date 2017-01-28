@@ -1,18 +1,24 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under channels can be retrieved by using the methods under `Channel`.
 
 
-use chrono::*;
 use channels::{Category, Channel, Cloud, Image, Item, TextInput};
+use chrono::*;
 use enums::Day;
 use url::Url;
 
 
-impl Channel {
+impl Channel
+{
     /// Get the title that exists under `Channel`.
     ///
     /// # Examples
@@ -27,7 +33,8 @@ impl Channel {
     ///     .finalize();
     /// assert_eq!(title.to_owned(), channels.title());
     /// ```
-    pub fn title(&self) -> String {
+    pub fn title(&self) -> String
+    {
         self.title.clone()
     }
 
@@ -45,7 +52,8 @@ impl Channel {
     ///     .finalize();
     /// assert_eq!(link.to_owned(), channels.link().into_string());
     /// ```
-    pub fn link(&self) -> Url {
+    pub fn link(&self) -> Url
+    {
         self.link.clone()
     }
 
@@ -67,7 +75,8 @@ impl Channel {
     ///     .finalize();
     /// assert_eq!(description.to_owned(), channels.description());
     /// ```
-    pub fn description(&self) -> String {
+    pub fn description(&self) -> String
+    {
         self.description.clone()
     }
 
@@ -99,7 +108,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.language().is_none());
     /// ```
-    pub fn language(&self) -> Option<String> {
+    pub fn language(&self) -> Option<String>
+    {
         self.language.clone()
     }
 
@@ -132,7 +142,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.copyright().is_none());
     /// ```
-    pub fn copyright(&self) -> Option<String> {
+    pub fn copyright(&self) -> Option<String>
+    {
         self.copyright.clone()
     }
 
@@ -165,7 +176,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.managing_editor().is_none());
     /// ```
-    pub fn managing_editor(&self) -> Option<String> {
+    pub fn managing_editor(&self) -> Option<String>
+    {
         self.managing_editor.clone()
     }
 
@@ -197,7 +209,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.web_master().is_none());
     /// ```
-    pub fn web_master(&self) -> Option<String> {
+    pub fn web_master(&self) -> Option<String>
+    {
         self.web_master.clone()
     }
 
@@ -229,7 +242,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.pub_date().is_none());
     /// ```
-    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>> {
+    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
+    {
         self.pub_date
     }
 
@@ -261,7 +275,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.last_build_date().is_none());
     /// ```
-    pub fn last_build_date(&self) -> Option<DateTime<FixedOffset>> {
+    pub fn last_build_date(&self) -> Option<DateTime<FixedOffset>>
+    {
         self.last_build_date
     }
 
@@ -301,7 +316,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.categories().is_none());
     /// ```
-    pub fn categories(&self) -> Option<Vec<Category>> {
+    pub fn categories(&self) -> Option<Vec<Category>>
+    {
         self.categories.clone()
     }
 
@@ -336,7 +352,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.generator().is_none());
     /// ```
-    pub fn generator(&self) -> Option<String> {
+    pub fn generator(&self) -> Option<String>
+    {
         self.generator.clone()
     }
 
@@ -368,7 +385,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.docs().is_none());
     /// ```
-    pub fn docs(&self) -> Option<Url> {
+    pub fn docs(&self) -> Option<Url>
+    {
         self.docs.clone()
     }
 
@@ -402,7 +420,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.cloud().is_none());
     /// ```
-    pub fn cloud(&self) -> Option<Cloud> {
+    pub fn cloud(&self) -> Option<Cloud>
+    {
         self.cloud.clone()
     }
 
@@ -434,7 +453,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.ttl().is_none());
     /// ```
-    pub fn ttl(&self) -> Option<i64> {
+    pub fn ttl(&self) -> Option<i64>
+    {
         self.ttl
     }
 
@@ -471,7 +491,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.image().is_none());
     /// ```
-    pub fn image(&self) -> Option<Image> {
+    pub fn image(&self) -> Option<Image>
+    {
         self.image.clone()
     }
 
@@ -503,7 +524,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.rating().is_none());
     /// ```
-    pub fn rating(&self) -> Option<String> {
+    pub fn rating(&self) -> Option<String>
+    {
         self.rating.clone()
     }
 
@@ -538,7 +560,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.text_input().is_none());
     /// ```
-    pub fn text_input(&self) -> Option<TextInput> {
+    pub fn text_input(&self) -> Option<TextInput>
+    {
         self.text_input.clone()
     }
 
@@ -573,7 +596,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.skip_hours().is_none());
     /// ```
-    pub fn skip_hours(&self) -> Option<Vec<i64>> {
+    pub fn skip_hours(&self) -> Option<Vec<i64>>
+    {
         self.skip_hours.clone()
     }
 
@@ -615,7 +639,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.skip_days().is_none());
     /// ```
-    pub fn skip_days(&self) -> Option<Vec<Day>> {
+    pub fn skip_days(&self) -> Option<Vec<Day>>
+    {
         self.skip_days.clone()
     }
 
@@ -681,7 +706,8 @@ impl Channel {
     ///     .finalize();
     /// assert!(channels.items().is_none());
     /// ```
-    pub fn items(&self) -> Option<Vec<Item>> {
+    pub fn items(&self) -> Option<Vec<Item>>
+    {
         self.items.clone()
     }
 }

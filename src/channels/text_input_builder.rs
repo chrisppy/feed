@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields can be set for text input by using the methods
@@ -11,7 +16,8 @@ use channels::{TextInput, TextInputBuilder};
 use utils::string_utils;
 
 
-impl TextInputBuilder {
+impl TextInputBuilder
+{
     /// Construct a new `TextInputBuilder` and return default values.
     ///
     /// # Examples
@@ -21,7 +27,8 @@ impl TextInputBuilder {
     ///
     /// let text_input_builder = TextInputBuilder::new();
     /// ```
-    pub fn new() -> TextInputBuilder {
+    pub fn new() -> TextInputBuilder
+    {
         TextInputBuilder::default()
     }
 
@@ -36,7 +43,8 @@ impl TextInputBuilder {
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.title("Title");
     /// ```
-    pub fn title(&mut self, title: &str) -> &mut TextInputBuilder {
+    pub fn title(&mut self, title: &str) -> &mut TextInputBuilder
+    {
         self.title = title.to_owned();
         self
     }
@@ -52,7 +60,8 @@ impl TextInputBuilder {
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.description("This is a test description.");
     /// ```
-    pub fn description(&mut self, description: &str) -> &mut TextInputBuilder {
+    pub fn description(&mut self, description: &str) -> &mut TextInputBuilder
+    {
         self.description = description.to_owned();
         self
     }
@@ -68,7 +77,8 @@ impl TextInputBuilder {
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.name("Comments");
     /// ```
-    pub fn name(&mut self, name: &str) -> &mut TextInputBuilder {
+    pub fn name(&mut self, name: &str) -> &mut TextInputBuilder
+    {
         self.name = name.to_owned();
         self
     }
@@ -84,7 +94,8 @@ impl TextInputBuilder {
     /// let mut text_input_builder = TextInputBuilder::new();
     /// text_input_builder.link("http://www.example.com/feedback");
     /// ```
-    pub fn link(&mut self, link: &str) -> &mut TextInputBuilder {
+    pub fn link(&mut self, link: &str) -> &mut TextInputBuilder
+    {
         self.link = link.to_owned();
         self
     }
@@ -104,7 +115,8 @@ impl TextInputBuilder {
     ///         .link("http://www.example.com/feedback")
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> TextInput {
+    pub fn finalize(&self) -> TextInput
+    {
         let link_string = self.link.clone();
         let link = string_utils::str_to_url(link_string.as_str(), "TextInput Link");
 

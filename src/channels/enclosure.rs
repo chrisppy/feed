@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under enclosure can be retrieved by using the methods under `Enclosure`.
@@ -11,7 +16,8 @@ use mime::Mime;
 use url::Url;
 
 
-impl Enclosure {
+impl Enclosure
+{
     /// Get the url that exists under `Enclosure`.
     ///
     /// # Examples
@@ -27,7 +33,8 @@ impl Enclosure {
     ///     .finalize();
     /// assert_eq!(url.to_owned(), enclosure.url().into_string())
     /// ```
-    pub fn url(&self) -> Url {
+    pub fn url(&self) -> Url
+    {
         self.url.clone()
     }
 
@@ -51,7 +58,8 @@ impl Enclosure {
     ///     .finalize();
     /// assert_eq!(length, enclosure.length())
     /// ```
-    pub fn length(&self) -> i64 {
+    pub fn length(&self) -> i64
+    {
         self.length
     }
 
@@ -74,7 +82,8 @@ impl Enclosure {
     ///     .finalize();
     /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type().to_string())
     /// ```
-    pub fn mime_type(&self) -> Mime {
+    pub fn mime_type(&self) -> Mime
+    {
         self.mime_type.clone()
     }
 }

@@ -1,17 +1,23 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields can be set for item by using the methods under `ItemBuilder`.
 
 
 use channels::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
-use utils::string_utils;
 use errors;
+use utils::string_utils;
 
 
-impl ItemBuilder {
+impl ItemBuilder
+{
     /// Construct a new `ItemBuilder` and return default values.
     ///
     /// # Examples
@@ -21,7 +27,8 @@ impl ItemBuilder {
     ///
     /// let item_builder = ItemBuilder::new();
     /// ```
-    pub fn new() -> ItemBuilder {
+    pub fn new() -> ItemBuilder
+    {
         ItemBuilder::default()
     }
 
@@ -36,7 +43,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.title(Some("Making Music with Linux | LAS 408".to_owned()));
     /// ```
-    pub fn title(&mut self, title: Option<String>) -> &mut ItemBuilder {
+    pub fn title(&mut self, title: Option<String>) -> &mut ItemBuilder
+    {
         self.title = title;
         self
     }
@@ -52,7 +60,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.link(Some("http://www.jupiterbroadcasting.com".to_owned()));
     /// ```
-    pub fn link(&mut self, link: Option<String>) -> &mut ItemBuilder {
+    pub fn link(&mut self, link: Option<String>) -> &mut ItemBuilder
+    {
         self.link = link;
         self
     }
@@ -68,7 +77,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.description(Some("This is a test description".to_owned()));
     /// ```
-    pub fn description(&mut self, description: Option<String>) -> &mut ItemBuilder {
+    pub fn description(&mut self, description: Option<String>) -> &mut ItemBuilder
+    {
         self.description = description;
         self
     }
@@ -84,7 +94,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.author(Some("Chris Fisher".to_owned()));
     /// ```
-    pub fn author(&mut self, author: Option<String>) -> &mut ItemBuilder {
+    pub fn author(&mut self, author: Option<String>) -> &mut ItemBuilder
+    {
         self.author = author;
         self
     }
@@ -103,7 +114,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.categories(Some(categories));
     /// ```
-    pub fn categories(&mut self, categories: Option<Vec<Category>>) -> &mut ItemBuilder {
+    pub fn categories(&mut self, categories: Option<Vec<Category>>) -> &mut ItemBuilder
+    {
         self.categories = categories;
         self
     }
@@ -119,7 +131,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.comments(Some("Test Comment".to_owned()));
     /// ```
-    pub fn comments(&mut self, comments: Option<String>) -> &mut ItemBuilder {
+    pub fn comments(&mut self, comments: Option<String>) -> &mut ItemBuilder
+    {
         self.comments = comments;
         self
     }
@@ -143,7 +156,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.enclosure(Some(enclosure));
     /// ```
-    pub fn enclosure(&mut self, enclosure: Option<Enclosure>) -> &mut ItemBuilder {
+    pub fn enclosure(&mut self, enclosure: Option<Enclosure>) -> &mut ItemBuilder
+    {
         self.enclosure = enclosure;
         self
     }
@@ -161,7 +175,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.guid(Some(guid));
     /// ```
-    pub fn guid(&mut self, guid: Option<Guid>) -> &mut ItemBuilder {
+    pub fn guid(&mut self, guid: Option<Guid>) -> &mut ItemBuilder
+    {
         self.guid = guid;
         self
     }
@@ -177,7 +192,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
     /// ```
-    pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder {
+    pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder
+    {
         self.pub_date = pub_date;
         self
     }
@@ -200,7 +216,8 @@ impl ItemBuilder {
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.source(Some(source));
     /// ```
-    pub fn source(&mut self, source: Option<Source>) -> &mut ItemBuilder {
+    pub fn source(&mut self, source: Option<Source>) -> &mut ItemBuilder
+    {
         self.source = source;
         self
     }
@@ -226,24 +243,32 @@ impl ItemBuilder {
     ///         .source(None)
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Item {
-        if self.title.is_none() && self.description.is_none() {
+    pub fn finalize(&self) -> Item
+    {
+        if self.title.is_none() && self.description.is_none()
+        {
             panic!(errors::item_required_field_error());
         }
 
         let link_opt = self.link.clone();
-        let link = if link_opt.is_none() {
+        let link = if link_opt.is_none()
+        {
             None
-        } else {
+        }
+        else
+        {
             let link_string = link_opt.clone().unwrap();
             let url = string_utils::str_to_url(link_string.as_str(), "Item Link");
             Some(url)
         };
 
         let comments_opt = self.comments.clone();
-        let comments = if comments_opt.is_none() {
+        let comments = if comments_opt.is_none()
+        {
             None
-        } else {
+        }
+        else
+        {
             let comments_string = comments_opt.clone().unwrap();
             let url = string_utils::str_to_url(comments_string.as_str(), "Item Comments");
             Some(url)

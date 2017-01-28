@@ -1,6 +1,11 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under image can be retrieved by using the methods under `Image`.
@@ -9,7 +14,8 @@
 use channels::Image;
 use url::Url;
 
-impl Image {
+impl Image
+{
     /// Get the url that exists under `Image`.
     ///
     /// # Examples
@@ -27,7 +33,8 @@ impl Image {
     ///     .finalize();
     /// assert_eq!(url.to_owned(), image.url().into_string());
     /// ```
-    pub fn url(&self) -> Url {
+    pub fn url(&self) -> Url
+    {
         self.url.clone()
     }
 
@@ -52,7 +59,8 @@ impl Image {
     ///     .finalize();
     /// assert_eq!(title.to_owned(), image.title());
     /// ```
-    pub fn title(&self) -> String {
+    pub fn title(&self) -> String
+    {
         self.title.clone()
     }
 
@@ -74,7 +82,8 @@ impl Image {
     ///     .finalize();
     /// assert_eq!(link.to_owned(), image.link().into_string());
     /// ```
-    pub fn link(&self) -> Url {
+    pub fn link(&self) -> Url
+    {
         self.link.clone()
     }
 
@@ -135,7 +144,8 @@ impl Image {
     ///     .finalize();
     /// assert_eq!(max, image.width());
     /// ```
-    pub fn width(&self) -> i64 {
+    pub fn width(&self) -> i64
+    {
         self.width
     }
 
@@ -196,7 +206,8 @@ impl Image {
     ///     .finalize();
     /// assert_eq!(max, image.height());
     /// ```
-    pub fn height(&self) -> i64 {
+    pub fn height(&self) -> i64
+    {
         self.height
     }
 
@@ -241,7 +252,8 @@ impl Image {
     /// let description = description_option.unwrap();
     /// assert_eq!(description.clone(), description);
     /// ```
-    pub fn description(&self) -> Option<String> {
+    pub fn description(&self) -> Option<String>
+    {
         self.description.clone()
     }
 }

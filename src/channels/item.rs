@@ -1,17 +1,23 @@
-// Copyright (c) 2015-2016 Chris Palmer <pennstate5013@gmail.com>
-// Use of this source code is governed by the LGPLv3 license that can be
-// found in the LICENSE file.
+// This file is part of feed.
+//
+// Copyright © 2015-2017 Chris Palmer <pennstate5013@gmail.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
 
 
 //! The fields under item can be retrieved by using the methods under `Item`.
 
 
-use chrono::*;
 use channels::{Category, Enclosure, Guid, Item, Source};
+use chrono::*;
 use url::Url;
 
 
-impl Item {
+impl Item
+{
     /// Get the optional title that exists under `Item`.
     ///
     /// # Examples
@@ -38,7 +44,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.title().is_none());
     /// ```
-    pub fn title(&self) -> Option<String> {
+    pub fn title(&self) -> Option<String>
+    {
         self.title.clone()
     }
 
@@ -71,7 +78,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.link().is_none());
     /// ```
-    pub fn link(&self) -> Option<Url> {
+    pub fn link(&self) -> Option<Url>
+    {
         self.link.clone()
     }
 
@@ -103,7 +111,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.description().is_none());
     /// ```
-    pub fn description(&self) -> Option<String> {
+    pub fn description(&self) -> Option<String>
+    {
         self.description.clone()
     }
 
@@ -135,7 +144,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.author().is_none());
     /// ```
-    pub fn author(&self) -> Option<String> {
+    pub fn author(&self) -> Option<String>
+    {
         self.author.clone()
     }
 
@@ -175,7 +185,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.categories().is_none());
     /// ```
-    pub fn categories(&self) -> Option<Vec<Category>> {
+    pub fn categories(&self) -> Option<Vec<Category>>
+    {
         self.categories.clone()
     }
 
@@ -209,7 +220,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.comments().is_none());
     /// ```
-    pub fn comments(&self) -> Option<Url> {
+    pub fn comments(&self) -> Option<Url>
+    {
         self.comments.clone()
     }
 
@@ -247,7 +259,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.enclosure().is_none());
     /// ```
-    pub fn enclosure(&self) -> Option<Enclosure> {
+    pub fn enclosure(&self) -> Option<Enclosure>
+    {
         self.enclosure.clone()
     }
 
@@ -280,7 +293,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.guid().is_none());
     /// ```
-    pub fn guid(&self) -> Option<Guid> {
+    pub fn guid(&self) -> Option<Guid>
+    {
         self.guid.clone()
     }
 
@@ -315,7 +329,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.pub_date().is_none());
     /// ```
-    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>> {
+    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
+    {
         self.pub_date
     }
 
@@ -348,7 +363,8 @@ impl Item {
     ///     .finalize();
     /// assert!(item.source().is_none());
     /// ```
-    pub fn source(&self) -> Option<Source> {
+    pub fn source(&self) -> Option<Source>
+    {
         self.source.clone()
     }
 }
