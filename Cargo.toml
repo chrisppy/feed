@@ -1,28 +1,27 @@
 [package]
 name          = "feed"
-version       = "2.0.1"
+version       = "2.0.2"
 authors       = ["Chris Palmer <pennstate5013@gmail.com>"]
-license       = "LGPL-3.0"
+description   = "Library for creating and parsing rss feeds."
+documentation = "https://docs.rs/feed/"
 homepage      = "http://red-oxide.org"
 repository    = "https://github.com/red-oxide/feed"
-documentation = "https://docs.rs/feed/"
-description   = "Library for creating channels feeds and parsing channels feeds from an URL and retrieving the elements"
-keywords      = ["rss", "feed"]
 readme        = "README.md"
-
+keywords      = ["rss", "feed"]
+categories    = ["parsing"]
+license       = "LGPL-3.0"
+exclude       = ["rsc", ".pullapprove.yml", ".gitignore", ".rustfmt.toml", ".travis.yml"]
 
 [badges]
-travis-ci = { repository = "red-oxide/feed" }
-
+travis-ci = { repository = "red-oxide/feed", branch = "master" }
 
 [dependencies]
-clippy = {version = "0.0", optional = true}
-chrono = "0.2"
+clippy = { version = "0.0", optional = true }
+chrono = "0.3"
 curl   = "0.4"
 mime   = "0.2"
 rss    = "0.4"
 url    = "1.2"
-
 
 [features]
 default  = []

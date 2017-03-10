@@ -12,6 +12,7 @@ target-install
 
 # Rustfmt
 *.bk
+*.backup
 
 # IntelliJ
 .idea
