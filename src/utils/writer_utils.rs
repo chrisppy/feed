@@ -22,7 +22,7 @@ pub fn write(channel: &Channel) -> Vec<u8>
 {
     let rss_channel = convert_channel(channel);
     let s = rss_channel.to_string();
-    s.into_bytes() 
+    s.into_bytes()
 }
 
 

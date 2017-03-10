@@ -255,10 +255,7 @@ fn convert_source(rss_src_opt: Option<rss::Source>) -> Option<Source>
     else
     {
         let rss_src = rss_src_opt.unwrap();
-        let src = SourceBuilder::new()
-            .url(rss_src.url.as_str())
-            .title(rss_src.title)
-            .finalize();
+        let src = SourceBuilder::new().url(rss_src.url.as_str()).title(rss_src.title).finalize();
         Some(src)
     }
 }
