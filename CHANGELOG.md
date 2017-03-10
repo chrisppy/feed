@@ -1,6 +1,18 @@
 # Changelog
 
-## master
+## feed 2.0.2 (2017-03-10)
++ New Features
+    + None
++ Bug Fixes
+    + Clippy fixes
++ Breaking Changes
+    + None
++ Refactor
+    + None
++ Tests
+    + None
++ Maintenance
+    + Update chrono to 0.3  
 
 ## feed 2.0.0 (2017-01-21)
 + New Features
