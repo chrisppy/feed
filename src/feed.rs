@@ -54,6 +54,6 @@ impl Feed
     /// ```
     pub fn to_xml(&self) -> Vec<u8>
     {
-        writer_utils::write(self.channel.clone())
+        writer_utils::write(&self.channel)
     }
 }

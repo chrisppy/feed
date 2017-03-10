@@ -11,7 +11,6 @@
 //! writer utilities.
 
 
-
 use channels::{Category, Channel, Cloud, Enclosure, Guid, Image, Item, Source, TextInput};
 use enums::Day;
 use rss;
@@ -19,7 +18,7 @@ use utils::string_utils;
 
 
 /// Construct xml from a `Channel`.
-pub fn write(channel: Channel) -> Vec<u8>
+pub fn write(channel: &Channel) -> Vec<u8>
 {
     let rss_channel = convert_channel(channel);
     let s = rss_channel.to_string();
@@ -28,7 +27,7 @@ pub fn write(channel: Channel) -> Vec<u8>
 
 
 // convert rss channel from feed channel
-fn convert_channel(channel: Channel) -> rss::Channel
+fn convert_channel(channel: &Channel) -> rss::Channel
 {
     rss::Channel {
         title: channel.title(),

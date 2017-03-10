@@ -67,9 +67,9 @@ impl FeedBuilder
         {
             let mut transfer = handle.transfer();
             transfer.write_function(|data| {
-                    dst.extend_from_slice(data);
-                    Ok(data.len())
-                })
+                                        dst.extend_from_slice(data);
+                                        Ok(data.len())
+                                    })
                 .unwrap();
             transfer.perform().unwrap();
         }
@@ -79,9 +79,8 @@ impl FeedBuilder
             panic!(errors::url_error());
         }
 
-        let content_type = handle.content_type()
-            .expect(errors::content_type_error().as_str())
-            .unwrap();
+        let content_type =
+            handle.content_type().expect(errors::content_type_error().as_str()).unwrap();
 
         if !content_type.contains("xml")
         {
