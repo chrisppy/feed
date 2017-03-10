@@ -3,8 +3,8 @@
 [![Build Status](https://img.shields.io/travis/red-oxide/feed.svg?style=flat-square)](https://travis-ci.org/red-oxide/feed)[![Crates.io](https://img.shields.io/crates/v/feed.svg?style=flat-square)](https://crates.io/crates/feed)[![Crates All Downloads](https://img.shields.io/crates/d/feed.svg?style=flat-square)](https://crates.io/crates/feed)[![Crates Latest Downloads](https://img.shields.io/crates/dv/feed.svg?style=flat-square)](https://crates.io/crates/feed)
 
 
-
 `feed` is a rust library for creating and parsing rss feeds.
+
 
 ## Use
 
