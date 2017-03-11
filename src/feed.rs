@@ -52,8 +52,8 @@ impl Feed
     /// let feed = FeedBuilder::channel(channel).finalize();
     /// let xml = feed.to_xml();
     /// ```
-    pub fn to_xml(&self) -> Vec<u8>
+    pub fn to_xml(&self) -> Result<Vec<u8>, String>
     {
-        writer_utils::write(&self.channel)
+        Ok(writer_utils::write(&self.channel)?)
     }
 }

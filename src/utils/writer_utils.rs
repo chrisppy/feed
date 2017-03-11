@@ -18,175 +18,172 @@ use utils::string_utils;
 
 
 /// Construct xml from a `Channel`.
-pub fn write(channel: &Channel) -> Vec<u8>
+pub fn write(channel: &Channel) -> Result<Vec<u8>, String>
 {
-    let rss_channel = convert_channel(channel);
-    let s = rss_channel.to_string();
-    s.into_bytes()
+    Ok(convert_channel(channel)?.to_string().into_bytes())
 }
 
 
 // convert rss channel from feed channel
-fn convert_channel(channel: &Channel) -> rss::Channel
+fn convert_channel(channel: &Channel) -> Result<rss::Channel, String>
 {
-    rss::Channel {
-        title: channel.title(),
-        link: channel.link().into_string(),
-        description: channel.description(),
-        language: channel.language(),
-        copyright: channel.copyright(),
-        managing_editor: channel.managing_editor(),
-        webmaster: channel.web_master(),
-        pub_date: string_utils::option_date_to_option_string(channel.pub_date()),
-        last_build_date: string_utils::option_date_to_option_string(channel.last_build_date()),
-        categories: convert_categories(channel.categories()),
-        generator: channel.generator(),
-        docs: string_utils::option_url_to_option_string(channel.docs()),
-        cloud: convert_cloud(channel.cloud()),
-        ttl: string_utils::option_i64_to_option_string(channel.ttl()),
-        image: convert_image(channel.image()),
-        // rating: channel.rating(),
-        text_input: convert_text_input(channel.text_input()),
-        skip_hours: convert_skip_hours(channel.skip_hours()),
-        skip_days: convert_skip_days(channel.skip_days()),
-        items: convert_items(channel.items()),
-        itunes_ext: None,
-        dublin_core_ext: None,
-        ..Default::default()
-    }
+    Ok(rss::Channel {
+           title: channel.title(),
+           link: channel.link().into_string(),
+           description: channel.description(),
+           language: channel.language(),
+           copyright: channel.copyright(),
+           managing_editor: channel.managing_editor(),
+           webmaster: channel.web_master(),
+           pub_date: string_utils::option_date_to_option_string(channel.pub_date())?,
+           last_build_date: string_utils::option_date_to_option_string(channel.last_build_date())?,
+           categories: convert_categories(channel.categories())?,
+           generator: channel.generator(),
+           docs: string_utils::option_url_to_option_string(channel.docs())?,
+           cloud: convert_cloud(channel.cloud())?,
+           ttl: string_utils::option_i64_to_option_string(channel.ttl())?,
+           image: convert_image(channel.image())?,
+           // rating: channel.rating(),
+           text_input: convert_text_input(channel.text_input())?,
+           skip_hours: convert_skip_hours(channel.skip_hours())?,
+           skip_days: convert_skip_days(channel.skip_days())?,
+           items: convert_items(channel.items())?,
+           itunes_ext: None,
+           dublin_core_ext: None,
+           ..Default::default()
+       })
 }
 
 
 // Convert rss categories from feed categories
-fn convert_categories(cats_opt: Option<Vec<Category>>) -> Vec<rss::Category>
+fn convert_categories(cats: Option<Vec<Category>>) -> Result<Vec<rss::Category>, String>
 {
     let mut rss_cats = Vec::new();
-    if cats_opt.is_some()
+    match cats
     {
-        let cats = cats_opt.unwrap();
-        for cat in cats
+        Some(val) =>
         {
-            let domain = if cat.domain().is_none()
+            for cat in val
             {
-                None
+                let domain = match cat.domain()
+                {
+                    Some(val) => Some(val.into_string()),
+                    None => None,
+                };
+
+                rss_cats.push(rss::Category {
+                                  name: cat.name(),
+                                  domain: domain,
+                              });
             }
-            else
-            {
-                let url = cat.domain().unwrap().into_string();
-                Some(url)
-            };
-            let rss_cat = rss::Category {
-                name: cat.name(),
-                domain: domain,
-            };
-            rss_cats.push(rss_cat);
+            Ok(rss_cats)
         }
+        None => Ok(rss_cats),
     }
-    rss_cats
 }
 
 
 // Convert rss channel cloud from feed channel cloud
-fn convert_cloud(cloud_opt: Option<Cloud>) -> Option<rss::Cloud>
+fn convert_cloud(cloud: Option<Cloud>) -> Result<Option<rss::Cloud>, String>
 {
-    if cloud_opt.is_none()
+    match cloud
     {
-        None
-    }
-    else
-    {
-        let cloud = cloud_opt.unwrap();
-        let rss_cloud = rss::Cloud {
-            domain: cloud.domain().into_string(),
-            port: cloud.port().to_string(),
-            path: cloud.path(),
-            register_procedure: cloud.register_procedure(),
-            protocol: cloud.protocol().into_string(),
-        };
-        Some(rss_cloud)
+        Some(val) =>
+        {
+            Ok(Some(rss::Cloud {
+                        domain: val.domain().into_string(),
+                        port: val.port().to_string(),
+                        path: val.path(),
+                        register_procedure: val.register_procedure(),
+                        protocol: val.protocol().into_string(),
+                    }))
+        }
+        None => Ok(None),
     }
 }
 
 
 // Convert rss channel image from feed channel image
-fn convert_image(image_opt: Option<Image>) -> Option<rss::Image>
+fn convert_image(image: Option<Image>) -> Result<Option<rss::Image>, String>
 {
-    if image_opt.is_none()
+    match image
     {
-        None
-    }
-    else
-    {
-        let image = image_opt.unwrap();
-        let rss_image = rss::Image {
-            url: image.url().into_string(),
-            title: image.title(),
-            link: image.link().into_string(),
-            width: string_utils::i64_to_option_string(image.width()),
-            height: string_utils::i64_to_option_string(image.height()),
-            description: image.description(),
-        };
-        Some(rss_image)
+        Some(val) =>
+        {
+            Ok(Some(rss::Image {
+                        url: val.url().into_string(),
+                        title: val.title(),
+                        link: val.link().into_string(),
+                        width: string_utils::i64_to_option_string(val.width())?,
+                        height: string_utils::i64_to_option_string(val.height())?,
+                        description: val.description(),
+                    }))
+        }
+        None => Ok(None),
     }
 }
 
 
 // Convert rss channel text input from feed channel text input
-fn convert_text_input(text_input_opt: Option<TextInput>) -> Option<rss::TextInput>
+fn convert_text_input(text_input: Option<TextInput>) -> Result<Option<rss::TextInput>, String>
 {
-    if text_input_opt.is_none()
+    match text_input
     {
-        None
-    }
-    else
-    {
-        let text_input = text_input_opt.unwrap();
-        let rss_text_input = rss::TextInput {
-            title: text_input.title(),
-            description: text_input.description(),
-            name: text_input.name(),
-            link: text_input.link().into_string(),
-        };
-        Some(rss_text_input)
+        Some(val) =>
+        {
+            Ok(Some(rss::TextInput {
+                        title: val.title(),
+                        description: val.description(),
+                        name: val.name(),
+                        link: val.link().into_string(),
+                    }))
+        }
+        None => Ok(None),
     }
 }
 
 
 // Convert rss channel skip hours from feed channel skip hours
-fn convert_skip_hours(skip_hours: Option<Vec<i64>>) -> Vec<String>
+fn convert_skip_hours(skip_hours: Option<Vec<i64>>) -> Result<Vec<String>, String>
 {
     let mut rss_skip_hours = Vec::new();
-    if skip_hours.is_some()
+    match skip_hours
     {
-        let hours = skip_hours.unwrap();
-        for hour in hours
+        Some(val) =>
         {
-            rss_skip_hours.push(hour.to_string());
+            for hour in val
+            {
+                rss_skip_hours.push(hour.to_string());
+            }
+            Ok(rss_skip_hours)
         }
+        None => Ok(rss_skip_hours),
     }
-    rss_skip_hours
 }
 
 
 
 // Convert rss channel skip days from feed channel skip days
-fn convert_skip_days(skip_days: Option<Vec<Day>>) -> Vec<String>
+fn convert_skip_days(skip_days: Option<Vec<Day>>) -> Result<Vec<String>, String>
 {
     let mut rss_skip_days = Vec::new();
-    if skip_days.is_some()
+    match skip_days
     {
-        let days = skip_days.unwrap();
-        for day in days
+        Some(val) =>
         {
-            rss_skip_days.push(day.into_string());
+            for day in val
+            {
+                rss_skip_days.push(day.into_string());
+            }
+            Ok(rss_skip_days)
         }
+        None => Ok(rss_skip_days),
     }
-    rss_skip_days
 }
 
 
 // Convert rss channel items from feed channel items
-fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item>
+fn convert_items(items_opt: Option<Vec<Item>>) -> Result<Vec<rss::Item>, String>
 {
     let mut rss_items = Vec::new();
     if items_opt.is_some()
@@ -196,15 +193,15 @@ fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item>
         {
             let rss_item = rss::Item {
                 title: item.title(),
-                link: string_utils::option_url_to_option_string(item.link()),
+                link: string_utils::option_url_to_option_string(item.link())?,
                 description: item.description(),
                 author: item.author(),
-                categories: convert_categories(item.categories()),
-                comments: string_utils::option_url_to_option_string(item.comments()),
-                enclosure: convert_enclosure(item.enclosure()),
-                guid: convert_guid(item.guid()),
-                pub_date: string_utils::option_date_to_option_string(item.pub_date()),
-                source: convert_source(item.source()),
+                categories: convert_categories(item.categories())?,
+                comments: string_utils::option_url_to_option_string(item.comments())?,
+                enclosure: convert_enclosure(item.enclosure())?,
+                guid: convert_guid(item.guid())?,
+                pub_date: string_utils::option_date_to_option_string(item.pub_date())?,
+                source: convert_source(item.source())?,
                 content: None,
                 itunes_ext: None,
                 dublin_core_ext: None,
@@ -213,63 +210,57 @@ fn convert_items(items_opt: Option<Vec<Item>>) -> Vec<rss::Item>
             rss_items.push(rss_item);
         }
     }
-    rss_items
+    Ok(rss_items)
 }
 
 
 // Convert rss item enclosure from feed item enclosure
-fn convert_enclosure(enc_opt: Option<Enclosure>) -> Option<rss::Enclosure>
+fn convert_enclosure(enc: Option<Enclosure>) -> Result<Option<rss::Enclosure>, String>
 {
-    if enc_opt.is_none()
+    match enc
     {
-        None
-    }
-    else
-    {
-        let enc = enc_opt.unwrap();
-        let rss_enclosure = rss::Enclosure {
-            url: enc.url().into_string(),
-            length: enc.length().to_string(),
-            mime_type: enc.mime_type().to_string(),
-        };
-        Some(rss_enclosure)
+        Some(val) =>
+        {
+            Ok(Some(rss::Enclosure {
+                        url: val.url().into_string(),
+                        length: val.length().to_string(),
+                        mime_type: val.mime_type().to_string(),
+                    }))
+        }
+        None => Ok(None),
     }
 }
 
 
 // Convert rss item guid from feed item guid
-fn convert_guid(guid_opt: Option<Guid>) -> Option<rss::Guid>
+fn convert_guid(guid: Option<Guid>) -> Result<Option<rss::Guid>, String>
 {
-    if guid_opt.is_none()
+    match guid
     {
-        None
-    }
-    else
-    {
-        let guid = guid_opt.unwrap();
-        let rss_guid = rss::Guid {
-            value: guid.value(),
-            is_permalink: guid.permalink(),
-        };
-        Some(rss_guid)
+        Some(val) =>
+        {
+            Ok(Some(rss::Guid {
+                        value: val.value(),
+                        is_permalink: val.permalink(),
+                    }))
+        }
+        None => Ok(None),
     }
 }
 
 
 // Convert rss item source from feed item source
-fn convert_source(src_opt: Option<Source>) -> Option<rss::Source>
+fn convert_source(src: Option<Source>) -> Result<Option<rss::Source>, String>
 {
-    if src_opt.is_none()
+    match src
     {
-        None
-    }
-    else
-    {
-        let src = src_opt.unwrap();
-        let rss_src = rss::Source {
-            url: src.url().into_string(),
-            title: src.title(),
-        };
-        Some(rss_src)
+        Some(val) =>
+        {
+            Ok(Some(rss::Source {
+                        url: val.url().into_string(),
+                        title: val.title(),
+                    }))
+        }
+        None => Ok(None),
     }
 }

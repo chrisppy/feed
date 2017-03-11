@@ -7,12 +7,12 @@
 // the Free Software Foundation; either version 3 of the License, or
 // (at your option) any later version.
 
-//! The fields can be set for channels by using the methods under `ChannelBuilder`.
+//! The fields can be set for channels by using the methods under
+//! `ChannelBuilder`.
 
 
 use channels::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
 use enums::Day;
-use errors;
 use utils::string_utils;
 
 
@@ -173,7 +173,8 @@ impl ChannelBuilder
     /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
+    /// channel_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02
+    /// -0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ChannelBuilder
     {
@@ -190,7 +191,8 @@ impl ChannelBuilder
     /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.last_build_date(Some("Sun, 13 Mar 2016 20:02:02 -0700".to_owned()));
+    /// channel_builder.last_build_date(Some("Sun, 13 Mar 2016 20:02:02
+    /// -0700".to_owned()));
     /// ```
     pub fn last_build_date(&mut self, last_build_date: Option<String>) -> &mut ChannelBuilder
     {
@@ -248,7 +250,8 @@ impl ChannelBuilder
     /// use feed::channels::ChannelBuilder;
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.docs(Some("http://blogs.law.harvard.edu/tech/rss/".to_owned()));
+    /// channel_builder.docs(Some("http://blogs.law.harvard.edu/tech/rss/".
+    /// to_owned()));
     /// ```
     pub fn docs(&mut self, docs: Option<String>) -> &mut ChannelBuilder
     {
@@ -291,14 +294,6 @@ impl ChannelBuilder
     /// ```
     pub fn ttl(&mut self, ttl: Option<i64>) -> &mut ChannelBuilder
     {
-        if ttl.is_some()
-        {
-            let ttl_num = ttl.unwrap();
-            if ttl_num < 0
-            {
-                panic!(errors::negative_error("ttl", ttl_num));
-            }
-        }
         self.ttl = ttl;
         self
     }
@@ -381,24 +376,7 @@ impl ChannelBuilder
     /// ```
     pub fn skip_hours(&mut self, skip_hours: Option<Vec<i64>>) -> &mut ChannelBuilder
     {
-        if skip_hours.is_some()
-        {
-            let mut skip_hours_vec = skip_hours.clone().unwrap();
-            skip_hours_vec.sort();
-            skip_hours_vec.dedup();
-            for hour in skip_hours_vec
-            {
-                if hour < 0
-                {
-                    panic!(errors::negative_error("skip hours", hour));
-                }
-                else if hour > 23
-                {
-                    panic!(errors::invalid_int_error("skip hours", hour));
-                }
-            }
-        }
-        self.skip_hours = skip_hours.clone();
+        self.skip_hours = skip_hours;
         self
     }
 
@@ -417,23 +395,7 @@ impl ChannelBuilder
     /// ```
     pub fn skip_days(&mut self, skip_days: Option<Vec<String>>) -> &mut ChannelBuilder
     {
-        if skip_days.is_some()
-        {
-            let mut skip_days_vec = skip_days.clone().unwrap();
-            skip_days_vec.sort();
-            skip_days_vec.dedup();
-            for day in skip_days_vec
-            {
-                let day_upper = day.to_uppercase();
-                match day_upper.as_str()
-                {
-                    "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" |
-                    "SUNDAY" => (),
-                    _ => panic!(errors::invalid_str_error("skip days", day.as_str())),
-                }
-            }
-        }
-        self.skip_days = skip_days.clone();
+        self.skip_days = skip_days;
         self
     }
 
@@ -495,67 +457,81 @@ impl ChannelBuilder
     ///         .items(None)
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Channel
+    pub fn finalize(&self) -> Result<Channel, String>
     {
-        let link_string = self.link.clone();
-        let link = string_utils::str_to_url(link_string.as_str(), "Channel Link");
+        let link = string_utils::str_to_url(self.link.as_str())?;
+        let pub_date = string_utils::option_string_to_option_date(self.pub_date.clone())?;
+        let last_build_date = string_utils::option_string_to_option_date(self.last_build_date.clone())?;
 
-        let pub_date_opt = self.pub_date.clone();
-        let pub_date = string_utils::option_string_to_option_date(pub_date_opt);
-
-        let build_date_opt = self.last_build_date.clone();
-        let last_build_date = string_utils::option_string_to_option_date(build_date_opt);
-
-        let docs_opt = self.docs.clone();
-        let docs = if docs_opt.is_none()
+        let docs = match self.docs.clone()
         {
-            None
-        }
-        else
-        {
-            let docs_string = docs_opt.clone().unwrap();
-            let url = string_utils::str_to_url(docs_string.as_str(), "Channel Docs");
-            Some(url)
+            Some(val) => Some(string_utils::str_to_url(val.as_str())?),
+            None => None,
         };
 
-
-        let skip_days_opt = self.skip_days.clone();
-
-        let skip_days = if skip_days_opt.is_none()
+        let skip_days = match self.skip_days.clone()
         {
-            None
-        }
-        else
-        {
-            let mut days = Vec::new();
-            for day in skip_days_opt.unwrap()
+            Some(val) =>
             {
-                days.push(Day::value_of(day.as_str()));
+                let mut days = Vec::new();
+
+                let mut skip_days_vec = val;
+                skip_days_vec.sort();
+                skip_days_vec.dedup();
+                for day in skip_days_vec
+                {
+                    days.push(Day::value_of(day.as_str())?);
+                }
+
+                Some(days)
             }
-            Some(days)
+            None => None,
         };
 
-        Channel {
-            title: self.title.clone(),
-            link: link,
-            description: self.description.clone(),
-            language: self.language.clone(),
-            copyright: self.copyright.clone(),
-            managing_editor: self.managing_editor.clone(),
-            web_master: self.web_master.clone(),
-            pub_date: pub_date,
-            last_build_date: last_build_date,
-            categories: self.categories.clone(),
-            generator: self.generator.clone(),
-            docs: docs,
-            cloud: self.cloud.clone(),
-            ttl: self.ttl,
-            image: self.image.clone(),
-            rating: self.rating.clone(),
-            text_input: self.text_input.clone(),
-            skip_hours: self.skip_hours.clone(),
-            skip_days: skip_days,
-            items: self.items.clone(),
+        if self.ttl.is_some() && self.ttl.unwrap() < 0
+        {
+            return Err("Channel ttl cannot be a negative value.".to_owned());
         }
+
+        if self.skip_hours.is_some()
+        {
+            let mut skip_hours_vec = self.skip_hours.clone().unwrap();
+            skip_hours_vec.sort();
+            skip_hours_vec.dedup();
+            for hour in skip_hours_vec
+            {
+                if hour < 0
+                {
+                    return Err("Channel Skip Hour cannot be a negative value.".to_owned());
+                }
+                else if hour > 23
+                {
+                    return Err("Channel Skip Hour cannot be greater than 23.".to_owned());
+                }
+            }
+        }
+
+        Ok(Channel {
+               title: self.title.clone(),
+               link: link,
+               description: self.description.clone(),
+               language: self.language.clone(),
+               copyright: self.copyright.clone(),
+               managing_editor: self.managing_editor.clone(),
+               web_master: self.web_master.clone(),
+               pub_date: pub_date,
+               last_build_date: last_build_date,
+               categories: self.categories.clone(),
+               generator: self.generator.clone(),
+               docs: docs,
+               cloud: self.cloud.clone(),
+               ttl: self.ttl,
+               image: self.image.clone(),
+               rating: self.rating.clone(),
+               text_input: self.text_input.clone(),
+               skip_hours: self.skip_hours.clone(),
+               skip_days: skip_days,
+               items: self.items.clone(),
+           })
     }
 }

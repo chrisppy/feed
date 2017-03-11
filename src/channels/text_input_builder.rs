@@ -115,16 +115,15 @@ impl TextInputBuilder
     ///         .link("http://www.example.com/feedback")
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> TextInput
+    pub fn finalize(&self) -> Result<TextInput, String>
     {
-        let link_string = self.link.clone();
-        let link = string_utils::str_to_url(link_string.as_str(), "TextInput Link");
+        let link = string_utils::str_to_url(self.link.clone().as_str())?;
 
-        TextInput {
-            title: self.title.clone(),
-            description: self.description.clone(),
-            name: self.name.clone(),
-            link: link,
-        }
+        Ok(TextInput {
+               title: self.title.clone(),
+               description: self.description.clone(),
+               name: self.name.clone(),
+               link: link,
+           })
     }
 }

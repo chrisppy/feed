@@ -9,11 +9,11 @@
 
 
 //! The fields under image can be retrieved by using the methods under `Image`
-//! and the fields can be set for image by using the methods under `ImageBuilder`.
+//! and the fields can be set for image by using the methods under
+//! `ImageBuilder`.
 
 
 use channels::{Image, ImageBuilder};
-use errors;
 use utils::string_utils;
 
 
@@ -42,7 +42,8 @@ impl ImageBuilder
     /// use feed::channels::ImageBuilder;
     ///
     /// let mut image_builder = ImageBuilder::new();
-    /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg");
+    /// image_builder.url("http://jupiterbroadcasting.com/images/LAS-300-Badge.
+    /// jpg");
     /// ```
     pub fn url(&mut self, url: &str) -> &mut ImageBuilder
     {
@@ -97,24 +98,7 @@ impl ImageBuilder
     /// ```
     pub fn width(&mut self, width: Option<i64>) -> &mut ImageBuilder
     {
-        if width.is_some()
-        {
-            let max_width = 144;
-            let mut size = width.unwrap();
-            if size > max_width
-            {
-                size = max_width;
-            }
-            else if size < 0
-            {
-                panic!(errors::negative_error("image width", size));
-            }
-            self.width = size;
-        }
-        else
-        {
-            self.width = 88;
-        }
+        self.width = width;
         self
     }
 
@@ -131,24 +115,7 @@ impl ImageBuilder
     /// ```
     pub fn height(&mut self, height: Option<i64>) -> &mut ImageBuilder
     {
-        if height.is_some()
-        {
-            let max_height = 400;
-            let mut size = height.unwrap();
-            if size > max_height
-            {
-                size = max_height;
-            }
-            else if size < 0
-            {
-                panic!(errors::negative_error("image height", size));
-            }
-            self.height = size;
-        }
-        else
-        {
-            self.height = 31;
-        }
+        self.height = height;
         self
     }
 
@@ -186,26 +153,59 @@ impl ImageBuilder
     ///         .description(Some("This is a test".to_owned()))
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Image
+    pub fn finalize(&self) -> Result<Image, String>
     {
-        let url_string = self.url.clone();
-        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") &&
-           !url_string.ends_with(".png") && !url_string.ends_with(".gif")
+        let width = match self.width
         {
-            panic!(errors::image_url_error());
-        }
-        let url = string_utils::str_to_url(url_string.as_str(), "Image Url");
+            Some(val) =>
+            {
+                if val > 144
+                {
+                    return Err("Image width cannot be greater than 144.".to_owned());
+                }
+                else if val < 0
+                {
+                    return Err("Image width cannot be a negative value.".to_owned());
+                }
+                val
+            }
+            None => 88,
+        };
 
-        let link_string = self.link.clone();
-        let link = string_utils::str_to_url(link_string.as_str(), "Image Link");
+        let height = match self.height
+        {
+            Some(val) =>
+            {
+                if val > 400
+                {
+                    return Err("Image height cannot be greater than 400.".to_owned());
+                }
+                else if val < 0
+                {
+                    return Err("Image height cannot be a negative value.".to_owned());
+                }
+                val
+            }
+            None => 31,
+        };
 
-        Image {
-            url: url,
-            title: self.title.clone(),
-            link: link,
-            width: self.width,
-            height: self.height,
-            description: self.description.clone(),
+        let url_string = self.url.clone();
+        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") && !url_string.ends_with(".png") &&
+           !url_string.ends_with(".gif")
+        {
+            return Err("Image Url must end with .jpeg, .png, or .gif".to_owned());
         }
+
+        let url = string_utils::str_to_url(url_string.as_str())?;
+        let link = string_utils::str_to_url(self.link.as_str())?;
+
+        Ok(Image {
+               url: url,
+               title: self.title.clone(),
+               link: link,
+               width: width,
+               height: height,
+               description: self.description.clone(),
+           })
     }
 }

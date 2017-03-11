@@ -8,7 +8,8 @@
 // (at your option) any later version.
 
 
-//! The fields under channels can be retrieved by using the methods under `Channel`.
+//! The fields under channels can be retrieved by using the methods under
+//! `Channel`.
 
 
 use channels::{Category, Channel, Cloud, Image, Item, TextInput};

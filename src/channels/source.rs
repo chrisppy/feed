@@ -8,7 +8,8 @@
 // (at your option) any later version.
 
 
-//! The fields under source can be retrieved by using the methods under `Source`.
+//! The fields under source can be retrieved by using the methods under
+//! `Source`.
 
 
 use channels::Source;

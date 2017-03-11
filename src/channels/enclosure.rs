@@ -8,7 +8,8 @@
 // (at your option) any later version.
 
 
-//! The fields under enclosure can be retrieved by using the methods under `Enclosure`.
+//! The fields under enclosure can be retrieved by using the methods under
+//! `Enclosure`.
 
 
 use channels::Enclosure;

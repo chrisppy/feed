@@ -8,106 +8,104 @@
 // (at your option) any later version.
 
 use chrono::*;
-use errors;
 use std::i64;
 use std::str::FromStr;
 use url::Url;
 
 
 // Common code to convert Option<String> to Option<i64>
-pub fn option_string_to_option_i64(o: Option<String>) -> Option<i64>
+pub fn option_string_to_option_i64(o: Option<String>) -> Result<Option<i64>, String>
 {
-    if o.is_some()
+    match o
     {
-        let s = o.unwrap();
-        let i = string_to_i64(s.as_str());
-        Some(i)
-    }
-    else
-    {
-        None
+        Some(val) =>
+        {
+            match string_to_i64(val.as_str())
+            {
+                Ok(val) => Ok(Some(val)),
+                Err(err) => Err(err),
+            }
+        }
+        None => Ok(None),
     }
 }
 
 
 // Common code to convert Option<String> from i64
-pub fn i64_to_option_string(i: i64) -> Option<String>
+pub fn i64_to_option_string(i: i64) -> Result<Option<String>, String>
 {
-    let s = i.to_string();
-    Some(s)
+    Ok(Some(i.to_string()))
 }
 
 
 // Common code to convert Option<String> from Option<i64>
-pub fn option_i64_to_option_string(o: Option<i64>) -> Option<String>
+pub fn option_i64_to_option_string(o: Option<i64>) -> Result<Option<String>, String>
 {
-    if o.is_none()
+    match o
     {
-        None
-    }
-    else
-    {
-        i64_to_option_string(o.unwrap())
+        Some(val) => i64_to_option_string(val),
+        None => Ok(None),
     }
 }
 
 
 // Common code to convert String to i64
-pub fn string_to_i64(s: &str) -> i64
+pub fn string_to_i64(s: &str) -> Result<i64, String>
 {
-    i64::from_str(s).expect(errors::str_to_i64_error().as_str())
+    match i64::from_str(s)
+    {
+        Ok(val) => Ok(val),
+        Err(err) => Err(format!("Error: {}", err)),
+    }
 }
 
 
 // Common code to convert Option<String> to Option<DateTime<FixedOffset>>.
-pub fn option_string_to_option_date(date_option: Option<String>) -> Option<DateTime<FixedOffset>>
+pub fn option_string_to_option_date(date_option: Option<String>) -> Result<Option<DateTime<FixedOffset>>, String>
 {
-    if date_option.is_none()
+    match date_option
     {
-        None
-    }
-    else
-    {
-        let date_string = date_option.unwrap();
-        let datetime = DateTime::parse_from_rfc2822(&date_string)
-            .expect(errors::str_to_datetime_error().as_str());
-        Some(datetime)
+        Some(val) =>
+        {
+            match DateTime::parse_from_rfc2822(val.as_str())
+            {
+                Ok(val) => Ok(Some(val)),
+                Err(err) => Err(format!("Error: {}", err)),
+            }
+        }
+        None => Ok(None),
     }
 }
 
 
 // Common code to convert Option<String> from Option<DateTime<FixedOffset>>.
-pub fn option_date_to_option_string(date_option: Option<DateTime<FixedOffset>>) -> Option<String>
+pub fn option_date_to_option_string(date_option: Option<DateTime<FixedOffset>>) -> Result<Option<String>, String>
 {
-    if date_option.is_none()
+    match date_option
     {
-        None
-    }
-    else
-    {
-        let s = date_option.unwrap().to_rfc2822();
-        Some(s)
+        Some(val) => Ok(Some(val.to_rfc2822())),
+        None => Ok(None),
     }
 }
 
 
 // Common code to convert str to Url.
-pub fn str_to_url(s: &str, e: &str) -> Url
+pub fn str_to_url(s: &str) -> Result<Url, String>
 {
-    Url::parse(s).expect(errors::str_to_url_error(e, s).as_str())
+    match Url::parse(s)
+    {
+        Ok(val) => Ok(val),
+        Err(err) => Err(format!("Error: {}", err)),
+    }
 }
 
 
 // Common code to convert Option<Url> to Option<String>
-pub fn option_url_to_option_string(o: Option<Url>) -> Option<String>
+pub fn option_url_to_option_string(o: Option<Url>) -> Result<Option<String>, String>
 {
-    if o.is_none()
+    match o
     {
-        None
-    }
-    else
-    {
-        let s = o.unwrap().into_string();
-        Some(s)
+        Some(val) => Ok(Some(val.into_string())),
+        None => Ok(None),
     }
 }

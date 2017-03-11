@@ -78,14 +78,13 @@ impl SourceBuilder
     ///         .title(None)
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Source
+    pub fn finalize(&self) -> Result<Source, String>
     {
-        let url_string = self.url.clone();
-        let url = string_utils::str_to_url(url_string.as_str(), "Source Url");
+        let url = string_utils::str_to_url(self.url.as_str())?;
 
-        Source {
-            url: url,
-            title: self.title.clone(),
-        }
+        Ok(Source {
+               url: url,
+               title: self.title.clone(),
+           })
     }
 }
