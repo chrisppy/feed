@@ -12,7 +12,7 @@ To include `feed` as a cargo dependency you have to add it to your Cargo.toml:
 
 ```Toml
 [dependencies]
-feed = "2.0"
+feed = "3.0"
 ```
 
 ## API Documentation
