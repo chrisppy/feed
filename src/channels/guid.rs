@@ -25,7 +25,8 @@ impl Guid
     ///
     /// let guid = GuidBuilder::new()
     ///     .permalink(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(guid.permalink());
     /// ```
     ///
@@ -35,7 +36,8 @@ impl Guid
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
     ///     .permalink(Some(permalink))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(permalink, guid.permalink());
     /// ```
     ///
@@ -45,7 +47,8 @@ impl Guid
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
     ///     .permalink(Some(permalink))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(permalink, guid.permalink());
     /// ```
     pub fn permalink(&self) -> bool
@@ -64,7 +67,8 @@ impl Guid
     /// let guid = "9DE46946-2F90-4D5D-9047-7E9165C16E7C";
     /// let guid_obj = GuidBuilder::new()
     ///     .value(guid)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(guid.to_owned(), guid_obj.value());
     /// ```
     pub fn value(&self) -> String

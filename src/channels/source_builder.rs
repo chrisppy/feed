@@ -74,9 +74,10 @@ impl SourceBuilder
     /// use feed::channels::SourceBuilder;
     ///
     /// let source = SourceBuilder::new()
-    ///         .url("http://www.example.com/source")
-    ///         .title(None)
-    ///         .finalize();
+    ///     .url("http://www.example.com/source")
+    ///     .title(None)
+    ///     .finalize()
+    ///     .unwrap();
     /// ```
     pub fn finalize(&self) -> Result<Source, String>
     {

@@ -29,8 +29,8 @@ impl Source
     ///
     /// let source = SourceBuilder::new()
     ///     .url(url)
-    ///     .finalize();
-    ///
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(url.to_owned(), source.url().into_string());
     /// ```
     pub fn url(&self) -> Url
@@ -53,7 +53,8 @@ impl Source
     /// let source_obj = SourceBuilder::new()
     ///     .title(Some(title.to_owned()))
     ///     .url(url)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(title.to_owned(), source_obj.title().unwrap());
     /// ```
     pub fn title(&self) -> Option<String>

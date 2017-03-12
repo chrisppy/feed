@@ -29,7 +29,8 @@ impl TextInput
     /// let text_input = TextInputBuilder::new()
     ///     .title(title)
     ///     .link("http://www.example.com/feedback")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(title.to_owned(), text_input.title());
     /// ```
     pub fn title(&self) -> String
@@ -49,7 +50,8 @@ impl TextInput
     /// let text_input = TextInputBuilder::new()
     ///     .description(description)
     ///     .link("http://www.example.com/feedback")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(description.to_owned(), text_input.description());
     /// ```
     pub fn description(&self) -> String
@@ -69,7 +71,8 @@ impl TextInput
     /// let text_input = TextInputBuilder::new()
     ///     .name(name)
     ///     .link("http://www.example.com/feedback")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(name.to_owned(), text_input.name());
     /// ```
     pub fn name(&self) -> String
@@ -88,7 +91,8 @@ impl TextInput
     /// let link = "http://www.example.com/feedback";
     /// let text_input = TextInputBuilder::new()
     ///     .link(link)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(link.to_owned(), text_input.link().into_string());
     /// ```
     pub fn link(&self) -> Url

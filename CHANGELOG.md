@@ -2,11 +2,12 @@
 
 ## feed master
 + New Features
-    + None
+    + Added from_xml method for FeedBuilder
 + Bug Fixes
     + None
 + Breaking Changes
-    + None
+    + All Builder finalize returns are now wrapped in result
+    + feed.to_xml() is now wrapped in result
 + Refactor
     + None
 + Tests

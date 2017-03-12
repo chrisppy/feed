@@ -31,7 +31,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .title(title)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(title.to_owned(), channels.title());
     /// ```
     pub fn title(&self) -> String
@@ -50,7 +51,8 @@ impl Channel
     /// let link = "http://www.jupiterbroadcasting.com/";
     /// let channels = ChannelBuilder::new()
     ///     .link(link)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(link.to_owned(), channels.link().into_string());
     /// ```
     pub fn link(&self) -> Url
@@ -73,7 +75,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .description(description.as_ref())
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(description.to_owned(), channels.description());
     /// ```
     pub fn description(&self) -> String
@@ -93,7 +96,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .language(Some(language_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let language_option = channels.language();
     /// assert!(language_option.is_some());
     /// let language = language_option.unwrap();
@@ -106,7 +110,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .language(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.language().is_none());
     /// ```
     pub fn language(&self) -> Option<String>
@@ -127,7 +132,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .copyright(Some(copyright_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let copyright_option = channels.copyright();
     /// assert!(copyright_option.is_some());
     /// let copyright = copyright_option.unwrap();
@@ -140,7 +146,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .copyright(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.copyright().is_none());
     /// ```
     pub fn copyright(&self) -> Option<String>
@@ -161,7 +168,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .managing_editor(Some(managing_editor_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let managing_editor_option = channels.managing_editor();
     /// assert!(managing_editor_option.is_some());
     /// let managing_editor = managing_editor_option.unwrap();
@@ -174,7 +182,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .managing_editor(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.managing_editor().is_none());
     /// ```
     pub fn managing_editor(&self) -> Option<String>
@@ -194,7 +203,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .web_master(Some(web_master_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let web_master_option = channels.web_master();
     /// assert!(web_master_option.is_some());
     /// let web_master = web_master_option.unwrap();
@@ -207,7 +217,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .web_master(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.web_master().is_none());
     /// ```
     pub fn web_master(&self) -> Option<String>
@@ -227,7 +238,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .pub_date(Some(pub_date.to_owned()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let local = channels.pub_date();
     /// assert!(local.is_some());
     /// let local_result = local.unwrap();
@@ -240,7 +252,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .pub_date(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.pub_date().is_none());
     /// ```
     pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
@@ -260,7 +273,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .last_build_date(Some(last_build_date.to_owned()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let local = channels.last_build_date();
     /// assert!(local.is_some());
     /// let local_result = local.unwrap();
@@ -273,7 +287,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .last_build_date(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.last_build_date().is_none());
     /// ```
     pub fn last_build_date(&self) -> Option<DateTime<FixedOffset>>
@@ -292,16 +307,19 @@ impl Channel
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
     ///     .name("Media")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let category_2 = CategoryBuilder::new()
     ///     .domain(Some("http://jupiterbroadcasting.com".to_owned()))
     ///     .name("Podcast")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let categories_vec = vec![category_1, category_2];
     /// let channels = ChannelBuilder::new()
     ///     .categories(Some(categories_vec.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let categories_option = channels.categories();
     /// assert!(categories_option.is_some());
     /// let categories = categories_option.unwrap();
@@ -314,7 +332,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .categories(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.categories().is_none());
     /// ```
     pub fn categories(&self) -> Option<Vec<Category>>
@@ -337,7 +356,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .generator(Some(generator_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let generator_option = channels.generator();
     /// assert!(generator_option.is_some());
     /// let generator = generator_option.unwrap();
@@ -350,7 +370,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .generator(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.generator().is_none());
     /// ```
     pub fn generator(&self) -> Option<String>
@@ -370,7 +391,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .docs(Some(docs_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let docs_option = channels.docs();
     /// assert!(docs_option.is_some());
     /// let docs = docs_option.unwrap();
@@ -383,7 +405,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .docs(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.docs().is_none());
     /// ```
     pub fn docs(&self) -> Option<Url>
@@ -404,11 +427,13 @@ impl Channel
     ///     .path("/RPC2")
     ///     .register_procedure("pingMe")
     ///     .protocol("soap")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let channels = ChannelBuilder::new()
     ///     .cloud(Some(cloud))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.cloud().is_some());
     /// ```
     ///
@@ -418,7 +443,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .cloud(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.cloud().is_none());
     /// ```
     pub fn cloud(&self) -> Option<Cloud>
@@ -438,7 +464,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .ttl(Some(ttl_num))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let ttl_option = channels.ttl();
     /// assert!(ttl_option.is_some());
     /// let ttl = ttl_option.unwrap();
@@ -451,7 +478,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .ttl(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.ttl().is_none());
     /// ```
     pub fn ttl(&self) -> Option<i64>
@@ -474,12 +502,14 @@ impl Channel
     ///     .height(None)
     ///     .width(None)
     ///     .description(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let channels = ChannelBuilder::new()
     ///     .image(Some(image))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.image().is_some());
     /// ```
     ///
@@ -489,7 +519,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .image(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.image().is_none());
     /// ```
     pub fn image(&self) -> Option<Image>
@@ -509,7 +540,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .rating(Some(rating_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let rating_option = channels.rating();
     /// assert!(rating_option.is_some());
     /// let rating = rating_option.unwrap();
@@ -522,7 +554,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .rating(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.rating().is_none());
     /// ```
     pub fn rating(&self) -> Option<String>
@@ -543,12 +576,14 @@ impl Channel
     ///     .description("Provided Feedback")
     ///     .name("Comment")
     ///     .link("http://www.example.com/feedback")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let channels = ChannelBuilder::new()
     ///     .text_input(Some(text_input))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.text_input().is_some());
     /// ```
     ///
@@ -558,7 +593,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .text_input(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.text_input().is_none());
     /// ```
     pub fn text_input(&self) -> Option<TextInput>
@@ -577,7 +613,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .skip_hours(Some(skip_hours_vec.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let skip_hours_option = channels.skip_hours();
     /// assert!(skip_hours_option.is_some());
     /// let skip_hours = skip_hours_option.unwrap();
@@ -594,7 +631,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .skip_hours(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.skip_hours().is_none());
     /// ```
     pub fn skip_hours(&self) -> Option<Vec<i64>>
@@ -611,12 +649,14 @@ impl Channel
     /// use feed::channels::ChannelBuilder;
     ///
     /// let skip_days_vec: Vec<String> = vec!["Monday".to_owned(),
-    ///     "Wednesday".to_owned(),"Thursday".to_owned(),"Sunday".to_owned()];
+    /// "Sunday".to_owned(), "Thursday".to_owned(),
+    ///     "Wednesday".to_owned()];
     ///
     /// let channels = ChannelBuilder::new()
     ///     .skip_days(Some(skip_days_vec.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();  
     ///
     /// let skip_days_option = channels.skip_days();
     /// assert!(skip_days_option.is_some());
@@ -637,7 +677,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .skip_days(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.skip_days().is_none());
     /// ```
     pub fn skip_days(&self) -> Option<Vec<Day>>
@@ -675,7 +716,8 @@ impl Channel
     ///     .guid(None)
     ///     .pub_date(None)
     ///     .source(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let item_2 = ItemBuilder::new()
     ///     .title(None)
     ///     .link(None)
@@ -686,12 +728,14 @@ impl Channel
     ///     .guid(None)
     ///     .pub_date(None)
     ///     .source(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let items_vec = vec![item_1, item_2];
     /// let channels = ChannelBuilder::new()
     ///     .items(Some(items_vec.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let items_option = channels.items();
     /// assert!(items_option.is_some());
     /// let items = items_option.unwrap();
@@ -704,7 +748,8 @@ impl Channel
     /// let channels = ChannelBuilder::new()
     ///     .items(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(channels.items().is_none());
     /// ```
     pub fn items(&self) -> Option<Vec<Item>>

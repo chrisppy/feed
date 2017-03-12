@@ -109,7 +109,9 @@ impl ItemBuilder
     /// ```
     /// use feed::channels::{CategoryBuilder, ItemBuilder};
     ///
-    /// let category = CategoryBuilder::new().finalize();
+    /// let category = CategoryBuilder::new()
+    ///     .finalize()
+    ///     .unwrap();;
     /// let categories = vec![category];
     ///
     /// let mut item_builder = ItemBuilder::new();
@@ -152,7 +154,8 @@ impl ItemBuilder
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_str())
     ///     .mime_type("audio/ogg")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.enclosure(Some(enclosure));
@@ -171,7 +174,9 @@ impl ItemBuilder
     /// ```
     /// use feed::channels::{GuidBuilder, ItemBuilder};
     ///
-    /// let guid = GuidBuilder::new().finalize();
+    /// let guid = GuidBuilder::new()
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.guid(Some(guid));
@@ -191,8 +196,8 @@ impl ItemBuilder
     /// use feed::channels::ItemBuilder;
     ///
     /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.pub_date(Some("Sun, 13 Mar 2016 20:02:02
-    /// -0700".to_owned()));
+    /// item_builder.pub_date(Some("Sun, 13 Mar 2016
+    /// 20:02:02-0700".to_owned()));
     /// ```
     pub fn pub_date(&mut self, pub_date: Option<String>) -> &mut ItemBuilder
     {
@@ -212,8 +217,8 @@ impl ItemBuilder
     ///
     /// let source = SourceBuilder::new()
     ///     .url(url)
-    ///     .finalize();
-    ///
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let mut item_builder = ItemBuilder::new();
     /// item_builder.source(Some(source));
@@ -233,17 +238,18 @@ impl ItemBuilder
     /// use feed::channels::ItemBuilder;
     ///
     /// let item = ItemBuilder::new()
-    ///         .title(Some("Making Music with Linux | LAS 408".to_owned()))
-    ///         .link(Some("http://www.jupiterbroadcasting.com".to_owned()))
-    ///         .description(None)
-    ///         .author(None)
-    ///         .categories(None)
-    ///         .comments(None)
-    ///         .enclosure(None)
-    ///         .guid(None)
-    ///         .pub_date(None)
-    ///         .source(None)
-    ///         .finalize();
+    ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
+    ///     .link(Some("http://www.jupiterbroadcasting.com".to_owned()))
+    ///     .description(None)
+    ///     .author(None)
+    ///     .categories(None)
+    ///     .comments(None)
+    ///     .enclosure(None)
+    ///     .guid(None)
+    ///     .pub_date(None)
+    ///     .source(None)
+    ///     .finalize()
+    ///     .unwrap();
     /// ```
     pub fn finalize(&self) -> Result<Item, String>
     {

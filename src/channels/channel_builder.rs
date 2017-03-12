@@ -208,7 +208,9 @@ impl ChannelBuilder
     /// ```
     /// use feed::channels::{ChannelBuilder, CategoryBuilder};
     ///
-    /// let category = CategoryBuilder::new().finalize();
+    /// let category = CategoryBuilder::new()
+    ///     .finalize()
+    ///     .unwrap();
     /// let categories = vec![category];
     ///
     /// let mut channel_builder = ChannelBuilder::new();
@@ -270,7 +272,8 @@ impl ChannelBuilder
     /// let cloud = CloudBuilder::new()
     ///     .domain("http://rpc.sys.com/")
     ///     .protocol("soap")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.cloud(Some(cloud));
@@ -313,7 +316,8 @@ impl ChannelBuilder
     /// let image = ImageBuilder::new()
     ///     .url(url)
     ///     .link(link)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.image(Some(image));
@@ -350,7 +354,8 @@ impl ChannelBuilder
     ///
     /// let text_input = TextInputBuilder::new()
     ///     .link("http://www.example.com/feedback")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.text_input(Some(text_input));
@@ -409,7 +414,10 @@ impl ChannelBuilder
     ///
     /// let title = "Making Music with Linux | LAS 408".to_owned();
     ///
-    /// let item = ItemBuilder::new().title(Some(title)).finalize();
+    /// let item = ItemBuilder::new()
+    ///     .title(Some(title))
+    ///     .finalize()
+    ///     .unwrap();
     /// let items = vec![item];
     ///
     /// let mut channel_builder = ChannelBuilder::new();

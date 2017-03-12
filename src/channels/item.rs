@@ -28,7 +28,8 @@ impl Item
     /// let title_string = "Making Music with Linux | LAS 408".to_owned();
     /// let item = ItemBuilder::new()
     ///     .title(Some(title_string.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let title_option = item.title();
     /// assert!(title_option.is_some());
     /// let title = title_option.unwrap();
@@ -41,7 +42,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(None)
     ///     .description(Some("A Test Description".to_owned()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.title().is_none());
     /// ```
     pub fn title(&self) -> Option<String>
@@ -61,7 +63,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .link(Some(link_string.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let link_option = item.link();
     /// assert!(link_option.is_some());
     ///
@@ -75,7 +78,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .link(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.link().is_none());
     /// ```
     pub fn link(&self) -> Option<Url>
@@ -95,7 +99,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .description(Some(description_string.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let description_option = item.description();
     /// assert!(description_option.is_some());
     /// let description = description_option.unwrap();
@@ -108,7 +113,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .description(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.description().is_none());
     /// ```
     pub fn description(&self) -> Option<String>
@@ -128,7 +134,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .author(Some(author_string.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let author_option = item.author();
     /// assert!(author_option.is_some());
     /// let author = author_option.unwrap();
@@ -141,7 +148,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .author(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.author().is_none());
     /// ```
     pub fn author(&self) -> Option<String>
@@ -160,16 +168,19 @@ impl Item
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
     ///     .name("Media")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let category_2 = CategoryBuilder::new()
     ///     .domain(Some("http://jupiterbroadcasting.com".to_owned()))
     ///     .name("Podcast")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let categories_vec = vec![category_1, category_2];
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .categories(Some(categories_vec.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let categories_option = item.categories();
     /// assert!(categories_option.is_some());
     /// let categories = categories_option.unwrap();
@@ -182,7 +193,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .categories(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.categories().is_none());
     /// ```
     pub fn categories(&self) -> Option<Vec<Category>>
@@ -202,7 +214,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .comments(Some(comments_string.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let comments_option =  item.comments();
     /// assert!(comments_option.is_some());
@@ -217,7 +230,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .comments(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.comments().is_none());
     /// ```
     pub fn comments(&self) -> Option<Url>
@@ -240,12 +254,14 @@ impl Item
     ///     .url(url.as_ref())
     ///     .length(70772893)
     ///     .mime_type("audio/ogg")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .enclosure(Some(enclosure))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// assert!(item.enclosure().is_some());
     /// ```
@@ -256,7 +272,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .enclosure(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.enclosure().is_none());
     /// ```
     pub fn enclosure(&self) -> Option<Enclosure>
@@ -275,12 +292,14 @@ impl Item
     /// let guid = GuidBuilder::new()
     ///     .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
     ///     .permalink(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .guid(Some(guid))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.guid().is_some())
     /// ```
     ///
@@ -290,7 +309,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .guid(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.guid().is_none());
     /// ```
     pub fn guid(&self) -> Option<Guid>
@@ -311,7 +331,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .pub_date(Some(pub_date.to_owned()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let local = item.pub_date();
     /// assert!(local.is_some());
@@ -326,7 +347,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .pub_date(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.pub_date().is_none());
     /// ```
     pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
@@ -345,12 +367,14 @@ impl Item
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
     ///     .title(Some("Tomalak's Realm".to_owned()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .source(Some(source))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.source().is_some())
     /// ```
     ///
@@ -360,7 +384,8 @@ impl Item
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
     ///     .source(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert!(item.source().is_none());
     /// ```
     pub fn source(&self) -> Option<Source>

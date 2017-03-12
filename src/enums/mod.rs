@@ -36,7 +36,7 @@ impl CloudProtocol
     /// use feed::enums::CloudProtocol;
     ///
     /// let s = "soap";
-    /// let e = CloudProtocol::value_of(s);
+    /// let e = CloudProtocol::value_of(s).unwrap();
     ///
     /// assert_eq!(s.to_owned(), e.into_string());
     /// ```
@@ -101,7 +101,7 @@ impl Day
     /// use feed::enums::Day;
     ///
     /// let s = "Tuesday";
-    /// let e = Day::value_of(s);
+    /// let e = Day::value_of(s).unwrap();
     ///
     /// assert_eq!(s.to_owned(), e.into_string());
     /// ```

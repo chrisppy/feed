@@ -28,7 +28,8 @@ impl Category
     /// let category = "podcast";
     /// let category_obj = CategoryBuilder::new()
     ///     .name(category)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(category.to_owned(), category_obj.name());
     /// ```
     pub fn name(&self) -> String
@@ -47,7 +48,8 @@ impl Category
     /// let domain_string = "http://jupiterbroadcasting.com/".to_owned();
     /// let category = CategoryBuilder::new()
     ///     .domain(Some(domain_string.clone()))
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_some());
     /// let domain = domain_option.unwrap();
@@ -59,7 +61,8 @@ impl Category
     ///
     /// let category = CategoryBuilder::new()
     ///     .domain(None)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_none());
     /// ```

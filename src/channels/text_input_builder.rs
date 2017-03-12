@@ -113,7 +113,8 @@ impl TextInputBuilder
     ///         .description("This is a test description.")
     ///         .name("Comments")
     ///         .link("http://www.example.com/feedback")
-    ///         .finalize();
+    ///         .finalize()
+    ///         .unwrap();
     /// ```
     pub fn finalize(&self) -> Result<TextInput, String>
     {
