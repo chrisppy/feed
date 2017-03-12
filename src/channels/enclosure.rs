@@ -8,7 +8,8 @@
 // (at your option) any later version.
 
 
-//! The fields under enclosure can be retrieved by using the methods under `Enclosure`.
+//! The fields under enclosure can be retrieved by using the methods under
+//! `Enclosure`.
 
 
 use channels::Enclosure;
@@ -30,7 +31,8 @@ impl Enclosure
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_ref())
     ///     .mime_type("audio/ogg")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(url.to_owned(), enclosure.url().into_string())
     /// ```
     pub fn url(&self) -> Url
@@ -55,7 +57,8 @@ impl Enclosure
     ///     .url(url.as_str())
     ///     .length(length)
     ///     .mime_type("audio/ogg")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(length, enclosure.length())
     /// ```
     pub fn length(&self) -> i64
@@ -79,7 +82,8 @@ impl Enclosure
     /// let enclosure = EnclosureBuilder::new()
     ///     .url(url.as_str())
     ///     .mime_type(enclosure_type)
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type().to_string())
     /// ```
     pub fn mime_type(&self) -> Mime

@@ -30,7 +30,8 @@ impl Cloud
     /// let cloud = CloudBuilder::new()
     ///     .domain(domain)
     ///     .protocol("soap")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
     /// ```
     pub fn domain(&self) -> Url
@@ -52,7 +53,8 @@ impl Cloud
     ///     .port(port)
     ///     .domain("http://rpc.sys.com/")
     ///     .protocol("soap")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(port, cloud.port());
     /// ```
     pub fn port(&self) -> i64
@@ -74,7 +76,8 @@ impl Cloud
     ///     .path(path)
     ///     .domain("http://rpc.sys.com/")
     ///     .protocol("soap")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
     pub fn path(&self) -> String
@@ -96,7 +99,8 @@ impl Cloud
     ///     .register_procedure(register_procedure)
     ///     .domain("http://rpc.sys.com/")
     ///     .protocol("soap")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
     pub fn register_procedure(&self) -> String
@@ -117,7 +121,8 @@ impl Cloud
     /// let cloud = CloudBuilder::new()
     ///     .protocol(protocol)
     ///     .domain("http://rpc.sys.com/")
-    ///     .finalize();
+    ///     .finalize()
+    ///     .unwrap();
     /// assert_eq!(protocol.to_owned(), cloud.protocol().into_string());
     /// ```
     pub fn protocol(&self) -> CloudProtocol

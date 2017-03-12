@@ -110,7 +110,8 @@ pub struct ChannelBuilder
 }
 
 
-/// This `Cloud` struct contains all the items that exist for the cloud field under 'Channel'.
+/// This `Cloud` struct contains all the items that exist for the cloud field
+/// under 'Channel'.
 #[derive(Clone)]
 pub struct Cloud
 {
@@ -134,7 +135,8 @@ pub struct CloudBuilder
 }
 
 
-/// This `Enclosure` struct contains all the items that exist for the enclosure field under 'Item'.
+/// This `Enclosure` struct contains all the items that exist for the enclosure
+/// field under 'Item'.
 #[derive(Clone)]
 pub struct Enclosure
 {
@@ -154,7 +156,8 @@ pub struct EnclosureBuilder
 }
 
 
-/// This `Guid` struct contains all the items that exist for the guid field under 'Item'.
+/// This `Guid` struct contains all the items that exist for the guid field
+/// under 'Item'.
 #[derive(Clone)]
 pub struct Guid
 {
@@ -167,12 +170,13 @@ pub struct Guid
 #[derive(Clone, Default)]
 pub struct GuidBuilder
 {
-    permalink: bool,
+    permalink: Option<bool>,
     value: String,
 }
 
 
-/// This `Image` struct contains all the items that exist for the image field under 'Channel'.
+/// This `Image` struct contains all the items that exist for the image field
+/// under 'Channel'.
 #[derive(Clone)]
 pub struct Image
 {
@@ -192,8 +196,8 @@ pub struct ImageBuilder
     url: String,
     title: String,
     link: String,
-    width: i64,
-    height: i64,
+    width: Option<i64>,
+    height: Option<i64>,
     description: Option<String>,
 }
 
@@ -233,7 +237,8 @@ pub struct ItemBuilder
 }
 
 
-/// This `Source` struct contains all the items that exist for the source field under 'Item'.
+/// This `Source` struct contains all the items that exist for the source field
+/// under 'Item'.
 #[derive(Clone)]
 pub struct Source
 {

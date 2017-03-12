@@ -8,11 +8,11 @@
 // (at your option) any later version.
 
 
-//! The fields can be set for enclosure by using the methods under `EnclosureBuilder`.
+//! The fields can be set for enclosure by using the methods under
+//! `EnclosureBuilder`.
 
 
 use channels::{Enclosure, EnclosureBuilder};
-use errors;
 use mime::Mime;
 use utils::string_utils;
 
@@ -65,10 +65,6 @@ impl EnclosureBuilder
     /// ```
     pub fn length(&mut self, length: i64) -> &mut EnclosureBuilder
     {
-        if length < 0
-        {
-            panic!(errors::negative_error("enclosure length", length));
-        }
         self.length = length;
         self
     }
@@ -106,18 +102,26 @@ impl EnclosureBuilder
     ///         .mime_type("audio/ogg")
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Enclosure
+    pub fn finalize(&self) -> Result<Enclosure, String>
     {
-        let url_string = self.url.clone();
-        let url = string_utils::str_to_url(url_string.as_str(), "Enclosure Url");
+        let url = string_utils::str_to_url(self.url.as_str())?;
 
-        let mime = self.mime_type.clone();
-        let mime_type: Mime = mime.parse().expect(errors::str_to_mime_error().as_str());
+        let mime_type: Mime = match self.mime_type.parse()
+        {
+            Ok(val) => val,
+            Err(err) => return Err(format!("Error: {:?}", err)),
+        };
 
-        Enclosure {
-            url: url,
-            length: self.length,
-            mime_type: mime_type,
+
+        if self.length < 0
+        {
+            return Err("Enclosure Length cannot be a negative value".to_owned());
         }
+
+        Ok(Enclosure {
+               url: url,
+               length: self.length,
+               mime_type: mime_type,
+           })
     }
 }

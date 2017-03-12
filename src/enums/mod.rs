@@ -36,18 +36,18 @@ impl CloudProtocol
     /// use feed::enums::CloudProtocol;
     ///
     /// let s = "soap";
-    /// let e = CloudProtocol::value_of(s);
+    /// let e = CloudProtocol::value_of(s).unwrap();
     ///
     /// assert_eq!(s.to_owned(), e.into_string());
     /// ```
-    pub fn value_of(s: &str) -> CloudProtocol
+    pub fn value_of(s: &str) -> Result<CloudProtocol, String>
     {
         match s
         {
-            "http-post" => CloudProtocol::HttpPost,
-            "xml-rpc" => CloudProtocol::XmlRpc,
-            "soap" => CloudProtocol::Soap,
-            _ => panic!(format!("Invalid value: {}", s)),
+            "http-post" => Ok(CloudProtocol::HttpPost),
+            "xml-rpc" => Ok(CloudProtocol::XmlRpc),
+            "soap" => Ok(CloudProtocol::Soap),
+            _ => Err(format!("Invalid value: {}", s)),
         }
     }
 
@@ -101,22 +101,22 @@ impl Day
     /// use feed::enums::Day;
     ///
     /// let s = "Tuesday";
-    /// let e = Day::value_of(s);
+    /// let e = Day::value_of(s).unwrap();
     ///
     /// assert_eq!(s.to_owned(), e.into_string());
     /// ```
-    pub fn value_of(s: &str) -> Day
+    pub fn value_of(s: &str) -> Result<Day, String>
     {
         match s
         {
-            "Monday" => Day::Monday,
-            "Tuesday" => Day::Tuesday,
-            "Wednesday" => Day::Wednesday,
-            "Thursday" => Day::Thursday,
-            "Friday" => Day::Friday,
-            "Saturday" => Day::Saturday,
-            "Sunday" => Day::Sunday,
-            _ => panic!(format!("Invalid value: {}", s)),
+            "Monday" => Ok(Day::Monday),
+            "Tuesday" => Ok(Day::Tuesday),
+            "Wednesday" => Ok(Day::Wednesday),
+            "Thursday" => Ok(Day::Thursday),
+            "Friday" => Ok(Day::Friday),
+            "Saturday" => Ok(Day::Saturday),
+            "Sunday" => Ok(Day::Sunday),
+            _ => Err(format!("Invalid value: {}", s)),
         }
     }
 

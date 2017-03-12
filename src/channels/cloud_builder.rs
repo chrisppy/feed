@@ -13,7 +13,6 @@
 
 use channels::{Cloud, CloudBuilder};
 use enums::CloudProtocol;
-use errors;
 use utils::string_utils;
 
 
@@ -63,10 +62,7 @@ impl CloudBuilder
     /// ```
     pub fn port(&mut self, port: i64) -> &mut CloudBuilder
     {
-        if port < 0
-        {
-            panic!(errors::negative_error("cloud port", port));
-        }
+
         self.port = port;
         self
     }
@@ -138,19 +134,22 @@ impl CloudBuilder
     ///         .protocol("soap")
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Cloud
+    pub fn finalize(&self) -> Result<Cloud, String>
     {
-        let domain_string = self.domain.clone();
-        let domain = string_utils::str_to_url(domain_string.as_str(), "Cloud Domain");
-
-        let protocol = CloudProtocol::value_of(self.protocol.clone().as_str());
-
-        Cloud {
-            domain: domain,
-            port: self.port,
-            path: self.path.clone(),
-            register_procedure: self.register_procedure.clone(),
-            protocol: protocol,
+        if self.port < 0
+        {
+            return Err("Cloud Port cannot be a negative value".to_owned());
         }
+
+        let domain = string_utils::str_to_url(self.domain.as_str())?;
+        let protocol = CloudProtocol::value_of(self.protocol.as_str())?;
+
+        Ok(Cloud {
+               domain: domain,
+               port: self.port,
+               path: self.path.clone(),
+               register_procedure: self.register_procedure.clone(),
+               protocol: protocol,
+           })
     }
 }

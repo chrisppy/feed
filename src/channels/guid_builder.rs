@@ -43,14 +43,7 @@ impl GuidBuilder
     /// ```
     pub fn permalink(&mut self, permalink: Option<bool>) -> &mut GuidBuilder
     {
-        if permalink.is_some()
-        {
-            self.permalink = permalink.unwrap();
-        }
-        else
-        {
-            self.permalink = true;
-        }
+        self.permalink = permalink;
         self
     }
 
@@ -84,11 +77,20 @@ impl GuidBuilder
     ///         .permalink(Some(true))
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Guid
+    pub fn finalize(&self) -> Result<Guid, String>
     {
-        Guid {
-            permalink: self.permalink,
-            value: self.value.clone(),
+        let permalink = if self.permalink.is_some()
+        {
+            self.permalink.unwrap()
         }
+        else
+        {
+            true
+        };
+
+        Ok(Guid {
+               permalink: permalink,
+               value: self.value.clone(),
+           })
     }
 }

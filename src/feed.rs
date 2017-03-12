@@ -28,8 +28,9 @@ impl Feed
     ///
     /// let channel = ChannelBuilder::new()
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
-    /// let feed = FeedBuilder::channel(channel).finalize();
+    ///     .finalize()
+    ///     .unwrap();
+    /// let feed = FeedBuilder::channel(channel).unwrap();
     /// let channels = feed.channel();
     /// ```
     pub fn channel(self) -> Channel
@@ -48,12 +49,13 @@ impl Feed
     ///
     /// let channel = ChannelBuilder::new()
     ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize();
-    /// let feed = FeedBuilder::channel(channel).finalize();
-    /// let xml = feed.to_xml();
+    ///     .finalize()
+    ///     .unwrap();
+    /// let feed = FeedBuilder::channel(channel).unwrap();
+    /// feed.to_xml().unwrap();
     /// ```
-    pub fn to_xml(&self) -> Vec<u8>
+    pub fn to_xml(&self) -> Result<Vec<u8>, String>
     {
-        writer_utils::write(&self.channel)
+        Ok(writer_utils::write(&self.channel)?)
     }
 }

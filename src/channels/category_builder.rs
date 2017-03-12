@@ -79,22 +79,17 @@ impl CategoryBuilder
     ///         .domain(None)
     ///         .finalize();
     /// ```
-    pub fn finalize(&self) -> Category
+    pub fn finalize(&self) -> Result<Category, String>
     {
-        let domain = if self.domain.is_none()
+        let domain = match self.domain.clone()
         {
-            None
-        }
-        else
-        {
-            let d = self.domain.clone().unwrap();
-            let url = string_utils::str_to_url(d.as_str(), "Category Domain");
-            Some(url)
+            Some(val) => Some(string_utils::str_to_url(val.as_str())?),
+            None => None,
         };
 
-        Category {
-            name: self.name.clone(),
-            domain: domain,
-        }
+        Ok(Category {
+               name: self.name.clone(),
+               domain: domain,
+           })
     }
 }

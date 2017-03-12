@@ -1,6 +1,6 @@
 [package]
 name          = "feed"
-version       = "2.0.2"
+version       = "3.0.0"
 authors       = ["Chris Palmer <pennstate5013@gmail.com>"]
 description   = "Library for creating and parsing rss feeds."
 documentation = "https://docs.rs/feed/"
