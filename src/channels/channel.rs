@@ -656,7 +656,7 @@ impl Channel
     ///     .skip_days(Some(skip_days_vec.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
-    ///     .unwrap();  
+    ///     .unwrap();
     ///
     /// let skip_days_option = channels.skip_days();
     /// assert!(skip_days_option.is_some());
