@@ -41,7 +41,7 @@
 //! use feed::FeedBuilder;
 //!
 //! let url_str = "https://feedpress.me/usererror.xml";
-//! let feed = FeedBuilder::read_from_url(url_str).unwrap();
+//! let feed = FeedBuilder::from_url(url_str).unwrap();
 //! let channel = feed.channel();
 //! println!("Title: {}", channel.title());
 //! ```
@@ -64,7 +64,7 @@
 //!         .description(description.as_ref())
 //!         .finalize()
 //!         .unwrap();
-//! let feed = FeedBuilder::channel(channel).unwrap();
+//! let feed = FeedBuilder::from_channel(channel).unwrap();
 //! let xml = feed.to_xml().unwrap();
 //! println!("Feed: {:?}", xml);
 //! ```
