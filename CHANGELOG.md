@@ -8,6 +8,8 @@
 + Breaking Changes
     + All Builder finalize returns are now wrapped in result
     + feed.to_xml() is now wrapped in result
+    + renamed FeedBuilder::channel to FeedBuilder::from_channel
+    + renamed FeedBuilder::read_from_url to FeedBuilder::from_url
 + Refactor
     + None
 + Tests

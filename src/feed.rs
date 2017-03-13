@@ -30,7 +30,7 @@ impl Feed
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// let feed = FeedBuilder::channel(channel).unwrap();
+    /// let feed = FeedBuilder::from_channel(channel).unwrap();
     /// let channels = feed.channel();
     /// ```
     pub fn channel(self) -> Channel
@@ -51,7 +51,7 @@ impl Feed
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// let feed = FeedBuilder::channel(channel).unwrap();
+    /// let feed = FeedBuilder::from_channel(channel).unwrap();
     /// feed.to_xml().unwrap();
     /// ```
     pub fn to_xml(&self) -> Result<Vec<u8>, String>

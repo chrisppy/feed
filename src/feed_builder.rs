@@ -33,9 +33,9 @@ impl FeedBuilder
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// FeedBuilder::channel(channel).unwrap();
+    /// FeedBuilder::from_channel(channel).unwrap();
     /// ```
-    pub fn channel(channel: Channel) -> Result<Feed, String>
+    pub fn from_channel(channel: Channel) -> Result<Feed, String>
     {
         Ok(Feed { channel: channel })
     }
@@ -61,7 +61,7 @@ impl FeedBuilder
     /// ```
     pub fn from_xml(xml: &str) -> Result<Feed, String>
     {
-        FeedBuilder::channel(reader_utils::read(xml)?)
+        FeedBuilder::from_channel(reader_utils::read(xml)?)
     }
 
 
@@ -73,16 +73,16 @@ impl FeedBuilder
     /// use feed::FeedBuilder;
     ///
     /// let url = "https://feedpress.me/usererror.xml";
-    /// let feed = FeedBuilder::read_from_url(url).unwrap();
+    /// let feed = FeedBuilder::from_url(url).unwrap();
     /// feed.channel();
     /// ```
-    pub fn read_from_url(feed_str: &str) -> Result<Feed, String>
+    pub fn from_url(url: &str) -> Result<Feed, String>
     {
-        let feed_url = string_utils::str_to_url(feed_str)?;
+        let feed_url = string_utils::str_to_url(url)?;
         let mut xml = Vec::new();
         let mut handle = Easy::new();
 
-        let url = handle.url(feed_url.into_string().as_str());
+        let handle_url = handle.url(feed_url.into_string().as_str());
         {
             let mut transfer = handle.transfer();
             transfer.write_function(|data| {
@@ -93,9 +93,9 @@ impl FeedBuilder
             transfer.perform().unwrap();
         }
 
-        if url.is_err()
+        if handle_url.is_err()
         {
-            return Err(format!("Error: {:?}", url.unwrap_err()));
+            return Err(format!("Error: {:?}", handle_url.unwrap_err()));
         }
 
         let content_type = match handle.content_type()
