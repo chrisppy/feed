@@ -10,8 +10,6 @@
 
 #![doc(html_root_url = "https://docs.rs/feed/")]
 #![deny(missing_docs)]
-#![cfg_attr(feature="clippy", feature(plugin))]
-#![cfg_attr(feature="clippy", plugin(clippy))]
 
 
 //! # feed 3.0
