@@ -30,7 +30,9 @@ pub mod source_builder;
 pub mod text_input;
 pub mod text_input_builder;
 
+pub mod itunes;
 
+use self::itunes::{ITunesChannelExtension, ITunesItemExtension};
 use chrono::*;
 use enums::{CloudProtocol, Day};
 use mime::Mime;
@@ -80,6 +82,7 @@ pub struct Channel
     skip_hours: Option<Vec<i64>>,
     skip_days: Option<Vec<Day>>,
     items: Option<Vec<Item>>,
+    itunes_ext: Option<ITunesChannelExtension>,
 }
 
 
@@ -107,6 +110,7 @@ pub struct ChannelBuilder
     skip_hours: Option<Vec<i64>>,
     skip_days: Option<Vec<String>>,
     items: Option<Vec<Item>>,
+    itunes_ext: Option<ITunesChannelExtension>,
 }
 
 
@@ -217,6 +221,7 @@ pub struct Item
     guid: Option<Guid>,
     pub_date: Option<DateTime<FixedOffset>>,
     source: Option<Source>,
+    itunes_ext: Option<ITunesItemExtension>,
 }
 
 
@@ -234,6 +239,7 @@ pub struct ItemBuilder
     guid: Option<Guid>,
     pub_date: Option<String>,
     source: Option<Source>,
+    itunes_ext: Option<ITunesItemExtension>,
 }
 
 

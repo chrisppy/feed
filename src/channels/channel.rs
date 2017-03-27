@@ -13,6 +13,7 @@
 
 
 use channels::{Category, Channel, Cloud, Image, Item, TextInput};
+use channels::itunes::ITunesChannelExtension;
 use chrono::*;
 use enums::Day;
 use url::Url;
@@ -755,5 +756,12 @@ impl Channel
     pub fn items(&self) -> Option<Vec<Item>>
     {
         self.items.clone()
+    }
+
+
+    /// TODO
+    pub fn itunes_ext(&self) -> Option<ITunesChannelExtension>
+    {
+        self.itunes_ext.clone()
     }
 }

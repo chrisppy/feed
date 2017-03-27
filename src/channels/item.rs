@@ -12,6 +12,7 @@
 
 
 use channels::{Category, Enclosure, Guid, Item, Source};
+use channels::itunes::ITunesItemExtension;
 use chrono::*;
 use url::Url;
 
@@ -391,5 +392,12 @@ impl Item
     pub fn source(&self) -> Option<Source>
     {
         self.source.clone()
+    }
+
+
+    /// TODO
+    pub fn itunes_ext(&self) -> Option<ITunesItemExtension>
+    {
+        self.itunes_ext.clone()
     }
 }

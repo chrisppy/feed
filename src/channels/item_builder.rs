@@ -12,6 +12,7 @@
 
 
 use channels::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
+use channels::itunes::ITunesItemExtension;
 use utils::string_utils;
 
 
@@ -230,6 +231,14 @@ impl ItemBuilder
     }
 
 
+    /// TODO
+    pub fn itunes_ext(&mut self, itunes_ext: Option<ITunesItemExtension>) -> &mut ItemBuilder
+    {
+        self.itunes_ext = itunes_ext;
+        self
+    }
+
+
     /// Construct the `Item` from the `ItemBuilder`.
     ///
     /// # Examples
@@ -283,6 +292,7 @@ impl ItemBuilder
                guid: self.guid.clone(),
                pub_date: pub_date,
                source: self.source.clone(),
+               itunes_ext: self.itunes_ext.clone(),
            })
     }
 }

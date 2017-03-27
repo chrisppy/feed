@@ -12,6 +12,7 @@
 
 
 use channels::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
+use channels::itunes::ITunesChannelExtension;
 use enums::Day;
 use utils::string_utils;
 
@@ -430,6 +431,14 @@ impl ChannelBuilder
     }
 
 
+    /// TODO
+    pub fn itunes_ext(&mut self, itunes_ext: Option<ITunesChannelExtension>) -> &mut ChannelBuilder
+    {
+        self.itunes_ext = itunes_ext;
+        self
+    }
+
+
     /// Construct the `Channel` from the `ChannelBuilder`.
     ///
     /// # Examples
@@ -540,6 +549,7 @@ impl ChannelBuilder
                skip_hours: self.skip_hours.clone(),
                skip_days: skip_days,
                items: self.items.clone(),
+               itunes_ext: self.itunes_ext.clone(),
            })
     }
 }
