@@ -85,10 +85,11 @@ impl FeedBuilder
         let handle_url = handle.url(feed_url.into_string().as_str());
         {
             let mut transfer = handle.transfer();
-            transfer.write_function(|data| {
-                                        xml.extend_from_slice(data);
-                                        Ok(data.len())
-                                    })
+            transfer
+                .write_function(|data| {
+                                    xml.extend_from_slice(data);
+                                    Ok(data.len())
+                                })
                 .unwrap();
             transfer.perform().unwrap();
         }
