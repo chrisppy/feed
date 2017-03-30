@@ -39,14 +39,7 @@ install:
   - export RUSTFLAGS="-C link-dead-code"
   - kcov --version
 
-  # 2. Install rustup.
-  - if [ "$TRAVIS_OS_NAME" = 'linux' ]; then OS=unknown-linux-gnu; else OS=apple-darwin; fi
-  - export HOST=$ARCH-$OS
-  - curl -SfLO "https://static.rust-lang.org/rustup/dist/$HOST/rustup-init"
-  - chmod u+x rustup-init
-  - ./rustup-init -y --default-host "$HOST" --default-toolchain "$TRAVIS_RUST_VERSION"
-
-  # 3. Install rustfmt
+  # 2. Install rustfmt
   - (cargo install rustfmt || true)
   - export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$PATH
   - rustc -vV
@@ -56,6 +49,6 @@ script:
   - cargo fmt -- --write-mode=diff
   - cargo build
   - cargo test
-  
+
 after_success: |
   - cargo run -- kcov --no-clean-rebuild --lib --coveralls
