@@ -21,13 +21,13 @@ install:
   - export PATH=$HOME/.local/bin:$PATH
   - export PATH=$HOME/.cargo/bin:$PATH
 script:
-  - travis-cargo fmt -- --write-mode=diff
+  - cargo fmt -- --write-mode=diff
   - travis-cargo build
   - travis-cargo test
   - travis-cargo --only stable doc
 after_success:
-  - travis-cargo --only stable doc-upload
   - travis-cargo coveralls --no-sudo --verify
+  - travis-cargo --only stable doc-upload
 notifications:
   email:
     on_success: never
