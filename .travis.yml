@@ -1,34 +1,61 @@
 language: rust
+sudo: false
+
 rust:
   - stable
   - beta
+
 addons:
   apt:
     packages:
       - libcurl4-openssl-dev
       - libelf-dev
       - libdw-dev
-      - cmake
-      - gcc
       - binutils-dev
-install: |
-  (cargo install rustfmt || true) &&
-  export PATH=$HOME/.local/bin:$PATH &&
-  export PATH=$HOME/.cargo/bin:$PATH
-script: |
-  cargo fmt -- --write-mode=diff &&
-  cargo build &&
-  cargo test
+      - g++
+
+os:
+  - linux
+
+env:
+    matrix:
+        - ARCH=x86_64
+
+install: 
+ # 1. Install kcov v33.
+  - export KCOV_VERSION=33
+  - mkdir -p ~/.cargo/bin
+  - |
+      wget https://github.com/SimonKagstrom/kcov/archive/v${KCOV_VERSION}.tar.gz &&
+      tar xzf v${KCOV_VERSION}.tar.gz &&
+      cd kcov-${KCOV_VERSION} &&
+      mkdir build &&
+      cd build &&
+      cmake .. &&
+      make &&
+      cp src/kcov src/libkcov_sowrapper.so ~/.cargo/bin &&
+      cd ../..
+  - export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/Library/Python/2.7/bin:$PATH
+  - export RUSTFLAGS="-C link-dead-code"
+  - kcov --version
+
+  # 2. Install rustup.
+  - if [ "$TRAVIS_OS_NAME" = 'linux' ]; then OS=unknown-linux-gnu; else OS=apple-darwin; fi
+  - export HOST=$ARCH-$OS
+  - curl -SfLO "https://static.rust-lang.org/rustup/dist/$HOST/rustup-init"
+  - chmod u+x rustup-init
+  - ./rustup-init -y --default-host "$HOST" --default-toolchain "$TRAVIS_RUST_VERSION"
+
+  # 3. Install rustfmt
+  - (cargo install rustfmt || true)
+  - export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$PATH
+  - rustc -vV
+  - cargo -vV
+
+script: 
+  - cargo fmt -- --write-mode=diff
+  - cargo build
+  - cargo test
+  
 after_success: |
-  wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
-  tar xzf master.tar.gz &&
-  cd kcov-master &&
-  mkdir build &&
-  cd build &&
-  cmake .. &&
-  make &&
-  sudo make install &&
-  cd ../.. &&
-  rm -rf kcov-master &&
-  kcov --coveralls-id=$TRAVIS_JOB_ID --exclude-pattern=/.cargo,/usr/lib --verify target/cov target/debug/feed &&
-  echo "Uploaded code coverage"
+  - cargo run -- kcov --no-clean-rebuild --lib --coveralls
