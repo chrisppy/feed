@@ -1,29 +1,34 @@
+sudo: false
 language: rust
 rust:
   - stable
   - beta
-sudo: false
+os:
+  - linux
+addons:
+apt:
+  packages:
+    - libcurl4-openssl-dev
+    - libelf-dev
+    - libdw-dev
+    - binutils-dev
 before_script:
-  - pip install 'travis-cargo<0.2' --user
+  - pip install -v 'travis-cargo<0.2' --user
   - (cargo install rustfmt || true)
   - export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$PATH
 script: 
   - cargo fmt -- --write-mode=diff
-  - cargo build
-  - cargo test
-  - cargo doc --no-deps
+  - travis-cargo clean
+  - travis-cargo build
+  - travis-cargo test
+  - travis-cargo --only stable doc
 after_success:
-  - travis-cargo --only nightly doc-upload
-  - travis-cargo coveralls --no-sudo
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis-cargo --only stable doc-upload; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_RUST_VERSION" == "stable" ]]; then travis-cargo coveralls --no-sudo --verify; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_RUST_VERSION" == "stable" ]]; then KCOV=./kcov/build/src/kcov ./coverage; fi
 notifications:
   email:
     on_success: never
-addons:
-  apt:
-    packages:
-      - libcurl4-openssl-dev
-      - libelf-dev
-      - libdw-dev
 env:
   global:
     - secure: eCyV4mrlVXjY7CRHMMzHxjXIJPn4pcjoOGTiT0zAS6AutWXs64OVtAB7zmvPjlMuarXPG8YmR3DIrdLc9tcG6eQHSTBw1Xp23L+/DPyklGVYZrHs9QNWIPkTLk9ezdJUZvgQzJvM4wTRiynxSk9usWbsh+51RM9pCYD8cWrimnQp35FCtXGIa24WlQO4fRHprjvYMtwRoBl8nIuFMWGPsbKOICjQgXUkJ8Ae/xqWzDQzz0BD4WHLfl1r90+tAATi2t0rXbhTjK4t+HQgiJRaKGvLauTdJTOcSPWp0lNKIBoCPUILA6mPCk+2fWfEK53ktcEvLCGvZBhXMzHSnT2bNwFHh6KBMaIRTgMz8LsLR4JXRllZapGD7xzsADfSH/L9YCyP/st/kbANklWFZiTkYMR5H2eDK4r1V71VYPgrwAv7XlWFGPYIsjywO3gfWT2wnO9dZaFIYFdFAl6CX4KkprmiDiAM5yjBvUA3HEaPUXecsKezPxlosWIe1V4Stc5o5oMAIruEcMLqBJ6Ut1GGtNFk7V6FW+7kNS5+CwdQ9h3Bzi3wVjK9CpL9Jl5iepPsXv3y+W9a5ZrsgwmLq9Fy2v8DjD0udFyxyDIzTqSKwBcBii70clcLK8JA7UVFGmQGRS2t7Jec7Y4smxRlQU3OA8JFWWJaYBWvyuoBCk4VHYc=
