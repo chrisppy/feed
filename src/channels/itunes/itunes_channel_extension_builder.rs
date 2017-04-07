@@ -12,7 +12,8 @@
 //! `ITunesChannelExtensionBuilder`.
 
 
-use channels::itunes::{ITunesCategory, ITunesChannelExtension, ITunesChannelExtensionBuilder, ITunesOwner};
+use channels::itunes::ITunesChannelExtensionBuilder;
+use rss::extension::itunes::{ITunesCategory, ITunesChannelExtension, ITunesOwner};
 
 
 impl ITunesChannelExtensionBuilder

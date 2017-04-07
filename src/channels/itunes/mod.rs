@@ -21,7 +21,7 @@ pub mod itunes_channel_extension_getters;
 pub mod itunes_channel_extension_builder;
 
 
-use rss::extension::itunes::{ITunesCategory, ITunesChannelExtension, ITunesOwner, ITunesItemExtension};
+use rss::extension::itunes::{ITunesCategory, ITunesOwner};
 
 
 /// The Getter functions for `ITunesCategory`

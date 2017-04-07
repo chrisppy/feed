@@ -12,7 +12,8 @@
 //! `ITunesItemExtensionBuilder`.
 
 
-use channels::itunes::{ITunesItemExtension, ITunesItemExtensionBuilder};
+use channels::itunes::ITunesItemExtensionBuilder;
+use rss::extension::itunes::ITunesItemExtension;
 
 
 impl ITunesItemExtensionBuilder

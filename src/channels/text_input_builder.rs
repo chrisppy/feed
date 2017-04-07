@@ -12,7 +12,8 @@
 //! under `TextInputBuilder`.
 
 
-use channels::{TextInput, TextInputBuilder};
+use channels::TextInputBuilder;
+use rss::TextInput;
 use utils::string_utils;
 
 

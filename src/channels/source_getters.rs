@@ -23,7 +23,7 @@ impl SourceGetters for Source
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::SourceBuilder;
+    /// use feed::channels::{SourceBuilder, SourceGetters};
     ///
     /// let url = "http://www.tomalak.org/links2.xml";
     ///
@@ -31,7 +31,7 @@ impl SourceGetters for Source
     ///     .url(url)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(url.to_owned(), source.url().into_string());
+    /// assert_eq!(url.to_owned(), source.url());
     /// ```
     fn url(&self) -> String
     {
@@ -44,7 +44,7 @@ impl SourceGetters for Source
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::SourceBuilder;
+    /// use feed::channels::{SourceBuilder, SourceGetters};
     ///
     /// let title = "Tomalak's Realm";
     ///

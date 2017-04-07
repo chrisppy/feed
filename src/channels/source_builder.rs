@@ -77,7 +77,7 @@ impl SourceBuilder
     /// let source = SourceBuilder::new()
     ///     .url("http://www.example.com/source")
     ///     .title(None)
-    ///     .validate.unwrap()
+    ///     .validate().unwrap()
     ///     .finalize().unwrap();
     /// ```
     pub fn validate(&mut self) -> Result<&mut SourceBuilder, String>

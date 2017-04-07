@@ -12,7 +12,8 @@
 //! `ITunesOwnerBuilder`.
 
 
-use channels::itunes::{ITunesOwner, ITunesOwnerBuilder};
+use channels::itunes::ITunesOwnerBuilder;
+use rss::extension::itunes::ITunesOwner;
 
 
 impl ITunesOwnerBuilder

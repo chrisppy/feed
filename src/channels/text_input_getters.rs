@@ -23,7 +23,7 @@ impl TextInputGetters for TextInput
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::TextInputBuilder;
+    /// use feed::channels::{TextInputBuilder, TextInputGetters};
     ///
     /// let title = "Enter Comment";
     /// let text_input = TextInputBuilder::new()
@@ -44,7 +44,7 @@ impl TextInputGetters for TextInput
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::TextInputBuilder;
+    /// use feed::channels::{TextInputBuilder, TextInputGetters};
     ///
     /// let description = "Provided Feedback";
     /// let text_input = TextInputBuilder::new()
@@ -65,7 +65,7 @@ impl TextInputGetters for TextInput
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::TextInputBuilder;
+    /// use feed::channels::{TextInputBuilder, TextInputGetters};
     ///
     /// let name = "Comment";
     /// let text_input = TextInputBuilder::new()
@@ -86,14 +86,14 @@ impl TextInputGetters for TextInput
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::TextInputBuilder;
+    /// use feed::channels::{TextInputBuilder, TextInputGetters};
     ///
     /// let link = "http://www.example.com/feedback";
     /// let text_input = TextInputBuilder::new()
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(link.to_owned(), text_input.link().into_string());
+    /// assert_eq!(link.to_owned(), text_input.link());
     /// ```
     fn link(&self) -> String
     {
