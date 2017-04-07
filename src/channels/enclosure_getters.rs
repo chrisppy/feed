@@ -23,7 +23,7 @@ impl EnclosureGetters for Enclosure
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::EnclosureBuilder;
+    /// use feed::channels::{EnclosureBuilder, EnclosureGetters};
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -32,7 +32,7 @@ impl EnclosureGetters for Enclosure
     ///     .mime_type("audio/ogg")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(url.to_owned(), enclosure.url().into_string())
+    /// assert_eq!(url.to_owned(), enclosure.url())
     /// ```
     fn url(&self) -> String
     {
@@ -45,7 +45,7 @@ impl EnclosureGetters for Enclosure
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::EnclosureBuilder;
+    /// use feed::channels::{EnclosureBuilder, EnclosureGetters};
     ///
     /// let length: i64 = 70772893;
     ///
@@ -58,7 +58,7 @@ impl EnclosureGetters for Enclosure
     ///     .mime_type("audio/ogg")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(length, enclosure.length())
+    /// assert_eq!(length.to_string(), enclosure.length())
     /// ```
     fn length(&self) -> String
     {
@@ -71,7 +71,7 @@ impl EnclosureGetters for Enclosure
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::EnclosureBuilder;
+    /// use feed::channels::{EnclosureBuilder, EnclosureGetters};
     ///
     /// let enclosure_type = "audio/ogg";
     ///
@@ -83,7 +83,7 @@ impl EnclosureGetters for Enclosure
     ///     .mime_type(enclosure_type)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type().to_string())
+    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type())
     /// ```
     fn mime_type(&self) -> String
     {

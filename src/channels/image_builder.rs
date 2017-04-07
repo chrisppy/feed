@@ -217,8 +217,18 @@ impl ImageBuilder
     /// ```
     pub fn finalize(&self) -> Result<Image, String>
     {
-        let width = string_utils::option_i64_to_option_string(self.width)?;
-        let height = string_utils::option_i64_to_option_string(self.height)?;
+
+        let width = match self.width
+        {
+            Some(val) => string_utils::i64_to_option_string(val)?,
+            None => string_utils::i64_to_option_string(88)?,
+        };
+
+        let height = match self.height
+        {
+            Some(val) => string_utils::i64_to_option_string(val)?,
+            None => string_utils::i64_to_option_string(31)?,
+        };
 
         Ok(Image {
                url: self.url.clone(),

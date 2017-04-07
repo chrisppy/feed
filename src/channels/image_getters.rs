@@ -22,7 +22,7 @@ impl ImageGetters for Image
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     ///
@@ -33,7 +33,7 @@ impl ImageGetters for Image
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(url.to_owned(), image.url().into_string());
+    /// assert_eq!(url.to_owned(), image.url());
     /// ```
     fn url(&self) -> String
     {
@@ -46,7 +46,7 @@ impl ImageGetters for Image
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let title = "LAS 300 Logo";
     ///
@@ -73,7 +73,7 @@ impl ImageGetters for Image
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     ///
@@ -84,7 +84,7 @@ impl ImageGetters for Image
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(link.to_owned(), image.link().into_string());
+    /// assert_eq!(link.to_owned(), image.link());
     /// ```
     fn link(&self) -> String
     {
@@ -97,7 +97,7 @@ impl ImageGetters for Image
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let default: i64 = 88;
     ///
@@ -111,11 +111,11 @@ impl ImageGetters for Image
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(default, image.width());
+    /// assert_eq!(default.to_string(), image.width().unwrap());
     /// ```
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let width: i64 = 60;
     ///
@@ -129,7 +129,7 @@ impl ImageGetters for Image
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(width, image.width());
+    /// assert_eq!(width.to_string(), image.width().unwrap());
     /// ```
     ///
     /// ```
@@ -144,7 +144,7 @@ impl ImageGetters for Image
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let default: i64 = 31;
     ///
@@ -158,11 +158,11 @@ impl ImageGetters for Image
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(default, image.height());
+    /// assert_eq!(default.to_string(), image.height().unwrap());
     /// ```
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let height: i64 = 60;
     ///
@@ -176,7 +176,7 @@ impl ImageGetters for Image
     ///     .link(link)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(height, image.height());
+    /// assert_eq!(height.to_string(), image.height().unwrap());
     /// ```
     fn height(&self) -> Option<String>
     {
@@ -189,7 +189,7 @@ impl ImageGetters for Image
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let url = "http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg";
     ///
@@ -205,7 +205,7 @@ impl ImageGetters for Image
     /// ```
     ///
     /// ```
-    /// use feed::channels::ImageBuilder;
+    /// use feed::channels::{ImageBuilder, ImageGetters};
     ///
     /// let description_string = "This is a test".to_owned();
     ///

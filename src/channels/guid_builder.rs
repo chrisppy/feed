@@ -40,7 +40,7 @@ impl GuidBuilder
     /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.permalink(Some(false));
+    /// guid_builder.is_permalink(Some(false));
     /// ```
     pub fn is_permalink(&mut self, is_permalink: Option<bool>) -> &mut GuidBuilder
     {
@@ -75,7 +75,7 @@ impl GuidBuilder
     ///
     /// let guid = GuidBuilder::new()
     ///         .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///         .permalink(Some(true))
+    ///         .is_permalink(Some(true))
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Result<Guid, String>

@@ -22,35 +22,35 @@ impl GuidGetters for Guid
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::GuidBuilder;
+    /// use feed::channels::{GuidBuilder, GuidGetters};
     ///
     /// let guid = GuidBuilder::new()
-    ///     .permalink(None)
+    ///     .is_permalink(None)
     ///     .finalize()
     ///     .unwrap();
-    /// assert!(guid.permalink());
+    /// assert!(guid.is_permalink());
     /// ```
     ///
     /// ```
-    /// use feed::channels::GuidBuilder;
+    /// use feed::channels::{GuidBuilder, GuidGetters};
     ///
     /// let permalink = true;
     /// let guid = GuidBuilder::new()
-    ///     .permalink(Some(permalink))
+    ///     .is_permalink(Some(permalink))
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(permalink, guid.permalink());
+    /// assert_eq!(permalink, guid.is_permalink());
     /// ```
     ///
     /// ```
-    /// use feed::channels::GuidBuilder;
+    /// use feed::channels::{GuidBuilder, GuidGetters};
     ///
     /// let permalink = false;
     /// let guid = GuidBuilder::new()
-    ///     .permalink(Some(permalink))
+    ///     .is_permalink(Some(permalink))
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(permalink, guid.permalink());
+    /// assert_eq!(permalink, guid.is_permalink());
     /// ```
     fn is_permalink(&self) -> bool
     {
@@ -63,7 +63,7 @@ impl GuidGetters for Guid
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::GuidBuilder;
+    /// use feed::channels::{GuidBuilder, GuidGetters};
     ///
     /// let guid = "9DE46946-2F90-4D5D-9047-7E9165C16E7C";
     /// let guid_obj = GuidBuilder::new()

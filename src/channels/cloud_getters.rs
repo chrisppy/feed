@@ -22,7 +22,7 @@ impl CloudGetters for Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let domain = "http://rpc.sys.com/";
@@ -31,7 +31,7 @@ impl CloudGetters for Cloud
     ///     .protocol("soap")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
+    /// assert_eq!(domain.to_owned(), cloud.domain());
     /// ```
     fn domain(&self) -> String
     {
@@ -44,7 +44,7 @@ impl CloudGetters for Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let port: i64 = 80;
@@ -54,7 +54,7 @@ impl CloudGetters for Cloud
     ///     .protocol("soap")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(port, cloud.port());
+    /// assert_eq!(port.to_string(), cloud.port());
     /// ```
     fn port(&self) -> String
     {
@@ -67,7 +67,7 @@ impl CloudGetters for Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let path = "/RPC2";
@@ -90,7 +90,7 @@ impl CloudGetters for Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let register_procedure = "pingMe";
@@ -113,7 +113,7 @@ impl CloudGetters for Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let protocol = "soap";
@@ -122,7 +122,7 @@ impl CloudGetters for Cloud
     ///     .domain("http://rpc.sys.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(protocol.to_owned(), cloud.protocol().into_string());
+    /// assert_eq!(protocol.to_owned(), cloud.protocol());
     /// ```
     fn protocol(&self) -> String
     {

@@ -24,7 +24,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let title = "The Linux Action Show! OGG";
     /// let channels = ChannelBuilder::new()
@@ -45,7 +45,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let link = "http://www.jupiterbroadcasting.com/";
     /// let channels = ChannelBuilder::new()
@@ -65,7 +65,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
     /// + "Action Show! A show that covers everything geeks care about in the "
@@ -89,7 +89,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let language_string = "en".to_owned();
     /// let channels = ChannelBuilder::new()
@@ -104,7 +104,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .language(None)
@@ -124,7 +124,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let copyright_string =
     ///     "Copyright 2002, Spartanburg Herald-Journal".to_owned();
@@ -140,7 +140,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .copyright(None)
@@ -160,7 +160,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let managing_editor_string =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
@@ -176,7 +176,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .managing_editor(None)
@@ -195,30 +195,30 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
-    /// let web_master_string =
+    /// let webmaster_string =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
     /// let channels = ChannelBuilder::new()
-    ///     .web_master(Some(web_master_string.clone()))
+    ///     .webmaster(Some(webmaster_string.clone()))
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// let web_master_option = channels.web_master();
-    /// assert!(web_master_option.is_some());
-    /// let web_master = web_master_option.unwrap();
-    /// assert_eq!(web_master_string.clone(), web_master);
+    /// let webmaster_option = channels.webmaster();
+    /// assert!(webmaster_option.is_some());
+    /// let webmaster = webmaster_option.unwrap();
+    /// assert_eq!(webmaster_string.clone(), webmaster);
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .web_master(None)
+    ///     .webmaster(None)
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// assert!(channels.web_master().is_none());
+    /// assert!(channels.webmaster().is_none());
     /// ```
     fn webmaster(&self) -> Option<String>
     {
@@ -231,7 +231,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     /// let channels = ChannelBuilder::new()
@@ -246,7 +246,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .pub_date(None)
@@ -266,7 +266,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let last_build_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     /// let channels = ChannelBuilder::new()
@@ -281,7 +281,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .last_build_date(None)
@@ -301,7 +301,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{ChannelBuilder, CategoryBuilder};
+    /// use feed::channels::{ChannelBuilder, ChannelGetters, CategoryBuilder};
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
@@ -326,7 +326,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .categories(None)
@@ -346,7 +346,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let generator_string = "Feeder 2.5.12(2294); ".to_owned()
     /// + "Mac OS X Version 10.9.5 (Build 13F34) "
@@ -364,7 +364,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .generator(None)
@@ -384,7 +384,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let docs_string = "http://blogs.law.harvard.edu/tech/rss/".to_owned();
     /// let channels = ChannelBuilder::new()
@@ -399,7 +399,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .docs(None)
@@ -418,7 +418,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{ChannelBuilder, CloudBuilder};
+    /// use feed::channels::{ChannelBuilder, ChannelGetters, CloudBuilder};
     ///
     /// let cloud = CloudBuilder::new()
     ///     .domain("http://rpc.sys.com/")
@@ -437,7 +437,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .cloud(None)
@@ -457,7 +457,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let ttl_num = 60;
     /// let channels = ChannelBuilder::new()
@@ -472,7 +472,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .ttl(None)
@@ -492,7 +492,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{ChannelBuilder, ImageBuilder};
+    /// use feed::channels::{ChannelBuilder, ChannelGetters, ImageBuilder};
     ///
     /// let image = ImageBuilder::new()
     ///     .link("http://www.jupiterbroadcasting.com")
@@ -513,7 +513,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .image(None)
@@ -533,7 +533,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let rating_string = "PG-13:".to_owned();
     /// let channels = ChannelBuilder::new()
@@ -548,7 +548,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .rating(None)
@@ -568,7 +568,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{ChannelBuilder, TextInputBuilder};
+    /// use feed::channels::{ChannelBuilder, ChannelGetters, TextInputBuilder};
     ///
     /// let text_input = TextInputBuilder::new()
     ///     .title("Enter Comment")
@@ -587,7 +587,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .text_input(None)
@@ -606,7 +606,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let skip_hours_vec: Vec<i64> = vec![6,7,8,14,22];
     /// let channels = ChannelBuilder::new()
@@ -625,7 +625,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .skip_hours(None)
@@ -645,7 +645,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let skip_days_vec: Vec<String> = vec!["Monday".to_owned(),
     /// "Sunday".to_owned(), "Thursday".to_owned(),
@@ -671,7 +671,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .skip_days(None)
@@ -691,7 +691,7 @@ impl ChannelGetters for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{ChannelBuilder, ItemBuilder};
+    /// use feed::channels::{ChannelBuilder, ChannelGetters, ItemBuilder};
     ///
     /// let link = "http://www.jupiterbroadcasting.com/97561/".to_owned()
     /// + "making-music-with-linux-las-408/";
@@ -742,7 +742,7 @@ impl ChannelGetters for Channel
     /// ```
     ///
     /// ```
-    /// use feed::channels::ChannelBuilder;
+    /// use feed::channels::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
     ///     .items(None)
