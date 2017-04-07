@@ -17,14 +17,14 @@ use channels::itunes::{ITunesItemExtension, ITunesItemExtensionBuilder};
 
 impl ITunesItemExtensionBuilder
 {
-    ///
+    /// Construct a new `ITunesItemExtensionBuilder` and return default values.
     pub fn new() -> ITunesItemExtensionBuilder
     {
         ITunesItemExtensionBuilder::default()
     }
 
 
-    ///
+    /// Set the optional author that exists uner `ITunesItemExtension`.
     pub fn author(&mut self, author: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.author = author;
@@ -32,7 +32,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional block that exists uner `ITunesItemExtension`.
     pub fn block(&mut self, block: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.block = block;
@@ -40,7 +40,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional image that exists uner `ITunesItemExtension`.
     pub fn image(&mut self, image: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.image = image;
@@ -48,7 +48,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional duration that exists uner `ITunesItemExtension`.
     pub fn duration(&mut self, duration: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.duration = duration;
@@ -56,7 +56,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional explicit that exists uner `ITunesItemExtension`.
     pub fn explicit(&mut self, explicit: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.explicit = explicit;
@@ -64,7 +64,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional closed_captioned that exists uner `ITunesItemExtension`.
     pub fn closed_captioned(&mut self, closed_captioned: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.closed_captioned = closed_captioned;
@@ -72,7 +72,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional order that exists uner `ITunesItemExtension`.
     pub fn order(&mut self, order: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.order = order;
@@ -80,7 +80,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional subtitle that exists uner `ITunesItemExtension`.
     pub fn subtitle(&mut self, subtitle: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.subtitle = subtitle;
@@ -88,7 +88,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional summary that exists uner `ITunesItemExtension`.
     pub fn summary(&mut self, summary: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.summary = summary;
@@ -96,7 +96,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional keywords that exists uner `ITunesItemExtension`.
     pub fn keywords(&mut self, keywords: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.keywords = keywords;
@@ -104,7 +104,7 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    ///
+    /// Construct the `ITunesItemExtension` from the `ITunesItemExtensionBuilder`.
     pub fn finalize(&self) -> Result<ITunesItemExtension, String>
     {
         Ok(ITunesItemExtension {

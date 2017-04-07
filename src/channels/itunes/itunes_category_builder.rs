@@ -17,14 +17,14 @@ use channels::itunes::{ITunesCategory, ITunesCategoryBuilder};
 
 impl ITunesCategoryBuilder
 {
-    ///
+    /// Construct a new `ITunesCategoryBuilder` and return default values.
     pub fn new() -> ITunesCategoryBuilder
     {
         ITunesCategoryBuilder::default()
     }
 
 
-    ///
+    /// Set the text that exists uner `ITunesCategory`.
     pub fn text(&mut self, text: &str) -> &mut ITunesCategoryBuilder
     {
         self.text = text.to_owned();
@@ -32,7 +32,7 @@ impl ITunesCategoryBuilder
     }
 
 
-    ///
+    /// Set the optional subcategory that exists uner `ITunesCategory`.
     pub fn subcategory(&mut self, subcategory: Option<Box<ITunesCategory>>) -> &mut ITunesCategoryBuilder
     {
         self.subcategory = subcategory;
@@ -40,7 +40,7 @@ impl ITunesCategoryBuilder
     }
 
 
-    ///
+    /// Construct the `ITunesCategory` from the `ITunesCategoryBuilder`.
     pub fn finalize(&self) -> Result<ITunesCategory, String>
     {
         Ok(ITunesCategory {

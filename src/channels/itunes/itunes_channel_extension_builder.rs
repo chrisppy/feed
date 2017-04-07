@@ -17,14 +17,14 @@ use channels::itunes::{ITunesCategory, ITunesChannelExtension, ITunesChannelExte
 
 impl ITunesChannelExtensionBuilder
 {
-    ///
+    /// Construct a new `ITunesChannelExtension` and return default values.
     pub fn new() -> ITunesChannelExtensionBuilder
     {
         ITunesChannelExtensionBuilder::default()
     }
 
 
-    ///
+    /// Set the optional author that exists uner `ITunesChannelExtension`.
     pub fn author(&mut self, author: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.author = author;
@@ -32,7 +32,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional block that exists uner `ITunesChannelExtension`.
     pub fn block(&mut self, block: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.block = block;
@@ -40,7 +40,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the categories that exists uner `ITunesChannelExtension`.
     pub fn categories(&mut self, categories: Option<Vec<ITunesCategory>>) -> &mut ITunesChannelExtensionBuilder
     {
         self.categories = categories;
@@ -48,7 +48,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional image that exists uner `ITunesChannelExtension`.
     pub fn image(&mut self, image: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.image = image;
@@ -56,7 +56,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional explicit that exists uner `ITunesChannelExtension`.
     pub fn explicit(&mut self, explicit: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.explicit = explicit;
@@ -64,7 +64,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional complete that exists uner `ITunesChannelExtension`.
     pub fn complete(&mut self, complete: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.complete = complete;
@@ -72,7 +72,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional new_feed_url that exists uner `ITunesChannelExtension`.
     pub fn new_feed_url(&mut self, new_feed_url: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.new_feed_url = new_feed_url;
@@ -80,7 +80,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional owner that exists uner `ITunesChannelExtension`.
     pub fn owner(&mut self, owner: Option<ITunesOwner>) -> &mut ITunesChannelExtensionBuilder
     {
         self.owner = owner;
@@ -88,7 +88,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional subtitle that exists uner `ITunesChannelExtension`.
     pub fn subtitle(&mut self, subtitle: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.subtitle = subtitle;
@@ -96,7 +96,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional summary that exists uner `ITunesChannelExtension`.
     pub fn summary(&mut self, summary: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.summary = summary;
@@ -104,7 +104,7 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Set the optional keywords that exists uner `ITunesChannelExtension`.
     pub fn keywords(&mut self, keywords: Option<String>) -> &mut ITunesChannelExtensionBuilder
     {
         self.keywords = keywords;
@@ -112,13 +112,19 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    ///
+    /// Construct the `ITunesChannelExtension` from the `ITunesChannelExtensionBuilder`.
     pub fn finalize(&self) -> Result<ITunesChannelExtension, String>
     {
+        let categories: Vec<ITunesCategory> = match self.categories.clone()
+        {
+            Some(val) => val,
+            None => Vec::new(),
+        };
+
         Ok(ITunesChannelExtension {
                author: self.author.clone(),
                block: self.block.clone(),
-               categories: self.categories.clone(),
+               categories: categories,
                image: self.image.clone(),
                explicit: self.explicit.clone(),
                complete: self.complete.clone(),
