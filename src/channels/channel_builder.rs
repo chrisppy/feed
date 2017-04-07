@@ -11,9 +11,10 @@
 //! `ChannelBuilder`.
 
 
-use channels::{Category, Channel, ChannelBuilder, Cloud, Image, Item, TextInput};
-use channels::itunes::ITunesChannelExtension;
+use channels::ChannelBuilder;
 use enums::Day;
+use rss::{Category, Channel, Cloud, Image, Item, TextInput};
+use rss::extension::itunes::ITunesChannelExtension;
 use utils::string_utils;
 
 
@@ -159,9 +160,9 @@ impl ChannelBuilder
     /// let mut channel_builder = ChannelBuilder::new();
     /// channel_builder.web_master(Some(web_master));
     /// ```
-    pub fn web_master(&mut self, web_master: Option<String>) -> &mut ChannelBuilder
+    pub fn webmaster(&mut self, webmaster: Option<String>) -> &mut ChannelBuilder
     {
-        self.web_master = web_master;
+        self.webmaster = webmaster;
         self
     }
 
@@ -439,6 +440,96 @@ impl ChannelBuilder
     }
 
 
+    /// Validate the contents of `Channel`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::ChannelBuilder;
+    ///
+    /// let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
+    /// + "Action Show! A show that covers everything geeks care about in the "
+    /// + "computer industry. Get a solid dose of Linux, gadgets, news events "
+    /// + "and much more!";
+    ///
+    /// let channels = ChannelBuilder::new()
+    ///         .title("The Linux Action Show! OGG")
+    ///         .link("http://www.jupiterbroadcasting.com")
+    ///         .description(description.as_ref())
+    ///         .language(None)
+    ///         .copyright(None)
+    ///         .managing_editor(None)
+    ///         .web_master(None)
+    ///         .pub_date(None)
+    ///         .last_build_date(None)
+    ///         .categories(None)
+    ///         .generator(None)
+    ///         .docs(None)
+    ///         .cloud(None)
+    ///         .ttl(None)
+    ///         .image(None)
+    ///         .rating(None)
+    ///         .text_input(None)
+    ///         .skip_hours(None)
+    ///         .skip_days(None)
+    ///         .items(None)
+    ///         .validate().unwrap()
+    ///         .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut ChannelBuilder, String>
+    {
+        string_utils::str_to_url(self.link.as_str())?;
+        string_utils::option_string_to_option_date(self.pub_date.clone())?;
+        string_utils::option_string_to_option_date(self.last_build_date.clone())?;
+
+        let docs = self.docs.clone();
+        if docs.is_some()
+        {
+            string_utils::str_to_url(docs.unwrap().as_str())?;
+        }
+
+        let skip_days = self.skip_days.clone();
+        if skip_days.is_some()
+        {
+            let mut days = skip_days.unwrap();
+            days.sort();
+            days.dedup();
+
+            for day in days
+            {
+                Day::value_of(day.as_str())?;
+            }
+        }
+
+        let skip_hours = self.skip_hours.clone();
+        if skip_hours.is_some()
+        {
+            let mut hours = skip_hours.unwrap();
+            hours.sort();
+            hours.dedup();
+
+            for hour in hours
+            {
+                if hour < 0
+                {
+                    return Err("Channel Skip Hour cannot be a negative value.".to_owned());
+                }
+                else if hour > 23
+                {
+                    return Err("Channel Skip Hour cannot be greater than 23.".to_owned());
+                }
+            }
+        }
+
+        if self.ttl.is_some() && self.ttl.unwrap() < 0
+        {
+            return Err("Channel ttl cannot be a negative value.".to_owned());
+        }
+
+        Ok(self)
+    }
+
+
     /// Construct the `Channel` from the `ChannelBuilder`.
     ///
     /// # Examples
@@ -476,80 +567,63 @@ impl ChannelBuilder
     /// ```
     pub fn finalize(&self) -> Result<Channel, String>
     {
-        let link = string_utils::str_to_url(self.link.as_str())?;
-        let pub_date = string_utils::option_string_to_option_date(self.pub_date.clone())?;
-        let last_build_date = string_utils::option_string_to_option_date(self.last_build_date.clone())?;
-
-        let docs = match self.docs.clone()
+        let items: Vec<Item> = match self.items.clone()
         {
-            Some(val) => Some(string_utils::str_to_url(val.as_str())?),
-            None => None,
+            Some(val) => val,
+            None => Vec::new(),
         };
 
-        let skip_days = match self.skip_days.clone()
+        let categories: Vec<Category> = match self.categories.clone()
+        {
+            Some(val) => val,
+            None => Vec::new(),
+        };
+
+        let skip_days: Vec<String> = match self.skip_days.clone()
+        {
+            Some(val) => val,
+            None => Vec::new(),
+        };
+
+
+        let skip_hours: Vec<String> = match self.skip_hours.clone()
         {
             Some(val) =>
             {
-                let mut days = Vec::new();
-
-                let mut skip_days_vec = val;
-                skip_days_vec.sort();
-                skip_days_vec.dedup();
-                for day in skip_days_vec
+                let mut hours: Vec<String> = Vec::new();
+                for hour in val
                 {
-                    days.push(Day::value_of(day.as_str())?);
+                    hours.push(string_utils::i64_to_string(hour)?);
                 }
-
-                Some(days)
+                hours
             }
-            None => None,
+            None => Vec::new(),
         };
 
-        if self.ttl.is_some() && self.ttl.unwrap() < 0
-        {
-            return Err("Channel ttl cannot be a negative value.".to_owned());
-        }
-
-        if self.skip_hours.is_some()
-        {
-            let mut skip_hours_vec = self.skip_hours.clone().unwrap();
-            skip_hours_vec.sort();
-            skip_hours_vec.dedup();
-            for hour in skip_hours_vec
-            {
-                if hour < 0
-                {
-                    return Err("Channel Skip Hour cannot be a negative value.".to_owned());
-                }
-                else if hour > 23
-                {
-                    return Err("Channel Skip Hour cannot be greater than 23.".to_owned());
-                }
-            }
-        }
+        let ttl = string_utils::option_i64_to_option_string(self.ttl)?;
 
         Ok(Channel {
                title: self.title.clone(),
-               link: link,
+               link: self.link.clone(),
                description: self.description.clone(),
                language: self.language.clone(),
                copyright: self.copyright.clone(),
                managing_editor: self.managing_editor.clone(),
-               web_master: self.web_master.clone(),
-               pub_date: pub_date,
-               last_build_date: last_build_date,
-               categories: self.categories.clone(),
+               webmaster: self.webmaster.clone(),
+               pub_date: self.pub_date.clone(),
+               last_build_date: self.last_build_date.clone(),
+               categories: categories,
                generator: self.generator.clone(),
-               docs: docs,
+               docs: self.docs.clone(),
                cloud: self.cloud.clone(),
-               ttl: self.ttl,
+               ttl: ttl,
                image: self.image.clone(),
-               rating: self.rating.clone(),
                text_input: self.text_input.clone(),
-               skip_hours: self.skip_hours.clone(),
+               skip_hours: skip_hours,
                skip_days: skip_days,
-               items: self.items.clone(),
+               items: items,
                itunes_ext: self.itunes_ext.clone(),
+               ..Default::default()
            })
     }
 }

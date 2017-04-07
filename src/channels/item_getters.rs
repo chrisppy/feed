@@ -10,14 +10,12 @@
 
 //! The fields under item can be retrieved by using the methods under `Item`.
 
-
-use channels::{Category, Enclosure, Guid, Item, Source};
-use channels::itunes::ITunesItemExtension;
-use chrono::*;
-use url::Url;
+use channels::ItemGetters;
+use rss::{Category, Enclosure, Guid, Item, Source};
+use rss::extension::itunes::ITunesItemExtension;
 
 
-impl Item
+impl ItemGetters for Item
 {
     /// Get the optional title that exists under `Item`.
     ///
@@ -47,7 +45,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.title().is_none());
     /// ```
-    pub fn title(&self) -> Option<String>
+    fn title(&self) -> Option<String>
     {
         self.title.clone()
     }
@@ -83,7 +81,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.link().is_none());
     /// ```
-    pub fn link(&self) -> Option<Url>
+    fn link(&self) -> Option<String>
     {
         self.link.clone()
     }
@@ -118,7 +116,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.description().is_none());
     /// ```
-    pub fn description(&self) -> Option<String>
+    fn description(&self) -> Option<String>
     {
         self.description.clone()
     }
@@ -153,13 +151,13 @@ impl Item
     ///     .unwrap();
     /// assert!(item.author().is_none());
     /// ```
-    pub fn author(&self) -> Option<String>
+    fn author(&self) -> Option<String>
     {
         self.author.clone()
     }
 
 
-    /// Get the optional categories that exists under `Item`.
+    /// Get the categories that exists under `Item`.
     ///
     /// # Examples
     ///
@@ -198,7 +196,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.categories().is_none());
     /// ```
-    pub fn categories(&self) -> Option<Vec<Category>>
+    fn categories(&self) -> Vec<Category>
     {
         self.categories.clone()
     }
@@ -235,7 +233,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.comments().is_none());
     /// ```
-    pub fn comments(&self) -> Option<Url>
+    fn comments(&self) -> Option<String>
     {
         self.comments.clone()
     }
@@ -277,7 +275,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.enclosure().is_none());
     /// ```
-    pub fn enclosure(&self) -> Option<Enclosure>
+    fn enclosure(&self) -> Option<Enclosure>
     {
         self.enclosure.clone()
     }
@@ -314,7 +312,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.guid().is_none());
     /// ```
-    pub fn guid(&self) -> Option<Guid>
+    fn guid(&self) -> Option<Guid>
     {
         self.guid.clone()
     }
@@ -352,9 +350,9 @@ impl Item
     ///     .unwrap();
     /// assert!(item.pub_date().is_none());
     /// ```
-    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
+    fn pub_date(&self) -> Option<String>
     {
-        self.pub_date
+        self.pub_date.clone()
     }
 
 
@@ -389,14 +387,14 @@ impl Item
     ///     .unwrap();
     /// assert!(item.source().is_none());
     /// ```
-    pub fn source(&self) -> Option<Source>
+    fn source(&self) -> Option<Source>
     {
         self.source.clone()
     }
 
 
-    /// TODO
-    pub fn itunes_ext(&self) -> Option<ITunesItemExtension>
+    /// Get the optional `ITunesItemExtension` under `Item`.
+    fn itunes_ext(&self) -> Option<ITunesItemExtension>
     {
         self.itunes_ext.clone()
     }

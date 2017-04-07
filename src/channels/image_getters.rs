@@ -11,10 +11,11 @@
 //! The fields under image can be retrieved by using the methods under `Image`.
 
 
-use channels::Image;
-use url::Url;
+use channels::ImageGetters;
+use rss::Image;
 
-impl Image
+
+impl ImageGetters for Image
 {
     /// Get the url that exists under `Image`.
     ///
@@ -34,7 +35,7 @@ impl Image
     ///     .unwrap();
     /// assert_eq!(url.to_owned(), image.url().into_string());
     /// ```
-    pub fn url(&self) -> Url
+    fn url(&self) -> String
     {
         self.url.clone()
     }
@@ -61,7 +62,7 @@ impl Image
     ///     .unwrap();
     /// assert_eq!(title.to_owned(), image.title());
     /// ```
-    pub fn title(&self) -> String
+    fn title(&self) -> String
     {
         self.title.clone()
     }
@@ -85,7 +86,7 @@ impl Image
     ///     .unwrap();
     /// assert_eq!(link.to_owned(), image.link().into_string());
     /// ```
-    pub fn link(&self) -> Url
+    fn link(&self) -> String
     {
         self.link.clone()
     }
@@ -132,9 +133,9 @@ impl Image
     /// ```
     ///
     /// ```
-    pub fn width(&self) -> i64
+    fn width(&self) -> Option<String>
     {
-        self.width
+        self.width.clone()
     }
 
 
@@ -177,9 +178,9 @@ impl Image
     ///     .unwrap();
     /// assert_eq!(height, image.height());
     /// ```
-    pub fn height(&self) -> i64
+    fn height(&self) -> Option<String>
     {
-        self.height
+        self.height.clone()
     }
 
 
@@ -225,7 +226,7 @@ impl Image
     /// let description = description_option.unwrap();
     /// assert_eq!(description.clone(), description);
     /// ```
-    pub fn description(&self) -> Option<String>
+    fn description(&self) -> Option<String>
     {
         self.description.clone()
     }

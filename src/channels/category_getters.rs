@@ -11,12 +11,10 @@
 //! The fields under category can be retrieved by using the methods under
 //! `Category`.
 
+use channels::CategoryGetters;
+use rss::Category;
 
-use channels::Category;
-use url::Url;
-
-
-impl Category
+impl CategoryGetters for Category
 {
     /// Get the category that exists under `Category`.
     ///
@@ -32,7 +30,7 @@ impl Category
     ///     .unwrap();
     /// assert_eq!(category.to_owned(), category_obj.name());
     /// ```
-    pub fn name(&self) -> String
+    fn name(&self) -> String
     {
         self.name.clone()
     }
@@ -66,7 +64,7 @@ impl Category
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_none());
     /// ```
-    pub fn domain(&self) -> Option<Url>
+    fn domain(&self) -> Option<String>
     {
         self.domain.clone()
     }

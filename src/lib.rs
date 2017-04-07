@@ -77,22 +77,4 @@ extern crate url;
 
 pub mod channels;
 pub mod enums;
-pub mod feed;
-pub mod feed_builder;
 mod utils;
-
-
-use channels::Channel;
-
-
-/// This `Feed` struct contains all the items that exist for the feeds.
-#[derive(Clone)]
-pub struct Feed
-{
-    channel: Channel,
-}
-
-
-/// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
-#[derive(Clone)]
-pub struct FeedBuilder {}

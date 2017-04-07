@@ -12,14 +12,12 @@
 //! `Channel`.
 
 
-use channels::{Category, Channel, Cloud, Image, Item, TextInput};
-use channels::itunes::ITunesChannelExtension;
-use chrono::*;
-use enums::Day;
-use url::Url;
+use channels::ChannelGetters;
+use rss::{Category, Channel, Cloud, Image, Item, TextInput};
+use rss::extension::itunes::ITunesChannelExtension;
 
 
-impl Channel
+impl ChannelGetters for Channel
 {
     /// Get the title that exists under `Channel`.
     ///
@@ -36,7 +34,7 @@ impl Channel
     ///     .unwrap();
     /// assert_eq!(title.to_owned(), channels.title());
     /// ```
-    pub fn title(&self) -> String
+    fn title(&self) -> String
     {
         self.title.clone()
     }
@@ -56,7 +54,7 @@ impl Channel
     ///     .unwrap();
     /// assert_eq!(link.to_owned(), channels.link().into_string());
     /// ```
-    pub fn link(&self) -> Url
+    fn link(&self) -> String
     {
         self.link.clone()
     }
@@ -80,7 +78,7 @@ impl Channel
     ///     .unwrap();
     /// assert_eq!(description.to_owned(), channels.description());
     /// ```
-    pub fn description(&self) -> String
+    fn description(&self) -> String
     {
         self.description.clone()
     }
@@ -115,7 +113,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.language().is_none());
     /// ```
-    pub fn language(&self) -> Option<String>
+    fn language(&self) -> Option<String>
     {
         self.language.clone()
     }
@@ -151,7 +149,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.copyright().is_none());
     /// ```
-    pub fn copyright(&self) -> Option<String>
+    fn copyright(&self) -> Option<String>
     {
         self.copyright.clone()
     }
@@ -187,7 +185,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.managing_editor().is_none());
     /// ```
-    pub fn managing_editor(&self) -> Option<String>
+    fn managing_editor(&self) -> Option<String>
     {
         self.managing_editor.clone()
     }
@@ -222,9 +220,9 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.web_master().is_none());
     /// ```
-    pub fn web_master(&self) -> Option<String>
+    fn webmaster(&self) -> Option<String>
     {
-        self.web_master.clone()
+        self.webmaster.clone()
     }
 
 
@@ -257,9 +255,9 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.pub_date().is_none());
     /// ```
-    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
+    fn pub_date(&self) -> Option<String>
     {
-        self.pub_date
+        self.pub_date.clone()
     }
 
 
@@ -292,13 +290,13 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.last_build_date().is_none());
     /// ```
-    pub fn last_build_date(&self) -> Option<DateTime<FixedOffset>>
+    fn last_build_date(&self) -> Option<String>
     {
-        self.last_build_date
+        self.last_build_date.clone()
     }
 
 
-    /// Get the optional categories that exists under `Channel`.
+    /// Get the categories that exists under `Channel`.
     ///
     /// # Examples
     ///
@@ -337,7 +335,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.categories().is_none());
     /// ```
-    pub fn categories(&self) -> Option<Vec<Category>>
+    fn categories(&self) -> Vec<Category>
     {
         self.categories.clone()
     }
@@ -375,7 +373,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.generator().is_none());
     /// ```
-    pub fn generator(&self) -> Option<String>
+    fn generator(&self) -> Option<String>
     {
         self.generator.clone()
     }
@@ -410,7 +408,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.docs().is_none());
     /// ```
-    pub fn docs(&self) -> Option<Url>
+    fn docs(&self) -> Option<String>
     {
         self.docs.clone()
     }
@@ -448,7 +446,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.cloud().is_none());
     /// ```
-    pub fn cloud(&self) -> Option<Cloud>
+    fn cloud(&self) -> Option<Cloud>
     {
         self.cloud.clone()
     }
@@ -483,9 +481,9 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.ttl().is_none());
     /// ```
-    pub fn ttl(&self) -> Option<i64>
+    fn ttl(&self) -> Option<String>
     {
-        self.ttl
+        self.ttl.clone()
     }
 
 
@@ -524,7 +522,7 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.image().is_none());
     /// ```
-    pub fn image(&self) -> Option<Image>
+    fn image(&self) -> Option<Image>
     {
         self.image.clone()
     }
@@ -559,9 +557,9 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.rating().is_none());
     /// ```
-    pub fn rating(&self) -> Option<String>
+    fn rating(&self) -> Option<String>
     {
-        self.rating.clone()
+        None
     }
 
 
@@ -598,12 +596,12 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.text_input().is_none());
     /// ```
-    pub fn text_input(&self) -> Option<TextInput>
+    fn text_input(&self) -> Option<TextInput>
     {
         self.text_input.clone()
     }
 
-    /// Get the optional skip hours that exists under `Channel`.
+    /// Get the skip hours that exists under `Channel`.
     ///
     /// # Examples
     ///
@@ -636,13 +634,13 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.skip_hours().is_none());
     /// ```
-    pub fn skip_hours(&self) -> Option<Vec<i64>>
+    fn skip_hours(&self) -> Vec<String>
     {
         self.skip_hours.clone()
     }
 
 
-    /// Get the optional skip days that exists under `Channel`.
+    /// Get the skip days that exists under `Channel`.
     ///
     /// # Examples
     ///
@@ -682,13 +680,13 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.skip_days().is_none());
     /// ```
-    pub fn skip_days(&self) -> Option<Vec<Day>>
+    fn skip_days(&self) -> Vec<String>
     {
         self.skip_days.clone()
     }
 
 
-    /// Get the optional items that exists under `Channel`.
+    /// Get the items that exists under `Channel`.
     ///
     /// # Examples
     ///
@@ -753,14 +751,14 @@ impl Channel
     ///     .unwrap();
     /// assert!(channels.items().is_none());
     /// ```
-    pub fn items(&self) -> Option<Vec<Item>>
+    fn items(&self) -> Vec<Item>
     {
         self.items.clone()
     }
 
 
-    /// TODO
-    pub fn itunes_ext(&self) -> Option<ITunesChannelExtension>
+    /// Get the optional `ITunesChannelExtension` under `Channel`.
+    fn itunes_ext(&self) -> Option<ITunesChannelExtension>
     {
         self.itunes_ext.clone()
     }

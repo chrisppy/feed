@@ -33,9 +33,9 @@ impl ITunesCategoryBuilder
 
 
     ///
-    pub fn domain(&mut self, domain: Option<Box<ITunesCategory>>) -> &mut ITunesCategoryBuilder
+    pub fn subcategory(&mut self, subcategory: Option<Box<ITunesCategory>>) -> &mut ITunesCategoryBuilder
     {
-        self.domain = domain;
+        self.subcategory = subcategory;
         self
     }
 
@@ -45,7 +45,7 @@ impl ITunesCategoryBuilder
     {
         Ok(ITunesCategory {
                text: self.text.clone(),
-               domain: self.domain.clone(),
+               subcategory: self.subcategory.clone(),
            })
     }
 }

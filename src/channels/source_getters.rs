@@ -12,11 +12,11 @@
 //! `Source`.
 
 
-use channels::Source;
-use url::Url;
+use channels::SourceGetters;
+use rss::Source;
 
 
-impl Source
+impl SourceGetters for Source
 {
     /// Get the url that exists under `Source`.
     ///
@@ -33,7 +33,7 @@ impl Source
     ///     .unwrap();
     /// assert_eq!(url.to_owned(), source.url().into_string());
     /// ```
-    pub fn url(&self) -> Url
+    fn url(&self) -> String
     {
         self.url.clone()
     }
@@ -57,7 +57,7 @@ impl Source
     ///     .unwrap();
     /// assert_eq!(title.to_owned(), source_obj.title().unwrap());
     /// ```
-    pub fn title(&self) -> Option<String>
+    fn title(&self) -> Option<String>
     {
         self.title.clone()
     }

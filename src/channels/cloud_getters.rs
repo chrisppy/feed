@@ -11,12 +11,11 @@
 //! The fields under cloud can be retrieved by using the methods under `Cloud`.
 
 
-use channels::Cloud;
-use enums::CloudProtocol;
-use url::Url;
+use channels::CloudGetters;
+use rss::Cloud;
 
 
-impl Cloud
+impl CloudGetters for Cloud
 {
     /// Get the domain that exists under `Cloud`.
     ///
@@ -34,7 +33,7 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
     /// ```
-    pub fn domain(&self) -> Url
+    fn domain(&self) -> String
     {
         self.domain.clone()
     }
@@ -57,9 +56,9 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(port, cloud.port());
     /// ```
-    pub fn port(&self) -> i64
+    fn port(&self) -> String
     {
-        self.port
+        self.port.clone()
     }
 
 
@@ -80,7 +79,7 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
-    pub fn path(&self) -> String
+    fn path(&self) -> String
     {
         self.path.clone()
     }
@@ -103,7 +102,7 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
-    pub fn register_procedure(&self) -> String
+    fn register_procedure(&self) -> String
     {
         self.register_procedure.clone()
     }
@@ -125,7 +124,7 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(protocol.to_owned(), cloud.protocol().into_string());
     /// ```
-    pub fn protocol(&self) -> CloudProtocol
+    fn protocol(&self) -> String
     {
         self.protocol.clone()
     }

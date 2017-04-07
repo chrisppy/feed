@@ -11,10 +11,11 @@
 //! The fields under guid can be retrieved by using the methods under `Guid`.
 
 
-use channels::Guid;
+use channels::GuidGetters;
+use rss::Guid;
 
 
-impl Guid
+impl GuidGetters for Guid
 {
     /// Get the permalink that exists under `Guid`.
     ///
@@ -51,9 +52,9 @@ impl Guid
     ///     .unwrap();
     /// assert_eq!(permalink, guid.permalink());
     /// ```
-    pub fn permalink(&self) -> bool
+    fn is_permalink(&self) -> bool
     {
-        self.permalink
+        self.is_permalink
     }
 
 
@@ -71,7 +72,7 @@ impl Guid
     ///     .unwrap();
     /// assert_eq!(guid.to_owned(), guid_obj.value());
     /// ```
-    pub fn value(&self) -> String
+    fn value(&self) -> String
     {
         self.value.clone()
     }

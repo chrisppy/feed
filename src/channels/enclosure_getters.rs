@@ -12,12 +12,11 @@
 //! `Enclosure`.
 
 
-use channels::Enclosure;
-use mime::Mime;
-use url::Url;
+use channels::EnclosureGetters;
+use rss::Enclosure;
 
 
-impl Enclosure
+impl EnclosureGetters for Enclosure
 {
     /// Get the url that exists under `Enclosure`.
     ///
@@ -35,7 +34,7 @@ impl Enclosure
     ///     .unwrap();
     /// assert_eq!(url.to_owned(), enclosure.url().into_string())
     /// ```
-    pub fn url(&self) -> Url
+    fn url(&self) -> String
     {
         self.url.clone()
     }
@@ -61,9 +60,9 @@ impl Enclosure
     ///     .unwrap();
     /// assert_eq!(length, enclosure.length())
     /// ```
-    pub fn length(&self) -> i64
+    fn length(&self) -> String
     {
-        self.length
+        self.length.clone()
     }
 
 
@@ -86,7 +85,7 @@ impl Enclosure
     ///     .unwrap();
     /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type().to_string())
     /// ```
-    pub fn mime_type(&self) -> Mime
+    fn mime_type(&self) -> String
     {
         self.mime_type.clone()
     }

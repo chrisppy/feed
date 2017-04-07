@@ -28,7 +28,7 @@ pub mod itunes_channel_extension_builder;
 pub struct ITunesCategory
 {
     text: String,
-    domain: Option<Box<ITunesCategory>>,
+    subcategory: Option<Box<ITunesCategory>>,
 }
 
 
@@ -37,7 +37,7 @@ pub struct ITunesCategory
 pub struct ITunesCategoryBuilder
 {
     text: String,
-    domain: Option<Box<ITunesCategory>>,
+    subcategory: Option<Box<ITunesCategory>>,
 }
 
 

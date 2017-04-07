@@ -12,7 +12,8 @@
 //! `CategoryBuilder`.
 
 
-use channels::{Category, CategoryBuilder};
+use channels::CategoryBuilder;
+use rss::Category;
 use utils::string_utils;
 
 
@@ -67,6 +68,32 @@ impl CategoryBuilder
     }
 
 
+    /// Validate the contents of `Category`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::CategoryBuilder;
+    ///
+    /// let mut category_builder = CategoryBuilder::new();
+    /// category_builder.domain(Some("http://www.example.com".to_owned()));
+    /// category_builder.name("Podcast");
+    /// category_builder.validate().unwrap();
+    /// category_builder.finalize().unwrap();
+    /// ```
+
+    pub fn validate(&mut self) -> Result<&mut CategoryBuilder, String>
+    {
+        let domain = self.domain.clone();
+        if domain.is_some()
+        {
+            string_utils::str_to_url(domain.unwrap().as_str())?;
+        }
+
+        Ok(self)
+    }
+
+
     /// Construct the `Category` from the `CategoryBuilder`.
     ///
     /// # Examples
@@ -77,19 +104,14 @@ impl CategoryBuilder
     /// let category = CategoryBuilder::new()
     ///         .name("Title")
     ///         .domain(None)
-    ///         .finalize();
+    ///         .finalize()
+    ///         .unwrap();
     /// ```
     pub fn finalize(&self) -> Result<Category, String>
     {
-        let domain = match self.domain.clone()
-        {
-            Some(val) => Some(string_utils::str_to_url(val.as_str())?),
-            None => None,
-        };
-
         Ok(Category {
                name: self.name.clone(),
-               domain: domain,
+               domain: self.domain.clone(),
            })
     }
 }

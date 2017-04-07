@@ -25,8 +25,8 @@ impl ITunesCategory
 
 
     ///
-    pub fn domain(&self) -> Option<Box<ITunesCategory>>
+    pub fn subcategory(&self) -> Option<Box<ITunesCategory>>
     {
-        self.domain.clone()
+        self.subcategory.clone()
     }
 }

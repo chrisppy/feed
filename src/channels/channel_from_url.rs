@@ -8,64 +8,18 @@
 // (at your option) any later version.
 
 
-//! Implementation of `FeedBuilder`.
+//! `FromUrl` Trait for `Channel`
 
 
-use Feed;
-use FeedBuilder;
-use channels::Channel;
+use channels::FromUrl;
 use curl::easy::Easy;
-use std::str;
-use utils::{reader_utils, string_utils};
+use rss::Channel;
+use std::str::FromStr;
+use utils::string_utils;
 
-
-impl FeedBuilder
+impl FromUrl for Channel
 {
-    /// Construct a new `FeedBuilder` from a `Channel`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::FeedBuilder;
-    /// use feed::channels::ChannelBuilder;
-    ///
-    /// let channel = ChannelBuilder::new()
-    ///     .link("http://www.jupiterbroadcasting.com/")
-    ///     .finalize()
-    ///     .unwrap();
-    /// FeedBuilder::from_channel(channel).unwrap();
-    /// ```
-    pub fn from_channel(channel: Channel) -> Result<Feed, String>
-    {
-        Ok(Feed { channel: channel })
-    }
-
-
-    /// Construct a new `FeedBuilder` from xml`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::FeedBuilder;
-    ///
-    /// let xml = r#"<?xml version="1.0" encoding="UTF-8"?>
-    ///              <rss version="2.0">
-    ///                  <channel>
-    ///                      <title>The Linux Action Show! OGG</title>
-    ///                      <link>http://www.jupiterbroadcasting.com</link>
-    ///                      <description>Linux</description>
-    ///                  </channel>
-    ///              </rss>"#;
-    ///
-    /// FeedBuilder::from_xml(xml).unwrap();
-    /// ```
-    pub fn from_xml(xml: &str) -> Result<Feed, String>
-    {
-        FeedBuilder::from_channel(reader_utils::read(xml)?)
-    }
-
-
-    /// Construct a new `FeedBuilder` from a `Url`.
+    /// Construct a `Channel` from a `Url`.
     ///
     /// # Examples
     ///
@@ -76,7 +30,7 @@ impl FeedBuilder
     /// let feed = FeedBuilder::from_url(url).unwrap();
     /// feed.channel();
     /// ```
-    pub fn from_url(url: &str) -> Result<Feed, String>
+    fn from_url(url: &str) -> Result<Channel, String>
     {
         let feed_url = string_utils::str_to_url(url)?;
         let mut xml = Vec::new();
@@ -112,7 +66,14 @@ impl FeedBuilder
 
         match String::from_utf8(xml)
         {
-            Ok(val) => FeedBuilder::from_xml(val.as_str()),
+            Ok(val) =>
+            {
+                match Channel::from_str(val.as_str())
+                {
+                    Ok(cval) => Ok(cval),
+                    Err(err) => Err(format!("Error: {}", err)),
+                }
+            }
             Err(err) => Err(format!("Error: {}", err)),
         }
     }

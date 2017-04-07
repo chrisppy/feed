@@ -12,11 +12,11 @@
 //! `TextInput`.
 
 
-use channels::TextInput;
-use url::Url;
+use channels::TextInputGetters;
+use rss::TextInput;
 
 
-impl TextInput
+impl TextInputGetters for TextInput
 {
     /// Get the title that exists under `TextInput`.
     ///
@@ -33,7 +33,7 @@ impl TextInput
     ///     .unwrap();
     /// assert_eq!(title.to_owned(), text_input.title());
     /// ```
-    pub fn title(&self) -> String
+    fn title(&self) -> String
     {
         self.title.clone()
     }
@@ -54,7 +54,7 @@ impl TextInput
     ///     .unwrap();
     /// assert_eq!(description.to_owned(), text_input.description());
     /// ```
-    pub fn description(&self) -> String
+    fn description(&self) -> String
     {
         self.description.clone()
     }
@@ -75,7 +75,7 @@ impl TextInput
     ///     .unwrap();
     /// assert_eq!(name.to_owned(), text_input.name());
     /// ```
-    pub fn name(&self) -> String
+    fn name(&self) -> String
     {
         self.name.clone()
     }
@@ -95,7 +95,7 @@ impl TextInput
     ///     .unwrap();
     /// assert_eq!(link.to_owned(), text_input.link().into_string());
     /// ```
-    pub fn link(&self) -> Url
+    fn link(&self) -> String
     {
         self.link.clone()
     }
