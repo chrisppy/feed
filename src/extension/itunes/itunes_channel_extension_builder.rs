@@ -42,7 +42,7 @@ impl ITunesChannelExtensionBuilder
 
 
     /// Set the categories that exists uner `ITunesChannelExtension`.
-    pub fn categories(&mut self, categories: Option<Vec<ITunesCategory>>) -> &mut ITunesChannelExtensionBuilder
+    pub fn categories(&mut self, categories: Vec<ITunesCategory>) -> &mut ITunesChannelExtensionBuilder
     {
         self.categories = categories;
         self
@@ -117,16 +117,10 @@ impl ITunesChannelExtensionBuilder
     /// `ITunesChannelExtensionBuilder`.
     pub fn finalize(&self) -> Result<ITunesChannelExtension, String>
     {
-        let categories: Vec<ITunesCategory> = match self.categories.clone()
-        {
-            Some(val) => val,
-            None => Vec::new(),
-        };
-
         Ok(ITunesChannelExtension {
                author: self.author.clone(),
                block: self.block.clone(),
-               categories: categories,
+               categories: self.categories.clone(),
                image: self.image.clone(),
                explicit: self.explicit.clone(),
                complete: self.complete.clone(),

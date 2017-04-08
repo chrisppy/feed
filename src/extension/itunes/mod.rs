@@ -110,7 +110,7 @@ pub struct ITunesChannelExtensionBuilder
 {
     author: Option<String>,
     block: Option<String>,
-    categories: Option<Vec<ITunesCategory>>,
+    categories: Vec<ITunesCategory>,
     image: Option<String>,
     explicit: Option<String>,
     complete: Option<String>,

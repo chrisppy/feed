@@ -190,7 +190,7 @@ impl ItemGetters for Item
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
-    ///     .categories(Some(categories_vec.clone()))
+    ///     .categories(categories_vec.clone())
     ///     .finalize()
     ///     .unwrap();
     ///

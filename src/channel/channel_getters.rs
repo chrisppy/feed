@@ -343,7 +343,7 @@ impl ChannelGetters for Channel
     /// let categories_vec = vec![category_1, category_2];
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .categories(Some(categories_vec.clone()))
+    ///     .categories(categories_vec.clone())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -358,7 +358,7 @@ impl ChannelGetters for Channel
     /// use feed::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .categories(None)
+    ///     .categories(Vec::new())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -642,7 +642,7 @@ impl ChannelGetters for Channel
     /// let skip_hours_vec: Vec<i64> = vec![6,7,8,14,22];
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .skip_hours(Some(skip_hours_vec.clone()))
+    ///     .skip_hours(skip_hours_vec.clone())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -662,7 +662,7 @@ impl ChannelGetters for Channel
     /// use feed::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .skip_hours(None)
+    ///     .skip_hours(Vec::new())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -687,7 +687,7 @@ impl ChannelGetters for Channel
     ///     "Wednesday".to_owned()];
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .skip_days(Some(skip_days_vec.clone()))
+    ///     .skip_days(skip_days_vec.clone())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -707,7 +707,7 @@ impl ChannelGetters for Channel
     /// use feed::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .skip_days(None)
+    ///     .skip_days(Vec::new())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -744,7 +744,7 @@ impl ChannelGetters for Channel
     ///     .link(Some(link))
     ///     .description(None)
     ///     .author(None)
-    ///     .categories(None)
+    ///     .categories(Vec::new())
     ///     .enclosure(None)
     ///     .guid(None)
     ///     .pub_date(None)
@@ -757,7 +757,7 @@ impl ChannelGetters for Channel
     ///     .link(None)
     ///     .description(Some(description))
     ///     .author(None)
-    ///     .categories(None)
+    ///     .categories(Vec::new())
     ///     .enclosure(None)
     ///     .guid(None)
     ///     .pub_date(None)
@@ -768,7 +768,7 @@ impl ChannelGetters for Channel
     /// let items_vec = vec![item_1, item_2];
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .items(Some(items_vec.clone()))
+    ///     .items(items_vec.clone())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();
@@ -783,7 +783,7 @@ impl ChannelGetters for Channel
     /// use feed::{ChannelBuilder, ChannelGetters};
     ///
     /// let channels = ChannelBuilder::new()
-    ///     .items(None)
+    ///     .items(Vec::new())
     ///     .link("http://www.jupiterbroadcasting.com/")
     ///     .finalize()
     ///     .unwrap();

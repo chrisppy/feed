@@ -85,40 +85,11 @@ impl Validate for Channel
                                  .finalize()?);
         }
 
-        let channel_cat_opt = if channel_cat.is_empty()
-        {
-            None
-        }
-        else
-        {
-            Some(channel_cat)
-        };
-
         let mut skip_hours: Vec<i64> = Vec::new();
         for hour in self.skip_hours()
         {
             skip_hours.push(string_utils::string_to_i64(hour.as_str())?);
         }
-
-        let skip_hours_opt = if skip_hours.is_empty()
-        {
-            None
-        }
-        else
-        {
-            Some(skip_hours)
-        };
-
-        let skip_days = self.skip_days();
-        let skip_days_opt = if skip_days.is_empty()
-        {
-            None
-        }
-        else
-        {
-            Some(skip_days)
-        };
-
 
         let image = match self.image()
         {
@@ -164,15 +135,6 @@ impl Validate for Channel
                                   .validate()?
                                   .finalize()?);
             }
-
-            let item_cat_opt = if item_cat.is_empty()
-            {
-                None
-            }
-            else
-            {
-                Some(item_cat)
-            };
 
             let enclosure = match item.enclosure()
             {
@@ -240,7 +202,7 @@ impl Validate for Channel
                            .author(item.author())
                            .pub_date(item.pub_date())
                            .comments(item.comments())
-                           .categories(item_cat_opt)
+                           .categories(item_cat)
                            .enclosure(enclosure)
                            .guid(guid)
                            .source(source)
@@ -248,8 +210,6 @@ impl Validate for Channel
                            .validate()?
                            .finalize()?);
         }
-
-        let items_opt = if items.is_empty() { None } else { Some(items) };
 
         let itunes_channel = match self.itunes_ext()
         {
@@ -277,15 +237,6 @@ impl Validate for Channel
                                         .finalize()?);
                 }
 
-                let itunes_cat_opt = if itunes_cat.is_empty()
-                {
-                    None
-                }
-                else
-                {
-                    Some(itunes_cat)
-                };
-
                 Some(ITunesChannelExtensionBuilder::new()
                          .author(cval.author())
                          .block(cval.block())
@@ -296,7 +247,7 @@ impl Validate for Channel
                          .subtitle(cval.subtitle())
                          .summary(cval.summary())
                          .keywords(cval.keywords())
-                         .categories(itunes_cat_opt)
+                         .categories(itunes_cat)
                          .owner(itunes_owner)
                          .finalize()?)
             }
@@ -317,12 +268,12 @@ impl Validate for Channel
             .rating(None)
             .ttl(string_utils::option_string_to_option_i64(self.ttl())?)
             .cloud(cloud)
-            .categories(channel_cat_opt)
+            .categories(channel_cat)
             .image(image)
             .text_input(text_input)
-            .skip_hours(skip_hours_opt)
-            .skip_days(skip_days_opt)
-            .items(items_opt)
+            .skip_hours(skip_hours)
+            .skip_days(self.skip_days())
+            .items(items)
             .itunes_ext(itunes_channel)
             .validate()?
             .finalize()

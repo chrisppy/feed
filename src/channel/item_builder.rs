@@ -117,9 +117,9 @@ impl ItemBuilder
     /// let categories = vec![category];
     ///
     /// let mut item_builder = ItemBuilder::new();
-    /// item_builder.categories(Some(categories));
+    /// item_builder.categories(categories);
     /// ```
-    pub fn categories(&mut self, categories: Option<Vec<Category>>) -> &mut ItemBuilder
+    pub fn categories(&mut self, categories: Vec<Category>) -> &mut ItemBuilder
     {
         self.categories = categories;
         self
@@ -252,7 +252,7 @@ impl ItemBuilder
     ///     .link(Some("http://www.jupiterbroadcasting.com".to_owned()))
     ///     .description(None)
     ///     .author(None)
-    ///     .categories(None)
+    ///     .categories(Vec::new())
     ///     .comments(None)
     ///     .enclosure(None)
     ///     .guid(None)
@@ -298,7 +298,7 @@ impl ItemBuilder
     ///     .link(Some("http://www.jupiterbroadcasting.com".to_owned()))
     ///     .description(None)
     ///     .author(None)
-    ///     .categories(None)
+    ///     .categories(Vec::new())
     ///     .comments(None)
     ///     .enclosure(None)
     ///     .guid(None)
@@ -309,18 +309,12 @@ impl ItemBuilder
     /// ```
     pub fn finalize(&self) -> Result<Item, String>
     {
-        let categories: Vec<Category> = match self.categories.clone()
-        {
-            Some(val) => val,
-            None => Vec::new(),
-        };
-
         Ok(Item {
                title: self.title.clone(),
                link: self.link.clone(),
                description: self.description.clone(),
                author: self.author.clone(),
-               categories: categories,
+               categories: self.categories.clone(),
                comments: self.comments.clone(),
                enclosure: self.enclosure.clone(),
                guid: self.guid.clone(),

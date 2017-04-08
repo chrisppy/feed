@@ -216,9 +216,9 @@ impl ChannelBuilder
     /// let categories = vec![category];
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.categories(Some(categories));
+    /// channel_builder.categories(categories);
     /// ```
-    pub fn categories(&mut self, categories: Option<Vec<Category>>) -> &mut ChannelBuilder
+    pub fn categories(&mut self, categories: Vec<Category>) -> &mut ChannelBuilder
     {
         self.categories = categories;
         self
@@ -379,9 +379,9 @@ impl ChannelBuilder
     /// let hours: Vec<i64> = vec![0, 12, 18];
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.skip_hours(Some(hours));
+    /// channel_builder.skip_hours(hours);
     /// ```
-    pub fn skip_hours(&mut self, skip_hours: Option<Vec<i64>>) -> &mut ChannelBuilder
+    pub fn skip_hours(&mut self, skip_hours: Vec<i64>) -> &mut ChannelBuilder
     {
         self.skip_hours = skip_hours;
         self
@@ -398,9 +398,9 @@ impl ChannelBuilder
     /// let days = vec!["Monday".to_owned(), "Tuesday".to_owned()];
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.skip_days(Some(days));
+    /// channel_builder.skip_days(days);
     /// ```
-    pub fn skip_days(&mut self, skip_days: Option<Vec<String>>) -> &mut ChannelBuilder
+    pub fn skip_days(&mut self, skip_days: Vec<String>) -> &mut ChannelBuilder
     {
         self.skip_days = skip_days;
         self
@@ -423,9 +423,9 @@ impl ChannelBuilder
     /// let items = vec![item];
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.items(Some(items));
+    /// channel_builder.items(items);
     /// ```
-    pub fn items(&mut self, items: Option<Vec<Item>>) -> &mut ChannelBuilder
+    pub fn items(&mut self, items: Vec<Item>) -> &mut ChannelBuilder
     {
         self.items = items;
         self
@@ -462,7 +462,7 @@ impl ChannelBuilder
     ///         .webmaster(None)
     ///         .pub_date(None)
     ///         .last_build_date(None)
-    ///         .categories(None)
+    ///         .categories(Vec::new())
     ///         .generator(None)
     ///         .docs(None)
     ///         .cloud(None)
@@ -470,9 +470,9 @@ impl ChannelBuilder
     ///         .image(None)
     ///         .rating(None)
     ///         .text_input(None)
-    ///         .skip_hours(None)
-    ///         .skip_days(None)
-    ///         .items(None)
+    ///         .skip_hours(Vec::new())
+    ///         .skip_days(Vec::new())
+    ///         .items(Vec::new())
     ///         .validate().unwrap()
     ///         .finalize().unwrap();
     /// ```
@@ -488,36 +488,28 @@ impl ChannelBuilder
             string_utils::str_to_url(docs.unwrap().as_str())?;
         }
 
-        let skip_days = self.skip_days.clone();
-        if skip_days.is_some()
-        {
-            let mut days = skip_days.unwrap();
-            days.sort();
-            days.dedup();
+        let mut skip_days = self.skip_days.clone();
+        skip_days.sort();
+        skip_days.dedup();
 
-            for day in days
-            {
-                Day::value_of(day.as_str())?;
-            }
+        for day in skip_days
+        {
+            Day::value_of(day.as_str())?;
         }
 
-        let skip_hours = self.skip_hours.clone();
-        if skip_hours.is_some()
-        {
-            let mut hours = skip_hours.unwrap();
-            hours.sort();
-            hours.dedup();
+        let mut skip_hours = self.skip_hours.clone();
+        skip_hours.sort();
+        skip_hours.dedup();
 
-            for hour in hours
+        for hour in skip_hours
+        {
+            if hour < 0
             {
-                if hour < 0
-                {
-                    return Err("Channel Skip Hour cannot be a negative value.".to_owned());
-                }
-                else if hour > 23
-                {
-                    return Err("Channel Skip Hour cannot be greater than 23.".to_owned());
-                }
+                return Err("Channel Skip Hour cannot be a negative value.".to_owned());
+            }
+            else if hour > 23
+            {
+                return Err("Channel Skip Hour cannot be greater than 23.".to_owned());
             }
         }
 
@@ -552,7 +544,7 @@ impl ChannelBuilder
     ///         .webmaster(None)
     ///         .pub_date(None)
     ///         .last_build_date(None)
-    ///         .categories(None)
+    ///         .categories(Vec::new())
     ///         .generator(None)
     ///         .docs(None)
     ///         .cloud(None)
@@ -560,45 +552,19 @@ impl ChannelBuilder
     ///         .image(None)
     ///         .rating(None)
     ///         .text_input(None)
-    ///         .skip_hours(None)
-    ///         .skip_days(None)
-    ///         .items(None)
+    ///         .skip_hours(Vec::new())
+    ///         .skip_days(Vec::new())
+    ///         .items(Vec::new())
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Result<Channel, String>
     {
-        let items: Vec<Item> = match self.items.clone()
+        let mut skip_hours: Vec<String> = Vec::new();
+        for hour in self.skip_hours.clone()
         {
-            Some(val) => val,
-            None => Vec::new(),
-        };
+            skip_hours.push(string_utils::i64_to_string(hour)?);
+        }
 
-        let categories: Vec<Category> = match self.categories.clone()
-        {
-            Some(val) => val,
-            None => Vec::new(),
-        };
-
-        let skip_days: Vec<String> = match self.skip_days.clone()
-        {
-            Some(val) => val,
-            None => Vec::new(),
-        };
-
-
-        let skip_hours: Vec<String> = match self.skip_hours.clone()
-        {
-            Some(val) =>
-            {
-                let mut hours: Vec<String> = Vec::new();
-                for hour in val
-                {
-                    hours.push(string_utils::i64_to_string(hour)?);
-                }
-                hours
-            }
-            None => Vec::new(),
-        };
 
         let ttl = string_utils::option_i64_to_option_string(self.ttl)?;
 
@@ -612,7 +578,7 @@ impl ChannelBuilder
                webmaster: self.webmaster.clone(),
                pub_date: self.pub_date.clone(),
                last_build_date: self.last_build_date.clone(),
-               categories: categories,
+               categories: self.categories.clone(),
                generator: self.generator.clone(),
                docs: self.docs.clone(),
                cloud: self.cloud.clone(),
@@ -620,8 +586,8 @@ impl ChannelBuilder
                image: self.image.clone(),
                text_input: self.text_input.clone(),
                skip_hours: skip_hours,
-               skip_days: skip_days,
-               items: items,
+               skip_days: self.skip_days.clone(),
+               items: self.items.clone(),
                itunes_ext: self.itunes_ext.clone(),
                ..Default::default()
            })
