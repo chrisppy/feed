@@ -31,8 +31,8 @@ use TextInputBuilder;
 use TextInputGetters;
 use Validate;
 use extension::itunes::{ITunesCategoryBuilder, ITunesCategoryGetters, ITunesChannelExtensionBuilder,
-                       ITunesChannelExtensionGetters, ITunesItemExtensionBuilder, ITunesItemExtensionGetters,
-                       ITunesOwnerBuilder, ITunesOwnerGetters};
+                        ITunesChannelExtensionGetters, ITunesItemExtensionBuilder, ITunesItemExtensionGetters,
+                        ITunesOwnerBuilder, ITunesOwnerGetters};
 use rss::{Category, Channel, Item};
 use rss::extension::itunes::ITunesCategory;
 use utils::string_utils;

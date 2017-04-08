@@ -14,7 +14,7 @@
 
 use CategoryBuilder;
 use rss::Category;
-use utils::string_utils; 
+use utils::string_utils;
 
 
 impl CategoryBuilder
