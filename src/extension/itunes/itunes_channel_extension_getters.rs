@@ -19,6 +19,38 @@ use rss::extension::itunes::{ITunesCategory, ITunesChannelExtension, ITunesOwner
 impl ITunesChannelExtensionGetters for ITunesChannelExtension
 {
     /// Get the optional author that exists under `ITunesChannelExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesChannelExtensionBuilder,
+    /// ITunesChannelExtensionGetters};
+    ///
+    /// let author = "author".to_owned();
+    ///
+    /// let channel = ITunesChannelExtensionBuilder::new()
+    ///     .author(Some(author.clone()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let author_opt = channel.author();
+    /// assert!(author_opt.is_some());
+    ///
+    /// assert_eq!(author.clone(), author_opt.unwrap());
+    /// ```
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesChannelExtensionBuilder,
+    /// ITunesChannelExtensionGetters};
+    ///
+    /// let channel = ITunesChannelExtensionBuilder::new()
+    ///     .author(None)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let author_opt = channel.author();
+    /// assert!(author_opt.is_none());
+    /// ```
     fn author(&self) -> Option<String>
     {
         self.author.clone()

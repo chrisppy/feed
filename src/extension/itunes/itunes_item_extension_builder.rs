@@ -212,7 +212,7 @@ impl ITunesItemExtensionBuilder
     /// ```
     /// use feed::extension::itunes::ITunesItemExtensionBuilder;
     ///
-    /// let mut item = ITunesItemExtensionBuilder::new()
+    /// let item = ITunesItemExtensionBuilder::new()
     ///     .author(Some("author".to_owned()))
     ///     .block(Some("block".to_owned()))
     ///     .image(Some("image".to_owned()))
