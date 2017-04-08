@@ -22,7 +22,8 @@ impl ITunesCategoryGetters for ITunesCategory
     /// # Examples
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesCategoryBuilder, ITunesCategoryGetters};
+    /// use feed::extension::itunes::{ITunesCategoryBuilder,
+    /// ITunesCategoryGetters};
     ///
     /// let text = "text";
     ///
@@ -40,11 +41,12 @@ impl ITunesCategoryGetters for ITunesCategory
 
 
     /// Get the optional subcategory that exists under `ITunesCategory`.
-    /// 
+    ///
     /// # Examples
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesCategoryBuilder, ITunesCategoryGetters};
+    /// use feed::extension::itunes::{ITunesCategoryBuilder,
+    /// ITunesCategoryGetters};
     ///
     /// let subcategory = ITunesCategoryBuilder::new()
     ///     .text("text")
@@ -61,7 +63,8 @@ impl ITunesCategoryGetters for ITunesCategory
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesCategoryBuilder, ITunesCategoryGetters};
+    /// use feed::extension::itunes::{ITunesCategoryBuilder,
+    /// ITunesCategoryGetters};
     ///
     /// let category = ITunesCategoryBuilder::new()
     ///     .text("text")

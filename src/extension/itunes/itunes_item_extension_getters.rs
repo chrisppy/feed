@@ -22,7 +22,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// # Examples
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let author = "author".to_owned();
     ///
@@ -38,7 +39,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .author(None)
@@ -57,7 +59,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional block that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let block = "block".to_owned();
     ///
@@ -73,7 +76,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .block(None)
@@ -92,7 +96,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional image that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let image = "image".to_owned();
     ///
@@ -108,7 +113,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .image(None)
@@ -127,7 +133,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional duration that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let duration = "duration".to_owned();
     ///
@@ -143,7 +150,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .duration(None)
@@ -162,7 +170,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional explicit that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let explicit = "explicit".to_owned();
     ///
@@ -178,7 +187,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .explicit(None)
@@ -198,7 +208,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let closed_captioned = "closed_captioned".to_owned();
     ///
@@ -214,7 +225,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .closed_captioned(None)
@@ -233,7 +245,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional order that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let order = "order".to_owned();
     ///
@@ -249,7 +262,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .order(None)
@@ -268,7 +282,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional subtitle that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let subtitle = "subtitle".to_owned();
     ///
@@ -284,7 +299,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .subtitle(None)
@@ -303,7 +319,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional summary that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let summary = "summary".to_owned();
     ///
@@ -319,7 +336,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .summary(None)
@@ -338,7 +356,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// Get the optional keywords that exists under `ITunesItemExtension`.
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let keywords = "keywords".to_owned();
     ///
@@ -354,7 +373,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     /// ```
     ///
     /// ```
-    /// use feed::extension::itunes::{ITunesItemExtensionBuilder, ITunesItemExtensionGetters};
+    /// use feed::extension::itunes::{ITunesItemExtensionBuilder,
+    /// ITunesItemExtensionGetters};
     ///
     /// let item = ITunesItemExtensionBuilder::new()
     ///     .keywords(None)
