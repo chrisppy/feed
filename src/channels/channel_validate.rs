@@ -12,13 +12,34 @@
 
 
 use channels::{CategoryBuilder, CategoryGetters, ChannelBuilder, ChannelGetters, CloudBuilder, CloudGetters,
-               ImageBuilder, ImageGetters, Validate};
-use rss::{Category, Channel};
+               EnclosureBuilder, EnclosureGetters, GuidBuilder, GuidGetters, ImageBuilder, ImageGetters, ItemBuilder,
+               ItemGetters, SourceBuilder, SourceGetters, TextInputBuilder, TextInputGetters, Validate};
+use channels::itunes::{ITunesCategoryBuilder, ITunesCategoryGetters, ITunesChannelExtensionBuilder,
+                       ITunesChannelExtensionGetters, ITunesItemExtensionBuilder, ITunesItemExtensionGetters,
+                       ITunesOwnerBuilder, ITunesOwnerGetters};
+use rss::{Category, Channel, Item};
+use rss::extension::itunes::ITunesCategory;
 use utils::string_utils;
 
 impl Validate for Channel
 {
     /// Validate `Channel`
+    ///
+    /// ## Examples
+    /// ```
+    /// extern crate rss;
+    /// extern crate feed;
+    ///
+    /// use feed::channels::{FromUrl, ChannelGetters, Validate};
+    /// use rss::Channel;
+    ///
+    /// fn main()
+    /// {
+    ///     let url = "https://feedpress.me/usererror.xml";
+    ///     let channel = Channel::from_url(url).unwrap();
+    ///     channel.validate().unwrap();
+    /// }
+    /// ```
     fn validate(&self) -> Result<Channel, String>
     {
         let cloud = match self.cloud()
@@ -54,6 +75,31 @@ impl Validate for Channel
             Some(channel_cat)
         };
 
+        let mut skip_hours: Vec<i64> = Vec::new();
+        for hour in self.skip_hours()
+        {
+            skip_hours.push(string_utils::string_to_i64(hour.as_str())?);
+        }
+
+        let skip_hours_opt = if skip_hours.is_empty()
+        {
+            None
+        }
+        else
+        {
+            Some(skip_hours)
+        };
+
+        let skip_days = self.skip_days();
+        let skip_days_opt = if skip_days.is_empty()
+        {
+            None
+        }
+        else
+        {
+            Some(skip_days)
+        };
+
 
         let image = match self.image()
         {
@@ -71,6 +117,160 @@ impl Validate for Channel
             }
         };
 
+        let text_input = match self.text_input()
+        {
+            None => None,
+            Some(val) =>
+            {
+                Some(TextInputBuilder::new().title(val.title().as_str())
+                         .description(val.description().as_str())
+                         .name(val.name().as_str())
+                         .link(val.link().as_str())
+                         .validate()?
+                         .finalize()?)
+            }
+        };
+
+        let mut items: Vec<Item> = Vec::new();
+        for item in self.items()
+        {
+            let mut item_cat: Vec<Category> = Vec::new();
+            for cat in item.categories()
+            {
+                item_cat.push(CategoryBuilder::new().name(cat.name().as_str())
+                                  .domain(cat.domain())
+                                  .validate()?
+                                  .finalize()?);
+            }
+
+            let item_cat_opt = if item_cat.is_empty()
+            {
+                None
+            }
+            else
+            {
+                Some(item_cat)
+            };
+
+            let enclosure = match item.enclosure()
+            {
+                None => None,
+                Some(eval) =>
+                {
+                    Some(EnclosureBuilder::new().url(eval.url().as_str())
+                             .length(string_utils::string_to_i64(eval.length.as_str())?)
+                             .mime_type(eval.mime_type().as_str())
+                             .validate()?
+                             .finalize()?)
+                }
+            };
+
+            let guid = match item.guid()
+            {
+                None => None,
+                Some(gval) =>
+                {
+                    Some(GuidBuilder::new().value(gval.value().as_str())
+                             .is_permalink(Some(gval.is_permalink()))
+                             .finalize()?)
+                }
+            };
+
+            let source = match item.source()
+            {
+                None => None,
+                Some(sval) =>
+                {
+                    Some(SourceBuilder::new().url(sval.url().as_str())
+                             .title(sval.title())
+                             .validate()?
+                             .finalize()?)
+                }
+            };
+
+            let itunes_item = match item.itunes_ext()
+            {
+                None => None,
+                Some(ival) =>
+                {
+                    Some(ITunesItemExtensionBuilder::new().author(ival.author())
+                             .block(ival.block())
+                             .image(ival.image())
+                             .duration(ival.duration())
+                             .explicit(ival.explicit())
+                             .closed_captioned(ival.closed_captioned())
+                             .order(ival.order())
+                             .subtitle(ival.subtitle())
+                             .summary(ival.summary())
+                             .keywords(ival.keywords())
+                             .finalize()?)
+                }
+            };
+
+            items.push(ItemBuilder::new().title(item.title())
+                           .link(item.link())
+                           .description(item.description())
+                           .author(item.author())
+                           .pub_date(item.pub_date())
+                           .comments(item.comments())
+                           .categories(item_cat_opt)
+                           .enclosure(enclosure)
+                           .guid(guid)
+                           .source(source)
+                           .itunes_ext(itunes_item)
+                           .validate()?
+                           .finalize()?);
+        }
+
+        let items_opt = if items.is_empty() { None } else { Some(items) };
+
+        let itunes_channel = match self.itunes_ext()
+        {
+            None => None,
+            Some(cval) =>
+            {
+                let itunes_owner = match cval.owner()
+                {
+                    None => None,
+                    Some(oval) =>
+                    {
+                        Some(ITunesOwnerBuilder::new().name(oval.name())
+                                 .email(oval.email())
+                                 .finalize()?)
+                    }
+                };
+
+                let mut itunes_cat: Vec<ITunesCategory> = Vec::new();
+                for cat in cval.categories()
+                {
+                    itunes_cat.push(ITunesCategoryBuilder::new().text(cat.text().as_str())
+                                        .subcategory(cat.subcategory())
+                                        .finalize()?);
+                }
+
+                let itunes_cat_opt = if itunes_cat.is_empty()
+                {
+                    None
+                }
+                else
+                {
+                    Some(itunes_cat)
+                };
+
+                Some(ITunesChannelExtensionBuilder::new().author(cval.author())
+                         .block(cval.block())
+                         .image(cval.image())
+                         .explicit(cval.explicit())
+                         .complete(cval.complete())
+                         .new_feed_url(cval.new_feed_url())
+                         .subtitle(cval.subtitle())
+                         .summary(cval.summary())
+                         .keywords(cval.keywords())
+                         .categories(itunes_cat_opt)
+                         .owner(itunes_owner)
+                         .finalize()?)
+            }
+        };
 
         ChannelBuilder::new()
             .title(self.title().as_str())
@@ -89,11 +289,11 @@ impl Validate for Channel
             .cloud(cloud)
             .categories(channel_cat_opt)
             .image(image)
-            .text_input(None)
-            .skip_hours(None)
-            .skip_days(None)
-            .items(None)
-            .itunes_ext(None)
+            .text_input(text_input)
+            .skip_hours(skip_hours_opt)
+            .skip_days(skip_days_opt)
+            .items(items_opt)
+            .itunes_ext(itunes_channel)
             .validate()?
             .finalize()
     }
