@@ -84,11 +84,11 @@ impl ITunesCategoryBuilder
     ///     .finalize()
     ///     .unwrap();
     ///
-    /// let mut category = ITunesCategoryBuilder::new()
+    /// let category = ITunesCategoryBuilder::new()
     ///     .text("text")
     ///     .subcategory(Some(Box::new(subcategory)))
     ///     .finalize()
-    ///     .unwrap();;
+    ///     .unwrap();
     /// ```
     pub fn finalize(&self) -> Result<ITunesCategory, String>
     {

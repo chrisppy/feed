@@ -19,6 +19,36 @@ use rss::extension::itunes::ITunesOwner;
 impl ITunesOwnerGetters for ITunesOwner
 {
     /// Get the optional name that exists under `ITunesOwner`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesOwnerBuilder, ITunesOwnerGetters};
+    ///
+    /// let name = "name".to_owned();
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .name(Some(name.clone()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let name_opt = owner.name();
+    /// assert!(name_opt.is_some());
+    ///
+    /// assert_eq!(name, name_opt.unwrap());
+    /// ```
+    ///
+    // ```
+    /// use feed::extension::itunes::{ITunesOwnerBuilder, ITunesOwnerGetters};
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .name(None)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let name_opt = owner.name();
+    /// assert!(name_opt.is_none());
+    /// ```
     fn name(&self) -> Option<String>
     {
         self.name.clone()
@@ -26,6 +56,36 @@ impl ITunesOwnerGetters for ITunesOwner
 
 
     /// Get the optional email that exists under `ITunesOwner`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesOwnerBuilder, ITunesOwnerGetters};
+    ///
+    /// let email = "email@example.com".to_owned();
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .email(Some(email.clone()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let email_opt = owner.email();
+    /// assert!(email_opt.is_some());
+    ///
+    /// assert_eq!(email, email_opt.unwrap());
+    /// ```
+    ///
+    // ```
+    /// use feed::extension::itunes::{ITunesOwnerBuilder, ITunesOwnerGetters};
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .email(None)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let email_opt = owner.email();
+    /// assert!(email_opt.is_none());
+    /// ```
     fn email(&self) -> Option<String>
     {
         self.email.clone()
