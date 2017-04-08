@@ -11,8 +11,9 @@
 //! The fields can be set for item by using the methods under `ItemBuilder`.
 
 
-use channels::{Category, Enclosure, Guid, Item, ItemBuilder, Source};
-use channels::itunes::ITunesItemExtension;
+use channels::ItemBuilder;
+use rss::{Category, Enclosure, Guid, Item, Source};
+use rss::extension::itunes::ITunesItemExtension;
 use utils::string_utils;
 
 
@@ -239,6 +240,52 @@ impl ItemBuilder
     }
 
 
+    /// Validate the contents of `Item`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::ItemBuilder;
+    ///
+    /// let item = ItemBuilder::new()
+    ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
+    ///     .link(Some("http://www.jupiterbroadcasting.com".to_owned()))
+    ///     .description(None)
+    ///     .author(None)
+    ///     .categories(None)
+    ///     .comments(None)
+    ///     .enclosure(None)
+    ///     .guid(None)
+    ///     .pub_date(None)
+    ///     .source(None)
+    ///     .validate().unwrap()
+    ///     .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut ItemBuilder, String>
+    {
+        if self.title.is_none() && self.description.is_none()
+        {
+            return Err("Either Title or Description must have a value.".to_owned());
+        }
+
+        let link = self.link.clone();
+        if link.is_some()
+        {
+            string_utils::str_to_url(link.unwrap().as_str())?;
+        }
+
+        let comments = self.comments.clone();
+        if comments.is_some()
+        {
+            string_utils::str_to_url(comments.unwrap().as_str())?;
+        }
+
+        string_utils::option_string_to_option_date(self.pub_date.clone())?;
+
+        Ok(self)
+    }
+
+
     /// Construct the `Item` from the `ItemBuilder`.
     ///
     /// # Examples
@@ -262,37 +309,25 @@ impl ItemBuilder
     /// ```
     pub fn finalize(&self) -> Result<Item, String>
     {
-        if self.title.is_none() && self.description.is_none()
+        let categories: Vec<Category> = match self.categories.clone()
         {
-            return Err("Either Title or Description must have a value.".to_owned());
-        }
-
-        let link = match self.link.clone()
-        {
-            Some(val) => Some(string_utils::str_to_url(val.as_str())?),
-            None => None,
+            Some(val) => val,
+            None => Vec::new(),
         };
-
-        let comments = match self.comments.clone()
-        {
-            Some(val) => Some(string_utils::str_to_url(val.as_str())?),
-            None => None,
-        };
-
-        let pub_date = string_utils::option_string_to_option_date(self.pub_date.clone())?;
 
         Ok(Item {
                title: self.title.clone(),
-               link: link,
+               link: self.link.clone(),
                description: self.description.clone(),
                author: self.author.clone(),
-               categories: self.categories.clone(),
-               comments: comments,
+               categories: categories,
+               comments: self.comments.clone(),
                enclosure: self.enclosure.clone(),
                guid: self.guid.clone(),
-               pub_date: pub_date,
+               pub_date: self.pub_date.clone(),
                source: self.source.clone(),
                itunes_ext: self.itunes_ext.clone(),
+               ..Default::default()
            })
     }
 }

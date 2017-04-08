@@ -12,18 +12,18 @@
 //! `Source`.
 
 
-use channels::Source;
-use url::Url;
+use channels::SourceGetters;
+use rss::Source;
 
 
-impl Source
+impl SourceGetters for Source
 {
     /// Get the url that exists under `Source`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::SourceBuilder;
+    /// use feed::channels::{SourceBuilder, SourceGetters};
     ///
     /// let url = "http://www.tomalak.org/links2.xml";
     ///
@@ -31,9 +31,9 @@ impl Source
     ///     .url(url)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(url.to_owned(), source.url().into_string());
+    /// assert_eq!(url.to_owned(), source.url());
     /// ```
-    pub fn url(&self) -> Url
+    fn url(&self) -> String
     {
         self.url.clone()
     }
@@ -44,7 +44,7 @@ impl Source
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::SourceBuilder;
+    /// use feed::channels::{SourceBuilder, SourceGetters};
     ///
     /// let title = "Tomalak's Realm";
     ///
@@ -57,7 +57,7 @@ impl Source
     ///     .unwrap();
     /// assert_eq!(title.to_owned(), source_obj.title().unwrap());
     /// ```
-    pub fn title(&self) -> Option<String>
+    fn title(&self) -> Option<String>
     {
         self.title.clone()
     }

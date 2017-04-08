@@ -9,24 +9,24 @@
 
 
 //! The fields under itunes category can be retrieved by using the methods under
-//! `ITunesOwner`.
+//! `ITunesCategory`.
 
 
-use channels::itunes::ITunesOwner;
+use channels::itunes::ITunesCategoryGetters;
+use rss::extension::itunes::ITunesCategory;
 
-
-impl ITunesOwner
+impl ITunesCategoryGetters for ITunesCategory
 {
-    ///
-    pub fn name(&self) -> Option<String>
+    /// Get the text that exists under `ITunesCategory`.
+    fn text(&self) -> String
     {
-        self.name.clone()
+        self.text.clone()
     }
 
 
-    ///
-    pub fn email(&self) -> Option<String>
+    /// Get the optional subcategory that exists under `ITunesCategory`.
+    fn subcategory(&self) -> Option<Box<ITunesCategory>>
     {
-        self.email.clone()
+        self.subcategory.clone()
     }
 }

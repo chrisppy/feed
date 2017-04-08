@@ -11,19 +11,18 @@
 //! The fields under cloud can be retrieved by using the methods under `Cloud`.
 
 
-use channels::Cloud;
-use enums::CloudProtocol;
-use url::Url;
+use channels::CloudGetters;
+use rss::Cloud;
 
 
-impl Cloud
+impl CloudGetters for Cloud
 {
     /// Get the domain that exists under `Cloud`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let domain = "http://rpc.sys.com/";
@@ -32,9 +31,9 @@ impl Cloud
     ///     .protocol("soap")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(domain.to_owned(), cloud.domain().into_string());
+    /// assert_eq!(domain.to_owned(), cloud.domain());
     /// ```
-    pub fn domain(&self) -> Url
+    fn domain(&self) -> String
     {
         self.domain.clone()
     }
@@ -45,7 +44,7 @@ impl Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let port: i64 = 80;
@@ -55,11 +54,11 @@ impl Cloud
     ///     .protocol("soap")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(port, cloud.port());
+    /// assert_eq!(port.to_string(), cloud.port());
     /// ```
-    pub fn port(&self) -> i64
+    fn port(&self) -> String
     {
-        self.port
+        self.port.clone()
     }
 
 
@@ -68,7 +67,7 @@ impl Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let path = "/RPC2";
@@ -80,7 +79,7 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(path.to_owned(), cloud.path());
     /// ```
-    pub fn path(&self) -> String
+    fn path(&self) -> String
     {
         self.path.clone()
     }
@@ -91,7 +90,7 @@ impl Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let register_procedure = "pingMe";
@@ -103,7 +102,7 @@ impl Cloud
     ///     .unwrap();
     /// assert_eq!(register_procedure.to_owned(), cloud.register_procedure());
     /// ```
-    pub fn register_procedure(&self) -> String
+    fn register_procedure(&self) -> String
     {
         self.register_procedure.clone()
     }
@@ -114,7 +113,7 @@ impl Cloud
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CloudBuilder;
+    /// use feed::channels::{CloudBuilder, CloudGetters};
     /// use feed::enums::CloudProtocol;
     ///
     /// let protocol = "soap";
@@ -123,9 +122,9 @@ impl Cloud
     ///     .domain("http://rpc.sys.com/")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(protocol.to_owned(), cloud.protocol().into_string());
+    /// assert_eq!(protocol.to_owned(), cloud.protocol());
     /// ```
-    pub fn protocol(&self) -> CloudProtocol
+    fn protocol(&self) -> String
     {
         self.protocol.clone()
     }

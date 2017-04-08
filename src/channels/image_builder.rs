@@ -13,7 +13,8 @@
 //! `ImageBuilder`.
 
 
-use channels::{Image, ImageBuilder};
+use channels::ImageBuilder;
+use rss::Image;
 use utils::string_utils;
 
 
@@ -137,6 +138,67 @@ impl ImageBuilder
     }
 
 
+    /// Validate the contents of `Image`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::ImageBuilder;
+    ///
+    /// let image = ImageBuilder::new()
+    ///         .url("http://jupiterbroadcasting.com/images/LAS-300-Badge.jpg")
+    ///         .title("LAS 300 Logo")
+    ///         .link("http://www.jupiterbroadcasting.com")
+    ///         .width(Some(88))
+    ///         .height(Some(88))
+    ///         .description(Some("This is a test".to_owned()))
+    ///         .validate().unwrap()
+    ///         .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut ImageBuilder, String>
+    {
+        let url_string = self.url.clone();
+        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") && !url_string.ends_with(".png") &&
+           !url_string.ends_with(".gif")
+        {
+            return Err("Image Url must end with .jpeg, .png, or .gif".to_owned());
+        }
+
+        string_utils::str_to_url(url_string.as_str())?;
+        string_utils::str_to_url(self.link.as_str())?;
+
+        let width_opt = self.width;
+        if width_opt.is_some()
+        {
+            let width = width_opt.unwrap();
+            if width > 144
+            {
+                return Err("Image width cannot be greater than 144.".to_owned());
+            }
+            else if width < 0
+            {
+                return Err("Image width cannot be a negative value.".to_owned());
+            }
+        }
+
+        let height_opt = self.height;
+        if height_opt.is_some()
+        {
+            let height = height_opt.unwrap();
+            if height > 144
+            {
+                return Err("Image height cannot be greater than 400.".to_owned());
+            }
+            else if height < 0
+            {
+                return Err("Image height cannot be a negative value.".to_owned());
+            }
+        }
+
+        Ok(self)
+    }
+
+
     /// Construct the `Image` from the `ImageBuilder`.
     ///
     /// # Examples
@@ -155,54 +217,23 @@ impl ImageBuilder
     /// ```
     pub fn finalize(&self) -> Result<Image, String>
     {
+
         let width = match self.width
         {
-            Some(val) =>
-            {
-                if val > 144
-                {
-                    return Err("Image width cannot be greater than 144.".to_owned());
-                }
-                else if val < 0
-                {
-                    return Err("Image width cannot be a negative value.".to_owned());
-                }
-                val
-            }
-            None => 88,
+            Some(val) => string_utils::i64_to_option_string(val)?,
+            None => string_utils::i64_to_option_string(88)?,
         };
 
         let height = match self.height
         {
-            Some(val) =>
-            {
-                if val > 400
-                {
-                    return Err("Image height cannot be greater than 400.".to_owned());
-                }
-                else if val < 0
-                {
-                    return Err("Image height cannot be a negative value.".to_owned());
-                }
-                val
-            }
-            None => 31,
+            Some(val) => string_utils::i64_to_option_string(val)?,
+            None => string_utils::i64_to_option_string(31)?,
         };
 
-        let url_string = self.url.clone();
-        if !url_string.ends_with(".jpeg") && !url_string.ends_with(".jpg") && !url_string.ends_with(".png") &&
-           !url_string.ends_with(".gif")
-        {
-            return Err("Image Url must end with .jpeg, .png, or .gif".to_owned());
-        }
-
-        let url = string_utils::str_to_url(url_string.as_str())?;
-        let link = string_utils::str_to_url(self.link.as_str())?;
-
         Ok(Image {
-               url: url,
+               url: self.url.clone(),
                title: self.title.clone(),
-               link: link,
+               link: self.link.clone(),
                width: width,
                height: height,
                description: self.description.clone(),

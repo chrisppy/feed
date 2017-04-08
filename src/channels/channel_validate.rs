@@ -8,6 +8,17 @@
 // (at your option) any later version.
 
 
-// pub mod reader_utils;
-pub mod string_utils;
-// pub mod writer_utils;
+//! `Validate` Trait for `Channel`
+
+
+use channels::Validate;
+use rss::Channel;
+
+impl Validate for Channel
+{
+    /// Validate `Channel`
+    fn validate() -> Result<Channel, String>
+    [
+        unimplemented!()
+    ]
+}

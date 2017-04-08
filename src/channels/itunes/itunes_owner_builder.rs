@@ -8,23 +8,24 @@
 // (at your option) any later version.
 
 
-//! The fields can be set for itunes category by using the methods under
+//! The fields can be set for itunes owner by using the methods under
 //! `ITunesOwnerBuilder`.
 
 
-use channels::itunes::{ITunesOwner, ITunesOwnerBuilder};
+use channels::itunes::ITunesOwnerBuilder;
+use rss::extension::itunes::ITunesOwner;
 
 
 impl ITunesOwnerBuilder
 {
-    ///
+    /// Construct a new `ITunesOwnerBuilder` and return default values.
     pub fn new() -> ITunesOwnerBuilder
     {
         ITunesOwnerBuilder::default()
     }
 
 
-    ///
+    /// Set the optional name that exists uner `ITunesOwner`.
     pub fn name(&mut self, name: Option<String>) -> &mut ITunesOwnerBuilder
     {
         self.name = name;
@@ -32,7 +33,7 @@ impl ITunesOwnerBuilder
     }
 
 
-    ///
+    /// Set the optional email that exists uner `ITunesOwner`.
     pub fn email(&mut self, email: Option<String>) -> &mut ITunesOwnerBuilder
     {
         self.email = email;
@@ -40,7 +41,7 @@ impl ITunesOwnerBuilder
     }
 
 
-    ///
+    /// Construct the `ITunesOwner` from the `ITunesOwnerBuilder`.
     pub fn finalize(&self) -> Result<ITunesOwner, String>
     {
         Ok(ITunesOwner {

@@ -12,7 +12,8 @@
 //! under `TextInputBuilder`.
 
 
-use channels::{TextInput, TextInputBuilder};
+use channels::TextInputBuilder;
+use rss::TextInput;
 use utils::string_utils;
 
 
@@ -101,6 +102,29 @@ impl TextInputBuilder
     }
 
 
+    /// Validate the contents of `TextInput`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::TextInputBuilder;
+    ///
+    /// let text_input = TextInputBuilder::new()
+    ///         .title("Title")
+    ///         .description("This is a test description.")
+    ///         .name("Comments")
+    ///         .link("http://www.example.com/feedback")
+    ///         .validate().unwrap()
+    ///         .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut TextInputBuilder, String>
+    {
+        string_utils::str_to_url(self.link.clone().as_str())?;
+
+        Ok(self)
+    }
+
+
     /// Construct the `TextInput` from the `TextInputBuilder`.
     ///
     /// # Examples
@@ -118,13 +142,11 @@ impl TextInputBuilder
     /// ```
     pub fn finalize(&self) -> Result<TextInput, String>
     {
-        let link = string_utils::str_to_url(self.link.clone().as_str())?;
-
         Ok(TextInput {
                title: self.title.clone(),
                description: self.description.clone(),
                name: self.name.clone(),
-               link: link,
+               link: self.link.clone(),
            })
     }
 }

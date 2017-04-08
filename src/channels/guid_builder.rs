@@ -11,7 +11,8 @@
 //! The fields can be set for guid by using the methods under `GuidBuilder`.
 
 
-use channels::{Guid, GuidBuilder};
+use channels::GuidBuilder;
+use rss::Guid;
 
 
 impl GuidBuilder
@@ -39,11 +40,11 @@ impl GuidBuilder
     /// use feed::channels::GuidBuilder;
     ///
     /// let mut guid_builder = GuidBuilder::new();
-    /// guid_builder.permalink(Some(false));
+    /// guid_builder.is_permalink(Some(false));
     /// ```
-    pub fn permalink(&mut self, permalink: Option<bool>) -> &mut GuidBuilder
+    pub fn is_permalink(&mut self, is_permalink: Option<bool>) -> &mut GuidBuilder
     {
-        self.permalink = permalink;
+        self.is_permalink = is_permalink;
         self
     }
 
@@ -74,22 +75,19 @@ impl GuidBuilder
     ///
     /// let guid = GuidBuilder::new()
     ///         .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///         .permalink(Some(true))
+    ///         .is_permalink(Some(true))
     ///         .finalize();
     /// ```
     pub fn finalize(&self) -> Result<Guid, String>
     {
-        let permalink = if self.permalink.is_some()
+        let is_permalink = match self.is_permalink
         {
-            self.permalink.unwrap()
-        }
-        else
-        {
-            true
+            Some(val) => val,
+            None => true,
         };
 
         Ok(Guid {
-               permalink: permalink,
+               is_permalink: is_permalink,
                value: self.value.clone(),
            })
     }

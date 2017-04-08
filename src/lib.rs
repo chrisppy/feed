@@ -36,35 +36,43 @@
 //! ### Reading Feeds
 //!
 //! ```
-//! use feed::FeedBuilder;
+//! extern crate rss;
+//! extern crate feed;
 //!
-//! let url_str = "https://feedpress.me/usererror.xml";
-//! let feed = FeedBuilder::from_url(url_str).unwrap();
-//! let channel = feed.channel();
-//! println!("Title: {}", channel.title());
+//! use feed::channels::{FromUrl, ChannelGetters};
+//! use rss::Channel;
+//!
+//! fn main()
+//! {
+//!     let url = "https://feedpress.me/usererror.xml";
+//!     let channel = Channel::from_url(url).unwrap();
+//!     println!("Feed Title: {:?}", channel.title());
+//! }
 //! ```
 //!
 //! ### Writing Feeds
 //!
 //! ```
+//! extern crate feed;
 //!
-//! use feed::FeedBuilder;
 //! use feed::channels::ChannelBuilder;
 //!
-//! let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
-//!     + "Action Show! A show that covers everything geeks care about in "
-//!     + "the computer industry. Get a solid dose of Linux, gadgets, news "
-//!     + "events and much more!";
+//! fn main()
+//! {
+//!     let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
+//!         + "Action Show! A show that covers everything geeks care about in "
+//!         + "the computer industry. Get a solid dose of Linux, gadgets, news "
+//!         + "events and much more!";
 //!
-//! let channel = ChannelBuilder::new()
+//!     let channel = ChannelBuilder::new()
 //!         .title("The Linux Action Show! OGG")
 //!         .link("http://www.jupiterbroadcasting.com")
 //!         .description(description.as_ref())
 //!         .finalize()
 //!         .unwrap();
-//! let feed = FeedBuilder::from_channel(channel).unwrap();
-//! let xml = feed.to_xml().unwrap();
-//! println!("Feed: {:?}", xml);
+//!
+//!     println!("Feed: {:?}", channel.to_string());
+//! }
 //! ```
 
 
@@ -77,22 +85,4 @@ extern crate url;
 
 pub mod channels;
 pub mod enums;
-pub mod feed;
-pub mod feed_builder;
 mod utils;
-
-
-use channels::Channel;
-
-
-/// This `Feed` struct contains all the items that exist for the feeds.
-#[derive(Clone)]
-pub struct Feed
-{
-    channel: Channel,
-}
-
-
-/// This `FeedBuilder` struct creates the Feed struct from url, file, or &str.
-#[derive(Clone)]
-pub struct FeedBuilder {}

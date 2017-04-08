@@ -11,41 +11,40 @@
 //! All the structs for channels.
 
 
-pub mod category;
+pub mod category_getters;
 pub mod category_builder;
-pub mod channel;
+pub mod channel_from_url;
+pub mod channel_getters;
 pub mod channel_builder;
-pub mod cloud;
+pub mod cloud_getters;
 pub mod cloud_builder;
-pub mod enclosure;
+pub mod enclosure_getters;
 pub mod enclosure_builder;
-pub mod guid;
+pub mod guid_getters;
 pub mod guid_builder;
-pub mod image;
+pub mod image_getters;
 pub mod image_builder;
-pub mod item;
+pub mod item_getters;
 pub mod item_builder;
-pub mod source;
+pub mod source_getters;
 pub mod source_builder;
-pub mod text_input;
+pub mod text_input_getters;
 pub mod text_input_builder;
 
 pub mod itunes;
 
-use self::itunes::{ITunesChannelExtension, ITunesItemExtension};
-use chrono::*;
-use enums::{CloudProtocol, Day};
-use mime::Mime;
-use url::Url;
+use rss::{Category, Channel, Cloud, Enclosure, Guid, Image, Item, Source, TextInput};
+use rss::extension::itunes::{ITunesChannelExtension, ITunesItemExtension};
 
-
-/// This `Category` struct contains all the items that exist for the category
-/// field under 'Channel' and `Item`.
-#[derive(Clone)]
-pub struct Category
+/// The Getter functions for `Category`
+pub trait CategoryGetters
 {
-    name: String,
-    domain: Option<Url>,
+    /// Get the category that exists under `Category`.
+    fn name(&self) -> String;
+
+
+    /// Get the optional domain that exists under `Category`.
+    fn domain(&self) -> Option<String>;
 }
 
 
@@ -58,31 +57,87 @@ pub struct CategoryBuilder
 }
 
 
-/// This `Channel` struct contains all the items that exist for the `feed`.
-#[derive(Clone)]
-pub struct Channel
+/// From Url function for `Channel`
+pub trait FromUrl
 {
-    title: String,
-    link: Url,
-    description: String,
-    language: Option<String>,
-    copyright: Option<String>,
-    managing_editor: Option<String>,
-    web_master: Option<String>,
-    pub_date: Option<DateTime<FixedOffset>>,
-    last_build_date: Option<DateTime<FixedOffset>>,
-    categories: Option<Vec<Category>>,
-    generator: Option<String>,
-    docs: Option<Url>,
-    cloud: Option<Cloud>,
-    ttl: Option<i64>,
-    image: Option<Image>,
-    rating: Option<String>,
-    text_input: Option<TextInput>,
-    skip_hours: Option<Vec<i64>>,
-    skip_days: Option<Vec<Day>>,
-    items: Option<Vec<Item>>,
-    itunes_ext: Option<ITunesChannelExtension>,
+    /// Construct a `Channel` from a `Url`.
+    fn from_url(url: &str) -> Result<Channel, String>;
+}
+
+
+/// Validate function for `Channel`
+pub trait Validate
+{
+    /// Validate `Channel`
+    fn validate() -> Result<Channel, String>;
+}
+
+
+/// The Getter functions for `Channel`
+pub trait ChannelGetters
+{
+    /// Get the title that exists under `Channel`.
+    fn title(&self) -> String;
+
+    /// Get the link that exists under `Channel`.
+    fn link(&self) -> String;
+
+    /// Get the description that exists under `Channel`.
+    fn description(&self) -> String;
+
+    /// Get the optional language that exists under `Channel`.
+    fn language(&self) -> Option<String>;
+
+    /// Get the optional copyright that exists under `Channel`.
+    fn copyright(&self) -> Option<String>;
+
+    /// Get the optional managing editor that exists under `Channel`.
+    fn managing_editor(&self) -> Option<String>;
+
+    /// Get the optional web master that exists under `Channel`.
+    fn webmaster(&self) -> Option<String>;
+
+    /// Get the optional pub date that exists under `Channel`.
+    fn pub_date(&self) -> Option<String>;
+
+    /// Get the optional last build date that exists under `Channel`.
+    fn last_build_date(&self) -> Option<String>;
+
+    /// Get the categories that exists under `Channel`.
+    fn categories(&self) -> Vec<Category>;
+
+    /// Get the optional generator that exists under `Channel`.
+    fn generator(&self) -> Option<String>;
+
+    /// Get the optional docs that exists under `Channel`.
+    fn docs(&self) -> Option<String>;
+
+    /// Get the optional cloud that exists under `Channel`.
+    fn cloud(&self) -> Option<Cloud>;
+
+    /// Get the optional ttl that exists under `Channel`.
+    fn ttl(&self) -> Option<String>;
+
+    /// Get the optional image that exists under `Channel`.
+    fn image(&self) -> Option<Image>;
+
+    /// Get the optional text input that exists under `Channel`.
+    fn text_input(&self) -> Option<TextInput>;
+
+    /// Get the optional rating that exists under `Channel`.
+    fn rating(&self) -> Option<String>;
+
+    /// Get the skip hours that exists under `Channel`.
+    fn skip_hours(&self) -> Vec<String>;
+
+    /// Get the skip days that exists under `Channel`.
+    fn skip_days(&self) -> Vec<String>;
+
+    /// Get the items that exists under `Channel`.
+    fn items(&self) -> Vec<Item>;
+
+    /// Get the optional `ITunesChannelExtension` under `Channel`.
+    fn itunes_ext(&self) -> Option<ITunesChannelExtension>;
 }
 
 
@@ -96,7 +151,7 @@ pub struct ChannelBuilder
     language: Option<String>,
     copyright: Option<String>,
     managing_editor: Option<String>,
-    web_master: Option<String>,
+    webmaster: Option<String>,
     pub_date: Option<String>,
     last_build_date: Option<String>,
     categories: Option<Vec<Category>>,
@@ -114,16 +169,23 @@ pub struct ChannelBuilder
 }
 
 
-/// This `Cloud` struct contains all the items that exist for the cloud field
-/// under 'Channel'.
-#[derive(Clone)]
-pub struct Cloud
+/// The Getter functions for `Cloud`
+pub trait CloudGetters
 {
-    domain: Url,
-    port: i64,
-    path: String,
-    register_procedure: String,
-    protocol: CloudProtocol,
+    /// Get the domain that exists under `Cloud`.
+    fn domain(&self) -> String;
+
+    /// Get the port that exists under `Cloud`.
+    fn port(&self) -> String;
+
+    /// Get the path that exists under `Cloud`.
+    fn path(&self) -> String;
+
+    /// Get the register procedure that exists under `Cloud`.
+    fn register_procedure(&self) -> String;
+
+    /// Get the protocol that exists under `Cloud`.
+    fn protocol(&self) -> String;
 }
 
 
@@ -139,14 +201,17 @@ pub struct CloudBuilder
 }
 
 
-/// This `Enclosure` struct contains all the items that exist for the enclosure
-/// field under 'Item'.
-#[derive(Clone)]
-pub struct Enclosure
+/// The Getter functions for `Enclosure`
+pub trait EnclosureGetters
 {
-    url: Url,
-    length: i64,
-    mime_type: Mime,
+    /// Get the url that exists under `Enclosure`.
+    fn url(&self) -> String;
+
+    /// Get the length that exists under `Enclosure`.
+    fn length(&self) -> String;
+
+    /// Get the enclosure type that exists under `Enclosure`.
+    fn mime_type(&self) -> String;
 }
 
 
@@ -160,13 +225,14 @@ pub struct EnclosureBuilder
 }
 
 
-/// This `Guid` struct contains all the items that exist for the guid field
-/// under 'Item'.
-#[derive(Clone)]
-pub struct Guid
+/// The Getter functions for `Guid`
+pub trait GuidGetters
 {
-    permalink: bool,
-    value: String,
+    /// Get the permalink that exists under `Guid`.
+    fn is_permalink(&self) -> bool;
+
+    /// Get the guid that exists under `Guid`.
+    fn value(&self) -> String;
 }
 
 
@@ -174,22 +240,31 @@ pub struct Guid
 #[derive(Clone, Default)]
 pub struct GuidBuilder
 {
-    permalink: Option<bool>,
+    is_permalink: Option<bool>,
     value: String,
 }
 
 
-/// This `Image` struct contains all the items that exist for the image field
-/// under 'Channel'.
-#[derive(Clone)]
-pub struct Image
+/// The Getter functions for `Image`
+pub trait ImageGetters
 {
-    url: Url,
-    title: String,
-    link: Url,
-    width: i64,
-    height: i64,
-    description: Option<String>,
+    /// Get the url that exists under `Image`.
+    fn url(&self) -> String;
+
+    /// Get the title that exists under `Image`.
+    fn title(&self) -> String;
+
+    /// Get the link that exists under `Image`.
+    fn link(&self) -> String;
+
+    /// Get the width that exists under `Image`.
+    fn width(&self) -> Option<String>;
+
+    /// Get the height that exists under `Image`.
+    fn height(&self) -> Option<String>;
+
+    /// Get the description that exists under `Image`.
+    fn description(&self) -> Option<String>;
 }
 
 
@@ -206,22 +281,41 @@ pub struct ImageBuilder
 }
 
 
-/// This `Item` struct contains all the items that exist for the item field
-/// under 'Channel'.
-#[derive(Clone)]
-pub struct Item
+/// The Getter functions for `Item`
+pub trait ItemGetters
 {
-    title: Option<String>,
-    link: Option<Url>,
-    description: Option<String>,
-    author: Option<String>,
-    categories: Option<Vec<Category>>,
-    comments: Option<Url>,
-    enclosure: Option<Enclosure>,
-    guid: Option<Guid>,
-    pub_date: Option<DateTime<FixedOffset>>,
-    source: Option<Source>,
-    itunes_ext: Option<ITunesItemExtension>,
+    /// Get the optional title that exists under `Item`.
+    fn title(&self) -> Option<String>;
+
+    /// Get the optional link that exists under `Item`.
+    fn link(&self) -> Option<String>;
+
+    /// Get the optional description that exists under `Item`.
+    fn description(&self) -> Option<String>;
+
+    /// Get the optional author that exists under `Item`.
+    fn author(&self) -> Option<String>;
+
+    /// Get the categories that exists under `Item`.
+    fn categories(&self) -> Vec<Category>;
+
+    /// Get the optional comments that exists under `Item`.
+    fn comments(&self) -> Option<String>;
+
+    /// Get the optional enclosure that exists under `Item`.
+    fn enclosure(&self) -> Option<Enclosure>;
+
+    /// Get the optional guid that exists under `Item`.
+    fn guid(&self) -> Option<Guid>;
+
+    /// Get the optional pub date that exists under `Item`.
+    fn pub_date(&self) -> Option<String>;
+
+    /// Get the optional source that exists under `Item`.
+    fn source(&self) -> Option<Source>;
+
+    /// Get the optional `ITunesItemExtension` under `Item`.
+    fn itunes_ext(&self) -> Option<ITunesItemExtension>;
 }
 
 
@@ -243,13 +337,14 @@ pub struct ItemBuilder
 }
 
 
-/// This `Source` struct contains all the items that exist for the source field
-/// under 'Item'.
-#[derive(Clone)]
-pub struct Source
+/// The Getter functions for `Source`
+pub trait SourceGetters
 {
-    url: Url,
-    title: Option<String>,
+    /// Get the url that exists under `Source`.
+    fn url(&self) -> String;
+
+    /// Get the source that exists under `Source`.
+    fn title(&self) -> Option<String>;
 }
 
 
@@ -262,15 +357,20 @@ pub struct SourceBuilder
 }
 
 
-/// This `TextInput` struct contains all the items that exist for the text input
-/// field under 'Channel'.
-#[derive(Clone)]
-pub struct TextInput
+/// The Getter functions for `TextInput`
+pub trait TextInputGetters
 {
-    title: String,
-    description: String,
-    name: String,
-    link: Url,
+    /// Get the title that exists under `TextInput`.
+    fn title(&self) -> String;
+
+    /// Get the description that exists under `TextInput`.
+    fn description(&self) -> String;
+
+    /// Get the name that exists under `TextInput`.
+    fn name(&self) -> String;
+
+    /// Get the link that exists under `TextInput`.
+    fn link(&self) -> String;
 }
 
 

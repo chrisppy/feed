@@ -12,8 +12,9 @@
 //! `EnclosureBuilder`.
 
 
-use channels::{Enclosure, EnclosureBuilder};
+use channels::EnclosureBuilder;
 use mime::Mime;
+use rss::Enclosure;
 use utils::string_utils;
 
 
@@ -87,6 +88,41 @@ impl EnclosureBuilder
     }
 
 
+    /// Validate the contents of `Enclosure`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::EnclosureBuilder;
+    ///
+    /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
+    /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
+    /// let enclosure = EnclosureBuilder::new()
+    ///         .url(url.as_ref())
+    ///         .length(70772893)
+    ///         .mime_type("audio/ogg")
+    ///         .validate().unwrap()
+    ///         .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut EnclosureBuilder, String>
+    {
+        string_utils::str_to_url(self.url.as_str())?;
+
+        let mime = self.mime_type.parse::<Mime>();
+        if mime.is_err()
+        {
+            return Err(format!("Error: {:?}", mime.unwrap_err()));
+        }
+
+        if self.length < 0
+        {
+            return Err("Enclosure Length cannot be a negative value".to_owned());
+        }
+
+        Ok(self)
+    }
+
+
     /// Construct the `Enclosure` from the `EnclosureBuilder`.
     ///
     /// # Examples
@@ -104,24 +140,12 @@ impl EnclosureBuilder
     /// ```
     pub fn finalize(&self) -> Result<Enclosure, String>
     {
-        let url = string_utils::str_to_url(self.url.as_str())?;
-
-        let mime_type: Mime = match self.mime_type.parse()
-        {
-            Ok(val) => val,
-            Err(err) => return Err(format!("Error: {:?}", err)),
-        };
-
-
-        if self.length < 0
-        {
-            return Err("Enclosure Length cannot be a negative value".to_owned());
-        }
+        let length = string_utils::i64_to_string(self.length)?;
 
         Ok(Enclosure {
-               url: url,
-               length: self.length,
-               mime_type: mime_type,
+               url: self.url.clone(),
+               length: length,
+               mime_type: self.mime_type.clone(),
            })
     }
 }

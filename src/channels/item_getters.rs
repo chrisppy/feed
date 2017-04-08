@@ -10,21 +10,19 @@
 
 //! The fields under item can be retrieved by using the methods under `Item`.
 
-
-use channels::{Category, Enclosure, Guid, Item, Source};
-use channels::itunes::ITunesItemExtension;
-use chrono::*;
-use url::Url;
+use channels::ItemGetters;
+use rss::{Category, Enclosure, Guid, Item, Source};
+use rss::extension::itunes::ITunesItemExtension;
 
 
-impl Item
+impl ItemGetters for Item
 {
     /// Get the optional title that exists under `Item`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let title_string = "Making Music with Linux | LAS 408".to_owned();
     /// let item = ItemBuilder::new()
@@ -38,7 +36,7 @@ impl Item
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(None)
@@ -47,7 +45,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.title().is_none());
     /// ```
-    pub fn title(&self) -> Option<String>
+    fn title(&self) -> Option<String>
     {
         self.title.clone()
     }
@@ -58,7 +56,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let link_string = "http://www.jupiterbroadcasting.com/".to_owned();
     /// let item = ItemBuilder::new()
@@ -70,11 +68,11 @@ impl Item
     /// assert!(link_option.is_some());
     ///
     /// let link = link_option.unwrap();
-    /// assert_eq!(link_string.clone(), link.into_string());
+    /// assert_eq!(link_string.clone(), link);
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -83,7 +81,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.link().is_none());
     /// ```
-    pub fn link(&self) -> Option<Url>
+    fn link(&self) -> Option<String>
     {
         self.link.clone()
     }
@@ -94,7 +92,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let description_string = "This is a test description".to_owned();
     /// let item = ItemBuilder::new()
@@ -109,7 +107,7 @@ impl Item
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -118,7 +116,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.description().is_none());
     /// ```
-    pub fn description(&self) -> Option<String>
+    fn description(&self) -> Option<String>
     {
         self.description.clone()
     }
@@ -129,7 +127,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let author_string = "Chris Fisher".to_owned();
     /// let item = ItemBuilder::new()
@@ -144,7 +142,7 @@ impl Item
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -153,18 +151,18 @@ impl Item
     ///     .unwrap();
     /// assert!(item.author().is_none());
     /// ```
-    pub fn author(&self) -> Option<String>
+    fn author(&self) -> Option<String>
     {
         self.author.clone()
     }
 
 
-    /// Get the optional categories that exists under `Item`.
+    /// Get the categories that exists under `Item`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{CategoryBuilder, ItemBuilder};
+    /// use feed::channels::{CategoryBuilder, ItemBuilder, ItemGetters};
     ///
     /// let category_1 = CategoryBuilder::new()
     ///     .domain(None)
@@ -182,23 +180,10 @@ impl Item
     ///     .categories(Some(categories_vec.clone()))
     ///     .finalize()
     ///     .unwrap();
-    /// let categories_option = item.categories();
-    /// assert!(categories_option.is_some());
-    /// let categories = categories_option.unwrap();
-    /// assert_eq!(categories_vec.clone().len(), categories.len());
-    /// ```
     ///
+    /// assert_eq!(categories_vec.clone().len(), item.categories().len());
     /// ```
-    /// use feed::channels::ItemBuilder;
-    ///
-    /// let item = ItemBuilder::new()
-    ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
-    ///     .categories(None)
-    ///     .finalize()
-    ///     .unwrap();
-    /// assert!(item.categories().is_none());
-    /// ```
-    pub fn categories(&self) -> Option<Vec<Category>>
+    fn categories(&self) -> Vec<Category>
     {
         self.categories.clone()
     }
@@ -209,7 +194,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let comments_string = "http://example.com/comments".to_owned();
     /// let item = ItemBuilder::new()
@@ -222,11 +207,11 @@ impl Item
     /// assert!(comments_option.is_some());
     ///
     /// let comments = comments_option.unwrap();
-    /// assert_eq!(comments_string.clone(), comments.into_string());
+    /// assert_eq!(comments_string.clone(), comments);
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -235,7 +220,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.comments().is_none());
     /// ```
-    pub fn comments(&self) -> Option<Url>
+    fn comments(&self) -> Option<String>
     {
         self.comments.clone()
     }
@@ -246,7 +231,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{EnclosureBuilder, ItemBuilder};
+    /// use feed::channels::{EnclosureBuilder, ItemBuilder, ItemGetters};
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -268,7 +253,7 @@ impl Item
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -277,7 +262,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.enclosure().is_none());
     /// ```
-    pub fn enclosure(&self) -> Option<Enclosure>
+    fn enclosure(&self) -> Option<Enclosure>
     {
         self.enclosure.clone()
     }
@@ -288,11 +273,11 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{GuidBuilder, ItemBuilder};
+    /// use feed::channels::{GuidBuilder, ItemBuilder, ItemGetters};
     ///
     /// let guid = GuidBuilder::new()
     ///     .value("9DE46946-2F90-4D5D-9047-7E9165C16E7C")
-    ///     .permalink(None)
+    ///     .is_permalink(None)
     ///     .finalize()
     ///     .unwrap();
     ///
@@ -305,7 +290,7 @@ impl Item
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -314,7 +299,7 @@ impl Item
     ///     .unwrap();
     /// assert!(item.guid().is_none());
     /// ```
-    pub fn guid(&self) -> Option<Guid>
+    fn guid(&self) -> Option<Guid>
     {
         self.guid.clone()
     }
@@ -325,7 +310,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let pub_date = "Sun, 13 Mar 2016 20:02:02 -0700";
     ///
@@ -339,11 +324,11 @@ impl Item
     /// assert!(local.is_some());
     ///
     /// let local_result = local.unwrap();
-    /// assert_eq!(pub_date.to_owned(), local_result.to_rfc2822());
+    /// assert_eq!(pub_date.to_owned(), local_result);
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -352,9 +337,9 @@ impl Item
     ///     .unwrap();
     /// assert!(item.pub_date().is_none());
     /// ```
-    pub fn pub_date(&self) -> Option<DateTime<FixedOffset>>
+    fn pub_date(&self) -> Option<String>
     {
-        self.pub_date
+        self.pub_date.clone()
     }
 
 
@@ -363,7 +348,7 @@ impl Item
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::{ItemBuilder, SourceBuilder};
+    /// use feed::channels::{ItemBuilder, ItemGetters, SourceBuilder};
     ///
     /// let source = SourceBuilder::new()
     ///     .url("http://www.tomalak.org/links2.xml")
@@ -380,7 +365,7 @@ impl Item
     /// ```
     ///
     /// ```
-    /// use feed::channels::ItemBuilder;
+    /// use feed::channels::{ItemBuilder, ItemGetters};
     ///
     /// let item = ItemBuilder::new()
     ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
@@ -389,14 +374,14 @@ impl Item
     ///     .unwrap();
     /// assert!(item.source().is_none());
     /// ```
-    pub fn source(&self) -> Option<Source>
+    fn source(&self) -> Option<Source>
     {
         self.source.clone()
     }
 
 
-    /// TODO
-    pub fn itunes_ext(&self) -> Option<ITunesItemExtension>
+    /// Get the optional `ITunesItemExtension` under `Item`.
+    fn itunes_ext(&self) -> Option<ITunesItemExtension>
     {
         self.itunes_ext.clone()
     }

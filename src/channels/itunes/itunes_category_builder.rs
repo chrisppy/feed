@@ -12,19 +12,20 @@
 //! `ITunesCategoryBuilder`.
 
 
-use channels::itunes::{ITunesCategory, ITunesCategoryBuilder};
+use channels::itunes::ITunesCategoryBuilder;
+use rss::extension::itunes::ITunesCategory;
 
 
 impl ITunesCategoryBuilder
 {
-    ///
+    /// Construct a new `ITunesCategoryBuilder` and return default values.
     pub fn new() -> ITunesCategoryBuilder
     {
         ITunesCategoryBuilder::default()
     }
 
 
-    ///
+    /// Set the text that exists uner `ITunesCategory`.
     pub fn text(&mut self, text: &str) -> &mut ITunesCategoryBuilder
     {
         self.text = text.to_owned();
@@ -32,20 +33,20 @@ impl ITunesCategoryBuilder
     }
 
 
-    ///
-    pub fn domain(&mut self, domain: Option<Box<ITunesCategory>>) -> &mut ITunesCategoryBuilder
+    /// Set the optional subcategory that exists uner `ITunesCategory`.
+    pub fn subcategory(&mut self, subcategory: Option<Box<ITunesCategory>>) -> &mut ITunesCategoryBuilder
     {
-        self.domain = domain;
+        self.subcategory = subcategory;
         self
     }
 
 
-    ///
+    /// Construct the `ITunesCategory` from the `ITunesCategoryBuilder`.
     pub fn finalize(&self) -> Result<ITunesCategory, String>
     {
         Ok(ITunesCategory {
                text: self.text.clone(),
-               domain: self.domain.clone(),
+               subcategory: self.subcategory.clone(),
            })
     }
 }

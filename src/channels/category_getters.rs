@@ -11,28 +11,28 @@
 //! The fields under category can be retrieved by using the methods under
 //! `Category`.
 
+use channels::CategoryGetters;
+use rss::Category;
 
-use channels::Category;
-use url::Url;
-
-
-impl Category
+impl CategoryGetters for Category
 {
     /// Get the category that exists under `Category`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CategoryBuilder;
+    /// use feed::channels::{CategoryBuilder, CategoryGetters};
     ///
     /// let category = "podcast";
+    ///
     /// let category_obj = CategoryBuilder::new()
     ///     .name(category)
     ///     .finalize()
     ///     .unwrap();
+    ///
     /// assert_eq!(category.to_owned(), category_obj.name());
     /// ```
-    pub fn name(&self) -> String
+    fn name(&self) -> String
     {
         self.name.clone()
     }
@@ -43,30 +43,33 @@ impl Category
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::CategoryBuilder;
+    /// use feed::channels::{CategoryBuilder, CategoryGetters};
     ///
     /// let domain_string = "http://jupiterbroadcasting.com/".to_owned();
+    ///
     /// let category = CategoryBuilder::new()
     ///     .domain(Some(domain_string.clone()))
     ///     .finalize()
     ///     .unwrap();
+    ///
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_some());
-    /// let domain = domain_option.unwrap();
-    /// assert_eq!(domain_string.clone(), domain.into_string());
+    ///
+    /// assert_eq!(domain_string.clone(), domain_option.unwrap());
     /// ```
     ///
     /// ```
-    /// use feed::channels::CategoryBuilder;
+    /// use feed::channels::{CategoryBuilder, CategoryGetters};
     ///
     /// let category = CategoryBuilder::new()
     ///     .domain(None)
     ///     .finalize()
     ///     .unwrap();
+    ///
     /// let domain_option = category.domain();
     /// assert!(domain_option.is_none());
     /// ```
-    pub fn domain(&self) -> Option<Url>
+    fn domain(&self) -> Option<String>
     {
         self.domain.clone()
     }

@@ -11,8 +11,9 @@
 //! The fields can be set for cloud by using the methods under `CloudBuilder`.
 
 
-use channels::{Cloud, CloudBuilder};
+use channels::CloudBuilder;
 use enums::CloudProtocol;
+use rss::Cloud;
 use utils::string_utils;
 
 
@@ -119,6 +120,36 @@ impl CloudBuilder
     }
 
 
+    /// Validate the contents of `Cloud`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::CloudBuilder;
+    ///
+    /// let cloud = CloudBuilder::new()
+    ///         .domain("http://rpc.sys.com/")
+    ///         .port(80)
+    ///         .path("/RPC2")
+    ///         .register_procedure("pingMe")
+    ///         .protocol("soap")
+    ///         .validate().unwrap()
+    ///         .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut CloudBuilder, String>
+    {
+        if self.port < 0
+        {
+            return Err("Cloud Port cannot be a negative value".to_owned());
+        }
+
+        string_utils::str_to_url(self.domain.as_str())?;
+        CloudProtocol::value_of(self.protocol.as_str())?;
+
+        Ok(self)
+    }
+
+
     /// Construct the `Cloud` from the `CloudBuilder`.
     ///
     /// # Examples
@@ -136,20 +167,14 @@ impl CloudBuilder
     /// ```
     pub fn finalize(&self) -> Result<Cloud, String>
     {
-        if self.port < 0
-        {
-            return Err("Cloud Port cannot be a negative value".to_owned());
-        }
-
-        let domain = string_utils::str_to_url(self.domain.as_str())?;
-        let protocol = CloudProtocol::value_of(self.protocol.as_str())?;
+        let port = string_utils::i64_to_string(self.port)?;
 
         Ok(Cloud {
-               domain: domain,
-               port: self.port,
+               domain: self.domain.clone(),
+               port: port,
                path: self.path.clone(),
                register_procedure: self.register_procedure.clone(),
-               protocol: protocol,
+               protocol: self.protocol.clone(),
            })
     }
 }

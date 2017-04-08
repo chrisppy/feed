@@ -11,7 +11,8 @@
 //! The fields can be set for source by using the methods under `SourceBuilder`.
 
 
-use channels::{Source, SourceBuilder};
+use channels::SourceBuilder;
+use rss::Source;
 use utils::string_utils;
 
 
@@ -66,6 +67,27 @@ impl SourceBuilder
     }
 
 
+    /// Validate the contents of `Source`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::channels::SourceBuilder;
+    ///
+    /// let source = SourceBuilder::new()
+    ///     .url("http://www.example.com/source")
+    ///     .title(None)
+    ///     .validate().unwrap()
+    ///     .finalize().unwrap();
+    /// ```
+    pub fn validate(&mut self) -> Result<&mut SourceBuilder, String>
+    {
+        string_utils::str_to_url(self.url.as_str())?;
+
+        Ok(self)
+    }
+
+
     /// Construct the `Source` from the `SourceBuilder`.
     ///
     /// # Examples
@@ -81,10 +103,8 @@ impl SourceBuilder
     /// ```
     pub fn finalize(&self) -> Result<Source, String>
     {
-        let url = string_utils::str_to_url(self.url.as_str())?;
-
         Ok(Source {
-               url: url,
+               url: self.url.clone(),
                title: self.title.clone(),
            })
     }

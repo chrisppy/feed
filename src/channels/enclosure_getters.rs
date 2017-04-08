@@ -12,19 +12,18 @@
 //! `Enclosure`.
 
 
-use channels::Enclosure;
-use mime::Mime;
-use url::Url;
+use channels::EnclosureGetters;
+use rss::Enclosure;
 
 
-impl Enclosure
+impl EnclosureGetters for Enclosure
 {
     /// Get the url that exists under `Enclosure`.
     ///
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::EnclosureBuilder;
+    /// use feed::channels::{EnclosureBuilder, EnclosureGetters};
     ///
     /// let url = "http://www.podtrac.com/pts/redirect.ogg/".to_owned()
     /// + "traffic.libsyn.com/jnite/linuxactionshowep408.ogg";
@@ -33,9 +32,9 @@ impl Enclosure
     ///     .mime_type("audio/ogg")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(url.to_owned(), enclosure.url().into_string())
+    /// assert_eq!(url.to_owned(), enclosure.url())
     /// ```
-    pub fn url(&self) -> Url
+    fn url(&self) -> String
     {
         self.url.clone()
     }
@@ -46,7 +45,7 @@ impl Enclosure
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::EnclosureBuilder;
+    /// use feed::channels::{EnclosureBuilder, EnclosureGetters};
     ///
     /// let length: i64 = 70772893;
     ///
@@ -59,11 +58,11 @@ impl Enclosure
     ///     .mime_type("audio/ogg")
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(length, enclosure.length())
+    /// assert_eq!(length.to_string(), enclosure.length())
     /// ```
-    pub fn length(&self) -> i64
+    fn length(&self) -> String
     {
-        self.length
+        self.length.clone()
     }
 
 
@@ -72,7 +71,7 @@ impl Enclosure
     /// # Examples
     ///
     /// ```
-    /// use feed::channels::EnclosureBuilder;
+    /// use feed::channels::{EnclosureBuilder, EnclosureGetters};
     ///
     /// let enclosure_type = "audio/ogg";
     ///
@@ -84,9 +83,9 @@ impl Enclosure
     ///     .mime_type(enclosure_type)
     ///     .finalize()
     ///     .unwrap();
-    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type().to_string())
+    /// assert_eq!(enclosure_type.to_owned(), enclosure.mime_type())
     /// ```
-    pub fn mime_type(&self) -> Mime
+    fn mime_type(&self) -> String
     {
         self.mime_type.clone()
     }
