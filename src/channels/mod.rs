@@ -16,6 +16,7 @@ pub mod category_builder;
 pub mod channel_from_url;
 pub mod channel_getters;
 pub mod channel_builder;
+pub mod channel_validate;
 pub mod cloud_getters;
 pub mod cloud_builder;
 pub mod enclosure_getters;
@@ -69,7 +70,7 @@ pub trait FromUrl
 pub trait Validate
 {
     /// Validate `Channel`
-    fn validate() -> Result<Channel, String>;
+    fn validate(&self) -> Result<Channel, String>;
 }
 
 

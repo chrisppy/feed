@@ -68,13 +68,51 @@
 //!         .title("The Linux Action Show! OGG")
 //!         .link("http://www.jupiterbroadcasting.com")
 //!         .description(description.as_ref())
-//!         .finalize()
-//!         .unwrap();
+//!         .finalize().unwrap();
 //!
 //!     println!("Feed: {:?}", channel.to_string());
 //! }
 //! ```
-
+//!
+//! ### Validating Feeds
+//!
+//! ```
+//! extern crate feed;
+//!
+//! use feed::channels::ChannelBuilder;
+//!
+//! fn main()
+//! {
+//!     let description = "Ogg Vorbis audio versions of The Linux ".to_owned()
+//!         + "Action Show! A show that covers everything geeks care about in "
+//!         + "the computer industry. Get a solid dose of Linux, gadgets, news "
+//!         + "events and much more!";
+//!
+//!     let channel = ChannelBuilder::new()
+//!         .title("The Linux Action Show! OGG")
+//!         .link("http://www.jupiterbroadcasting.com")
+//!         .description(description.as_ref())
+//!         .validate().unwrap()
+//!         .finalize().unwrap();
+//!
+//!     println!("Feed: {:?}", channel.to_string());
+//! }
+//! ```
+//!
+//! ```
+//! extern crate rss;
+//! extern crate feed;
+//!
+//! use feed::channels::{FromUrl, Validate};
+//! use rss::Channel;
+//!
+//! fn main()
+//! {
+//!     let url = "https://feedpress.me/usererror.xml";
+//!     let channel = Channel::from_url(url).unwrap();
+//!     channel.validate().unwrap();
+//! }
+//! ```
 
 extern crate chrono;
 extern crate curl;
