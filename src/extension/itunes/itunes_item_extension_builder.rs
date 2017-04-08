@@ -19,13 +19,30 @@ use rss::extension::itunes::ITunesItemExtension;
 impl ITunesItemExtensionBuilder
 {
     /// Construct a new `ITunesItemExtensionBuilder` and return default values.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let item_builder = ITunesItemExtensionBuilder::new();
+    /// ```
     pub fn new() -> ITunesItemExtensionBuilder
     {
         ITunesItemExtensionBuilder::default()
     }
 
 
-    /// Set the optional author that exists uner `ITunesItemExtension`.
+    /// Set the optional author that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.author(Some("author".to_owned()));
+    /// ```
     pub fn author(&mut self, author: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.author = author;
@@ -33,7 +50,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional block that exists uner `ITunesItemExtension`.
+    /// Set the optional block that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.block(Some("block".to_owned()));
+    /// ```
     pub fn block(&mut self, block: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.block = block;
@@ -41,7 +67,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional image that exists uner `ITunesItemExtension`.
+    /// Set the optional image that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.image(Some("image".to_owned()));
+    /// ```
     pub fn image(&mut self, image: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.image = image;
@@ -49,7 +84,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional duration that exists uner `ITunesItemExtension`.
+    /// Set the optional duration that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.duration(Some("duration".to_owned()));
+    /// ```
     pub fn duration(&mut self, duration: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.duration = duration;
@@ -57,7 +101,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional explicit that exists uner `ITunesItemExtension`.
+    /// Set the optional explicit that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.explicit(Some("explicit".to_owned()));
+    /// ```
     pub fn explicit(&mut self, explicit: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.explicit = explicit;
@@ -65,8 +118,17 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional closed_captioned that exists uner
+    /// Set the optional closed_captioned that exists under
     /// `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.closed_captioned(Some("closed_captioned".to_owned()));
+    /// ```
     pub fn closed_captioned(&mut self, closed_captioned: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.closed_captioned = closed_captioned;
@@ -74,7 +136,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional order that exists uner `ITunesItemExtension`.
+    /// Set the optional order that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.order(Some("order".to_owned()));
+    /// ```
     pub fn order(&mut self, order: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.order = order;
@@ -82,7 +153,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional subtitle that exists uner `ITunesItemExtension`.
+    /// Set the optional subtitle that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.subtitle(Some("subtitle".to_owned()));
+    /// ```
     pub fn subtitle(&mut self, subtitle: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.subtitle = subtitle;
@@ -90,7 +170,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional summary that exists uner `ITunesItemExtension`.
+    /// Set the optional summary that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.summary(Some("summary".to_owned()));
+    /// ```
     pub fn summary(&mut self, summary: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.summary = summary;
@@ -98,7 +187,16 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional keywords that exists uner `ITunesItemExtension`.
+    /// Set the optional keywords that exists under `ITunesItemExtension`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item_builder = ITunesItemExtensionBuilder::new();
+    /// item_builder.keywords(Some("keywords".to_owned()));
+    /// ```
     pub fn keywords(&mut self, keywords: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.keywords = keywords;
@@ -108,6 +206,26 @@ impl ITunesItemExtensionBuilder
 
     /// Construct the `ITunesItemExtension` from the
     /// `ITunesItemExtensionBuilder`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let mut item = ITunesItemExtensionBuilder::new()
+    ///     .author(Some("author".to_owned()))
+    ///     .block(Some("block".to_owned()))
+    ///     .image(Some("image".to_owned()))
+    ///     .duration(Some("duration".to_owned()))
+    ///     .explicit(Some("explicit".to_owned()))
+    ///     .closed_captioned(Some("closed_captioned".to_owned()))
+    ///     .order(Some("order".to_owned()))
+    ///     .subtitle(Some("subtitle".to_owned()))
+    ///     .summary(Some("summary".to_owned()))
+    ///     .keywords(Some("keywords".to_owned()))
+    ///     .finalize()
+    ///     .unwrap();
+    /// ```
     pub fn finalize(&self) -> Result<ITunesItemExtension, String>
     {
         Ok(ITunesItemExtension {

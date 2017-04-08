@@ -399,6 +399,46 @@ impl ItemGetters for Item
 
 
     /// Get the optional `ITunesItemExtension` under `Item`.
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::{ItemBuilder, ItemGetters};
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let itunes_item = ITunesItemExtensionBuilder::new()
+    ///     .author(Some("author".to_owned()))
+    ///     .block(Some("block".to_owned()))
+    ///     .image(Some("image".to_owned()))
+    ///     .duration(Some("duration".to_owned()))
+    ///     .explicit(Some("explicit".to_owned()))
+    ///     .closed_captioned(Some("closed_captioned".to_owned()))
+    ///     .order(Some("order".to_owned()))
+    ///     .subtitle(Some("subtitle".to_owned()))
+    ///     .summary(Some("summary".to_owned()))
+    ///     .keywords(Some("keywords".to_owned()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let item = ItemBuilder::new()
+    ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
+    ///     .itunes_ext(Some(itunes_item))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// assert!(item.itunes_ext().is_some());
+    /// ```
+    ///
+    /// ```
+    /// use feed::{ItemBuilder, ItemGetters};
+    ///
+    /// let item = ItemBuilder::new()
+    ///     .title(Some("Making Music with Linux | LAS 408".to_owned()))
+    ///     .itunes_ext(None)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// assert!(item.itunes_ext().is_none());
+    /// ```
     fn itunes_ext(&self) -> Option<ITunesItemExtension>
     {
         self.itunes_ext.clone()

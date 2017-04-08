@@ -232,7 +232,33 @@ impl ItemBuilder
     }
 
 
-    /// TODO
+    /// Set the optional itunes_ext that exists under `Item`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::ItemBuilder;
+    /// use feed::extension::itunes::ITunesItemExtensionBuilder;
+    ///
+    /// let url = "http://www.tomalak.org/links2.xml";
+    ///
+    /// let itunes_item = ITunesItemExtensionBuilder::new()
+    ///     .author(Some("author".to_owned()))
+    ///     .block(Some("block".to_owned()))
+    ///     .image(Some("image".to_owned()))
+    ///     .duration(Some("duration".to_owned()))
+    ///     .explicit(Some("explicit".to_owned()))
+    ///     .closed_captioned(Some("closed_captioned".to_owned()))
+    ///     .order(Some("order".to_owned()))
+    ///     .subtitle(Some("subtitle".to_owned()))
+    ///     .summary(Some("summary".to_owned()))
+    ///     .keywords(Some("keywords".to_owned()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let mut item_builder = ItemBuilder::new();
+    /// item_builder.itunes_ext(Some(itunes_item));
+    /// ```
     pub fn itunes_ext(&mut self, itunes_ext: Option<ITunesItemExtension>) -> &mut ItemBuilder
     {
         self.itunes_ext = itunes_ext;
