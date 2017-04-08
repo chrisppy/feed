@@ -47,7 +47,8 @@ impl Validate for Channel
             None => None,
             Some(val) =>
             {
-                Some(CloudBuilder::new().domain(val.domain().as_str())
+                Some(CloudBuilder::new()
+                         .domain(val.domain().as_str())
                          .port(string_utils::string_to_i64(val.port().as_str())?)
                          .path(val.path().as_str())
                          .register_procedure(val.register_procedure().as_str())
@@ -60,7 +61,8 @@ impl Validate for Channel
         let mut channel_cat: Vec<Category> = Vec::new();
         for cat in self.categories()
         {
-            channel_cat.push(CategoryBuilder::new().name(cat.name().as_str())
+            channel_cat.push(CategoryBuilder::new()
+                                 .name(cat.name().as_str())
                                  .domain(cat.domain())
                                  .validate()?
                                  .finalize()?);
@@ -106,7 +108,8 @@ impl Validate for Channel
             None => None,
             Some(val) =>
             {
-                Some(ImageBuilder::new().url(val.url().as_str())
+                Some(ImageBuilder::new()
+                         .url(val.url().as_str())
                          .title(val.title().as_str())
                          .link(val.link().as_str())
                          .width(string_utils::option_string_to_option_i64(val.width())?)
@@ -122,7 +125,8 @@ impl Validate for Channel
             None => None,
             Some(val) =>
             {
-                Some(TextInputBuilder::new().title(val.title().as_str())
+                Some(TextInputBuilder::new()
+                         .title(val.title().as_str())
                          .description(val.description().as_str())
                          .name(val.name().as_str())
                          .link(val.link().as_str())
@@ -137,7 +141,8 @@ impl Validate for Channel
             let mut item_cat: Vec<Category> = Vec::new();
             for cat in item.categories()
             {
-                item_cat.push(CategoryBuilder::new().name(cat.name().as_str())
+                item_cat.push(CategoryBuilder::new()
+                                  .name(cat.name().as_str())
                                   .domain(cat.domain())
                                   .validate()?
                                   .finalize()?);
@@ -157,7 +162,8 @@ impl Validate for Channel
                 None => None,
                 Some(eval) =>
                 {
-                    Some(EnclosureBuilder::new().url(eval.url().as_str())
+                    Some(EnclosureBuilder::new()
+                             .url(eval.url().as_str())
                              .length(string_utils::string_to_i64(eval.length.as_str())?)
                              .mime_type(eval.mime_type().as_str())
                              .validate()?
@@ -170,7 +176,8 @@ impl Validate for Channel
                 None => None,
                 Some(gval) =>
                 {
-                    Some(GuidBuilder::new().value(gval.value().as_str())
+                    Some(GuidBuilder::new()
+                             .value(gval.value().as_str())
                              .is_permalink(Some(gval.is_permalink()))
                              .finalize()?)
                 }
@@ -181,7 +188,8 @@ impl Validate for Channel
                 None => None,
                 Some(sval) =>
                 {
-                    Some(SourceBuilder::new().url(sval.url().as_str())
+                    Some(SourceBuilder::new()
+                             .url(sval.url().as_str())
                              .title(sval.title())
                              .validate()?
                              .finalize()?)
@@ -193,7 +201,8 @@ impl Validate for Channel
                 None => None,
                 Some(ival) =>
                 {
-                    Some(ITunesItemExtensionBuilder::new().author(ival.author())
+                    Some(ITunesItemExtensionBuilder::new()
+                             .author(ival.author())
                              .block(ival.block())
                              .image(ival.image())
                              .duration(ival.duration())
@@ -207,7 +216,8 @@ impl Validate for Channel
                 }
             };
 
-            items.push(ItemBuilder::new().title(item.title())
+            items.push(ItemBuilder::new()
+                           .title(item.title())
                            .link(item.link())
                            .description(item.description())
                            .author(item.author())
@@ -234,7 +244,8 @@ impl Validate for Channel
                     None => None,
                     Some(oval) =>
                     {
-                        Some(ITunesOwnerBuilder::new().name(oval.name())
+                        Some(ITunesOwnerBuilder::new()
+                                 .name(oval.name())
                                  .email(oval.email())
                                  .finalize()?)
                     }
@@ -243,7 +254,8 @@ impl Validate for Channel
                 let mut itunes_cat: Vec<ITunesCategory> = Vec::new();
                 for cat in cval.categories()
                 {
-                    itunes_cat.push(ITunesCategoryBuilder::new().text(cat.text().as_str())
+                    itunes_cat.push(ITunesCategoryBuilder::new()
+                                        .text(cat.text().as_str())
                                         .subcategory(cat.subcategory())
                                         .finalize()?);
                 }
@@ -257,7 +269,8 @@ impl Validate for Channel
                     Some(itunes_cat)
                 };
 
-                Some(ITunesChannelExtensionBuilder::new().author(cval.author())
+                Some(ITunesChannelExtensionBuilder::new()
+                         .author(cval.author())
                          .block(cval.block())
                          .image(cval.image())
                          .explicit(cval.explicit())
