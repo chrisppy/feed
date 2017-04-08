@@ -113,7 +113,8 @@ impl ITunesChannelExtensionBuilder
     }
 
 
-    /// Construct the `ITunesChannelExtension` from the `ITunesChannelExtensionBuilder`.
+    /// Construct the `ITunesChannelExtension` from the
+    /// `ITunesChannelExtensionBuilder`.
     pub fn finalize(&self) -> Result<ITunesChannelExtension, String>
     {
         let categories: Vec<ITunesCategory> = match self.categories.clone()

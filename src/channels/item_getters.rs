@@ -180,7 +180,7 @@ impl ItemGetters for Item
     ///     .categories(Some(categories_vec.clone()))
     ///     .finalize()
     ///     .unwrap();
-    /// 
+    ///
     /// assert_eq!(categories_vec.clone().len(), item.categories().len());
     /// ```
     fn categories(&self) -> Vec<Category>

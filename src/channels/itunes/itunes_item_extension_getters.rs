@@ -53,7 +53,8 @@ impl ITunesItemExtensionGetters for ITunesItemExtension
     }
 
 
-    /// Get the optional closed_captioned that exists under `ITunesItemExtension`.
+    /// Get the optional closed_captioned that exists under
+    /// `ITunesItemExtension`.
     fn closed_captioned(&self) -> Option<String>
     {
         self.closed_captioned.clone()

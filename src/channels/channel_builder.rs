@@ -154,11 +154,11 @@ impl ChannelBuilder
     /// ```
     /// use feed::channels::ChannelBuilder;
     ///
-    /// let web_master =
+    /// let webmaster =
     ///     "chris@jupiterbroadcasting.com (Chris Fisher)".to_owned();
     ///
     /// let mut channel_builder = ChannelBuilder::new();
-    /// channel_builder.web_master(Some(web_master));
+    /// channel_builder.webmaster(Some(webmaster));
     /// ```
     pub fn webmaster(&mut self, webmaster: Option<String>) -> &mut ChannelBuilder
     {
@@ -459,7 +459,7 @@ impl ChannelBuilder
     ///         .language(None)
     ///         .copyright(None)
     ///         .managing_editor(None)
-    ///         .web_master(None)
+    ///         .webmaster(None)
     ///         .pub_date(None)
     ///         .last_build_date(None)
     ///         .categories(None)
@@ -549,7 +549,7 @@ impl ChannelBuilder
     ///         .language(None)
     ///         .copyright(None)
     ///         .managing_editor(None)
-    ///         .web_master(None)
+    ///         .webmaster(None)
     ///         .pub_date(None)
     ///         .last_build_date(None)
     ///         .categories(None)

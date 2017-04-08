@@ -65,7 +65,8 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Set the optional closed_captioned that exists uner `ITunesItemExtension`.
+    /// Set the optional closed_captioned that exists uner
+    /// `ITunesItemExtension`.
     pub fn closed_captioned(&mut self, closed_captioned: Option<String>) -> &mut ITunesItemExtensionBuilder
     {
         self.closed_captioned = closed_captioned;
@@ -105,7 +106,8 @@ impl ITunesItemExtensionBuilder
     }
 
 
-    /// Construct the `ITunesItemExtension` from the `ITunesItemExtensionBuilder`.
+    /// Construct the `ITunesItemExtension` from the
+    /// `ITunesItemExtensionBuilder`.
     pub fn finalize(&self) -> Result<ITunesItemExtension, String>
     {
         Ok(ITunesItemExtension {

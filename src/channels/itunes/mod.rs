@@ -85,7 +85,8 @@ pub trait ITunesChannelExtensionGetters
     /// Get the optional complete that exists under `ITunesChannelExtension`.
     fn complete(&self) -> Option<String>;
 
-    /// Get the optional new_feed_url that exists under `ITunesChannelExtension`.
+    /// Get the optional new_feed_url that exists under
+    /// `ITunesChannelExtension`.
     fn new_feed_url(&self) -> Option<String>;
 
     /// Get the optional owner that exists under `ITunesChannelExtension`.
@@ -139,7 +140,8 @@ pub trait ITunesItemExtensionGetters
     /// Get the optional explicit that exists under `ITunesItemExtension`.
     fn explicit(&self) -> Option<String>;
 
-    /// Get the optional closed_captioned that exists under `ITunesItemExtension`.
+    /// Get the optional closed_captioned that exists under
+    /// `ITunesItemExtension`.
     fn closed_captioned(&self) -> Option<String>;
 
     /// Get the optional order that exists under `ITunesItemExtension`.

@@ -24,11 +24,17 @@ impl FromUrl for Channel
     /// # Examples
     ///
     /// ```
-    /// use feed::FeedBuilder;
+    /// extern crate rss;
+    /// extern crate feed;
     ///
-    /// let url = "https://feedpress.me/usererror.xml";
-    /// let feed = FeedBuilder::from_url(url).unwrap();
-    /// feed.channel();
+    /// use feed::channels::FromUrl;
+    /// use rss::Channel;
+    ///
+    /// fn main()
+    /// {
+    ///     let url = "https://feedpress.me/usererror.xml";
+    ///     Channel::from_url(url).unwrap();
+    /// }
     /// ```
     fn from_url(url: &str) -> Result<Channel, String>
     {

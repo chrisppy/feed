@@ -60,7 +60,8 @@ impl ITunesChannelExtensionGetters for ITunesChannelExtension
     }
 
 
-    /// Get the optional new_feed_url that exists under `ITunesChannelExtension`.
+    /// Get the optional new_feed_url that exists under
+    /// `ITunesChannelExtension`.
     fn new_feed_url(&self) -> Option<String>
     {
         self.new_feed_url.clone()
