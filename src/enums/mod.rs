@@ -28,18 +28,7 @@ pub enum CloudProtocol
 
 impl CloudProtocol
 {
-    /// Convert `&str` to `CloudProtocol`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::enums::CloudProtocol;
-    ///
-    /// let s = "soap";
-    /// let e = CloudProtocol::value_of(s).unwrap();
-    ///
-    /// assert_eq!(s.to_owned(), e.into_string());
-    /// ```
+    // Convert `&str` to `CloudProtocol`.
     pub fn value_of(s: &str) -> Result<CloudProtocol, String>
     {
         match s
@@ -48,18 +37,6 @@ impl CloudProtocol
             "xml-rpc" => Ok(CloudProtocol::XmlRpc),
             "soap" => Ok(CloudProtocol::Soap),
             _ => Err(format!("Invalid value: {}", s)),
-        }
-    }
-
-
-    /// Convert `CloudProtocol` to `String`.
-    pub fn into_string(self) -> String
-    {
-        match self
-        {
-            CloudProtocol::HttpPost => "http-post".to_owned(),
-            CloudProtocol::XmlRpc => "xml-rpc".to_owned(),
-            CloudProtocol::Soap => "soap".to_owned(),
         }
     }
 }
@@ -94,17 +71,6 @@ pub enum Day
 impl Day
 {
     /// Convert `&str` to `Day`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use feed::enums::Day;
-    ///
-    /// let s = "Tuesday";
-    /// let e = Day::value_of(s).unwrap();
-    ///
-    /// assert_eq!(s.to_owned(), e.into_string());
-    /// ```
     pub fn value_of(s: &str) -> Result<Day, String>
     {
         match s
@@ -117,22 +83,6 @@ impl Day
             "Saturday" => Ok(Day::Saturday),
             "Sunday" => Ok(Day::Sunday),
             _ => Err(format!("Invalid value: {}", s)),
-        }
-    }
-
-
-    /// Convert `Day` to `String`.
-    pub fn into_string(self) -> String
-    {
-        match self
-        {
-            Day::Monday => "Monday".to_owned(),
-            Day::Tuesday => "Tuesday".to_owned(),
-            Day::Wednesday => "Wednesday".to_owned(),
-            Day::Thursday => "Thursday".to_owned(),
-            Day::Friday => "Friday".to_owned(),
-            Day::Saturday => "Saturday".to_owned(),
-            Day::Sunday => "Sunday".to_owned(),
         }
     }
 }
