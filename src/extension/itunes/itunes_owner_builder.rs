@@ -19,6 +19,14 @@ use rss::extension::itunes::ITunesOwner;
 impl ITunesOwnerBuilder
 {
     /// Construct a new `ITunesOwnerBuilder` and return default values.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesOwnerBuilder;
+    ///
+    /// let owner_builder = ITunesOwnerBuilder::new();
+    /// ```
     pub fn new() -> ITunesOwnerBuilder
     {
         ITunesOwnerBuilder::default()
@@ -26,6 +34,15 @@ impl ITunesOwnerBuilder
 
 
     /// Set the optional name that exists uner `ITunesOwner`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesOwnerBuilder;
+    ///
+    /// let mut owner_builder = ITunesOwnerBuilder::new();
+    /// owner_builder.name(Some("name".to_owned()));
+    /// ```
     pub fn name(&mut self, name: Option<String>) -> &mut ITunesOwnerBuilder
     {
         self.name = name;
@@ -34,6 +51,15 @@ impl ITunesOwnerBuilder
 
 
     /// Set the optional email that exists uner `ITunesOwner`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesOwnerBuilder;
+    ///
+    /// let mut owner_builder = ITunesOwnerBuilder::new();
+    /// owner_builder.email(Some("email@example.com".to_owned()));
+    /// ```
     pub fn email(&mut self, email: Option<String>) -> &mut ITunesOwnerBuilder
     {
         self.email = email;
@@ -42,6 +68,18 @@ impl ITunesOwnerBuilder
 
 
     /// Construct the `ITunesOwner` from the `ITunesOwnerBuilder`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesOwnerBuilder;
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .email(Some("email@example.com".to_owned()))
+    ///     .name(Some("name".to_owned()))
+    ///     .finalize()
+    ///     .unwrap();
+    /// ```
     pub fn finalize(&self) -> Result<ITunesOwner, String>
     {
         Ok(ITunesOwner {

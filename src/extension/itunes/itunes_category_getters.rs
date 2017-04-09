@@ -18,6 +18,22 @@ use rss::extension::itunes::ITunesCategory;
 impl ITunesCategoryGetters for ITunesCategory
 {
     /// Get the text that exists under `ITunesCategory`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesCategoryBuilder,
+    /// ITunesCategoryGetters};
+    ///
+    /// let text = "text";
+    ///
+    /// let category = ITunesCategoryBuilder::new()
+    ///     .text(text)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// assert_eq!(text.to_owned(), category.text())
+    /// ```
     fn text(&self) -> String
     {
         self.text.clone()
@@ -25,6 +41,39 @@ impl ITunesCategoryGetters for ITunesCategory
 
 
     /// Get the optional subcategory that exists under `ITunesCategory`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesCategoryBuilder,
+    /// ITunesCategoryGetters};
+    ///
+    /// let subcategory = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let category = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .subcategory(Some(Box::new(subcategory)))
+    ///     .finalize()
+    ///     .unwrap();;
+    ///
+    /// assert!(category.subcategory().is_some());
+    /// ```
+    ///
+    /// ```
+    /// use feed::extension::itunes::{ITunesCategoryBuilder,
+    /// ITunesCategoryGetters};
+    ///
+    /// let category = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .subcategory(None)
+    ///     .finalize()
+    ///     .unwrap();;
+    ///
+    /// assert!(category.subcategory().is_none());
+    /// ```
     fn subcategory(&self) -> Option<Box<ITunesCategory>>
     {
         self.subcategory.clone()

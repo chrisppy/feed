@@ -432,7 +432,52 @@ impl ChannelBuilder
     }
 
 
-    /// TODO
+    /// Set the optional itunes channel extension that exists under `Channel`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::ChannelBuilder;
+    /// use feed::extension::itunes::{ITunesChannelExtensionBuilder,
+    /// ITunesOwnerBuilder, ITunesCategoryBuilder};
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .email(Some("email@example.com".to_owned()))
+    ///     .name(Some("name".to_owned()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let subcategory = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let category = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .subcategory(Some(Box::new(subcategory)))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let categories = vec![category];
+    ///
+    /// let itunes_channel = ITunesChannelExtensionBuilder::new()
+    ///     .author(Some("author".to_owned()))
+    ///     .block(Some("block".to_owned()))
+    ///     .image(Some("image".to_owned()))
+    ///     .explicit(Some("explicit".to_owned()))
+    ///     .subtitle(Some("subtitle".to_owned()))
+    ///     .summary(Some("summary".to_owned()))
+    ///     .keywords(Some("keywords".to_owned()))
+    ///     .new_feed_url(Some("new_feed_url".to_owned()))
+    ///     .complete(Some("complete".to_owned()))
+    ///     .owner(Some(owner))
+    ///     .categories(categories)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let mut channel_builder = ChannelBuilder::new();
+    /// channel_builder.itunes_ext(Some(itunes_channel));
+    /// ```
     pub fn itunes_ext(&mut self, itunes_ext: Option<ITunesChannelExtension>) -> &mut ChannelBuilder
     {
         self.itunes_ext = itunes_ext;

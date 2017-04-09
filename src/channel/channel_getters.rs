@@ -797,6 +797,66 @@ impl ChannelGetters for Channel
 
 
     /// Get the optional `ITunesChannelExtension` under `Channel`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::{ChannelBuilder, ChannelGetters};
+    /// use feed::extension::itunes::{ITunesChannelExtensionBuilder,
+    /// ITunesOwnerBuilder, ITunesCategoryBuilder};
+    ///
+    /// let owner = ITunesOwnerBuilder::new()
+    ///     .email(Some("email@example.com".to_owned()))
+    ///     .name(Some("name".to_owned()))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let subcategory = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let category = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .subcategory(Some(Box::new(subcategory)))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let categories = vec![category];
+    ///
+    /// let itunes_channel = ITunesChannelExtensionBuilder::new()
+    ///     .author(Some("author".to_owned()))
+    ///     .block(Some("block".to_owned()))
+    ///     .image(Some("image".to_owned()))
+    ///     .explicit(Some("explicit".to_owned()))
+    ///     .subtitle(Some("subtitle".to_owned()))
+    ///     .summary(Some("summary".to_owned()))
+    ///     .keywords(Some("keywords".to_owned()))
+    ///     .new_feed_url(Some("new_feed_url".to_owned()))
+    ///     .complete(Some("complete".to_owned()))
+    ///     .owner(Some(owner))
+    ///     .categories(categories)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let channel = ChannelBuilder::new()
+    ///     .itunes_ext(Some(itunes_channel))
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// assert!(channel.itunes_ext().is_some());
+    /// ```
+    ///
+    /// ```
+    /// use feed::{ChannelBuilder, ChannelGetters};
+    ///
+    /// let channel = ChannelBuilder::new()
+    ///     .itunes_ext(None)
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// assert!(channel.itunes_ext().is_none());
+    /// ```
     fn itunes_ext(&self) -> Option<ITunesChannelExtension>
     {
         self.itunes_ext.clone()

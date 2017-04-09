@@ -19,6 +19,14 @@ use rss::extension::itunes::ITunesCategory;
 impl ITunesCategoryBuilder
 {
     /// Construct a new `ITunesCategoryBuilder` and return default values.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesCategoryBuilder;
+    ///
+    /// let category_builder = ITunesCategoryBuilder::new();
+    /// ```
     pub fn new() -> ITunesCategoryBuilder
     {
         ITunesCategoryBuilder::default()
@@ -26,6 +34,15 @@ impl ITunesCategoryBuilder
 
 
     /// Set the text that exists uner `ITunesCategory`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesCategoryBuilder;
+    ///
+    /// let mut category_builder = ITunesCategoryBuilder::new();
+    /// category_builder.text("text");
+    /// ```
     pub fn text(&mut self, text: &str) -> &mut ITunesCategoryBuilder
     {
         self.text = text.to_owned();
@@ -34,6 +51,20 @@ impl ITunesCategoryBuilder
 
 
     /// Set the optional subcategory that exists uner `ITunesCategory`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesCategoryBuilder;
+    ///
+    /// let subcategory = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let mut category_builder = ITunesCategoryBuilder::new();
+    /// category_builder.subcategory(Some(Box::new(subcategory)));
+    /// ```
     pub fn subcategory(&mut self, subcategory: Option<Box<ITunesCategory>>) -> &mut ITunesCategoryBuilder
     {
         self.subcategory = subcategory;
@@ -42,6 +73,23 @@ impl ITunesCategoryBuilder
 
 
     /// Construct the `ITunesCategory` from the `ITunesCategoryBuilder`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use feed::extension::itunes::ITunesCategoryBuilder;
+    ///
+    /// let subcategory = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .finalize()
+    ///     .unwrap();
+    ///
+    /// let category = ITunesCategoryBuilder::new()
+    ///     .text("text")
+    ///     .subcategory(Some(Box::new(subcategory)))
+    ///     .finalize()
+    ///     .unwrap();
+    /// ```
     pub fn finalize(&self) -> Result<ITunesCategory, String>
     {
         Ok(ITunesCategory {
