@@ -1,11 +1,8 @@
 [package]
 name = "feed"
-version = "3.0.0"
+version = "2.1.0"
 authors = ["Chris Palmer <pennstate5013@gmail.com>"]
 description = "Library for creating and parsing rss feeds."
-
-documentation = "https://docs.rs/feed/"
-homepage = "http://red-oxide.org"
 repository = "https://github.com/red-oxide/feed"
 
 readme = "README.md"
