@@ -1,8 +1,0 @@
-fn_brace_style         = "AlwaysNextLine"
-item_brace_style       = "AlwaysNextLine"
-control_brace_style    = "AlwaysNextLine"
-reorder_imports        = true
-reorder_imported_names = true
-wrap_comments          = true
-normalize_comments     = true
-max_width              = 120
