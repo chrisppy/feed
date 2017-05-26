@@ -2,7 +2,7 @@
 name = "feed"
 version = "2.1.0"
 authors = ["Chris Palmer <pennstate5013@gmail.com>"]
-description = "Library for creating and parsing rss feeds."
+description = "Deprecated. This project has been merged with the rss crate."
 repository = "https://github.com/red-oxide/feed"
 
 readme = "README.md"
